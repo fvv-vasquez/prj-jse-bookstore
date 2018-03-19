@@ -1,4 +1,4 @@
-package com.fvv.prj;
+package com.fvv.bookstore;
 
 /**
  * Hello world!
