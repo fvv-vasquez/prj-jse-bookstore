@@ -1,9 +1,9 @@
 package com.fvv.bookstore.bean;
 
 /**
- * 
- * @author Fatima
- *
+ * Create on 03/30/2018
+ * @author Fatima Vasquez
+ * @version 1.0
  */
 public abstract class Dvd {
 	
@@ -14,6 +14,9 @@ public abstract class Dvd {
 	private Integer releaseYear;
 	private Integer code;
 	
+	/**
+	 * Class constructor specifying the attributes
+	 */
 	public Dvd(String title, Integer totalDuration, Double price, String genre, 
 			Integer releaseYear, Integer code) {
 		this.title = title;
@@ -24,57 +27,123 @@ public abstract class Dvd {
 		this.code = code;
 	}
 	
+	/**
+	 * Class constructor
+	 */
 	public Dvd() {
 	}
 
+	/**
+	 * Sets the title.
+	 * 
+	 * @param title of String type.
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	/**
+	 * Gets the last title.
+	 * 
+	 * @return the last title of String type.
+	 */
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
+	/**
+	 * Sets the total duration of the DVD.
+	 * 
+	 * @param totalDuration of Integer type.
+	 */
 	public void setTotalDuration(Integer totalDuration) {
 		this.totalDuration = totalDuration;
 	}
 
+	/**
+	 * Gets the last total duration.
+	 * 
+	 * @return the last totalDuration of Integer type.
+	 */
 	public Integer getTotalDuration() {
-		return totalDuration;
+		return this.totalDuration;
 	}
 
+	/**
+	 * Sets the price.
+	 * 
+	 * @param price of Double type.
+	 */
 	public void setPrice(Double price) {
 		this.price = price;
 	}
 
+	/**
+	 * Gets the last price.
+	 * 
+	 * @return the last price of Double type.
+	 */
 	public Double getPrice() {
-		return price;
+		return this.price;
 	}
 
+	/**
+	 * Sets the genre.
+	 * 
+	 * @param genre of String type.
+	 */
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
+	/**
+	 * Gets the last genre.
+	 * 
+	 * @return the last genre of String type.
+	 */
 	public String getGenre() {
-		return genre;
+		return this.genre;
 	}
 
+	/**
+	 * Sets the release year.
+	 * 
+	 * @param releaseYear of Integer type.
+	 */
 	public void setReleaseYear(Integer releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 
+	/**
+	 * Gets the last release year.
+	 * 
+	 * @return the last releaseYear of Integer type.
+	 */
 	public Integer getReleaseYear() {
-		return releaseYear;
+		return this.releaseYear;
 	}
 
+	/**
+	 * Sets the code.
+	 * 
+	 * @param code of Integer type.
+	 */
 	public void setCode(Integer code) {
 		this.code = code;
 	}
 
+	/**
+	 * Gets the last code.
+	 * 
+	 * @return the last code of Integer type.
+	 */
 	public Integer getCode() {
-		return code;
+		return this.code;
 	}
 	
+	/**
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return "DVD Title: " + getTitle() + ", Total Duration: " + getTotalDuration() + "Price: "
 				+ getPrice() + ", Genre: " + getGenre() + ", Release Year: " + getReleaseYear() 
