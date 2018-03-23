@@ -3,7 +3,9 @@ package com.fvv.bookstore.bean;
 import java.util.Date;
 
 /**
- * Create on 03/30/2018
+ * Bean class for a Magazine object
+ * 
+ * Created on 03/20/2018
  * @author Fatima Vasquez
  * @version 1.0
  */

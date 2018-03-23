@@ -1,9 +1,11 @@
 package com.fvv.bookstore.bean;
 
 /**
- * Create on 03/30/2018
+ * Bean class for a Laptop object
+ * 
+ * Created on 03/20/2018
  * @author Fatima Vasquez
- * @version 1.0 
+ * @version 1.0
  */
 public class Laptop extends Hardware {
 
