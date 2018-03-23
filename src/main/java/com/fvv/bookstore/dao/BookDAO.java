@@ -34,13 +34,15 @@ public interface BookDAO {
 	 * Update a book already add in the database.
 	 * 
 	 * @param updateBook of Book type.
+	 * @throws DaoException 
 	 */
-	public void updateBook(Book book);
+	public void updateBook(Book book) throws DaoException;
 
 	/**
 	 * Delete a book from the bookstore in the database.
 	 * 
 	 * @param removeBook of Integer type.
+	 * @throws DaoException 
 	 */
-	public void removeBook(Integer isbn);
+	public void removeBook(Integer isbn) throws DaoException;
 }
