@@ -11,6 +11,7 @@ public class DaoException extends Exception {
 	 * Message of a DAO error.
 	 * 
 	 * @param message of error.
+	 * @param e original exception.
 	 */
 	public DaoException(String message, Throwable e) {
 		super(message, e);

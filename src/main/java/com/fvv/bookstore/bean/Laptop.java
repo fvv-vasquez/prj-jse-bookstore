@@ -16,6 +16,16 @@ public class Laptop extends Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
+	 * @param id of the Laptop
+	 * @param brand of the Laptop
+	 * @param model of the Laptop
+	 * @param color of the Laptop
+	 * @param price of the Laptop
+	 * @param warranty of the Laptop
+	 * @param ramSize of the Laptop
+	 * @param processor of the Laptop
+	 * @param screenSize of the Laptop
+	 * @param hdSize of the Laptop
 	 */
 	public Laptop(Integer id, String brand, String model, String color, Double price, Integer 
 			warranty, Integer ramSize, String processor, Double screenSize, Double hdSize) {

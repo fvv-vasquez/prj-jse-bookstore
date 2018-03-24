@@ -16,7 +16,7 @@ public interface KeyboardDAO {
 	/**
 	 * Add a keyboard at the bookstore in the database.
 	 * 
-	 * @param addKeyboard of Keyboard type.
+	 * @param keyboard of Keyboard type.
 	 */
 	public void addKeyboard(Keyboard keyboard);
 
@@ -30,14 +30,14 @@ public interface KeyboardDAO {
 	/**
 	 * Update a keyboard already add in the database.
 	 * 
-	 * @param updateKeyboard of Keyboard type.
+	 * @param keyboard of Keyboard type.
 	 */
 	public void updateKeyboard(Keyboard keyboard);
 
 	/**
 	 * Delete a keyboard from the bookstore in the database.
 	 * 
-	 * @param removeKeyboard of Integer type.
+	 * @param id of Integer type.
 	 */
 	public void removeKeyboard(Integer id);
 }

@@ -16,7 +16,7 @@ public interface LaptopDAO {
 	/**
 	 * Add a laptop at the bookstore in the database.
 	 * 
-	 * @param addLaptop of Laptop type.
+	 * @param laptop of Laptop type.
 	 */
 	public void addLaptop(Laptop laptop);
 
@@ -30,14 +30,14 @@ public interface LaptopDAO {
 	/**
 	 * Update a laptop already add in the database.
 	 * 
-	 * @param updateLaptop of Laptop type.
+	 * @param laptop of Laptop type.
 	 */
 	public void updateLaptop(Laptop laptop);
 
 	/**
 	 * Delete a laptop from the bookstore in the database.
 	 * 
-	 * @param removeLaptop of Integer type.
+	 * @param id of Integer type.
 	 */
 	public void removeLaptop(Integer id);	
 }

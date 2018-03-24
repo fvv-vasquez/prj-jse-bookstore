@@ -16,7 +16,7 @@ public interface MouseDAO {
 	/**
 	 * Add a mouse at the bookstore in the database.
 	 * 
-	 * @param addMouse of Mouse type.
+	 * @param mouse of Mouse type.
 	 */
 	public void addMouse(Mouse mouse);
 
@@ -30,14 +30,14 @@ public interface MouseDAO {
 	/**
 	 * Update a mouse already add in the database.
 	 * 
-	 * @param updateMouse of Mouse type.
+	 * @param mouse of Mouse type.
 	 */
 	public void updateMouse(Mouse mouse);
 
 	/**
 	 * Delete a mouse from the bookstore in the database.
 	 * 
-	 * @param removeMouse of Integer type.
+	 * @param id of Integer type.
 	 */
 	public void removeMouse(Integer id);
 }

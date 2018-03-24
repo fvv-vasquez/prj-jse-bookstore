@@ -15,6 +15,15 @@ public class Headset extends Hardware {
 
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
+	 * @param id of the Headset
+	 * @param brand of the Headset
+	 * @param model of the Headset
+	 * @param color of the Headset
+	 * @param price of the Headset
+	 * @param warranty of the Headset
+	 * @param connection of the Headset
+	 * @param microphone of the Headset
+	 * @param wired of the Headset
 	 */
 	public Headset(Integer id, String brand, String model, String color, Double price, 
 			Integer warranty, String connection, Boolean microphone, Boolean wired) {

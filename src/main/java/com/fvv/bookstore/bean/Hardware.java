@@ -18,6 +18,12 @@ public abstract class Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * @param id of the Hardware
+	 * @param brand of the Hardware
+	 * @param model of the Hardware
+	 * @param color of the Hardware
+	 * @param price of the Hardware
+	 * @param warranty of the Hardware
 	 */
 	public Hardware(Integer id, String brand, String model, String color, 
 			Double price, Integer warranty) {

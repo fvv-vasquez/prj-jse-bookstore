@@ -16,7 +16,7 @@ public interface HeadsetDAO {
 	/**
 	 * Add a headset at the bookstore in the database.
 	 * 
-	 * @param addHeadset of Headset type.
+	 * @param headset of Headset type.
 	 */
 	public void addHeadset(Headset headset);
 
@@ -30,14 +30,14 @@ public interface HeadsetDAO {
 	/**
 	 * Update a headset already add in the database.
 	 * 
-	 * @param updateHeadset of Headset type.
+	 * @param headset of Headset type.
 	 */
 	public void updateHeadset(Headset headset);
 
 	/**
 	 * Delete a headset from the bookstore in the database.
 	 * 
-	 * @param removeHeadset of Integer type.
+	 * @param id of Integer type.
 	 */
 	public void removeHeadset(Integer id);
 }

@@ -20,6 +20,12 @@ public class Magazine {
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * @param name of the magazine
+	 * @param editionNumber of the magazine
+	 * @param genre of the magazine
+	 * @param publicationDate of the magazine
+	 * @param publisher of the magazine
+	 * @param price of the magazine
 	 */
 	public Magazine(String name, Integer editionNumber, String genre, Date publicationDate, 
 			String publisher, Double price) {

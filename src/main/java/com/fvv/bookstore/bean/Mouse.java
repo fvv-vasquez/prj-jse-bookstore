@@ -15,6 +15,15 @@ public class Mouse extends Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
+	 * @param id of the Mouse
+	 * @param brand of the Mouse
+	 * @param model of the Mouse
+	 * @param color of the Mouse
+	 * @param price of the Mouse
+	 * @param warranty of the Mouse
+	 * @param connection of the Mouse
+	 * @param resolution of the Mouse
+	 * @param wired of the Mouse
 	 */
 	public Mouse(Integer id, String brand, String model, String color, Double price, 
 			Integer warranty, String connection, Long resolution, Boolean wired) {

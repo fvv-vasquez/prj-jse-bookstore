@@ -16,7 +16,7 @@ public interface MagazineDAO {
 	/**
 	 * Add a magazine at the bookstore in the database.
 	 * 
-	 * @param addMagazine of Magazine type.
+	 * @param magazine of Magazine type.
 	 */
 	public void addMagazine(Magazine magazine);
 
@@ -30,14 +30,14 @@ public interface MagazineDAO {
 	/**
 	 * Update a magazine already add in the database.
 	 * 
-	 * @param updateMagazine of Magazine type.
+	 * @param magazine of Magazine type.
 	 */
 	public void updateMagazine(Magazine magazine);
 
 	/**
 	 * Delete a magazine from the bookstore in the database.
 	 * 
-	 * @param removeMagazine of Integer type.
+	 * @param editionNumber of Integer type.
 	 */
 	public void removeMagazine(Integer editionNumber);
 }

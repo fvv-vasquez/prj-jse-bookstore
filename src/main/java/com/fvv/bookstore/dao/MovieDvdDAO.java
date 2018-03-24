@@ -16,7 +16,7 @@ public interface MovieDvdDAO {
 	/**
 	 * Add a movieDvd at the bookstore in the database.
 	 * 
-	 * @param addMovieDvd of MovieDvd type.
+	 * @param movieDvd of MovieDvd type.
 	 */
 	public void addMovieDvd(MovieDvd movieDvd);
 
@@ -30,14 +30,14 @@ public interface MovieDvdDAO {
 	/**
 	 * Update a movieDvd already add in the database.
 	 * 
-	 * @param updateMovieDvd of MovieDvd type.
+	 * @param movieDvd of MovieDvd type.
 	 */
 	public void updateMovieDvd(MovieDvd movieDvd);
 
 	/**
 	 * Delete a movieDvd from the bookstore in the database.
 	 * 
-	 * @param removeMovieDvd of Integer type.
+	 * @param code of Integer type.
 	 */
 	public void removeMovieDvd(Integer code);
 }

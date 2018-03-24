@@ -15,6 +15,15 @@ public class Cellphone extends Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
+	 * @param id of the Cellphone
+	 * @param brand of the Cellphone
+	 * @param model of the Cellphone
+	 * @param color of the Cellphone
+	 * @param price of the Cellphone
+	 * @param warranty of the Cellphone
+	 * @param screenSize of the Cellphone
+	 * @param storageMemory of the Cellphone
+	 * @param camera of the Cellphone
 	 */
 	public Cellphone(Integer id, String brand, String model, String color, Double price, 
 			Integer warranty, Double screenSize, Integer storageMemory, Integer camera) {

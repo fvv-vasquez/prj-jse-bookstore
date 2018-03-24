@@ -13,7 +13,14 @@
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
   
-  <dependencies>  
+  <dependencies>    
+
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>5.2.15.Final</version>
+	</dependency>
+  	
   	
 	<dependency>
 	    <groupId>mysql</groupId>
@@ -40,6 +47,11 @@
                 <target>1.8</target>
             </configuration>
         </plugin>
+        <plugin>
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-javadoc-plugin</artifactId>
+	      <version>3.0.0</version>        
+	    </plugin>
     </plugins>
 	</build>  
   

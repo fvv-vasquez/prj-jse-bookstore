@@ -21,7 +21,7 @@ public class ConnectionFactory {
 	/**
 	 * It opens a connection with the database.
 	 * @return a connection object.
-	 * @throws SQLException
+	 * @throws SQLException when a problem in database happens.
 	 */
     public static Connection getConnection() throws SQLException {
     	try {

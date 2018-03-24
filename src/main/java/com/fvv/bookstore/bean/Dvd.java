@@ -18,6 +18,12 @@ public abstract class Dvd {
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * @param title of the DVD
+	 * @param totalDuration of the DVD
+	 * @param price of the DVD
+	 * @param genre of the DVD
+	 * @param releaseYear of the DVD
+	 * @param code of the DVD
 	 */
 	public Dvd(String title, Integer totalDuration, Double price, String genre, 
 			Integer releaseYear, Integer code) {

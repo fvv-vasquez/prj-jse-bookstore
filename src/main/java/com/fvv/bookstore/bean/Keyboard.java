@@ -15,6 +15,15 @@ public class Keyboard extends Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
+	 * @param id of the Keyboard
+	 * @param brand of the Keyboard
+	 * @param model of the Keyboard
+	 * @param color of the Keyboard
+	 * @param price of the Keyboard
+	 * @param warranty of the Keyboard
+	 * @param connection of the Keyboard
+	 * @param multimedia of the Keyboard
+	 * @param wired of the Keyboard
 	 */
 	public Keyboard(Integer id, String brand, String model, String color, Double price, 
 			Integer warranty, String connection, Boolean multimedia, Boolean wired) {

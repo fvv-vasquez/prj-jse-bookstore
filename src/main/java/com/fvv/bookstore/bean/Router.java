@@ -15,6 +15,15 @@ public class Router extends Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
+	 * @param id of the Router
+	 * @param brand of the Router
+	 * @param model of the Router
+	 * @param color of the Router
+	 * @param price of the Router
+	 * @param warranty of the Router
+	 * @param quantityPort of the Router
+	 * @param quantityAntenna of the Router
+	 * @param wireless of the Router
 	 */
 	public Router(Integer id, String brand, String model, String color, Double price, 
 			Integer warranty, Integer quantityPort, Integer quantityAntenna, Boolean wireless) {

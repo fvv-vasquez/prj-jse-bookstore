@@ -16,7 +16,7 @@ public interface RouterDAO {
 	/**
 	 * Add a router at the bookstore in the database.
 	 * 
-	 * @param addRouter of Router type.
+	 * @param router of Router type.
 	 */
 	public void addRouter(Router router);
 
@@ -30,14 +30,14 @@ public interface RouterDAO {
 	/**
 	 * Update a router already add in the database.
 	 * 
-	 * @param updateRouter of Router type.
+	 * @param router of Router type.
 	 */
 	public void updateRouter(Router router);
 
 	/**
 	 * Delete a router from the bookstore in the database.
 	 * 
-	 * @param removeRouter of Integer type.
+	 * @param id of Integer type.
 	 */
 	public void removeRouter(Integer id);
 }

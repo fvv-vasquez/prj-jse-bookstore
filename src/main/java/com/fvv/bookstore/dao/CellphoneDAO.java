@@ -16,7 +16,7 @@ public interface CellphoneDAO {
 	/**
 	 * Add a cellphone at the bookstore in the database.
 	 * 
-	 * @param addCellphone of Cellphone type.
+	 * @param cellphone of Cellphone type.
 	 */
 	public void addCellphone(Cellphone cellphone);
 
@@ -30,14 +30,14 @@ public interface CellphoneDAO {
 	/**
 	 * Update a cellphone already add in the database.
 	 * 
-	 * @param updateCellphone of Cellphone type.
+	 * @param cellphone of Cellphone type.
 	 */
 	public void updateCellphone(Cellphone cellphone);
 
 	/**
 	 * Delete a cellphone from the bookstore in the database.
 	 * 
-	 * @param removeCellphone of Integer type.
+	 * @param id of Integer type.
 	 */
 	public void removeCellphone(Integer id);
 }

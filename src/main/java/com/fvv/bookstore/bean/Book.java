@@ -20,6 +20,14 @@ public class Book {
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * @param title of the book
+	 * @param publicationYear of the book
+	 * @param editionNumber of the book
+	 * @param author of the book
+	 * @param price of the book
+	 * @param isbn of the book
+	 * @param publisher of the book
+	 * @param genre of the book
 	 */
 	public Book(String title, Integer publicationYear, Integer editionNumber, String author, 
 			Double price, Integer isbn, String publisher, String genre) {

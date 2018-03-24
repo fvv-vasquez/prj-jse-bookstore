@@ -13,6 +13,13 @@ public class ShowDvd extends Dvd {
 
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Dvd
+	 * @param title of the Movie DVD
+	 * @param totalDuration of the Movie DVD
+	 * @param price of the Movie DVD
+	 * @param genre of the Movie DVD
+	 * @param releaseYear of the Movie DVD
+	 * @param code of the Movie DVD
+	 * @param artist of the Movie DVD
 	 */
 	public ShowDvd(String title, Integer totalDuration, Double price, String genre, 
 			Integer releaseYear, Integer code, String artist) {

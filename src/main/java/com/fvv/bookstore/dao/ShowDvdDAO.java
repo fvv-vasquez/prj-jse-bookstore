@@ -16,7 +16,7 @@ public interface ShowDvdDAO {
 	/**
 	 * Add a showDvd at the bookstore in the database.
 	 * 
-	 * @param addShowDvd of ShowDvd type.
+	 * @param showDvd of ShowDvd type.
 	 */
 	public void addShowDvd(ShowDvd showDvd);
 
@@ -30,14 +30,14 @@ public interface ShowDvdDAO {
 	/**
 	 * Update a showDvd already add in the database.
 	 * 
-	 * @param updateShowDvd of ShowDvd type.
+	 * @param showDvd of ShowDvd type.
 	 */
 	public void updateShowDvd(ShowDvd showDvd);
 
 	/**
 	 * Delete a showDvd from the bookstore in the database.
 	 * 
-	 * @param removeShowDvd of Integer type.
+	 * @param code of Integer type.
 	 */
 	public void removeShowDvd(Integer code);
 }
