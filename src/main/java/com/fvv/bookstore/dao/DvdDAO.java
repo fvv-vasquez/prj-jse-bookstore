@@ -11,7 +11,7 @@ import com.fvv.bookstore.bean.MovieDvd;
  * @author Fatima Vasquez
  * @version 1.0
  */
-public interface MovieDvdDAO {
+public interface DvdDAO {
 
 	/**
 	 * Add a movieDvd at the bookstore in the database.
