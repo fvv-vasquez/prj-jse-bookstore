@@ -22,12 +22,12 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void addBook(Book book) throws DaoException {
+	public boolean addBook(Book book) throws DaoException {
 		PreparedStatement ps = null;
 		Connection conn = null;
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "INSERT INTO book (book_title, book_publication_year, "
+			String sql = "INSERT INTO tb_book (book_title, book_publication_year, "
 					+ "book_edition_number, book_author, book_price, book_isbn, "
 					+ "book_publisher, book_genre) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			ps = conn.prepareStatement(sql);
@@ -40,7 +40,7 @@ public class BookDAOImpl implements BookDAO {
 			ps.setString(7, book.getPublisher());
 			ps.setString(8, book.getGenre());
 			ps.execute();
-			System.out.println("Saved successfully!");
+			return true;
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a book", e);
 		} finally {

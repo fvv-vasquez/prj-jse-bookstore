@@ -20,7 +20,7 @@ public interface BookDAO {
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public void addBook(Book book) throws DaoException;
+	public boolean addBook(Book book) throws DaoException;
 
 	/**
 	 * Lists all the books in the database.

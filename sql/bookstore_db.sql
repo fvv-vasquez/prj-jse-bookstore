@@ -15,11 +15,11 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`bookstore_db` /*!40100 DEFAULT CHARACTE
 
 USE `bookstore_db`;
 
-/*Table structure for table `book_tb` */
+/*Table structure for table `tb_book` */
 
-DROP TABLE IF EXISTS `book_tb`;
+DROP TABLE IF EXISTS `tb_book`;
 
-CREATE TABLE `book_tb` (
+CREATE TABLE `tb_book` (
   `book_title` varchar(255) NOT NULL,
   `book_publication_year` int(11) NOT NULL,
   `book_edition_number` int(11) NOT NULL,
@@ -29,13 +29,13 @@ CREATE TABLE `book_tb` (
   `book_publisher` varchar(255) NOT NULL,
   `book_genre` varchar(255) NOT NULL,
   PRIMARY KEY (`book_isbn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `cellphone_tb` */
+/*Table structure for table `tb_cellphone` */
 
-DROP TABLE IF EXISTS `cellphone_tb`;
+DROP TABLE IF EXISTS `tb_cellphone`;
 
-CREATE TABLE `cellphone_tb` (
+CREATE TABLE `tb_cellphone` (
   `cel_id` int(11) NOT NULL AUTO_INCREMENT,
   `cel_brand` varchar(255) NOT NULL,
   `cel_model` varchar(255) NOT NULL,
@@ -48,11 +48,11 @@ CREATE TABLE `cellphone_tb` (
   PRIMARY KEY (`cel_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `dvd_tb` */
+/*Table structure for table `tb_dvd` */
 
-DROP TABLE IF EXISTS `dvd_tb`;
+DROP TABLE IF EXISTS `tb_dvd`;
 
-CREATE TABLE `dvd_tb` (
+CREATE TABLE `tb_dvd` (
   `dvd_title` varchar(255) NOT NULL,
   `dvd_total_duration` int(11) NOT NULL,
   `dvd_price` double NOT NULL,
@@ -64,11 +64,11 @@ CREATE TABLE `dvd_tb` (
   PRIMARY KEY (`dvd_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `headset_tb` */
+/*Table structure for table `tb_headset` */
 
-DROP TABLE IF EXISTS `headset_tb`;
+DROP TABLE IF EXISTS `tb_headset`;
 
-CREATE TABLE `headset_tb` (
+CREATE TABLE `tb_headset` (
   `head_id` int(11) NOT NULL AUTO_INCREMENT,
   `head_brand` varchar(255) NOT NULL,
   `head_model` varchar(255) NOT NULL,
@@ -81,11 +81,11 @@ CREATE TABLE `headset_tb` (
   PRIMARY KEY (`head_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `keyboard_tb` */
+/*Table structure for table `tb_keyboard` */
 
-DROP TABLE IF EXISTS `keyboard_tb`;
+DROP TABLE IF EXISTS `tb_keyboard`;
 
-CREATE TABLE `keyboard_tb` (
+CREATE TABLE `tb_keyboard` (
   `kb_id` int(11) NOT NULL AUTO_INCREMENT,
   `kb_brand` varchar(255) NOT NULL,
   `kb_model` varchar(255) NOT NULL,
@@ -98,11 +98,11 @@ CREATE TABLE `keyboard_tb` (
   PRIMARY KEY (`kb_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `laptop_tb` */
+/*Table structure for table `tb_laptop` */
 
-DROP TABLE IF EXISTS `laptop_tb`;
+DROP TABLE IF EXISTS `tb_laptop`;
 
-CREATE TABLE `laptop_tb` (
+CREATE TABLE `tb_laptop` (
   `pc_id` int(11) NOT NULL AUTO_INCREMENT,
   `pc_brand` varchar(255) NOT NULL,
   `pc_model` varchar(255) NOT NULL,
@@ -116,11 +116,11 @@ CREATE TABLE `laptop_tb` (
   PRIMARY KEY (`pc_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `magazine_tb` */
+/*Table structure for table `tb_magazine` */
 
-DROP TABLE IF EXISTS `magazine_tb`;
+DROP TABLE IF EXISTS `tb_magazine`;
 
-CREATE TABLE `magazine_tb` (
+CREATE TABLE `tb_magazine` (
   `mag_name` varchar(255) NOT NULL,
   `mag_edition_number` int(11) NOT NULL,
   `mag_genre` varchar(255) NOT NULL,
@@ -130,11 +130,11 @@ CREATE TABLE `magazine_tb` (
   PRIMARY KEY (`mag_edition_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `mouse_tb` */
+/*Table structure for table `tb_mouse` */
 
-DROP TABLE IF EXISTS `mouse_tb`;
+DROP TABLE IF EXISTS `tb_mouse`;
 
-CREATE TABLE `mouse_tb` (
+CREATE TABLE `tb_mouse` (
   `mouse_id` int(11) NOT NULL AUTO_INCREMENT,
   `mouse_brand` varchar(255) NOT NULL,
   `mouse_model` varchar(255) NOT NULL,
@@ -147,11 +147,11 @@ CREATE TABLE `mouse_tb` (
   PRIMARY KEY (`mouse_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `router_tb` */
+/*Table structure for table `tb_router` */
 
-DROP TABLE IF EXISTS `router_tb`;
+DROP TABLE IF EXISTS `tb_router`;
 
-CREATE TABLE `router_tb` (
+CREATE TABLE `tb_router` (
   `rout_id` int(11) NOT NULL AUTO_INCREMENT,
   `rout_brand` varchar(255) NOT NULL,
   `rout_model` varchar(255) NOT NULL,
