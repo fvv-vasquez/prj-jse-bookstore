@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
@@ -29,7 +30,8 @@ public class BookDAOImpl implements BookDAO {
 			conn = ConnectionFactory.getConnection();
 			String sql = "INSERT INTO tb_book (book_title, book_publication_year, "
 					+ "book_edition_number, book_author, book_price, book_isbn, "
-					+ "book_publisher, book_genre) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "book_publisher, book_genre, book_modification_date) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, now())";			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, book.getTitle());
 			ps.setInt(2, book.getPublicationYear());
@@ -72,6 +74,7 @@ public class BookDAOImpl implements BookDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Book book = new Book();
+				book.setId(rs.getLong("book_id"));
 				book.setTitle(rs.getString("book_title"));
 				book.setPublicationYear(rs.getInt("book_publication_year"));
 				book.setEditionNumber(rs.getInt("book_edition_number"));
@@ -80,6 +83,7 @@ public class BookDAOImpl implements BookDAO {
 				book.setIsbn(rs.getInt("book_isbn"));
 				book.setPublisher(rs.getString("book_publisher"));
 				book.setGenre(rs.getString("book_genre"));
+				book.setDate(new Date(rs.getTimestamp("book_modification_date").getTime()));
 				books.add(book);
 			}
 		} catch(SQLException e) {
@@ -111,17 +115,19 @@ public class BookDAOImpl implements BookDAO {
 		try {
 			conn = ConnectionFactory.getConnection();
 			String sql = "UPDATE book SET book_title = ?, book_publication_year = ?, "
-					+ "book_edition_number = ?, book_author = ?, book_price = ?, "
-					+ "book_publisher = ?, book_genre = ? WHERE book_isbn = ?";
+					+ "book_edition_number = ?, book_author = ?, book_price = ?, " 
+					+ "book_isbn = ? + book_publisher = ?, book_genre = ?, "
+					+ "book_modification_date = now() WHERE book_id = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, book.getTitle());
 			ps.setInt(2, book.getPublicationYear());
 			ps.setInt(3, book.getEditionNumber());
 			ps.setString(4, book.getAuthor());
 			ps.setDouble(5, book.getPrice());
-			ps.setString(6, book.getPublisher());
-			ps.setString(7, book.getGenre());
-			ps.setInt(8, book.getIsbn());
+			ps.setInt(6, book.getIsbn());
+			ps.setString(7, book.getPublisher());
+			ps.setString(8, book.getGenre());
+			ps.setLong(9, book.getId());
 			ps.execute();
 			System.out.println("Updated successfully!");
 		} catch(SQLException e) {
@@ -143,14 +149,14 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removeBook(Integer isbn) throws DaoException {
+	public void removeBook(Long id) throws DaoException {
 		PreparedStatement ps = null;
 		Connection conn = null;
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "DELETE FROM book WHERE book_isbn = ?";
+			String sql = "DELETE FROM book WHERE book_id = ?";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, isbn);
+			ps.setLong(1, id);
 			ps.execute();
 			System.out.println("Deleted successfully!");
 		} catch(SQLException e) {

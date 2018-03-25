@@ -42,8 +42,8 @@ public interface BookController {
 	/**
 	 * Delete a book using DAO.
 	 * 
-	 * @param isbn of Integer type.
+	 * @param id of Long type.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	public void removeBook(Integer isbn) throws ControllerException;
+	public void removeBook(Long id) throws ControllerException;
 }

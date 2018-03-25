@@ -11,6 +11,7 @@ import java.util.Date;
  */
 public class Magazine {
 	
+	private Long id;
 	private String name;
 	private Integer editionNumber;
 	private String genre;
@@ -41,6 +42,24 @@ public class Magazine {
 	 * Class constructor
 	 */
 	public Magazine() {
+	}
+	
+	/**
+	 * Sets the id.
+	 * 
+	 * @param id of Long type.
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * Gets the last id.
+	 * 
+	 * @return the last id of Long type.
+	 */
+	public Long getId() {
+		return this.id;
 	}
 
 	/**
@@ -155,8 +174,8 @@ public class Magazine {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Magazine Name: " + getName() + ", Edition Number: " + getEditionNumber() + 
-				", Genre: " + getGenre() + ", Publication Date: " + getPublicationDate() +
-				", Publisher: " + getPublisher() + ", Price: " + getPrice();
+		return "Magazine ID: " + getId() + ", Name: " + getName() + ", Edition Number: " + 
+				getEditionNumber() + ", Genre: " + getGenre() + ", Publication Date: " + 
+				getPublicationDate() + ", Publisher: " + getPublisher() + ", Price: " + getPrice();
 	}
 }

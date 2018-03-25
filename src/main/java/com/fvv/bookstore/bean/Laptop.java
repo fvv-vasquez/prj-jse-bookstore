@@ -16,7 +16,6 @@ public class Laptop extends Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
-	 * @param id of the Laptop
 	 * @param brand of the Laptop
 	 * @param model of the Laptop
 	 * @param color of the Laptop
@@ -27,9 +26,9 @@ public class Laptop extends Hardware {
 	 * @param screenSize of the Laptop
 	 * @param hdSize of the Laptop
 	 */
-	public Laptop(Integer id, String brand, String model, String color, Double price, Integer 
-			warranty, Integer ramSize, String processor, Double screenSize, Double hdSize) {
-		super(id, brand, model, color, price, warranty);
+	public Laptop(String brand, String model, String color, Double price, Integer warranty, 
+			Integer ramSize, String processor, Double screenSize, Double hdSize) {
+		super(brand, model, color, price, warranty);
 		this.ramSize = ramSize;
 		this.processor = processor;
 		this.screenSize = screenSize;
@@ -118,7 +117,7 @@ public class Laptop extends Hardware {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() + 
+		return "Laptop ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() + 
 				", Color: " + getColor() + ", Price: " + getPrice() + ", Warranty: " + 
 				getWarranty() + ", RAM Size: " + getRamSize() + ", Processor: " + getProcessor() 
 				+ ", Screen Size: " + getScreenSize() + ", HD Size: " + getHdSize();

@@ -65,9 +65,9 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removeBook(Integer isbn) throws ControllerException {
+	public void removeBook(Long id) throws ControllerException {
 		try {
-			this.bookDao.removeBook(isbn);
+			this.bookDao.removeBook(id);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to delete a book", e);
 		}

@@ -41,8 +41,8 @@ public interface BookDAO {
 	/**
 	 * Delete a book from the bookstore in the database.
 	 * 
-	 * @param isbn of Integer type.
+	 * @param id of Long type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public void removeBook(Integer isbn) throws DaoException;
+	public void removeBook(Long id) throws DaoException;
 }

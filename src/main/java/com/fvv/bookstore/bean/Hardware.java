@@ -9,7 +9,7 @@ package com.fvv.bookstore.bean;
  */
 public abstract class Hardware {
 	
-	private Integer id;
+	private Long id;
 	private String brand;
 	private String model;
 	private String color;
@@ -18,16 +18,14 @@ public abstract class Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes
-	 * @param id of the Hardware
 	 * @param brand of the Hardware
 	 * @param model of the Hardware
 	 * @param color of the Hardware
 	 * @param price of the Hardware
 	 * @param warranty of the Hardware
 	 */
-	public Hardware(Integer id, String brand, String model, String color, 
-			Double price, Integer warranty) {
-		this.id = id;
+	public Hardware(String brand, String model, String color, Double price, 
+			Integer warranty) {
 		this.brand = brand;
 		this.model = model;
 		this.color = color;
@@ -44,18 +42,18 @@ public abstract class Hardware {
 	/**
 	 * Sets the id.
 	 * 
-	 * @param id of Integer type.
+	 * @param id of Long type.
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
 	 * Gets the last id.
 	 * 
-	 * @return the last id of Integer type.
+	 * @return the last id of Long type.
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 

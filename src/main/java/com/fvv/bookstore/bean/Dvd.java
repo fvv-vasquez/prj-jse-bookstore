@@ -9,6 +9,7 @@ package com.fvv.bookstore.bean;
  */
 public abstract class Dvd {
 	
+	private Long id;
 	private String title;
 	private Integer totalDuration;
 	private Double price;
@@ -41,6 +42,24 @@ public abstract class Dvd {
 	public Dvd() {
 	}
 
+	/**
+	 * Sets the id.
+	 * 
+	 * @param id of Long type.
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * Gets the last id.
+	 * 
+	 * @return the last id of Long type.
+	 */
+	public Long getId() {
+		return this.id;
+	}
+	
 	/**
 	 * Sets the title.
 	 * 
@@ -153,8 +172,8 @@ public abstract class Dvd {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "DVD Title: " + getTitle() + ", Total Duration: " + getTotalDuration() + "Price: "
-				+ getPrice() + ", Genre: " + getGenre() + ", Release Year: " + getReleaseYear() 
-				+ ", Code: " + getCode();	
+		return "DVD ID: " + getId() + ", Title: " + getTitle() + ", Total Duration: " + 
+				getTotalDuration() + ", Price: " + getPrice() + ", Genre: " + getGenre() + 
+				", Release Year: " + getReleaseYear() + ", Code: " + getCode();	
 	}
 }

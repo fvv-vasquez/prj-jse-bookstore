@@ -55,8 +55,9 @@ public class ShowDvd extends Dvd {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "DVD Title: " + getTitle() + ", Total Duration: " + getTotalDuration() + "Price: "
-				+ getPrice() + ", Genre: " + getGenre() + ", Release Year: " + getReleaseYear() 
-				+ ", Code: " + getCode() + ", Artist: " + getArtist();	
+		return "Show DVD ID: " + getId() + ", Title: " + getTitle() + ", Total Duration: " + 
+				getTotalDuration() + ", Price: " + getPrice() + ", Genre: " + getGenre() + 
+				", Release Year: " + getReleaseYear() + ", Code: " + getCode() + ", Artist: " 
+				+ getArtist();	
 	}
 }

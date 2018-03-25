@@ -12,8 +12,6 @@ public interface BookView {
 
 	/**
 	 * Add a book using Controller.
-	 * 
-	 * @param book of Book type.
 	 */
 	public void addBook();
 	
@@ -26,15 +24,11 @@ public interface BookView {
 
 	/**
 	 * Update a book already add using Controller.
-	 * 
-	 * @param book of Book type.
 	 */
 	public void updateBook();
 	
 	/**
 	 * Delete a book using Controller.
-	 * 
-	 * @param isbn of Integer type.
 	 */
 	public void removeBook();
 }

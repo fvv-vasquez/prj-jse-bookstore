@@ -15,7 +15,6 @@ public class Cellphone extends Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
-	 * @param id of the Cellphone
 	 * @param brand of the Cellphone
 	 * @param model of the Cellphone
 	 * @param color of the Cellphone
@@ -25,9 +24,9 @@ public class Cellphone extends Hardware {
 	 * @param storageMemory of the Cellphone
 	 * @param camera of the Cellphone
 	 */
-	public Cellphone(Integer id, String brand, String model, String color, Double price, 
+	public Cellphone(String brand, String model, String color, Double price, 
 			Integer warranty, Double screenSize, Integer storageMemory, Integer camera) {
-		super(id, brand, model, color, price, warranty);
+		super(brand, model, color, price, warranty);
 		this.screenSize = screenSize;
 		this.storageMemory = storageMemory;
 		this.camera = camera;
@@ -97,8 +96,8 @@ public class Cellphone extends Hardware {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() + 
-				", Color: " + getColor() + ", Price: " + getPrice() + ", Warranty: " + 
+		return "Cellphone ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() 
+				+ ", Color: " + getColor() + ", Price: " + getPrice() + ", Warranty: " + 
 				getWarranty() + ", Screen Size: " + getScreenSize() + ", Storage Memory: " 
 				+ getStorageMemory() + ", Camera: " + getCamera();
 	}
