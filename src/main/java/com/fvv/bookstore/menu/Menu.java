@@ -17,14 +17,23 @@ public class Menu {
 	
 	private BookView bookView;
 	
+	/**
+	 * Class constructor instantiating a new BookViewImpl object.
+	 */
 	public Menu() {
 		this.bookView = new BookViewImpl();
 	}
 	
+	/**
+	 * Public method to start the application
+	 */
 	public void startApp() {
 		this.createMenu();
 	}
 
+	/**
+	 * Method to create and appear the general menu
+	 */
 	private void createMenu() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
@@ -47,6 +56,9 @@ public class Menu {
 		}
 	}
 	
+	/**
+	 * Method to create and appear the book sub menu.
+	 */
 	private void createSubMenuBooks() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
@@ -76,22 +88,37 @@ public class Menu {
 		}
 	}
 	
+	/**
+	 * Add a book by the menu.
+	 */
 	private void addBook() {
 		this.bookView.addBook();
 	}
 	
+	/**
+	 * Update a book by the menu.
+	 */
 	private void updateBook() {
 		this.bookView.updateBook();
 	}
 	
+	/**
+	 * Remove a book by the menu.
+	 */
 	private void removeBook() {
 		this.bookView.removeBook();
 	}
 	
+	/**
+	 * List all the books by the menu.
+	 */
 	private void listBooks() {
 		this.bookView.listBooks();
 	}
 	
+	/**
+	 * Exit from the application.
+	 */
 	private void exit() {
 		System.exit(0);
 	}

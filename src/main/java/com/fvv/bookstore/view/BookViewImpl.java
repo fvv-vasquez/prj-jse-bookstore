@@ -124,8 +124,9 @@ public class BookViewImpl implements BookView {
 	 * {@inheritDoc}
 	 */
 	public void removeBook() {
-		Long idDelete = (Long.parseLong(JOptionPane.showInputDialog("Insert the ID to delete")));
 		try {
+			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
+					"Insert the ID to delete")));
 			this.bookController.removeBook(idDelete);
 			JOptionPane.showMessageDialog(null, "Deleted successfully!");
 		} catch (NumberFormatException e) {
