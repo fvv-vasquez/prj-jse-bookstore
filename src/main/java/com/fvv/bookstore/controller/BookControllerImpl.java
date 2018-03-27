@@ -54,9 +54,9 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void updateBook(Book book) throws ControllerException {
+	public boolean updateBook(Book book) throws ControllerException {
 		try {
-			this.bookDao.updateBook(book);
+			return this.bookDao.updateBook(book);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to update a book", e);
 		}

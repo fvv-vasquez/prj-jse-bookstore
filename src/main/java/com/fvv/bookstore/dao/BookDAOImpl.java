@@ -69,7 +69,7 @@ public class BookDAOImpl implements BookDAO {
 		List<Book> books = new ArrayList<>();
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "SELECT * FROM book";
+			String sql = "SELECT * FROM tb_book";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -109,15 +109,15 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void updateBook(Book book) throws DaoException {
+	public boolean updateBook(Book book) throws DaoException {
 		PreparedStatement ps = null;
 		Connection conn = null;
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "UPDATE book SET book_title = ?, book_publication_year = ?, "
-					+ "book_edition_number = ?, book_author = ?, book_price = ?, " 
-					+ "book_isbn = ? + book_publisher = ?, book_genre = ?, "
-					+ "book_modification_date = now() WHERE book_id = ?";
+			String sql = "UPDATE tb_book SET book_title = ?, book_publication_year = ?, "
+					+ "book_edition_number = ?, book_author = ?, book_price = ?, book_isbn = ?, "
+					+ "book_publisher = ?, book_genre = ?, book_modification_date = now() "
+					+ "WHERE book_id = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, book.getTitle());
 			ps.setInt(2, book.getPublicationYear());
@@ -129,7 +129,7 @@ public class BookDAOImpl implements BookDAO {
 			ps.setString(8, book.getGenre());
 			ps.setLong(9, book.getId());
 			ps.execute();
-			System.out.println("Updated successfully!");
+			return true;
 		} catch(SQLException e) {
 			throw new DaoException("Error to update a book", e);
 		} finally {
@@ -154,11 +154,10 @@ public class BookDAOImpl implements BookDAO {
 		Connection conn = null;
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "DELETE FROM book WHERE book_id = ?";
+			String sql = "DELETE FROM tb_book WHERE book_id = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setLong(1, id);
 			ps.execute();
-			System.out.println("Deleted successfully!");
 		} catch(SQLException e) {
 			throw new DaoException("Error to delete a book", e);
 		} finally {

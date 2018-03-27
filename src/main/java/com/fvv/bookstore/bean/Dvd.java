@@ -1,5 +1,7 @@
 package com.fvv.bookstore.bean;
 
+import java.util.Date;
+
 /**
  * Bean abstract class for a Dvd object
  * 
@@ -16,6 +18,7 @@ public abstract class Dvd {
 	private String genre;
 	private Integer releaseYear;
 	private Integer code;
+	private Date date;
 	
 	/**
 	 * Class constructor specifying the attributes
@@ -169,11 +172,30 @@ public abstract class Dvd {
 	}
 	
 	/**
+	 * Sets the date.
+	 * 
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	/**
+	 * Gets the last date.
+	 * 
+	 * @return the last date of Date type.
+	 */
+	public Date getDate() {
+		return this.date;
+	}
+	
+	/**
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		return "DVD ID: " + getId() + ", Title: " + getTitle() + ", Total Duration: " + 
 				getTotalDuration() + ", Price: " + getPrice() + ", Genre: " + getGenre() + 
-				", Release Year: " + getReleaseYear() + ", Code: " + getCode();	
+				", Release Year: " + getReleaseYear() + ", Code: " + getCode() + 
+				", Date: " + getDate();	
 	}
 }

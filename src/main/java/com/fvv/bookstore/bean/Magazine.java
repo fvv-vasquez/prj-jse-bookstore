@@ -18,6 +18,7 @@ public class Magazine {
 	private Date publicationDate;
 	private String publisher;
 	private Double price;
+	private Date date;
 	
 	/**
 	 * Class constructor specifying the attributes
@@ -171,11 +172,30 @@ public class Magazine {
 	}
 	
 	/**
+	 * Sets the date.
+	 * 
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	/**
+	 * Gets the last date.
+	 * 
+	 * @return the last date of Date type.
+	 */
+	public Date getDate() {
+		return this.date;
+	}
+	
+	/**
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		return "Magazine ID: " + getId() + ", Name: " + getName() + ", Edition Number: " + 
 				getEditionNumber() + ", Genre: " + getGenre() + ", Publication Date: " + 
-				getPublicationDate() + ", Publisher: " + getPublisher() + ", Price: " + getPrice();
+				getPublicationDate() + ", Publisher: " + getPublisher() + ", Price: " + getPrice()
+				+ ", Date: " + getDate();
 	}
 }

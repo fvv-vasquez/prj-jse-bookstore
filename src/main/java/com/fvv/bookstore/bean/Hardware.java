@@ -1,5 +1,7 @@
 package com.fvv.bookstore.bean;
 
+import java.util.Date;
+
 /**
  * Bean abstract class for a Hardware object
  * 
@@ -15,6 +17,7 @@ public abstract class Hardware {
 	private String color;
 	private Double price;
 	private Integer warranty;
+	private Date date;
 	
 	/**
 	 * Class constructor specifying the attributes
@@ -146,6 +149,24 @@ public abstract class Hardware {
 	public Integer getWarranty() {
 		return this.warranty;
 	}
+	
+	/**
+	 * Sets the date.
+	 * 
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	/**
+	 * Gets the last date.
+	 * 
+	 * @return the last date of Date type.
+	 */
+	public Date getDate() {
+		return this.date;
+	}
 
 	/**
 	 * @see java.lang.Object#toString()
@@ -153,6 +174,6 @@ public abstract class Hardware {
 	public String toString() {
 		return "ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() + 
 				", Color: " + getColor() + ", Price: " + getPrice() + ", Warranty: " + 
-				getWarranty();
+				getWarranty() + ", Date: " + getDate();
 	}
 }

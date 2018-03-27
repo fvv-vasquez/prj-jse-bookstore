@@ -37,7 +37,7 @@ public interface BookController {
 	 * @param book of Book type.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	public void updateBook(Book book) throws ControllerException;
+	public boolean updateBook(Book book) throws ControllerException;
 	
 	/**
 	 * Delete a book using DAO.

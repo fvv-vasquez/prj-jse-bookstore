@@ -119,7 +119,8 @@ public class Laptop extends Hardware {
 	public String toString() {
 		return "Laptop ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() + 
 				", Color: " + getColor() + ", Price: " + getPrice() + ", Warranty: " + 
-				getWarranty() + ", RAM Size: " + getRamSize() + ", Processor: " + getProcessor() 
-				+ ", Screen Size: " + getScreenSize() + ", HD Size: " + getHdSize();
+				getWarranty() + ", Date: " + getDate() + ", RAM Size: " + getRamSize() + 
+				", Processor: " + getProcessor() + ", Screen Size: " + getScreenSize() + 
+				", HD Size: " + getHdSize();
 	}
 }

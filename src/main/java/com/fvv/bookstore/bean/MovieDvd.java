@@ -57,7 +57,7 @@ public class MovieDvd extends Dvd {
 	public String toString() {
 		return "Movie DVD ID: " + getId() + ", Title: " + getTitle() + ", Total Duration: " + 
 				getTotalDuration() + ", Price: " + getPrice() + ", Genre: " + getGenre() + 
-				", Release Year: " + getReleaseYear() + ", Code: " + getCode() + ", Director: " 
-				+ getDirector();	
+				", Release Year: " + getReleaseYear() + ", Code: " + getCode() + ", Date: " 
+				+ getDate()+ ", Director: " + getDirector();	
 	}
 }

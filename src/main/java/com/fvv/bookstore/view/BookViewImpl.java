@@ -1,5 +1,7 @@
 package com.fvv.bookstore.view;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.bean.Book;
@@ -66,23 +68,74 @@ public class BookViewImpl implements BookView {
 	 * {@inheritDoc}
 	 */
 	public void listBooks() {
-		// TODO Auto-generated method stub
-	
+		try {
+			StringBuilder sb = new StringBuilder();
+			List<Book> books = this.bookController.listBooks();
+			for(Book b : books) {
+				sb.append(b).append("\n");
+			}
+			JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Books", 
+					JOptionPane.PLAIN_MESSAGE);
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void updateBook() {
-		// TODO Auto-generated method stub
-
+		try {
+			Book book = new Book();
+			book.setId(Long.parseLong(JOptionPane.showInputDialog("Insert the ID to update")));
+			book.setTitle(JOptionPane.showInputDialog("Insert the title"));
+			book.setPublicationYear(
+					Integer.parseInt(JOptionPane.showInputDialog("Insert the publication year")));
+			book.setEditionNumber(
+					Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
+			book.setAuthor(JOptionPane.showInputDialog("Insert the author"));
+			book.setPrice(
+					Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
+			book.setIsbn(
+					Integer.parseInt(JOptionPane.showInputDialog("Insert the isbn")));
+			book.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
+			book.setGenre(JOptionPane.showInputDialog("Insert the genre"));
+			boolean isSuccessful = this.bookController.updateBook(book);
+			
+			if (isSuccessful) {
+				JOptionPane.showMessageDialog(null, "Book updated successfuly!");
+			} else {
+				JOptionPane.showMessageDialog(null, "Error to updated the book!");
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void removeBook() {
-		// TODO Auto-generated method stub
-
+		Long idDelete = (Long.parseLong(JOptionPane.showInputDialog("Insert the ID to delete")));
+		try {
+			this.bookController.removeBook(idDelete);
+			JOptionPane.showMessageDialog(null, "Deleted successfully!");
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }

@@ -36,7 +36,7 @@ public interface BookDAO {
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public void updateBook(Book book) throws DaoException;
+	public boolean updateBook(Book book) throws DaoException;
 
 	/**
 	 * Delete a book from the bookstore in the database.

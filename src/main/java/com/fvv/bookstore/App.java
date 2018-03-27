@@ -1,21 +1,18 @@
 package com.fvv.bookstore;
 
-import com.fvv.bookstore.view.BookView;
-import com.fvv.bookstore.view.BookViewImpl;
-import com.fvv.bookstore.view.DvdView;
+import com.fvv.bookstore.menu.Menu;
 
 /**
- * Hello world!
+ * App class to create an application
+ * 
+ * @author Fatima Vasquez
+ * Created on 24 de mar de 2018	
+ * @version 1.0 	
  *
  */
 public class App {
 	
     public static void main( String[] args ) {
-    	
-    	BookView bookView = new BookViewImpl();
-    	
-    	bookView.addBook();
-    	
-    	//new DvdView().addDvd();
+    	new Menu().startApp();
     }
 }

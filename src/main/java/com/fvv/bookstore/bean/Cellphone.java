@@ -98,7 +98,7 @@ public class Cellphone extends Hardware {
 	public String toString() {
 		return "Cellphone ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() 
 				+ ", Color: " + getColor() + ", Price: " + getPrice() + ", Warranty: " + 
-				getWarranty() + ", Screen Size: " + getScreenSize() + ", Storage Memory: " 
-				+ getStorageMemory() + ", Camera: " + getCamera();
+				getWarranty() + ", Date: " + getDate() + ", Screen Size: " + getScreenSize() + 
+				", Storage Memory: " + getStorageMemory() + ", Camera: " + getCamera();
 	}
 }

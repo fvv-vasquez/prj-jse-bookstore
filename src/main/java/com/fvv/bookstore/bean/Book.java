@@ -34,7 +34,7 @@ public class Book {
 	 * @param genre of the book
 	 */
 	public Book(String title, Integer publicationYear, Integer editionNumber, String author, 
-			Double price, Integer isbn, String publisher, String genre, Date date) {
+			Double price, Integer isbn, String publisher, String genre) {
 		this.title = title;
 		this.publicationYear = publicationYear;
 		this.editionNumber = editionNumber;
@@ -43,7 +43,6 @@ public class Book {
 		this.isbn = isbn;
 		this.publisher = publisher;
 		this.genre = genre;
-		this.date = date;
 	}
 	
 	/**
