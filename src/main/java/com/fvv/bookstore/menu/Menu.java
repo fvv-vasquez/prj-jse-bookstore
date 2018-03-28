@@ -9,7 +9,7 @@ import com.fvv.bookstore.view.BookViewImpl;
  * Menu class to create a menu for the application.
  * 
  * @author Fatima Vasquez
- * Created on 24 de mar de 2018	
+ * <p>Created on 24 de mar de 2018</p>	
  * @version 1.0 	
  *
  */

@@ -1,16 +1,19 @@
 package com.fvv.bookstore.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Bean class for a Magazine object
  * 
- * Created on 03/20/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 20 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
-public class Magazine {
+public class Magazine implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String name;
 	private Integer editionNumber;
@@ -29,8 +32,8 @@ public class Magazine {
 	 * @param publisher of the magazine
 	 * @param price of the magazine
 	 */
-	public Magazine(String name, Integer editionNumber, String genre, Date publicationDate, 
-			String publisher, Double price) {
+	public Magazine(final String name, final Integer editionNumber, final String genre, 
+			final Date publicationDate, final String publisher, final Double price) {
 		this.name = name;
 		this.editionNumber = editionNumber;
 		this.genre = genre;
@@ -50,7 +53,7 @@ public class Magazine {
 	 * 
 	 * @param id of Long type.
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -68,7 +71,7 @@ public class Magazine {
 	 * 
 	 * @param name of String type.
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -86,7 +89,7 @@ public class Magazine {
 	 * 
 	 * @param editionNumber of Integer type.
 	 */
-	public void setEditionNumber(Integer editionNumber) {
+	public void setEditionNumber(final Integer editionNumber) {
 		this.editionNumber = editionNumber;
 	}
 
@@ -104,7 +107,7 @@ public class Magazine {
 	 * 
 	 * @param genre of String type.
 	 */
-	public void setGenre(String genre) {
+	public void setGenre(final String genre) {
 		this.genre = genre;
 	}
 
@@ -122,7 +125,7 @@ public class Magazine {
 	 * 
 	 * @param publicationDate of Date type.
 	 */
-	public void setPublicationDate(Date publicationDate) {
+	public void setPublicationDate(final Date publicationDate) {
 		this.publicationDate = publicationDate;
 	}
 
@@ -140,7 +143,7 @@ public class Magazine {
 	 * 
 	 * @param publisher of String type.
 	 */
-	public void setPublisher(String publisher) {
+	public void setPublisher(final String publisher) {
 		this.publisher = publisher;
 	}
 
@@ -158,7 +161,7 @@ public class Magazine {
 	 * 
 	 * @param price of Double type.
 	 */
-	public void setPrice(Double price) {
+	public void setPrice(final Double price) {
 		this.price = price;
 	}
 
@@ -176,7 +179,7 @@ public class Magazine {
 	 * 
 	 * @param date the date to set
 	 */
-	public void setDate(Date date) {
+	public void setDate(final Date date) {
 		this.date = date;
 	}
 
@@ -193,9 +196,8 @@ public class Magazine {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Magazine ID: " + getId() + ", Name: " + getName() + ", Edition Number: " + 
-				getEditionNumber() + ", Genre: " + getGenre() + ", Publication Date: " + 
-				getPublicationDate() + ", Publisher: " + getPublisher() + ", Price: " + getPrice()
-				+ ", Date: " + getDate();
+		return "Magazine ID: " + getId() + " - Name: " + getName() + ", Edition Number: " + 
+				getEditionNumber() + ", Publication Date: " + getPublicationDate() + 
+				", Price: " + getPrice();
 	}
 }

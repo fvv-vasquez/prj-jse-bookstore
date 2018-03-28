@@ -1,14 +1,18 @@
 package com.fvv.bookstore.bean;
 
+import java.io.Serializable;
+
 /**
  * Bean class for a MovieDvd object
  * 
- * Created on 03/20/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 20 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
-public class MovieDvd extends Dvd {
-	
+public class MovieDvd extends Dvd implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String director;
 
 	/**
@@ -21,8 +25,9 @@ public class MovieDvd extends Dvd {
 	 * @param code of the Movie DVD
 	 * @param director of the Movie DVD
 	 */
-	public MovieDvd(String title, Integer totalDuration, Double price, String genre, 
-			Integer releaseYear, Integer code, String director) {
+	public MovieDvd(final String title, final Integer totalDuration, final Double price, 
+			final String genre, final Integer releaseYear, final Integer code, 
+			final String director) {
 		super(title, totalDuration, price, genre, releaseYear, code);
 		this.director = director;
 	}
@@ -38,7 +43,7 @@ public class MovieDvd extends Dvd {
 	 * 
 	 * @param director of String type.
 	 */
-	public void setDirector(String director) {
+	public void setDirector(final String director) {
 		this.director = director;
 	}
 
@@ -55,9 +60,8 @@ public class MovieDvd extends Dvd {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Movie DVD ID: " + getId() + ", Title: " + getTitle() + ", Total Duration: " + 
-				getTotalDuration() + ", Price: " + getPrice() + ", Genre: " + getGenre() + 
-				", Release Year: " + getReleaseYear() + ", Code: " + getCode() + ", Date: " 
-				+ getDate()+ ", Director: " + getDirector();	
+		return "Movie DVD ID: " + getId() + " - Title: " + getTitle() + ", Price: " + getPrice() +
+				", Genre: " + getGenre() + ", Release Year: " + getReleaseYear() + 
+				", Director: " + getDirector();	
 	}
 }

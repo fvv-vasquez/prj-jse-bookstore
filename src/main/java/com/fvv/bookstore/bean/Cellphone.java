@@ -1,14 +1,18 @@
 package com.fvv.bookstore.bean;
 
-/**
- * Bean class for a Cellphone object
- * 
- * Created on 03/20/2018
- * @author Fatima Vasquez
- * @version 1.0
- */
-public class Cellphone extends Hardware {
+import java.io.Serializable;
 
+/**
+ * Bean class for a Cellphone object 
+ * 
+ * @author Fatima Vasquez
+ * <p>Created on 20 de mar de 2018</p>	
+ * @version 1.0 	
+ *
+ */
+public class Cellphone extends Hardware implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Double screenSize;
 	private Integer storageMemory;
 	private Integer camera;
@@ -24,8 +28,9 @@ public class Cellphone extends Hardware {
 	 * @param storageMemory of the Cellphone
 	 * @param camera of the Cellphone
 	 */
-	public Cellphone(String brand, String model, String color, Double price, 
-			Integer warranty, Double screenSize, Integer storageMemory, Integer camera) {
+	public Cellphone(final String brand, final String model, final String color, final Double 
+			price, final Integer warranty, final Double screenSize, final Integer storageMemory, 
+			final Integer camera) {
 		super(brand, model, color, price, warranty);
 		this.screenSize = screenSize;
 		this.storageMemory = storageMemory;
@@ -43,7 +48,7 @@ public class Cellphone extends Hardware {
 	 * 
 	 * @param screenSize of Double type.
 	 */
-	public void setScreenSize(Double screenSize) {
+	public void setScreenSize(final Double screenSize) {
 		this.screenSize = screenSize;
 	}
 
@@ -61,7 +66,7 @@ public class Cellphone extends Hardware {
 	 * 
 	 * @param storageMemory of Integer type.
 	 */
-	public void setStorageMemory(Integer storageMemory) {
+	public void setStorageMemory(final Integer storageMemory) {
 		this.storageMemory = storageMemory;
 	}
 
@@ -79,7 +84,7 @@ public class Cellphone extends Hardware {
 	 * 
 	 * @param camera of Integer type.
 	 */
-	public void setCamera(Integer camera) {
+	public void setCamera(final Integer camera) {
 		this.camera = camera;
 	}
 
@@ -96,9 +101,7 @@ public class Cellphone extends Hardware {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Cellphone ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() 
-				+ ", Color: " + getColor() + ", Price: " + getPrice() + ", Warranty: " + 
-				getWarranty() + ", Date: " + getDate() + ", Screen Size: " + getScreenSize() + 
-				", Storage Memory: " + getStorageMemory() + ", Camera: " + getCamera();
+		return "Cellphone ID: " + getId() + " - Brand: " + getBrand() + ", Price: " + getPrice() + 
+				", Warranty: " + getWarranty() + ", Screen Size: " + getScreenSize();
 	}
 }

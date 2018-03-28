@@ -4,7 +4,7 @@ package com.fvv.bookstore.view;
  * BookView interface to view the Book object.
  * 
  * @author Fatima Vasquez
- * Created on 24 de mar de 2018	
+ * <p>Created on 24 de mar de 2018</p>	
  * @version 1.0 	
  *
  */
@@ -23,7 +23,7 @@ public interface BookView {
 	public void listBooks();
 
 	/**
-	 * Update a book already add using Controller.
+	 * Update a book already added using Controller.
 	 */
 	public void updateBook();
 	

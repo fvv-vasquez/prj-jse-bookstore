@@ -9,7 +9,7 @@ import com.fvv.bookstore.exception.ControllerException;
  * Controller interface for a Book object.
  * 
  * @author Fatima Vasquez
- * Created on 24 de mar de 2018	
+ * <p>Created on 24 de mar de 2018</p>	
  * @version 1.0 	
  *
  */
@@ -21,7 +21,7 @@ public interface BookController {
 	 * @param book of Book type.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	public boolean addBook(Book book) throws ControllerException;
+	public boolean addBook(final Book book) throws ControllerException;
 	
 	/**
 	 * Lists all the books using DAO.
@@ -32,12 +32,12 @@ public interface BookController {
 	public List<Book> listBooks() throws ControllerException;
 
 	/**
-	 * Update a book already add using DAO.
+	 * Update a book already added using DAO.
 	 * 
 	 * @param book of Book type.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	public boolean updateBook(Book book) throws ControllerException;
+	public boolean updateBook(final Book book) throws ControllerException;
 	
 	/**
 	 * Delete a book using DAO.
@@ -45,5 +45,5 @@ public interface BookController {
 	 * @param id of Long type.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	public void removeBook(Long id) throws ControllerException;
+	public void removeBook(final Long id) throws ControllerException;
 }

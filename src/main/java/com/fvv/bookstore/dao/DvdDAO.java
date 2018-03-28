@@ -7,9 +7,10 @@ import com.fvv.bookstore.bean.MovieDvd;
 /**
  * DAO Interface of a MovieDvd object, with main database operations from CRUD methods.
  * 
- * Created on 03/21/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 211 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
 public interface DvdDAO {
 
@@ -18,7 +19,7 @@ public interface DvdDAO {
 	 * 
 	 * @param movieDvd of MovieDvd type.
 	 */
-	public void addMovieDvd(MovieDvd movieDvd);
+	public void addMovieDvd(final MovieDvd movieDvd);
 
 	/**
 	 * Lists all the movieDvds in the database.
@@ -28,16 +29,16 @@ public interface DvdDAO {
 	public List<MovieDvd> listMovieDvds();
 
 	/**
-	 * Update a movieDvd already add in the database.
+	 * Update a movieDvd already added in the database.
 	 * 
 	 * @param movieDvd of MovieDvd type.
 	 */
-	public void updateMovieDvd(MovieDvd movieDvd);
+	public void updateMovieDvd(final MovieDvd movieDvd);
 
 	/**
 	 * Delete a movieDvd from the bookstore in the database.
 	 * 
-	 * @param code of Integer type.
+	 * @param code of Long type.
 	 */
-	public void removeMovieDvd(Integer code);
+	public void removeMovieDvd(final Long id);
 }

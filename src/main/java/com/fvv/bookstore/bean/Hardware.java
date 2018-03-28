@@ -3,11 +3,12 @@ package com.fvv.bookstore.bean;
 import java.util.Date;
 
 /**
- * Bean abstract class for a Hardware object
+ * Bean abstract class for a Hardware object 
  * 
- * Created on 03/20/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 20 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
 public abstract class Hardware {
 	
@@ -27,8 +28,8 @@ public abstract class Hardware {
 	 * @param price of the Hardware
 	 * @param warranty of the Hardware
 	 */
-	public Hardware(String brand, String model, String color, Double price, 
-			Integer warranty) {
+	public Hardware(final String brand, final String model, final String color, 
+			final Double price, final Integer warranty) {
 		this.brand = brand;
 		this.model = model;
 		this.color = color;
@@ -47,7 +48,7 @@ public abstract class Hardware {
 	 * 
 	 * @param id of Long type.
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -65,7 +66,7 @@ public abstract class Hardware {
 	 * 
 	 * @param brand of String type.
 	 */
-	public void setBrand(String brand) {
+	public void setBrand(final String brand) {
 		this.brand = brand;
 	}
 
@@ -83,7 +84,7 @@ public abstract class Hardware {
 	 * 
 	 * @param model of String type.
 	 */
-	public void setModel(String model) {
+	public void setModel(final String model) {
 		this.model = model;
 	}
 
@@ -101,7 +102,7 @@ public abstract class Hardware {
 	 * 
 	 * @param color of String type.
 	 */
-	public void setColor(String color) {
+	public void setColor(final String color) {
 		this.color = color;
 	}
 
@@ -119,7 +120,7 @@ public abstract class Hardware {
 	 * 
 	 * @param price of Double type.
 	 */
-	public void setPrice(Double price) {
+	public void setPrice(final Double price) {
 		this.price = price;
 	}
 
@@ -137,7 +138,7 @@ public abstract class Hardware {
 	 * 
 	 * @param warranty of Integer type.
 	 */
-	public void setWarranty(Integer warranty) {
+	public void setWarranty(final Integer warranty) {
 		this.warranty = warranty;
 	}
 
@@ -155,7 +156,7 @@ public abstract class Hardware {
 	 * 
 	 * @param date the date to set
 	 */
-	public void setDate(Date date) {
+	public void setDate(final Date date) {
 		this.date = date;
 	}
 
@@ -172,8 +173,7 @@ public abstract class Hardware {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() + 
-				", Color: " + getColor() + ", Price: " + getPrice() + ", Warranty: " + 
-				getWarranty() + ", Date: " + getDate();
+		return "ID: " + getId() + " - Brand: " + getBrand() + ", Price: " + getPrice() + 
+				", Warranty: " + getWarranty();
 	}
 }

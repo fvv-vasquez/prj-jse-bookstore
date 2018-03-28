@@ -7,9 +7,10 @@ import com.fvv.bookstore.bean.Laptop;
 /**
  * DAO Interface of a Laptop object, with main database operations from CRUD methods.
  * 
- * Created on 03/21/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 21 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
 public interface LaptopDAO {
 
@@ -18,7 +19,7 @@ public interface LaptopDAO {
 	 * 
 	 * @param laptop of Laptop type.
 	 */
-	public void addLaptop(Laptop laptop);
+	public void addLaptop(final Laptop laptop);
 
 	/**
 	 * Lists all the laptops in the database.
@@ -28,16 +29,16 @@ public interface LaptopDAO {
 	public List<Laptop> listLaptops();
 
 	/**
-	 * Update a laptop already add in the database.
+	 * Update a laptop already added in the database.
 	 * 
 	 * @param laptop of Laptop type.
 	 */
-	public void updateLaptop(Laptop laptop);
+	public void updateLaptop(final Laptop laptop);
 
 	/**
 	 * Delete a laptop from the bookstore in the database.
 	 * 
-	 * @param id of Integer type.
+	 * @param id of Long type.
 	 */
-	public void removeLaptop(Integer id);	
+	public void removeLaptop(final Long id);	
 }

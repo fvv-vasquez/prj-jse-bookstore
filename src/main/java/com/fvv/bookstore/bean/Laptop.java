@@ -1,14 +1,18 @@
 package com.fvv.bookstore.bean;
 
+import java.io.Serializable;
+
 /**
  * Bean class for a Laptop object
  * 
- * Created on 03/20/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 20 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
-public class Laptop extends Hardware {
+public class Laptop extends Hardware implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer ramSize;
 	private String processor;
 	private Double screenSize;
@@ -26,8 +30,9 @@ public class Laptop extends Hardware {
 	 * @param screenSize of the Laptop
 	 * @param hdSize of the Laptop
 	 */
-	public Laptop(String brand, String model, String color, Double price, Integer warranty, 
-			Integer ramSize, String processor, Double screenSize, Double hdSize) {
+	public Laptop(final String brand, final String model, final String color, final Double price, 
+			final Integer warranty, final Integer ramSize, final String processor, final Double 
+			screenSize, final Double hdSize) {
 		super(brand, model, color, price, warranty);
 		this.ramSize = ramSize;
 		this.processor = processor;
@@ -46,7 +51,7 @@ public class Laptop extends Hardware {
 	 * 
 	 * @param ramSize of Integer type.
 	 */
-	public void setRamSize(Integer ramSize) {
+	public void setRamSize(final Integer ramSize) {
 		this.ramSize = ramSize;
 	}
 
@@ -64,7 +69,7 @@ public class Laptop extends Hardware {
 	 * 
 	 * @param processor of String type.
 	 */
-	public void setProcessor(String processor) {
+	public void setProcessor(final String processor) {
 		this.processor = processor;
 	}
 
@@ -82,7 +87,7 @@ public class Laptop extends Hardware {
 	 * 
 	 * @param screenSize of Double type.
 	 */
-	public void setScreenSize(Double screenSize) {
+	public void setScreenSize(final Double screenSize) {
 		this.screenSize = screenSize;
 	}
 
@@ -100,7 +105,7 @@ public class Laptop extends Hardware {
 	 * 
 	 * @param hdSize of Double type.
 	 */
-	public void setHdSize(Double hdSize) {
+	public void setHdSize(final Double hdSize) {
 		this.hdSize = hdSize;
 	}
 
@@ -117,10 +122,8 @@ public class Laptop extends Hardware {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Laptop ID: " + getId() + ", Brand: " + getBrand() + ", Model: " + getModel() + 
-				", Color: " + getColor() + ", Price: " + getPrice() + ", Warranty: " + 
-				getWarranty() + ", Date: " + getDate() + ", RAM Size: " + getRamSize() + 
-				", Processor: " + getProcessor() + ", Screen Size: " + getScreenSize() + 
-				", HD Size: " + getHdSize();
+		return "Laptop ID: " + getId() + " - Brand: " + getBrand() + ", Price: " + getPrice() + 
+				", Warranty: " + getWarranty() + ", RAM Size: " + getRamSize() + 
+				", Processor: " + getProcessor() + ", HD Size: " + getHdSize();
 	}
 }

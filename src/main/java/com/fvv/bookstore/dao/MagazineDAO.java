@@ -7,9 +7,10 @@ import com.fvv.bookstore.bean.Magazine;
 /**
  * DAO Interface of a Magazine object, with main database operations from CRUD methods.
  * 
- * Created on 03/21/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 21 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
 public interface MagazineDAO {
 
@@ -18,7 +19,7 @@ public interface MagazineDAO {
 	 * 
 	 * @param magazine of Magazine type.
 	 */
-	public void addMagazine(Magazine magazine);
+	public void addMagazine(final Magazine magazine);
 
 	/**
 	 * Lists all the magazines in the database.
@@ -28,16 +29,16 @@ public interface MagazineDAO {
 	public List<Magazine> listMagazines();
 
 	/**
-	 * Update a magazine already add in the database.
+	 * Update a magazine already added in the database.
 	 * 
 	 * @param magazine of Magazine type.
 	 */
-	public void updateMagazine(Magazine magazine);
+	public void updateMagazine(final Magazine magazine);
 
 	/**
 	 * Delete a magazine from the bookstore in the database.
 	 * 
-	 * @param editionNumber of Integer type.
+	 * @param editionNumber of Long type.
 	 */
-	public void removeMagazine(Integer editionNumber);
+	public void removeMagazine(final Long id);
 }

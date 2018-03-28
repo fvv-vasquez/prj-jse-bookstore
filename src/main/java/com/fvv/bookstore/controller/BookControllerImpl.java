@@ -12,7 +12,7 @@ import com.fvv.bookstore.exception.DaoException;
  * Controller class for a Book object.
  * 
  * @author Fatima Vasquez
- * Created on 24 de mar de 2018	
+ * <p>Created on 24 de mar de 2018</p>	
  * @version 1.0 	
  *
  */
@@ -30,7 +30,7 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean addBook(Book book) throws ControllerException {
+	public boolean addBook(final Book book) throws ControllerException {
 		try {
 			return this.bookDao.addBook(book);
 		} catch (DaoException e) {
@@ -42,19 +42,17 @@ public class BookControllerImpl implements BookController {
 	 * {@inheritDoc}
 	 */
 	public List<Book> listBooks() throws ControllerException {
-		List<Book> books;
 		try {
-			books = this.bookDao.listBooks();
+			return this.bookDao.listBooks();
 		} catch (DaoException e) {
 			throw new ControllerException("Error to load the list", e);
 		}
-		return books;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean updateBook(Book book) throws ControllerException {
+	public boolean updateBook(final Book book) throws ControllerException {
 		try {
 			return this.bookDao.updateBook(book);
 		} catch (DaoException e) {
@@ -65,7 +63,7 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removeBook(Long id) throws ControllerException {
+	public void removeBook(final Long id) throws ControllerException {
 		try {
 			this.bookDao.removeBook(id);
 		} catch (DaoException e) {

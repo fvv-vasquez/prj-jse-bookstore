@@ -1,10 +1,10 @@
 package com.fvv.bookstore.exception;
 
 /**
- * Exception class for a DAO error. 
+ * Exception class for a DAO error.
  * 
  * @author Fatima Vasquez
- * Created on 22 de mar de 2018	
+ * <p>Created on 22 de mar de 2018</p>	
  * @version 1.0 	
  *
  */

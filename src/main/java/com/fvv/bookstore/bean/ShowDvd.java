@@ -1,14 +1,18 @@
 package com.fvv.bookstore.bean;
 
+import java.io.Serializable;
+
 /**
  * Bean class for a ShowDvd object
  * 
- * Created on 03/20/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 20 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
-public class ShowDvd extends Dvd {
-	
+public class ShowDvd extends Dvd implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String artist;
 
 	/**
@@ -21,8 +25,9 @@ public class ShowDvd extends Dvd {
 	 * @param code of the Movie DVD
 	 * @param artist of the Movie DVD
 	 */
-	public ShowDvd(String title, Integer totalDuration, Double price, String genre, 
-			Integer releaseYear, Integer code, String artist) {
+	public ShowDvd(final String title, final Integer totalDuration, final Double price, 
+			final String genre, final Integer releaseYear, final Integer code, 
+			final String artist) {
 		super(title, totalDuration, price, genre, releaseYear, code);
 		this.artist = artist;
 	}
@@ -38,7 +43,7 @@ public class ShowDvd extends Dvd {
 	 * 
 	 * @param artist of String type.
 	 */
-	public void setArtist(String artist) {
+	public void setArtist(final String artist) {
 		this.artist = artist;
 	}
 
@@ -55,9 +60,8 @@ public class ShowDvd extends Dvd {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Show DVD ID: " + getId() + ", Title: " + getTitle() + ", Total Duration: " + 
-				getTotalDuration() + ", Price: " + getPrice() + ", Genre: " + getGenre() + 
-				", Release Year: " + getReleaseYear() + ", Code: " + getCode() + ", Date: " + 
-				getDate() + ", Artist: " + getArtist();	
+		return "Show DVD ID: " + getId() + " - Title: " + getTitle() + ", Price: " + getPrice() + 
+				", Genre: " + getGenre() + ", Release Year: " + getReleaseYear() + 
+				", Artist: " + getArtist();	
 	}
 }

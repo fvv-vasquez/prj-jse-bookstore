@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.fvv.bookstore.view;
 
 import javax.swing.JOptionPane;
@@ -11,10 +8,10 @@ import com.fvv.bookstore.bean.ShowDvd;
 import com.fvv.bookstore.controller.DvdControllerImpl;
 
 /**
- * 
+ * TODO: This is a temporary implementation
  * 
  * @author Fatima Vasquez
- * Created on 24 de mar de 2018	
+ * <p>Created on 24 de mar de 2018</p>	
  * @version 1.0 	
  *
  */

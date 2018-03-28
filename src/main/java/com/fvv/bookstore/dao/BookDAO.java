@@ -8,9 +8,10 @@ import com.fvv.bookstore.exception.DaoException;
 /**
  * DAO Interface of a Book object, with main database operations from CRUD methods.
  * 
- * <p>Created on 03/21/2018</p>
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 21 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
 public interface BookDAO {
 
@@ -20,7 +21,7 @@ public interface BookDAO {
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public boolean addBook(Book book) throws DaoException;
+	public boolean addBook(final Book book) throws DaoException;
 
 	/**
 	 * Lists all the books in the database.
@@ -31,12 +32,12 @@ public interface BookDAO {
 	public List<Book> listBooks() throws DaoException;
 
 	/**
-	 * Update a book already add in the database.
+	 * Update a book already added in the database.
 	 * 
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public boolean updateBook(Book book) throws DaoException;
+	public boolean updateBook(final Book book) throws DaoException;
 
 	/**
 	 * Delete a book from the bookstore in the database.
@@ -44,5 +45,5 @@ public interface BookDAO {
 	 * @param id of Long type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public void removeBook(Long id) throws DaoException;
+	public void removeBook(final Long id) throws DaoException;
 }

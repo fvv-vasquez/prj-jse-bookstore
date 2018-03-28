@@ -1,16 +1,19 @@
 package com.fvv.bookstore.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Bean class for a Book object
  * 
- * Created on 03/20/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 20 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
-public class Book {
+public class Book implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String title;
 	private Integer publicationYear;
@@ -33,8 +36,9 @@ public class Book {
 	 * @param publisher of the book
 	 * @param genre of the book
 	 */
-	public Book(String title, Integer publicationYear, Integer editionNumber, String author, 
-			Double price, Integer isbn, String publisher, String genre) {
+	public Book(final String title, final Integer publicationYear, final Integer editionNumber, 
+			final String author, final Double price, final Integer isbn, final String publisher, 
+			final String genre) {
 		this.title = title;
 		this.publicationYear = publicationYear;
 		this.editionNumber = editionNumber;
@@ -56,7 +60,7 @@ public class Book {
 	 * 
 	 * @param id of Long type.
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -74,7 +78,7 @@ public class Book {
 	 * 
 	 * @param title of String type.
 	 */
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 	
@@ -92,7 +96,7 @@ public class Book {
 	 * 
 	 * @param publicationYear of Integer type.
 	 */
-	public void setPublicationYear(Integer publicationYear) {
+	public void setPublicationYear(final Integer publicationYear) {
 		this.publicationYear = publicationYear;
 	}
 
@@ -110,7 +114,7 @@ public class Book {
 	 * 
 	 * @param editionNumber of Integer type.
 	 */
-	public void setEditionNumber(Integer editionNumber) {
+	public void setEditionNumber(final Integer editionNumber) {
 		this.editionNumber = editionNumber;
 	}
 
@@ -128,7 +132,7 @@ public class Book {
 	 * 
 	 * @param author of String type.
 	 */
-	public void setAuthor(String author) {
+	public void setAuthor(final String author) {
 		this.author = author;
 	}
 
@@ -146,7 +150,7 @@ public class Book {
 	 * 
 	 * @param price of Double type.
 	 */
-	public void setPrice(Double price) {
+	public void setPrice(final Double price) {
 		this.price = price;
 	}
 
@@ -164,7 +168,7 @@ public class Book {
 	 * 
 	 * @param isbn of Integer type.
 	 */
-	public void setIsbn(Integer isbn) {
+	public void setIsbn(final Integer isbn) {
 		this.isbn = isbn;
 	}
 
@@ -182,7 +186,7 @@ public class Book {
 	 * 
 	 * @param publisher of String type.
 	 */
-	public void setPublisher(String publisher) {
+	public void setPublisher(final String publisher) {
 		this.publisher = publisher;
 	}
 
@@ -200,7 +204,7 @@ public class Book {
 	 * 
 	 * @param genre of String type.
 	 */
-	public void setGenre(String genre) {
+	public void setGenre(final String genre) {
 		this.genre = genre;
 	}
 
@@ -218,7 +222,7 @@ public class Book {
 	 * 
 	 * @param date the date to set
 	 */
-	public void setDate(Date date) {
+	public void setDate(final Date date) {
 		this.date = date;
 	}
 
@@ -235,9 +239,7 @@ public class Book {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Book ID: " + getId() + ", Title: " + getTitle() + ", Publication Year: " + 
-				getPublicationYear() + ", Edition Number: " + getEditionNumber() + ", Author: " + 
-				getAuthor() + ", Price: " + getPrice() + ", ISBN: " + getIsbn() + ", Publisher: " 
-				+ getPublisher() + ", Genre: " + getGenre() + ", Date: " + getDate();
+		return "Book ID: " + getId() + " - Title: " + getTitle() + ", Publication Year: " + 
+				getPublicationYear() + ", Author: " + getAuthor() + ", Price: " + getPrice();
 	}	
 }

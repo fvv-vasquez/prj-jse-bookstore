@@ -7,9 +7,10 @@ import com.fvv.bookstore.bean.Cellphone;
 /**
  * DAO Interface of a Cellphone object, with main database operations from CRUD methods.
  * 
- * Created on 03/21/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 21 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
 public interface CellphoneDAO {
 
@@ -18,7 +19,7 @@ public interface CellphoneDAO {
 	 * 
 	 * @param cellphone of Cellphone type.
 	 */
-	public void addCellphone(Cellphone cellphone);
+	public void addCellphone(final Cellphone cellphone);
 
 	/**
 	 * Lists all the cellphones in the database.
@@ -28,16 +29,16 @@ public interface CellphoneDAO {
 	public List<Cellphone> listCellphones();
 
 	/**
-	 * Update a cellphone already add in the database.
+	 * Update a cellphone already added in the database.
 	 * 
 	 * @param cellphone of Cellphone type.
 	 */
-	public void updateCellphone(Cellphone cellphone);
+	public void updateCellphone(final Cellphone cellphone);
 
 	/**
 	 * Delete a cellphone from the bookstore in the database.
 	 * 
-	 * @param id of Integer type.
+	 * @param id of Long type.
 	 */
-	public void removeCellphone(Integer id);
+	public void removeCellphone(final Long id);
 }

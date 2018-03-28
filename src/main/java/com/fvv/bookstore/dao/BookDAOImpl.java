@@ -14,16 +14,17 @@ import com.fvv.bookstore.exception.DaoException;
 /**
  * DAO Class of a Book object, with main database operations from CRUD methods.
  * 
- * Created on 03/21/2018
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 21 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
 public class BookDAOImpl implements BookDAO {
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean addBook(Book book) throws DaoException {
+	public boolean addBook(final Book book) throws DaoException {
 		PreparedStatement ps = null;
 		Connection conn = null;
 		try {
@@ -109,7 +110,7 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean updateBook(Book book) throws DaoException {
+	public boolean updateBook(final Book book) throws DaoException {
 		PreparedStatement ps = null;
 		Connection conn = null;
 		try {
@@ -149,7 +150,7 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removeBook(Long id) throws DaoException {
+	public void removeBook(final Long id) throws DaoException {
 		PreparedStatement ps = null;
 		Connection conn = null;
 		try {
