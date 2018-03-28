@@ -21,23 +21,25 @@ USE `bookstore_db`;
 DROP TABLE IF EXISTS `tb_book`;
 
 CREATE TABLE `tb_book` (
+  `book_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `book_title` varchar(255) NOT NULL,
   `book_publication_year` int(11) NOT NULL,
   `book_edition_number` int(11) NOT NULL,
   `book_author` varchar(255) NOT NULL,
   `book_price` double NOT NULL,
-  `book_isbn` int(11) NOT NULL AUTO_INCREMENT,
+  `book_isbn` int(11) NOT NULL,
   `book_publisher` varchar(255) NOT NULL,
   `book_genre` varchar(255) NOT NULL,
-  PRIMARY KEY (`book_isbn`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8;
+  `book_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`book_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_cellphone` */
 
 DROP TABLE IF EXISTS `tb_cellphone`;
 
 CREATE TABLE `tb_cellphone` (
-  `cel_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cel_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cel_brand` varchar(255) NOT NULL,
   `cel_model` varchar(255) NOT NULL,
   `cel_color` varchar(255) NOT NULL,
@@ -46,6 +48,7 @@ CREATE TABLE `tb_cellphone` (
   `cel_screen_size` double NOT NULL,
   `cel_storage_memory` double NOT NULL,
   `cel_camera` int(11) NOT NULL,
+  `cel_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cel_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -54,49 +57,17 @@ CREATE TABLE `tb_cellphone` (
 DROP TABLE IF EXISTS `tb_dvd`;
 
 CREATE TABLE `tb_dvd` (
+  `dvd_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `dvd_title` varchar(255) NOT NULL,
   `dvd_total_duration` int(11) NOT NULL,
   `dvd_price` double NOT NULL,
   `dvd_genre` varchar(255) NOT NULL,
   `dvd_release_year` int(11) NOT NULL,
-  `dvd_code` int(11) NOT NULL AUTO_INCREMENT,
+  `dvd_code` int(11) NOT NULL,
   `dvd_movie_director` varchar(255) DEFAULT NULL,
   `dvd_show_artist` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`dvd_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Table structure for table `tb_headset` */
-
-DROP TABLE IF EXISTS `tb_headset`;
-
-CREATE TABLE `tb_headset` (
-  `head_id` int(11) NOT NULL AUTO_INCREMENT,
-  `head_brand` varchar(255) NOT NULL,
-  `head_model` varchar(255) NOT NULL,
-  `head_color` varchar(255) NOT NULL,
-  `head_price` double NOT NULL,
-  `head_warranty` int(11) NOT NULL,
-  `head_connection` varchar(255) NOT NULL,
-  `head_microphone` tinyint(1) NOT NULL,
-  `head_wirred` tinyint(1) NOT NULL,
-  PRIMARY KEY (`head_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Table structure for table `tb_keyboard` */
-
-DROP TABLE IF EXISTS `tb_keyboard`;
-
-CREATE TABLE `tb_keyboard` (
-  `kb_id` int(11) NOT NULL AUTO_INCREMENT,
-  `kb_brand` varchar(255) NOT NULL,
-  `kb_model` varchar(255) NOT NULL,
-  `kb_color` varchar(255) NOT NULL,
-  `kb_price` double NOT NULL,
-  `kb_warranty` int(11) NOT NULL,
-  `kb_connection` varchar(255) NOT NULL,
-  `kb_multimedia` tinyint(1) NOT NULL,
-  `kb_wired` tinyint(1) NOT NULL,
-  PRIMARY KEY (`kb_id`)
+  `dvd_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`dvd_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_laptop` */
@@ -114,6 +85,7 @@ CREATE TABLE `tb_laptop` (
   `pc_processor` varchar(255) NOT NULL,
   `pc_screen_size` double NOT NULL,
   `pc_hd_size` double NOT NULL,
+  `pc_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`pc_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -122,47 +94,15 @@ CREATE TABLE `tb_laptop` (
 DROP TABLE IF EXISTS `tb_magazine`;
 
 CREATE TABLE `tb_magazine` (
+  `mag_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `mag_name` varchar(255) NOT NULL,
   `mag_edition_number` int(11) NOT NULL,
   `mag_genre` varchar(255) NOT NULL,
   `mag_publication_date` date NOT NULL,
   `mag_publisher` varchar(255) NOT NULL,
   `mag_price` double NOT NULL,
-  PRIMARY KEY (`mag_edition_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Table structure for table `tb_mouse` */
-
-DROP TABLE IF EXISTS `tb_mouse`;
-
-CREATE TABLE `tb_mouse` (
-  `mouse_id` int(11) NOT NULL AUTO_INCREMENT,
-  `mouse_brand` varchar(255) NOT NULL,
-  `mouse_model` varchar(255) NOT NULL,
-  `mouse_color` varchar(255) NOT NULL,
-  `mouse_price` double NOT NULL,
-  `mouse_warranty` int(11) NOT NULL,
-  `mouse_connection` varchar(255) NOT NULL,
-  `mouse_resolution` mediumint(9) NOT NULL,
-  `mouse_wired` tinyint(1) NOT NULL,
-  PRIMARY KEY (`mouse_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Table structure for table `tb_router` */
-
-DROP TABLE IF EXISTS `tb_router`;
-
-CREATE TABLE `tb_router` (
-  `rout_id` int(11) NOT NULL AUTO_INCREMENT,
-  `rout_brand` varchar(255) NOT NULL,
-  `rout_model` varchar(255) NOT NULL,
-  `rout_color` varchar(255) NOT NULL,
-  `rout_price` double NOT NULL,
-  `rout_warranty` int(11) NOT NULL,
-  `rout_quantity_port` int(11) NOT NULL,
-  `rout_quantity_antenna` int(11) NOT NULL,
-  `rout_wireless` tinyint(1) NOT NULL,
-  PRIMARY KEY (`rout_id`)
+  `mag_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`mag_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
