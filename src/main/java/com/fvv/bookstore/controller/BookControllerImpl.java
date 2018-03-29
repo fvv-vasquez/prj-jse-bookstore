@@ -36,8 +36,6 @@ public class BookControllerImpl implements BookController {
 		try {
 			this.validateBook(book);
 			return this.bookDao.addBook(book);
-		} catch (BookValidationException e) {
-			throw e;
 		} catch (DaoException e) {
 			throw new ControllerException("Error to add a book", e);
 		}
@@ -61,8 +59,6 @@ public class BookControllerImpl implements BookController {
 		try {
 			this.validateBook(book);
 			return this.bookDao.updateBook(book);
-		} catch (BookValidationException e) {
-			throw e;
 		} catch (DaoException e) {
 			throw new ControllerException("Error to update a book", e);
 		}
@@ -85,8 +81,6 @@ public class BookControllerImpl implements BookController {
 	public Book findBook(Long id) throws BookNotFoundException, ControllerException {
 		try {
 			return this.bookDao.findBook(id);
-		} catch (BookNotFoundException e) {
-			throw e;
 		} catch (DaoException e) {
 			throw new ControllerException("Error to find a book", e);
 		}

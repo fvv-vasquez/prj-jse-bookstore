@@ -59,11 +59,7 @@ public class BookViewImpl implements BookView {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		} catch (ControllerException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
-		} catch (BookValidationException e) {
+		} catch (ControllerException | BookValidationException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
 					JOptionPane.ERROR_MESSAGE);
@@ -125,17 +121,9 @@ public class BookViewImpl implements BookView {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		} catch (ControllerException e) {
+		} catch (ControllerException | BookNotFoundException | BookValidationException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
-		} catch (BookNotFoundException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-					JOptionPane.ERROR_MESSAGE);
-		} catch (BookValidationException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
