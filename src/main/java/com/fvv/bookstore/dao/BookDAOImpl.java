@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
-import com.fvv.bookstore.exception.BookNotFoundException;
 import com.fvv.bookstore.exception.DaoException;
+import com.fvv.bookstore.exception.book.BookNotFoundException;
 
 /**
  * DAO Class of a Book object, with main database operations from CRUD methods.
@@ -182,7 +182,7 @@ public class BookDAOImpl implements BookDAO {
 	public Book findBook(Long id) throws BookNotFoundException, DaoException {
 		PreparedStatement ps = null;
 		Connection conn = null;
-		ResultSet rs = null;
+		ResultSet rs;
 		Book book = new Book();
 		try {
 			conn = ConnectionFactory.getConnection();
@@ -192,7 +192,7 @@ public class BookDAOImpl implements BookDAO {
 			rs = ps.executeQuery();
 			
 			if(!rs.next()) {
-				throw new BookNotFoundException("Book not found");
+				throw new BookNotFoundException("Book with ID " + id + " not found");
 			} else {
 				do {
 					book.setId(rs.getLong("book_id"));

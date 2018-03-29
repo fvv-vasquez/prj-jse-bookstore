@@ -3,8 +3,8 @@ package com.fvv.bookstore.dao;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
-import com.fvv.bookstore.exception.BookNotFoundException;
 import com.fvv.bookstore.exception.DaoException;
+import com.fvv.bookstore.exception.book.BookNotFoundException;
 
 /**
  * DAO Interface of a Book object, with main database operations from CRUD methods.

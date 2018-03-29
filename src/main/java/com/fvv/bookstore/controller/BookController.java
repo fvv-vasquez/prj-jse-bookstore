@@ -3,9 +3,9 @@ package com.fvv.bookstore.controller;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
-import com.fvv.bookstore.exception.BookNotFoundException;
-import com.fvv.bookstore.exception.BookValidationException;
 import com.fvv.bookstore.exception.ControllerException;
+import com.fvv.bookstore.exception.book.BookNotFoundException;
+import com.fvv.bookstore.exception.book.BookValidationException;
 
 /**
  * Controller interface for a Book object.
@@ -22,8 +22,9 @@ public interface BookController {
 	 * 
 	 * @param book of Book type.
 	 * @throws ControllerException when a problem in controller happens.
+	 * @throws BookValidationException when a field is empty.
 	 */
-	public boolean addBook(final Book book) throws ControllerException;
+	public boolean addBook(final Book book) throws BookValidationException, ControllerException;
 	
 	/**
 	 * Lists all the books using DAO.
@@ -38,8 +39,9 @@ public interface BookController {
 	 * 
 	 * @param book of Book type.
 	 * @throws ControllerException when a problem in controller happens.
+	 * @throws BookValidationException when a field is empty.
 	 */
-	public boolean updateBook(final Book book) throws ControllerException;
+	public boolean updateBook(final Book book) throws BookValidationException, ControllerException;
 	
 	/**
 	 * Delete a book using DAO.
@@ -54,10 +56,9 @@ public interface BookController {
 	 * 
 	 * @param id of Long type.
 	 * @return a Book.
-	 * @throws BookNotFoundException when not found a book.
-	 * @throws ControllerException 
+	 * @throws ControllerException when a problem in controller happens.
+	 * @throws BookNotFoundException when a book is not found.
 	 */
-	public Book findBook(final Long id) throws ControllerException;
-	
-	public void validateBook(final Book book) throws BookValidationException;
+	public Book findBook(final Long id) throws BookNotFoundException, ControllerException;
+
 }

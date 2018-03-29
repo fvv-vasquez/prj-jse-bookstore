@@ -1,4 +1,4 @@
-package com.fvv.bookstore.exception;
+package com.fvv.bookstore.exception.book;
 
 /**
  * Exception class for a book not found in a search

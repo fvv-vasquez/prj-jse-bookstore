@@ -5,10 +5,10 @@ import java.util.List;
 import com.fvv.bookstore.bean.Book;
 import com.fvv.bookstore.dao.BookDAO;
 import com.fvv.bookstore.dao.BookDAOImpl;
-import com.fvv.bookstore.exception.BookNotFoundException;
-import com.fvv.bookstore.exception.BookValidationException;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
+import com.fvv.bookstore.exception.book.BookNotFoundException;
+import com.fvv.bookstore.exception.book.BookValidationException;
 
 /**
  * Controller class for a Book object.
@@ -32,9 +32,12 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean addBook(final Book book) throws ControllerException {
+	public boolean addBook(final Book book) throws BookValidationException, ControllerException {
 		try {
+			this.validateBook(book);
 			return this.bookDao.addBook(book);
+		} catch (BookValidationException e) {
+			throw e;
 		} catch (DaoException e) {
 			throw new ControllerException("Error to add a book", e);
 		}
@@ -54,9 +57,12 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean updateBook(final Book book) throws ControllerException {
+	public boolean updateBook(final Book book) throws BookValidationException, ControllerException {
 		try {
+			this.validateBook(book);
 			return this.bookDao.updateBook(book);
+		} catch (BookValidationException e) {
+			throw e;
 		} catch (DaoException e) {
 			throw new ControllerException("Error to update a book", e);
 		}
@@ -76,18 +82,23 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Book findBook(Long id) throws ControllerException {
+	public Book findBook(Long id) throws BookNotFoundException, ControllerException {
 		try {
 			return this.bookDao.findBook(id);
-		} catch (DaoException | BookNotFoundException e) {
+		} catch (BookNotFoundException e) {
+			throw e;
+		} catch (DaoException e) {
 			throw new ControllerException("Error to find a book", e);
 		}
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Validate if a field is empty.
+	 * 
+	 * @param book of type Book
+	 * @throws BookValidationException if a field is empty.
 	 */
-	public void validateBook(Book book) throws BookValidationException {
+	private void validateBook(final Book book) throws BookValidationException {
 		StringBuilder sb = new StringBuilder();
 		if(book.getAuthor().equals("")) {
 			sb.append("Field author cannot be empty.").append("\n");			
