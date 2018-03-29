@@ -51,7 +51,7 @@ public class BookViewImpl implements BookView {
 			boolean isSuccessful = this.bookController.addBook(book);
 			
 			if (isSuccessful) {
-				JOptionPane.showMessageDialog(null, "Book added successfuly!");
+				JOptionPane.showMessageDialog(null, "Book added successfully!");
 			} else {
 				JOptionPane.showMessageDialog(null, "Error to add the book!");
 			}			
@@ -80,7 +80,7 @@ public class BookViewImpl implements BookView {
 				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Books", 
 						JOptionPane.PLAIN_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "There are no itens to show!");
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
 			}			
 		} catch (ControllerException e) {
 			e.printStackTrace();
@@ -113,7 +113,7 @@ public class BookViewImpl implements BookView {
 			boolean isSuccessful = this.bookController.updateBook(book);
 				
 			if (isSuccessful) {
-				JOptionPane.showMessageDialog(null, "Book updated successfuly!");
+				JOptionPane.showMessageDialog(null, "Book updated successfully!");
 			} else {
 				JOptionPane.showMessageDialog(null, "Error to updated the book!");
 			}			

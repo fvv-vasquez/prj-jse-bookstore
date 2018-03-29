@@ -17,8 +17,6 @@ public interface BookView {
 	
 	/**
 	 * Lists all the books using Controller.
-	 * 
-	 * @return a list of books.
 	 */
 	public void listBooks();
 

@@ -38,7 +38,7 @@ public interface DvdDAO {
 	/**
 	 * Delete a movieDvd from the bookstore in the database.
 	 * 
-	 * @param code of Long type.
+	 * @param id of Long type.
 	 */
 	public void removeMovieDvd(final Long id);
 }

@@ -38,7 +38,7 @@ public interface MagazineDAO {
 	/**
 	 * Delete a magazine from the bookstore in the database.
 	 * 
-	 * @param editionNumber of Long type.
+	 * @param id of Long type.
 	 */
 	public void removeMagazine(final Long id);
 }
