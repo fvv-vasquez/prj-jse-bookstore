@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
+import com.fvv.bookstore.exception.BookNotFoundException;
 import com.fvv.bookstore.exception.DaoException;
 
 /**
@@ -173,5 +174,53 @@ public class BookDAOImpl implements BookDAO {
 				throw new DaoException("Error to delete a book", e);
 			}
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Book findBook(Long id) throws BookNotFoundException, DaoException {
+		PreparedStatement ps = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		Book book = new Book();
+		try {
+			conn = ConnectionFactory.getConnection();
+			String sql = "SELECT * FROM tb_book WHERE book_id = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setLong(1, id);
+			rs = ps.executeQuery();
+			
+			if(!rs.next()) {
+				throw new BookNotFoundException("Book not found");
+			} else {
+				do {
+					book.setId(rs.getLong("book_id"));
+					book.setTitle(rs.getString("book_title"));
+					book.setPublicationYear(rs.getInt("book_publication_year"));
+					book.setEditionNumber(rs.getInt("book_edition_number"));
+					book.setAuthor(rs.getString("book_author"));
+					book.setPrice(rs.getDouble("book_price"));
+					book.setIsbn(rs.getInt("book_isbn"));
+					book.setPublisher(rs.getString("book_publisher"));
+					book.setGenre(rs.getString("book_genre"));
+					book.setDate(new Date(rs.getTimestamp("book_modification_date").getTime()));
+				} while (rs.next());
+			}			
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a book", e);
+		} finally {
+			try {
+				if(ps != null) {
+					ps.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch(SQLException e) {
+				throw new DaoException("Error to find a book", e);
+			}
+		}
+		return book;
 	}
 }

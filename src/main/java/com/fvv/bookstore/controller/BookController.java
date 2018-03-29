@@ -3,6 +3,7 @@ package com.fvv.bookstore.controller;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
+import com.fvv.bookstore.exception.BookNotFoundException;
 import com.fvv.bookstore.exception.ControllerException;
 
 /**
@@ -46,4 +47,14 @@ public interface BookController {
 	 * @throws ControllerException when a problem in controller happens.
 	 */
 	public void removeBook(final Long id) throws ControllerException;
+	
+	/**
+	 * Search a book using DAO
+	 * 
+	 * @param id of Long type.
+	 * @return a Book.
+	 * @throws BookNotFoundException when not found a book.
+	 * @throws ControllerException 
+	 */
+	public Book findBook(final Long id) throws ControllerException;
 }

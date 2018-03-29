@@ -3,6 +3,7 @@ package com.fvv.bookstore.dao;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
+import com.fvv.bookstore.exception.BookNotFoundException;
 import com.fvv.bookstore.exception.DaoException;
 
 /**
@@ -46,4 +47,14 @@ public interface BookDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	public void removeBook(final Long id) throws DaoException;
+	
+	/**
+	 Search a book in the database.
+	 * 
+	 * @param id of Long type.
+	 * @return a Book.
+	 * @throws BookNotFoundException when not found a book in the database.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	public Book findBook(final Long id) throws BookNotFoundException, DaoException;
 }

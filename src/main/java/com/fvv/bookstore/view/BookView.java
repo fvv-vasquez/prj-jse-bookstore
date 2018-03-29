@@ -1,5 +1,7 @@
 package com.fvv.bookstore.view;
 
+import com.fvv.bookstore.bean.Book;
+
 /**
  * BookView interface to view the Book object.
  * 
@@ -31,4 +33,12 @@ public interface BookView {
 	 * Delete a book using Controller.
 	 */
 	public void removeBook();
+	
+	/**
+	 * Find a book using Controller.
+	 * 
+	 * @param id of Long type.
+	 * @return a Book
+	 */
+	public Book findBook(final Long id);
 }
