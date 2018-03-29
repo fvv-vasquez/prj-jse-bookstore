@@ -1,12 +1,20 @@
 package com.fvv.bookstore.bean;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * Create on 03/30/2018
+ * Bean class for a Book object
+ * 
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 20 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
-public class Book {
+public class Book implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	private Long id;
 	private String title;
 	private Integer publicationYear;
 	private Integer editionNumber;
@@ -15,12 +23,22 @@ public class Book {
 	private Integer isbn;
 	private String publisher;
 	private String genre;
+	private Date date;
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * @param title of the book
+	 * @param publicationYear of the book
+	 * @param editionNumber of the book
+	 * @param author of the book
+	 * @param price of the book
+	 * @param isbn of the book
+	 * @param publisher of the book
+	 * @param genre of the book
 	 */
-	public Book(String title, Integer publicationYear, Integer editionNumber, String author, 
-			Double price, Integer isbn, String publisher, String genre) {
+	public Book(final String title, final Integer publicationYear, final Integer editionNumber, 
+			final String author, final Double price, final Integer isbn, final String publisher, 
+			final String genre) {
 		this.title = title;
 		this.publicationYear = publicationYear;
 		this.editionNumber = editionNumber;
@@ -38,11 +56,29 @@ public class Book {
 	}
 	
 	/**
+	 * Sets the id.
+	 * 
+	 * @param id of Long type.
+	 */
+	public void setId(final Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * Gets the last id.
+	 * 
+	 * @return the last id of Long type.
+	 */
+	public Long getId() {
+		return this.id;
+	}
+
+	/**
 	 * Sets the title.
 	 * 
 	 * @param title of String type.
 	 */
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 	
@@ -60,7 +96,7 @@ public class Book {
 	 * 
 	 * @param publicationYear of Integer type.
 	 */
-	public void setPublicationYear(Integer publicationYear) {
+	public void setPublicationYear(final Integer publicationYear) {
 		this.publicationYear = publicationYear;
 	}
 
@@ -78,7 +114,7 @@ public class Book {
 	 * 
 	 * @param editionNumber of Integer type.
 	 */
-	public void setEditionNumber(Integer editionNumber) {
+	public void setEditionNumber(final Integer editionNumber) {
 		this.editionNumber = editionNumber;
 	}
 
@@ -96,7 +132,7 @@ public class Book {
 	 * 
 	 * @param author of String type.
 	 */
-	public void setAuthor(String author) {
+	public void setAuthor(final String author) {
 		this.author = author;
 	}
 
@@ -114,7 +150,7 @@ public class Book {
 	 * 
 	 * @param price of Double type.
 	 */
-	public void setPrice(Double price) {
+	public void setPrice(final Double price) {
 		this.price = price;
 	}
 
@@ -132,7 +168,7 @@ public class Book {
 	 * 
 	 * @param isbn of Integer type.
 	 */
-	public void setIsbn(Integer isbn) {
+	public void setIsbn(final Integer isbn) {
 		this.isbn = isbn;
 	}
 
@@ -150,7 +186,7 @@ public class Book {
 	 * 
 	 * @param publisher of String type.
 	 */
-	public void setPublisher(String publisher) {
+	public void setPublisher(final String publisher) {
 		this.publisher = publisher;
 	}
 
@@ -168,7 +204,7 @@ public class Book {
 	 * 
 	 * @param genre of String type.
 	 */
-	public void setGenre(String genre) {
+	public void setGenre(final String genre) {
 		this.genre = genre;
 	}
 
@@ -179,15 +215,31 @@ public class Book {
 	 */
 	public String getGenre() {
 		return this.genre;
+	}	
+	
+	/**
+	 * Sets the date.
+	 * 
+	 * @param date the date to set
+	 */
+	public void setDate(final Date date) {
+		this.date = date;
+	}
+
+	/**
+	 * Gets the last date.
+	 * 
+	 * @return the last date of Date type.
+	 */
+	public Date getDate() {
+		return this.date;
 	}
 
 	/**
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Book Title: " + getTitle() + ", Publication Year: " + getPublicationYear() + 
-				", Edition Number: " + getEditionNumber() + ", Author: " + getAuthor() + 
-				", Price: " + getPrice() + ", ISBN: " + getIsbn() + ", Publisher: " + 
-				getPublisher() + ", Genre: " + getGenre();
+		return "Book ID: " + getId() + " - Title: " + getTitle() + ", Publication Year: " + 
+				getPublicationYear() + ", Author: " + getAuthor() + ", Price: " + getPrice();
 	}	
 }

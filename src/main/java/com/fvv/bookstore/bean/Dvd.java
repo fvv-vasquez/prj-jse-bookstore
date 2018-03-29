@@ -1,24 +1,37 @@
 package com.fvv.bookstore.bean;
 
+import java.util.Date;
+
 /**
- * Create on 03/30/2018
+ * Bean abstract class for a Dvd object
+ * 
  * @author Fatima Vasquez
- * @version 1.0
+ * <p>Created on 20 de mar de 2018</p>	
+ * @version 1.0 	
+ *
  */
 public abstract class Dvd {
 	
+	private Long id;
 	private String title;
 	private Integer totalDuration;
 	private Double price;
 	private String genre;
 	private Integer releaseYear;
 	private Integer code;
+	private Date date;
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * @param title of the DVD
+	 * @param totalDuration of the DVD
+	 * @param price of the DVD
+	 * @param genre of the DVD
+	 * @param releaseYear of the DVD
+	 * @param code of the DVD
 	 */
-	public Dvd(String title, Integer totalDuration, Double price, String genre, 
-			Integer releaseYear, Integer code) {
+	public Dvd(final String title, final Integer totalDuration, final Double price, 
+			final String genre, final Integer releaseYear, final Integer code) {
 		this.title = title;
 		this.totalDuration = totalDuration;
 		this.price = price;
@@ -34,11 +47,29 @@ public abstract class Dvd {
 	}
 
 	/**
+	 * Sets the id.
+	 * 
+	 * @param id of Long type.
+	 */
+	public void setId(final Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * Gets the last id.
+	 * 
+	 * @return the last id of Long type.
+	 */
+	public Long getId() {
+		return this.id;
+	}
+	
+	/**
 	 * Sets the title.
 	 * 
 	 * @param title of String type.
 	 */
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -56,7 +87,7 @@ public abstract class Dvd {
 	 * 
 	 * @param totalDuration of Integer type.
 	 */
-	public void setTotalDuration(Integer totalDuration) {
+	public void setTotalDuration(final Integer totalDuration) {
 		this.totalDuration = totalDuration;
 	}
 
@@ -74,7 +105,7 @@ public abstract class Dvd {
 	 * 
 	 * @param price of Double type.
 	 */
-	public void setPrice(Double price) {
+	public void setPrice(final Double price) {
 		this.price = price;
 	}
 
@@ -92,7 +123,7 @@ public abstract class Dvd {
 	 * 
 	 * @param genre of String type.
 	 */
-	public void setGenre(String genre) {
+	public void setGenre(final String genre) {
 		this.genre = genre;
 	}
 
@@ -110,7 +141,7 @@ public abstract class Dvd {
 	 * 
 	 * @param releaseYear of Integer type.
 	 */
-	public void setReleaseYear(Integer releaseYear) {
+	public void setReleaseYear(final Integer releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 
@@ -128,7 +159,7 @@ public abstract class Dvd {
 	 * 
 	 * @param code of Integer type.
 	 */
-	public void setCode(Integer code) {
+	public void setCode(final Integer code) {
 		this.code = code;
 	}
 
@@ -142,11 +173,28 @@ public abstract class Dvd {
 	}
 	
 	/**
+	 * Sets the date.
+	 * 
+	 * @param date the date to set
+	 */
+	public void setDate(final Date date) {
+		this.date = date;
+	}
+
+	/**
+	 * Gets the last date.
+	 * 
+	 * @return the last date of Date type.
+	 */
+	public Date getDate() {
+		return this.date;
+	}
+	
+	/**
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "DVD Title: " + getTitle() + ", Total Duration: " + getTotalDuration() + "Price: "
-				+ getPrice() + ", Genre: " + getGenre() + ", Release Year: " + getReleaseYear() 
-				+ ", Code: " + getCode();	
+		return "DVD ID: " + getId() + " - Title: " + getTitle() + ", Price: " + getPrice() + 
+				", Genre: " + getGenre() + ", Release Year: " + getReleaseYear();	
 	}
 }
