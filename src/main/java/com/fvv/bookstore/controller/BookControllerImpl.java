@@ -90,8 +90,31 @@ public class BookControllerImpl implements BookController {
 	public void validateBook(Book book) throws BookValidationException {
 		StringBuilder sb = new StringBuilder();
 		if(book.getAuthor().equals("")) {
-			sb.append(book.getAuthor());
-			throw new BookValidationException("All fieds must be filled: " + sb);			
+			sb.append("Field author cannot be empty.").append("\n");			
+		}
+		if(book.getTitle().equals("")) {
+			sb.append("Field title cannot be empty.").append("\n");
+		}
+		if(book.getGenre().equals("")) {
+			sb.append("Field genre cannot be empty.").append("\n");
+		}
+		if(book.getPublisher().equals("")) {
+			sb.append("Field publisher cannot be empty.").append("\n");
+		}
+		if(book.getEditionNumber() <= 0) {
+			sb.append("Field edition number cannot be smaller than 0.").append("\n");
+		}
+		if(book.getIsbn() <= 0) {
+			sb.append("Field ISBN cannot be smaller than 0.").append("\n");
+		}
+		if(book.getPrice() <= 0) {
+			sb.append("Field price cannot be smaller than 0.").append("\n");
+		}
+		if(book.getPublicationYear() <= 0) {
+			sb.append("Field publication year cannot be smaller than 0.").append("\n");
+		}
+		if(sb.length() > 0) {
+			throw new BookValidationException(sb.toString());
 		}
 	}
 }

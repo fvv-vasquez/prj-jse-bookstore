@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import com.fvv.bookstore.bean.Book;
 import com.fvv.bookstore.controller.BookController;
 import com.fvv.bookstore.controller.BookControllerImpl;
+import com.fvv.bookstore.exception.BookValidationException;
 import com.fvv.bookstore.exception.ControllerException;
 
 /**
@@ -46,18 +47,24 @@ public class BookViewImpl implements BookView {
 					Integer.parseInt(JOptionPane.showInputDialog("Insert the isbn")));
 			book.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
 			book.setGenre(JOptionPane.showInputDialog("Insert the genre"));
+			
+			this.bookController.validateBook(book);
 			boolean isSuccessful = this.bookController.addBook(book);
 			
 			if (isSuccessful) {
 				JOptionPane.showMessageDialog(null, "Book added successfuly!");
 			} else {
 				JOptionPane.showMessageDialog(null, "Error to add the book!");
-			}
+			}			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		} catch (BookValidationException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
 					JOptionPane.ERROR_MESSAGE);
@@ -110,7 +117,10 @@ public class BookViewImpl implements BookView {
 						Integer.parseInt(JOptionPane.showInputDialog("Insert the isbn")));
 				book.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
 				book.setGenre(JOptionPane.showInputDialog("Insert the genre"));
+				
+				this.bookController.validateBook(book);
 				boolean isSuccessful = this.bookController.updateBook(book);
+				
 				if (isSuccessful) {
 					JOptionPane.showMessageDialog(null, "Book updated successfuly!");
 				} else {
@@ -124,6 +134,10 @@ public class BookViewImpl implements BookView {
 			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		} catch (BookValidationException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
 					JOptionPane.ERROR_MESSAGE);
