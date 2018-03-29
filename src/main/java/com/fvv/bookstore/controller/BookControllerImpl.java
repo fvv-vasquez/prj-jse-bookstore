@@ -6,6 +6,7 @@ import com.fvv.bookstore.bean.Book;
 import com.fvv.bookstore.dao.BookDAO;
 import com.fvv.bookstore.dao.BookDAOImpl;
 import com.fvv.bookstore.exception.BookNotFoundException;
+import com.fvv.bookstore.exception.BookValidationException;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
 
@@ -74,13 +75,23 @@ public class BookControllerImpl implements BookController {
 
 	/**
 	 * {@inheritDoc}
-	 * @throws DaoException 
 	 */
 	public Book findBook(Long id) throws ControllerException {
 		try {
 			return this.bookDao.findBook(id);
 		} catch (DaoException | BookNotFoundException e) {
 			throw new ControllerException("Error to find a book", e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void validateBook(Book book) throws BookValidationException {
+		StringBuilder sb = new StringBuilder();
+		if(book.getAuthor().equals("")) {
+			sb.append(book.getAuthor());
+			throw new BookValidationException("All fieds must be filled: " + sb);			
 		}
 	}
 }

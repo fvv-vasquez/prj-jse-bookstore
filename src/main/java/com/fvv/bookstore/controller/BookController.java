@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
 import com.fvv.bookstore.exception.BookNotFoundException;
+import com.fvv.bookstore.exception.BookValidationException;
 import com.fvv.bookstore.exception.ControllerException;
 
 /**
@@ -57,4 +58,6 @@ public interface BookController {
 	 * @throws ControllerException 
 	 */
 	public Book findBook(final Long id) throws ControllerException;
+	
+	public void validateBook(final Book book) throws BookValidationException;
 }
