@@ -114,6 +114,8 @@ public class Menu {
 					break;
 				case '2' : this.updateMagazine();
 					break;
+				case '3' : this.removeMagazine();
+					break;
 				case '4' : this.listMagazines();
 					break;
 				case '0' : this.createMenu();
@@ -164,6 +166,13 @@ public class Menu {
 	 */
 	private void updateMagazine() {
 		this.magazineView.updateMagazine();
+	}
+	
+	/**
+	 * Remove a magazine by the menu.
+	 */
+	private void removeMagazine() {
+		this.magazineView.removeMagazine();
 	}
 	
 	/**

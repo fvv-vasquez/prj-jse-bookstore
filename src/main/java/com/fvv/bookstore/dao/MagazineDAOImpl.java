@@ -146,8 +146,28 @@ public class MagazineDAOImpl implements MagazineDAO {
 	 * {@inheritDoc}
 	 */
 	public void removeMagazine(Long id) throws DaoException {
-		// TODO Auto-generated method stub
-
+		PreparedStatement ps = null;
+		Connection conn = null;
+		try {
+			conn = ConnectionFactory.getConnection();
+			String sql = "DELETE FROM tb_magazine WHERE mag_id = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setLong(1, id);
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to delete a magazine", e);
+		} finally {
+			try {
+				if(ps != null) {
+					ps.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch(SQLException e) {
+				throw new DaoException("Error to delete a magazine", e);
+			}
+		}
 	}
 
 	/**

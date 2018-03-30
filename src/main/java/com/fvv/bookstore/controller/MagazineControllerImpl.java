@@ -69,8 +69,11 @@ public class MagazineControllerImpl implements MagazineController {
 	 * {@inheritDoc}
 	 */
 	public void removeMagazine(Long id) throws ControllerException {
-		// TODO Auto-generated method stub
-
+		try {
+			this.magazineDao.removeMagazine(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to delete a magazine", e);
+		}
 	}
 
 	/**

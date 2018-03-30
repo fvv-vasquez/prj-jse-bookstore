@@ -132,8 +132,20 @@ public class MagazineViewImpl implements MagazineView {
 	*/
 	@Override
 	public void removeMagazine() {
-		// TODO Auto-generated method stub
-
+		try {
+			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
+					"Insert the ID to delete")));
+			this.magazineController.findMagazine(idDelete);
+			this.magazineController.removeMagazine(idDelete);
+			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (MagazineNotFoundException | ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
-
 }
