@@ -112,6 +112,8 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.addMagazine();
 					break;
+				case '2' : this.updateMagazine();
+					break;
 				case '4' : this.listMagazines();
 					break;
 				case '0' : this.createMenu();
@@ -155,6 +157,13 @@ public class Menu {
 	 */
 	private void addMagazine() {
 		this.magazineView.addMagazine();
+	}
+	
+	/**
+	 * Update a magazine by the menu.
+	 */
+	private void updateMagazine() {
+		this.magazineView.updateMagazine();
 	}
 	
 	/**

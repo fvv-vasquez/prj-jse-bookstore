@@ -57,8 +57,12 @@ public class MagazineControllerImpl implements MagazineController {
 	 * {@inheritDoc}
 	 */
 	public boolean updateMagazine(Magazine magazine) throws MagazineValidationException, ControllerException {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			this.validateMagazine(magazine);
+			return this.magazineDao.updateMagazine(magazine);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to update a magazine", e);
+		}
 	}
 
 	/**
@@ -73,8 +77,11 @@ public class MagazineControllerImpl implements MagazineController {
 	 * {@inheritDoc}
 	 */
 	public Magazine findMagazine(Long id) throws MagazineNotFoundException, ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.magazineDao.findMagazine(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a magazine", e);
+		}
 	}
 	
 	/**

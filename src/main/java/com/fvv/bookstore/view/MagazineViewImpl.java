@@ -8,6 +8,7 @@ import com.fvv.bookstore.bean.Magazine;
 import com.fvv.bookstore.controller.MagazineController;
 import com.fvv.bookstore.controller.MagazineControllerImpl;
 import com.fvv.bookstore.exception.ControllerException;
+import com.fvv.bookstore.exception.magazine.MagazineNotFoundException;
 import com.fvv.bookstore.exception.magazine.MagazineValidationException;
 import com.fvv.bookstore.util.DateUtil;
 
@@ -93,8 +94,37 @@ public class MagazineViewImpl implements MagazineView {
 	*/
 	@Override
 	public void updateMagazine() {
-		// TODO Auto-generated method stub
-
+		try {
+			Magazine magazine = new Magazine();
+			Long idUp = Long.parseLong(JOptionPane.showInputDialog("Insert the ID to update"));
+			this.magazineController.findMagazine(idUp);
+			
+			magazine.setId(idUp);
+			magazine.setName(JOptionPane.showInputDialog("Insert the name"));
+			magazine.setEditionNumber(
+					Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
+			magazine.setGenre(JOptionPane.showInputDialog("Insert the genre"));
+			magazine.setPublicationDate(DateUtil.stringToDate(
+					JOptionPane.showInputDialog("Insert the date (mm/dd/yyyy)")));
+			magazine.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
+			magazine.setPrice(
+					Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));			
+			boolean isSuccessful = this.magazineController.updateMagazine(magazine);
+			
+			if (isSuccessful) {
+				JOptionPane.showMessageDialog(null, "Magazine updated successfully!");
+			} else {
+				JOptionPane.showMessageDialog(null, "Error to updated the magazine!");
+			}	
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ControllerException | MagazineNotFoundException | MagazineValidationException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
