@@ -49,7 +49,7 @@ public interface BookDAO {
 	public void removeBook(final Long id) throws DaoException;
 	
 	/**
-	 Search a book in the database.
+	 * Search a book in the database.
 	 * 
 	 * @param id of Long type.
 	 * @return a Book.

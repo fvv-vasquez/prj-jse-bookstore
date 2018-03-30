@@ -85,7 +85,8 @@ public class BookDAOImpl implements BookDAO {
 				book.setIsbn(rs.getInt("book_isbn"));
 				book.setPublisher(rs.getString("book_publisher"));
 				book.setGenre(rs.getString("book_genre"));
-				book.setDate(new Date(rs.getTimestamp("book_modification_date").getTime()));
+				book.setModificationDate(new Date(rs.getTimestamp(
+						"book_modification_date").getTime()));
 				books.add(book);
 			}
 		} catch(SQLException e) {
@@ -204,7 +205,8 @@ public class BookDAOImpl implements BookDAO {
 					book.setIsbn(rs.getInt("book_isbn"));
 					book.setPublisher(rs.getString("book_publisher"));
 					book.setGenre(rs.getString("book_genre"));
-					book.setDate(new Date(rs.getTimestamp("book_modification_date").getTime()));
+					book.setModificationDate(new Date(rs.getTimestamp(
+							"book_modification_date").getTime()));
 				} while (rs.next());
 			}			
 		} catch(SQLException e) {

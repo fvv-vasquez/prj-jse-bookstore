@@ -21,7 +21,7 @@ public class Magazine implements Serializable {
 	private Date publicationDate;
 	private String publisher;
 	private Double price;
-	private Date date;
+	private Date modificationDate;
 	
 	/**
 	 * Class constructor specifying the attributes
@@ -175,21 +175,21 @@ public class Magazine implements Serializable {
 	}
 	
 	/**
-	 * Sets the date.
+	 * Sets the modificationDate.
 	 * 
 	 * @param date the date to set
 	 */
-	public void setDate(final Date date) {
-		this.date = date;
+	public void setModificationDate(final Date modificationDate) {
+		this.modificationDate = modificationDate;
 	}
 
 	/**
-	 * Gets the last date.
+	 * Gets the last modification date.
 	 * 
-	 * @return the last date of Date type.
+	 * @return the last modification date of Date type.
 	 */
-	public Date getDate() {
-		return this.date;
+	public Date getModificationDate() {
+		return this.modificationDate;
 	}
 	
 	/**

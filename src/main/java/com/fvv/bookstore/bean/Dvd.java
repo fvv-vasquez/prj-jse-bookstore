@@ -19,7 +19,7 @@ public abstract class Dvd {
 	private String genre;
 	private Integer releaseYear;
 	private Integer code;
-	private Date date;
+	private Date modificationDate;
 	
 	/**
 	 * Class constructor specifying the attributes
@@ -173,21 +173,21 @@ public abstract class Dvd {
 	}
 	
 	/**
-	 * Sets the date.
+	 * Sets the modification date.
 	 * 
-	 * @param date the date to set
+	 * @param modificationDate of Date type.
 	 */
-	public void setDate(final Date date) {
-		this.date = date;
+	public void setModificationDate(final Date modificationDate) {
+		this.modificationDate = modificationDate;
 	}
 
 	/**
-	 * Gets the last date.
+	 * Gets the last modification date.
 	 * 
-	 * @return the last date of Date type.
+	 * @return the last modification date of Date type.
 	 */
-	public Date getDate() {
-		return this.date;
+	public Date getModificationDate() {
+		return this.modificationDate;
 	}
 	
 	/**

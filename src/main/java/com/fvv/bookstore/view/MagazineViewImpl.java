@@ -1,0 +1,92 @@
+package com.fvv.bookstore.view;
+
+import javax.swing.JOptionPane;
+
+import com.fvv.bookstore.bean.Magazine;
+import com.fvv.bookstore.controller.MagazineController;
+import com.fvv.bookstore.controller.MagazineControllerImpl;
+import com.fvv.bookstore.exception.ControllerException;
+import com.fvv.bookstore.exception.magazine.MagazineValidationException;
+import com.fvv.bookstore.util.DateUtil;
+
+/**
+ * MagazineView class to view the Book object.
+ * 
+ * @author Fatima Vasquez
+ * <p>Created on 30 de mar de 2018</p>	
+ * @version 1.0 	
+ *
+ */
+public class MagazineViewImpl implements MagazineView {
+	
+	private MagazineController magazineController;
+	
+	/**
+	 * Class constructor instantiating a new MagazineControllerImpl object.
+	 */
+	public MagazineViewImpl() {
+		this.magazineController = new MagazineControllerImpl();
+	}
+
+	/**
+	* {@inheritDoc}
+	*/
+	@Override
+	public void addMagazine() {
+		try {
+			Magazine magazine = new Magazine();
+			magazine.setName(JOptionPane.showInputDialog("Insert the name"));
+			magazine.setEditionNumber(
+					Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
+			magazine.setGenre(JOptionPane.showInputDialog("Insert the genre"));
+			magazine.setPublicationDate(DateUtil.stringToDate(
+					JOptionPane.showInputDialog("Insert the date (mm/dd/yyyy)")));
+			magazine.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
+			magazine.setPrice(
+					Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));			
+			boolean isSuccessful = this.magazineController.addMagazine(magazine);
+			
+			if (isSuccessful) {
+				JOptionPane.showMessageDialog(null, "Magazine added successfully!");
+			} else {
+				JOptionPane.showMessageDialog(null, "Error to add the magazine!");
+			}	
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ControllerException | MagazineValidationException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	/**
+	* {@inheritDoc}
+	*/
+	@Override
+	public void listMagazines() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	* {@inheritDoc}
+	*/
+	@Override
+	public void updateMagazine() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	* {@inheritDoc}
+	*/
+	@Override
+	public void removeMagazine() {
+		// TODO Auto-generated method stub
+
+	}
+
+}
