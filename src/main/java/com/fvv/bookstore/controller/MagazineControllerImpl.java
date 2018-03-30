@@ -46,8 +46,11 @@ public class MagazineControllerImpl implements MagazineController {
 	 * {@inheritDoc}
 	 */
 	public List<Magazine> listMagazines() throws ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.magazineDao.listMagazines();
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
 	}
 
 	/**

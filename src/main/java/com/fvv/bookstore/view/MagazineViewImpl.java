@@ -1,5 +1,7 @@
 package com.fvv.bookstore.view;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.bean.Magazine;
@@ -67,8 +69,23 @@ public class MagazineViewImpl implements MagazineView {
 	*/
 	@Override
 	public void listMagazines() {
-		// TODO Auto-generated method stub
-
+		try {
+			StringBuilder sb = new StringBuilder();
+			List<Magazine> magazines = this.magazineController.listMagazines();
+			if(magazines != null && !magazines.isEmpty()) {
+				for(Magazine m : magazines) {
+					sb.append(m).append("\n");
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Magazines", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**

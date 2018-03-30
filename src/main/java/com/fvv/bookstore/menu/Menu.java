@@ -112,6 +112,8 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.addMagazine();
 					break;
+				case '4' : this.listMagazines();
+					break;
 				case '0' : this.createMenu();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -153,6 +155,13 @@ public class Menu {
 	 */
 	private void addMagazine() {
 		this.magazineView.addMagazine();
+	}
+	
+	/**
+	 * List all the magazines by the menu.
+	 */
+	private void listMagazines() {
+		this.magazineView.listMagazines();
 	}
 	
 	/**
