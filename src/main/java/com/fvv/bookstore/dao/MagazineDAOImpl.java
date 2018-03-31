@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Magazine;
+import com.fvv.bookstore.enums.SqlQueryEnum;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.magazine.MagazineNotFoundException;
 
@@ -29,11 +30,8 @@ public class MagazineDAOImpl implements MagazineDAO {
 		PreparedStatement ps = null;
 		Connection conn = null;
 		try {
-			conn = ConnectionFactory.getConnection();
-			String sql = "INSERT INTO tb_magazine (mag_name, mag_edition_number, mag_genre, "
-					+ "mag_publication_date, mag_publisher, mag_price, mag_modification_date) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, now())";			
-			ps = conn.prepareStatement(sql);
+			conn = ConnectionFactory.getConnection();			
+			ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_INSERT.getQuery());
 			ps.setString(1, magazine.getName());
 			ps.setInt(2, magazine.getEditionNumber());
 			ps.setString(3, magazine.getGenre());
@@ -68,8 +66,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 		List<Magazine> magazines = new ArrayList<>();
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "SELECT * FROM tb_magazine";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_ALL.getQuery());
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Magazine magazine = new Magazine();
@@ -112,11 +109,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 		Connection conn = null;
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "UPDATE tb_magazine SET mag_name = ?, mag_edition_number = ?, "
-					+ "mag_genre = ?, mag_publication_date = ?, mag_publisher = ?, "
-					+ "mag_price = ?, mag_modification_date = now() "
-					+ "WHERE mag_id = ?";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_UPDATE.getQuery());
 			ps.setString(1, magazine.getName());
 			ps.setInt(2, magazine.getEditionNumber());
 			ps.setString(3, magazine.getGenre());
@@ -150,8 +143,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 		Connection conn = null;
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "DELETE FROM tb_magazine WHERE mag_id = ?";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_DELETE.getQuery());
 			ps.setLong(1, id);
 			ps.execute();
 		} catch(SQLException e) {
@@ -180,8 +172,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 		Magazine magazine = new Magazine();
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "SELECT * FROM tb_magazine WHERE mag_id = ?";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_ID.getQuery());
 			ps.setLong(1, id);
 			rs = ps.executeQuery();
 			

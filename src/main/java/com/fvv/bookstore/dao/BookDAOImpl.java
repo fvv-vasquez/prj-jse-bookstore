@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
+import com.fvv.bookstore.enums.SqlQueryEnum;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.book.BookNotFoundException;
 
@@ -30,11 +31,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection conn = null;
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "INSERT INTO tb_book (book_title, book_publication_year, "
-					+ "book_edition_number, book_author, book_price, book_isbn, "
-					+ "book_publisher, book_genre, book_modification_date) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, now())";			
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(SqlQueryEnum.BOOK_INSERT.getQuery());
 			ps.setString(1, book.getTitle());
 			ps.setInt(2, book.getPublicationYear());
 			ps.setInt(3, book.getEditionNumber());
@@ -71,8 +68,7 @@ public class BookDAOImpl implements BookDAO {
 		List<Book> books = new ArrayList<>();
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "SELECT * FROM tb_book";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ALL.getQuery());
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Book book = new Book();
@@ -117,11 +113,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection conn = null;
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "UPDATE tb_book SET book_title = ?, book_publication_year = ?, "
-					+ "book_edition_number = ?, book_author = ?, book_price = ?, book_isbn = ?, "
-					+ "book_publisher = ?, book_genre = ?, book_modification_date = now() "
-					+ "WHERE book_id = ?";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(SqlQueryEnum.BOOK_UPDATE.getQuery());
 			ps.setString(1, book.getTitle());
 			ps.setInt(2, book.getPublicationYear());
 			ps.setInt(3, book.getEditionNumber());
@@ -157,8 +149,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection conn = null;
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "DELETE FROM tb_book WHERE book_id = ?";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(SqlQueryEnum.BOOK_DELETE.getQuery());
 			ps.setLong(1, id);
 			ps.execute();
 		} catch(SQLException e) {
@@ -187,8 +178,7 @@ public class BookDAOImpl implements BookDAO {
 		Book book = new Book();
 		try {
 			conn = ConnectionFactory.getConnection();
-			String sql = "SELECT * FROM tb_book WHERE book_id = ?";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ID.getQuery());
 			ps.setLong(1, id);
 			rs = ps.executeQuery();
 			
