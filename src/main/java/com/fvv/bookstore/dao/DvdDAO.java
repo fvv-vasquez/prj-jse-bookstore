@@ -8,7 +8,7 @@ import com.fvv.bookstore.bean.MovieDvd;
  * DAO Interface of a MovieDvd object, with main database operations from CRUD methods.
  * 
  * @author Fatima Vasquez
- * <p>Created on 211 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */

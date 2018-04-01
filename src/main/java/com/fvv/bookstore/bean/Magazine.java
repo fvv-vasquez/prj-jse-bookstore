@@ -9,7 +9,7 @@ import com.fvv.bookstore.util.DateUtil;
  * Bean class for a Magazine object
  * 
  * @author Fatima Vasquez
- * <p>Created on 20 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */

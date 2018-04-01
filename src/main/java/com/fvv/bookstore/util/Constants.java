@@ -4,7 +4,7 @@ package com.fvv.bookstore.util;
  * Class to create constants.
  * 
  * @author Fatima Vasquez
- * <p>Created on 1 de abr de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */

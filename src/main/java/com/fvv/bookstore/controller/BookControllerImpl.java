@@ -15,7 +15,7 @@ import com.fvv.bookstore.util.Constants;
  * Controller class for a Book object.
  * 
  * @author Fatima Vasquez
- * <p>Created on 24 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
@@ -33,10 +33,11 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean addBook(final Book book) throws BookValidationException, ControllerException {
+	@Override
+	public void addBook(final Book book) throws BookValidationException, ControllerException {
 		try {
 			this.validateBook(book);
-			return this.bookDao.addBook(book);
+			this.bookDao.addBook(book);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to add a book", e);
 		}
@@ -45,6 +46,7 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<Book> listBooks() throws ControllerException {
 		try {
 			return this.bookDao.listBooks();
@@ -56,10 +58,11 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean updateBook(final Book book) throws BookValidationException, ControllerException {
+	@Override
+	public void updateBook(final Book book) throws BookValidationException, ControllerException {
 		try {
 			this.validateBook(book);
-			return this.bookDao.updateBook(book);
+			this.bookDao.updateBook(book);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to update a book", e);
 		}
@@ -68,6 +71,7 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void removeBook(final Long id) throws ControllerException {
 		try {
 			this.bookDao.removeBook(id);
@@ -79,6 +83,7 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Book findBook(Long id) throws BookNotFoundException, ControllerException {
 		try {
 			return this.bookDao.findBook(id);

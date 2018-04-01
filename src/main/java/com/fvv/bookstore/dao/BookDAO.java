@@ -10,7 +10,7 @@ import com.fvv.bookstore.exception.book.BookNotFoundException;
  * DAO Interface of a Book object, with main database operations from CRUD methods.
  * 
  * @author Fatima Vasquez
- * <p>Created on 21 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
@@ -22,7 +22,7 @@ public interface BookDAO {
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	boolean addBook(final Book book) throws DaoException;
+	void addBook(final Book book) throws DaoException;
 
 	/**
 	 * Lists all the books in the database.
@@ -38,7 +38,7 @@ public interface BookDAO {
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	boolean updateBook(final Book book) throws DaoException;
+	void updateBook(final Book book) throws DaoException;
 
 	/**
 	 * Delete a book from the bookstore in the database.

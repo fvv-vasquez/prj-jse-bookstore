@@ -10,13 +10,14 @@ import com.fvv.bookstore.controller.MagazineControllerImpl;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.magazine.MagazineNotFoundException;
 import com.fvv.bookstore.exception.magazine.MagazineValidationException;
+import com.fvv.bookstore.util.Constants;
 import com.fvv.bookstore.util.DateUtil;
 
 /**
  * MagazineView class to view the Book object.
  * 
  * @author Fatima Vasquez
- * <p>Created on 30 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
@@ -37,28 +38,14 @@ public class MagazineViewImpl implements MagazineView {
 	@Override
 	public void addMagazine() {
 		try {
-			Magazine magazine = new Magazine();
-			magazine.setName(JOptionPane.showInputDialog("Insert the name"));
-			magazine.setEditionNumber(
-					Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
-			magazine.setGenre(JOptionPane.showInputDialog("Insert the genre"));
-			magazine.setPublicationDate(DateUtil.stringToDate(
-					JOptionPane.showInputDialog("Insert the date (mm/dd/yyyy)")));
-			magazine.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
-			magazine.setPrice(
-					Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));			
-			boolean isSuccessful = this.magazineController.addMagazine(magazine);
-			
-			if (isSuccessful) {
-				JOptionPane.showMessageDialog(null, "Magazine added successfully!");
-			} else {
-				JOptionPane.showMessageDialog(null, "Error to add the magazine!");
-			}	
+			final Magazine magazine = this.createMagazineFromInput(Boolean.FALSE);
+			this.magazineController.addMagazine(magazine);
+			JOptionPane.showMessageDialog(null, "Magazine added successfully!");	
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		} catch (ControllerException | MagazineValidationException e) {
+		} catch (ControllerException | MagazineNotFoundException | MagazineValidationException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
 					JOptionPane.ERROR_MESSAGE);
@@ -75,7 +62,7 @@ public class MagazineViewImpl implements MagazineView {
 			List<Magazine> magazines = this.magazineController.listMagazines();
 			if(magazines != null && !magazines.isEmpty()) {
 				for(Magazine m : magazines) {
-					sb.append(m).append("\n");
+					sb.append(m).append(Constants.LINE_SEPARATOR);
 				}
 				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Magazines", 
 						JOptionPane.PLAIN_MESSAGE);
@@ -95,30 +82,12 @@ public class MagazineViewImpl implements MagazineView {
 	@Override
 	public void updateMagazine() {
 		try {
-			Magazine magazine = new Magazine();
-			Long idUp = Long.parseLong(JOptionPane.showInputDialog("Insert the ID to update"));
-			this.magazineController.findMagazine(idUp);
-			
-			magazine.setId(idUp);
-			magazine.setName(JOptionPane.showInputDialog("Insert the name"));
-			magazine.setEditionNumber(
-					Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
-			magazine.setGenre(JOptionPane.showInputDialog("Insert the genre"));
-			magazine.setPublicationDate(DateUtil.stringToDate(
-					JOptionPane.showInputDialog("Insert the date (mm/dd/yyyy)")));
-			magazine.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
-			magazine.setPrice(
-					Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));			
-			boolean isSuccessful = this.magazineController.updateMagazine(magazine);
-			
-			if (isSuccessful) {
-				JOptionPane.showMessageDialog(null, "Magazine updated successfully!");
-			} else {
-				JOptionPane.showMessageDialog(null, "Error to updated the magazine!");
-			}	
+			final Magazine magazine = this.createMagazineFromInput(Boolean.TRUE);			
+			this.magazineController.updateMagazine(magazine);
+			JOptionPane.showMessageDialog(null, "Magazine updated successfully!");	
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | MagazineNotFoundException | MagazineValidationException e) {
 			e.printStackTrace();
@@ -140,12 +109,42 @@ public class MagazineViewImpl implements MagazineView {
 			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (MagazineNotFoundException | ControllerException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	/**
+	 * Creating a magazine from the input.
+	 * 
+	 * @param isUpdate of boolean type.
+	 * @return a Magazine.
+	 * @throws MagazineNotFoundException when a magazine is not found.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	private Magazine createMagazineFromInput(final boolean isUpdate) 
+			throws MagazineNotFoundException, ControllerException {
+		final Magazine magazine = new Magazine();
+		
+		if(isUpdate) {
+			Long idUp = Long.parseLong(JOptionPane.showInputDialog("Insert the ID to update"));
+			this.magazineController.findMagazine(idUp);
+			magazine.setId(idUp);
+		}
+		
+		magazine.setName(JOptionPane.showInputDialog("Insert the name"));
+		magazine.setEditionNumber(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
+		magazine.setGenre(JOptionPane.showInputDialog("Insert the genre"));
+		magazine.setPublicationDate(DateUtil.stringToDate(
+				JOptionPane.showInputDialog("Insert the date (mm/dd/yyyy)")));
+		magazine.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
+		magazine.setPrice(
+				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
+		return magazine;
 	}
 }

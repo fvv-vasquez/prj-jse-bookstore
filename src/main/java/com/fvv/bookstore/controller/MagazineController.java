@@ -11,7 +11,7 @@ import com.fvv.bookstore.exception.magazine.MagazineValidationException;
  * Controller interface for a Magazine object.
  * 
  * @author Fatima Vasquez
- * <p>Created on 30 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
@@ -24,7 +24,7 @@ public interface MagazineController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws MagazineValidationException when a field is empty.
 	 */
-	boolean addMagazine(final Magazine magazine) throws 
+	void addMagazine(final Magazine magazine) throws 
 		MagazineValidationException, ControllerException;
 	
 	/**
@@ -42,7 +42,7 @@ public interface MagazineController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws MagazineValidationException when a field is empty.
 	 */
-	boolean updateMagazine(final Magazine magazine) throws MagazineValidationException, ControllerException;
+	void updateMagazine(final Magazine magazine) throws MagazineValidationException, ControllerException;
 	
 	/**
 	 * Delete a magazine using DAO.

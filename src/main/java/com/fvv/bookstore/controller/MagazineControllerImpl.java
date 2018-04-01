@@ -15,7 +15,7 @@ import com.fvv.bookstore.util.Constants;
  * Controller class for a Magazine object.
  * 
  * @author Fatima Vasquez
- * <p>Created on 30 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
@@ -33,11 +33,12 @@ public class MagazineControllerImpl implements MagazineController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean addMagazine(Magazine magazine) throws 
+	@Override
+	public void addMagazine(Magazine magazine) throws 
 		MagazineValidationException, ControllerException {
 		try {
 			this.validateMagazine(magazine);
-			return this.magazineDao.addMagazine(magazine);
+			this.magazineDao.addMagazine(magazine);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to add a magazine", e);
 		}
@@ -46,6 +47,7 @@ public class MagazineControllerImpl implements MagazineController {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<Magazine> listMagazines() throws ControllerException {
 		try {
 			return this.magazineDao.listMagazines();
@@ -57,10 +59,11 @@ public class MagazineControllerImpl implements MagazineController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean updateMagazine(Magazine magazine) throws MagazineValidationException, ControllerException {
+	@Override
+	public void updateMagazine(Magazine magazine) throws MagazineValidationException, ControllerException {
 		try {
 			this.validateMagazine(magazine);
-			return this.magazineDao.updateMagazine(magazine);
+			this.magazineDao.updateMagazine(magazine);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to update a magazine", e);
 		}
@@ -69,6 +72,7 @@ public class MagazineControllerImpl implements MagazineController {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void removeMagazine(Long id) throws ControllerException {
 		try {
 			this.magazineDao.removeMagazine(id);
@@ -80,6 +84,7 @@ public class MagazineControllerImpl implements MagazineController {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Magazine findMagazine(Long id) throws MagazineNotFoundException, ControllerException {
 		try {
 			return this.magazineDao.findMagazine(id);

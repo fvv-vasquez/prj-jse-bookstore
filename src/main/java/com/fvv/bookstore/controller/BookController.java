@@ -11,7 +11,7 @@ import com.fvv.bookstore.exception.book.BookValidationException;
  * Controller interface for a Book object.
  * 
  * @author Fatima Vasquez
- * <p>Created on 24 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
@@ -24,7 +24,7 @@ public interface BookController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws BookValidationException when a field is empty.
 	 */
-	boolean addBook(final Book book) throws BookValidationException, ControllerException;
+	void addBook(final Book book) throws BookValidationException, ControllerException;
 	
 	/**
 	 * Lists all the books using DAO.
@@ -41,7 +41,7 @@ public interface BookController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws BookValidationException when a field is empty.
 	 */
-	boolean updateBook(final Book book) throws BookValidationException, ControllerException;
+	void updateBook(final Book book) throws BookValidationException, ControllerException;
 	
 	/**
 	 * Delete a book using DAO.
@@ -60,5 +60,4 @@ public interface BookController {
 	 * @throws BookNotFoundException when a book is not found.
 	 */
 	Book findBook(final Long id) throws BookNotFoundException, ControllerException;
-
 }

@@ -7,7 +7,7 @@ import com.fvv.bookstore.bean.MovieDvd;
  * TODO: This is a temporary implementation
  * 
  * @author Fatima Vasquez
- * <p>Created on 24 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */

@@ -11,7 +11,7 @@ import com.fvv.bookstore.view.MagazineViewImpl;
  * Menu class to create a menu for the application.
  * 
  * @author Fatima Vasquez
- * <p>Created on 24 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
