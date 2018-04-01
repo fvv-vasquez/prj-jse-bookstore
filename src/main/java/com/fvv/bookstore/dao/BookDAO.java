@@ -22,7 +22,7 @@ public interface BookDAO {
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public boolean addBook(final Book book) throws DaoException;
+	boolean addBook(final Book book) throws DaoException;
 
 	/**
 	 * Lists all the books in the database.
@@ -30,7 +30,7 @@ public interface BookDAO {
 	 * @return a list of books.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public List<Book> listBooks() throws DaoException;
+	List<Book> listBooks() throws DaoException;
 
 	/**
 	 * Update a book already added in the database.
@@ -38,7 +38,7 @@ public interface BookDAO {
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public boolean updateBook(final Book book) throws DaoException;
+	boolean updateBook(final Book book) throws DaoException;
 
 	/**
 	 * Delete a book from the bookstore in the database.
@@ -46,15 +46,15 @@ public interface BookDAO {
 	 * @param id of Long type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public void removeBook(final Long id) throws DaoException;
+	void removeBook(final Long id) throws DaoException;
 	
 	/**
-	 Search a book in the database.
+	 * Search a book in the database.
 	 * 
 	 * @param id of Long type.
 	 * @return a Book.
 	 * @throws BookNotFoundException when not found a book in the database.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public Book findBook(final Long id) throws BookNotFoundException, DaoException;
+	Book findBook(final Long id) throws BookNotFoundException, DaoException;
 }

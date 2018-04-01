@@ -21,7 +21,7 @@ import com.fvv.bookstore.exception.book.BookValidationException;
  */
 public class BookViewImpl implements BookView {
 	
-	private BookController bookController;
+	private final BookController bookController;
 	
 	/**
 	 * Class constructor instantiating a new BookControllerImpl object.

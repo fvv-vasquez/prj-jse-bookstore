@@ -19,26 +19,26 @@ public interface LaptopDAO {
 	 * 
 	 * @param laptop of Laptop type.
 	 */
-	public void addLaptop(final Laptop laptop);
+	void addLaptop(final Laptop laptop);
 
 	/**
 	 * Lists all the laptops in the database.
 	 * 
 	 * @return a list of laptops.
 	 */
-	public List<Laptop> listLaptops();
+	List<Laptop> listLaptops();
 
 	/**
 	 * Update a laptop already added in the database.
 	 * 
 	 * @param laptop of Laptop type.
 	 */
-	public void updateLaptop(final Laptop laptop);
+	void updateLaptop(final Laptop laptop);
 
 	/**
 	 * Delete a laptop from the bookstore in the database.
 	 * 
 	 * @param id of Long type.
 	 */
-	public void removeLaptop(final Long id);	
+	void removeLaptop(final Long id);	
 }

@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.view.BookView;
 import com.fvv.bookstore.view.BookViewImpl;
+import com.fvv.bookstore.view.MagazineView;
+import com.fvv.bookstore.view.MagazineViewImpl;
 
 /**
  * Menu class to create a menu for the application.
@@ -15,13 +17,15 @@ import com.fvv.bookstore.view.BookViewImpl;
  */
 public class Menu {
 	
-	private BookView bookView;
+	private final BookView bookView;
+	private final MagazineView magazineView;
 	
 	/**
-	 * Class constructor instantiating a new BookViewImpl object.
+	 * Class constructor instantiating a new View objects.
 	 */
 	public Menu() {
 		this.bookView = new BookViewImpl();
+		this.magazineView = new MagazineViewImpl();
 	}
 	
 	/**
@@ -38,15 +42,17 @@ public class Menu {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
 					null, "Select an option below:\n" +
-					"1 - Books\n" +
-					"2 - DVDs\n" +
-					"3 - Hardwares\n" +
-					"4 - Magazines\n" +
+					"1 - Book\n" +
+					"2 - DVD\n" +
+					"3 - Hardware\n" +
+					"4 - Magazine\n" +
 					"0 - Exit",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuBooks();
+					break;
+				case '4' : this.createSubMenuMagazines();
 					break;
 				case '0' : this.exit();
 					break;
@@ -62,7 +68,7 @@ public class Menu {
 	private void createSubMenuBooks() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "Books Section\n\n" +
+					null, "Book Section\n\n" +
 					"Select an option below:\n" +
 					"1 - Add a book\n" +
 					"2 - Update a book\n" +
@@ -79,6 +85,38 @@ public class Menu {
 				case '3' : this.removeBook();
 					break;
 				case '4' : this.listBooks();
+					break;
+				case '0' : this.createMenu();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and appear the magazine sub menu.
+	 */
+	private void createSubMenuMagazines() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Magazine Section\n\n" +
+					"Select an option below:\n" +
+					"1 - Add a magazine\n" +
+					"2 - Update a magazine\n" +
+					"3 - Delete a magazine\n" +
+					"4 - List the magazines\n" +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.addMagazine();
+					break;
+				case '2' : this.updateMagazine();
+					break;
+				case '3' : this.removeMagazine();
+					break;
+				case '4' : this.listMagazines();
 					break;
 				case '0' : this.createMenu();
 					break;
@@ -114,6 +152,34 @@ public class Menu {
 	 */
 	private void listBooks() {
 		this.bookView.listBooks();
+	}
+	
+	/**
+	 * Add a magazine by the menu.
+	 */
+	private void addMagazine() {
+		this.magazineView.addMagazine();
+	}
+	
+	/**
+	 * Update a magazine by the menu.
+	 */
+	private void updateMagazine() {
+		this.magazineView.updateMagazine();
+	}
+	
+	/**
+	 * Remove a magazine by the menu.
+	 */
+	private void removeMagazine() {
+		this.magazineView.removeMagazine();
+	}
+	
+	/**
+	 * List all the magazines by the menu.
+	 */
+	private void listMagazines() {
+		this.magazineView.listMagazines();
 	}
 	
 	/**

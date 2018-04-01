@@ -17,7 +17,7 @@ import com.fvv.bookstore.controller.DvdControllerImpl;
  */
 public class DvdView {
 	
-	public void addDvd() {
+	void addDvd() {
 		DvdControllerImpl dvdController = new DvdControllerImpl();
 		String input = JOptionPane.showInputDialog("M or S");
 		Dvd dvd = null;
