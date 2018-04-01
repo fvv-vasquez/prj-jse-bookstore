@@ -24,7 +24,7 @@ public interface BookController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws BookValidationException when a field is empty.
 	 */
-	boolean addBook(final Book book) throws BookValidationException, ControllerException;
+	void addBook(final Book book) throws BookValidationException, ControllerException;
 	
 	/**
 	 * Lists all the books using DAO.
@@ -41,7 +41,7 @@ public interface BookController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws BookValidationException when a field is empty.
 	 */
-	boolean updateBook(final Book book) throws BookValidationException, ControllerException;
+	void updateBook(final Book book) throws BookValidationException, ControllerException;
 	
 	/**
 	 * Delete a book using DAO.

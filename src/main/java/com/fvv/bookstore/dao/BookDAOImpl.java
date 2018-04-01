@@ -26,12 +26,11 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean addBook(final Book book) throws DaoException {
-		PreparedStatement ps = null;
-		Connection conn = null;
-		try {
-			conn = ConnectionFactory.getConnection();
-			ps = conn.prepareStatement(SqlQueryEnum.BOOK_INSERT.getQuery());
+	public void addBook(final Book book) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_INSERT.getQuery())
+		) {					
 			ps.setString(1, book.getTitle());
 			ps.setInt(2, book.getPublicationYear());
 			ps.setInt(3, book.getEditionNumber());
@@ -41,35 +40,21 @@ public class BookDAOImpl implements BookDAO {
 			ps.setString(7, book.getPublisher());
 			ps.setString(8, book.getGenre());
 			ps.execute();
-			return true;
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a book", e);
-		} finally {
-			try {
-				if(ps != null) {
-					ps.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch(SQLException e) {
-				throw new DaoException("Error to add a book", e);
-			}
-		}
+		} 
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public List<Book> listBooks() throws DaoException {
-		PreparedStatement ps = null;
-		Connection conn = null;
-		ResultSet rs = null;
 		List<Book> books = new ArrayList<>();
-		try {
-			conn = ConnectionFactory.getConnection();
-			ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ALL.getQuery());
-			rs = ps.executeQuery();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ALL.getQuery())
+		) {	
+			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Book book = new Book();
 				book.setId(rs.getLong("book_id"));
@@ -87,33 +72,18 @@ public class BookDAOImpl implements BookDAO {
 			}
 		} catch(SQLException e) {
 			throw new DaoException("Error to load the list", e);
-		} finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(ps != null) {
-					ps.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch(SQLException e) {
-				throw new DaoException("Error to load the list", e);
-			}
-		}
+		} 
 		return books;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean updateBook(final Book book) throws DaoException {
-		PreparedStatement ps = null;
-		Connection conn = null;
-		try {
-			conn = ConnectionFactory.getConnection();
-			ps = conn.prepareStatement(SqlQueryEnum.BOOK_UPDATE.getQuery());
+	public void updateBook(final Book book) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_UPDATE.getQuery())
+		) {	
 			ps.setString(1, book.getTitle());
 			ps.setInt(2, book.getPublicationYear());
 			ps.setInt(3, book.getEditionNumber());
@@ -124,63 +94,37 @@ public class BookDAOImpl implements BookDAO {
 			ps.setString(8, book.getGenre());
 			ps.setLong(9, book.getId());
 			ps.execute();
-			return true;
 		} catch(SQLException e) {
 			throw new DaoException("Error to update a book", e);
-		} finally {
-			try {
-				if(ps != null) {
-					ps.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch(SQLException e) {
-				throw new DaoException("Error to update a book", e);
-			}
-		}
+		} 
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void removeBook(final Long id) throws DaoException {
-		PreparedStatement ps = null;
-		Connection conn = null;
-		try {
-			conn = ConnectionFactory.getConnection();
-			ps = conn.prepareStatement(SqlQueryEnum.BOOK_DELETE.getQuery());
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_DELETE.getQuery())
+		) {	
 			ps.setLong(1, id);
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to delete a book", e);
-		} finally {
-			try {
-				if(ps != null) {
-					ps.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch(SQLException e) {
-				throw new DaoException("Error to delete a book", e);
-			}
-		}
+		} 
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Book findBook(Long id) throws BookNotFoundException, DaoException {
-		PreparedStatement ps = null;
-		Connection conn = null;
-		ResultSet rs;
 		Book book = new Book();
-		try {
-			conn = ConnectionFactory.getConnection();
-			ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ID.getQuery());
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ID.getQuery())
+		) {	
 			ps.setLong(1, id);
-			rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			
 			if(!rs.next()) {
 				throw new BookNotFoundException("Book with ID " + id + " not found");
@@ -201,18 +145,7 @@ public class BookDAOImpl implements BookDAO {
 			}			
 		} catch(SQLException e) {
 			throw new DaoException("Error to find a book", e);
-		} finally {
-			try {
-				if(ps != null) {
-					ps.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch(SQLException e) {
-				throw new DaoException("Error to find a book", e);
-			}
-		}
+		} 
 		return book;
 	}
 }

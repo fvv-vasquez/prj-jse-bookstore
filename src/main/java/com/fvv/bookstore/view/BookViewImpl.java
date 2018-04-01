@@ -35,31 +35,14 @@ public class BookViewImpl implements BookView {
 	 */
 	public void addBook() {
 		try {
-			Book book = new Book();
-			book.setTitle(JOptionPane.showInputDialog("Insert the title"));
-			book.setPublicationYear(
-					Integer.parseInt(JOptionPane.showInputDialog("Insert the publication year")));
-			book.setEditionNumber(
-					Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
-			book.setAuthor(JOptionPane.showInputDialog("Insert the author"));
-			book.setPrice(
-					Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
-			book.setIsbn(
-					Integer.parseInt(JOptionPane.showInputDialog("Insert the isbn")));
-			book.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
-			book.setGenre(JOptionPane.showInputDialog("Insert the genre"));
-			boolean isSuccessful = this.bookController.addBook(book);
-			
-			if (isSuccessful) {
-				JOptionPane.showMessageDialog(null, "Book added successfully!");
-			} else {
-				JOptionPane.showMessageDialog(null, "Error to add the book!");
-			}			
+			final Book book = this.createBookFromInput(Boolean.FALSE);
+			this.bookController.addBook(book);
+			JOptionPane.showMessageDialog(null, "Book added successfully!");		
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		} catch (ControllerException | BookValidationException e) {
+		} catch (ControllerException | BookNotFoundException | BookValidationException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
 					JOptionPane.ERROR_MESSAGE);
@@ -94,29 +77,9 @@ public class BookViewImpl implements BookView {
 	 */
 	public void updateBook() {
 		try {
-			Book book = new Book();
-			Long idUp = Long.parseLong(JOptionPane.showInputDialog("Insert the ID to update"));
-			this.bookController.findBook(idUp);
-			
-			book.setId(idUp);
-			book.setTitle(JOptionPane.showInputDialog("Insert the title"));
-			book.setPublicationYear(
-					Integer.parseInt(JOptionPane.showInputDialog("Insert the publication year")));
-			book.setEditionNumber(
-					Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
-			book.setAuthor(JOptionPane.showInputDialog("Insert the author"));
-			book.setPrice(Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
-			book.setIsbn(
-					Integer.parseInt(JOptionPane.showInputDialog("Insert the isbn")));
-			book.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
-			book.setGenre(JOptionPane.showInputDialog("Insert the genre"));
-			boolean isSuccessful = this.bookController.updateBook(book);
-				
-			if (isSuccessful) {
-				JOptionPane.showMessageDialog(null, "Book updated successfully!");
-			} else {
-				JOptionPane.showMessageDialog(null, "Error to updated the book!");
-			}			
+			Book book = this.createBookFromInput(Boolean.TRUE);
+			this.bookController.updateBook(book);
+			JOptionPane.showMessageDialog(null, "Book updated successfully!");			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
@@ -147,5 +110,30 @@ public class BookViewImpl implements BookView {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	private Book createBookFromInput(final boolean isUpdate) 
+			throws BookNotFoundException, ControllerException {
+		Book book = new Book();
+		
+		if (isUpdate) {
+			Long idUp = Long.parseLong(JOptionPane.showInputDialog("Insert the ID to update"));
+			this.bookController.findBook(idUp);			
+			book.setId(idUp);
+		}
+		
+		book.setTitle(JOptionPane.showInputDialog("Insert the title"));
+		book.setPublicationYear(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the publication year")));
+		book.setEditionNumber(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
+		book.setAuthor(JOptionPane.showInputDialog("Insert the author"));
+		book.setPrice(
+				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
+		book.setIsbn(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the isbn")));
+		book.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
+		book.setGenre(JOptionPane.showInputDialog("Insert the genre"));
+		return book;
 	}
 }

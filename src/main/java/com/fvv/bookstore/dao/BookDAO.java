@@ -22,7 +22,7 @@ public interface BookDAO {
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	boolean addBook(final Book book) throws DaoException;
+	void addBook(final Book book) throws DaoException;
 
 	/**
 	 * Lists all the books in the database.
@@ -38,7 +38,7 @@ public interface BookDAO {
 	 * @param book of Book type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	boolean updateBook(final Book book) throws DaoException;
+	void updateBook(final Book book) throws DaoException;
 
 	/**
 	 * Delete a book from the bookstore in the database.

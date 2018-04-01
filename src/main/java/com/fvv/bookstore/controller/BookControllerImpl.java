@@ -33,10 +33,10 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean addBook(final Book book) throws BookValidationException, ControllerException {
+	public void addBook(final Book book) throws BookValidationException, ControllerException {
 		try {
 			this.validateBook(book);
-			return this.bookDao.addBook(book);
+			this.bookDao.addBook(book);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to add a book", e);
 		}
@@ -56,10 +56,10 @@ public class BookControllerImpl implements BookController {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean updateBook(final Book book) throws BookValidationException, ControllerException {
+	public void updateBook(final Book book) throws BookValidationException, ControllerException {
 		try {
 			this.validateBook(book);
-			return this.bookDao.updateBook(book);
+			this.bookDao.updateBook(book);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to update a book", e);
 		}
