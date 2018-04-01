@@ -10,7 +10,7 @@ import com.fvv.bookstore.exception.magazine.MagazineNotFoundException;
  * DAO Interface of a Magazine object, with main database operations from CRUD methods.
  * 
  * @author Fatima Vasquez
- * <p>Created on 21 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
@@ -22,7 +22,7 @@ public interface MagazineDAO {
 	 * @param magazine of Magazine type. 
 	 * @throws DaoException when a problem in database happens.
 	 */
-	boolean addMagazine(final Magazine magazine) throws DaoException;
+	void addMagazine(final Magazine magazine) throws DaoException;
 
 	/**
 	 * Lists all the magazines in the database.
@@ -38,7 +38,7 @@ public interface MagazineDAO {
 	 * @param magazine of Magazine type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	boolean updateMagazine(final Magazine magazine) throws DaoException;
+	void updateMagazine(final Magazine magazine) throws DaoException;
 
 	/**
 	 * Delete a magazine from the bookstore in the database.

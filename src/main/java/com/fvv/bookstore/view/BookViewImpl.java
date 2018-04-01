@@ -10,12 +10,13 @@ import com.fvv.bookstore.controller.BookControllerImpl;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.book.BookNotFoundException;
 import com.fvv.bookstore.exception.book.BookValidationException;
+import com.fvv.bookstore.util.Constants;
 
 /**
  * BookView class to view the Book object.
  * 
  * @author Fatima Vasquez
- * <p>Created on 24 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
@@ -33,6 +34,7 @@ public class BookViewImpl implements BookView {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void addBook() {
 		try {
 			final Book book = this.createBookFromInput(Boolean.FALSE);
@@ -40,7 +42,7 @@ public class BookViewImpl implements BookView {
 			JOptionPane.showMessageDialog(null, "Book added successfully!");		
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+			JOptionPane.showMessageDialog(null, "Problems to convert the value:" + Constants.LINE_SEPARATOR
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | BookNotFoundException | BookValidationException e) {
 			e.printStackTrace();
@@ -52,13 +54,14 @@ public class BookViewImpl implements BookView {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void listBooks() {
 		try {
 			StringBuilder sb = new StringBuilder();
 			List<Book> books = this.bookController.listBooks();
 			if(books != null && !books.isEmpty()) {
 				for(Book b : books) {
-					sb.append(b).append("\n");
+					sb.append(b).append(Constants.LINE_SEPARATOR);
 				}
 				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Books", 
 						JOptionPane.PLAIN_MESSAGE);
@@ -75,14 +78,15 @@ public class BookViewImpl implements BookView {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void updateBook() {
 		try {
-			Book book = this.createBookFromInput(Boolean.TRUE);
+			final Book book = this.createBookFromInput(Boolean.TRUE);
 			this.bookController.updateBook(book);
 			JOptionPane.showMessageDialog(null, "Book updated successfully!");			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | BookNotFoundException | BookValidationException e) {
 			e.printStackTrace();
@@ -94,6 +98,7 @@ public class BookViewImpl implements BookView {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void removeBook() {
 		try {
 			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
@@ -103,7 +108,7 @@ public class BookViewImpl implements BookView {
 			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value:\n" 
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (BookNotFoundException | ControllerException e) {
 			e.printStackTrace();
@@ -112,9 +117,17 @@ public class BookViewImpl implements BookView {
 		}
 	}
 	
+	/**
+	 * Creating a book from the input.
+	 * 
+	 * @param isUpdate of boolean type.
+	 * @return a Book.
+	 * @throws BookNotFoundException when a book is not found.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
 	private Book createBookFromInput(final boolean isUpdate) 
 			throws BookNotFoundException, ControllerException {
-		Book book = new Book();
+		final Book book = new Book();
 		
 		if (isUpdate) {
 			Long idUp = Long.parseLong(JOptionPane.showInputDialog("Insert the ID to update"));

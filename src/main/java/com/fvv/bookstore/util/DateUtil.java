@@ -8,7 +8,7 @@ import java.util.Date;
  * Utility class to handle date operations
  * 
  * @author Fatima Vasquez
- * <p>Created on 30 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */

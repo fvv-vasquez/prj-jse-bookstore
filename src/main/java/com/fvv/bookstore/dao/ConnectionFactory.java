@@ -8,7 +8,7 @@ import java.sql.SQLException;
  * Class Connection Factory to implement a connection with the database.
  * 
  * @author Fatima Vasquez
- * <p>Created on 21 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */

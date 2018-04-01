@@ -17,7 +17,7 @@ import com.fvv.bookstore.exception.book.BookNotFoundException;
  * DAO Class of a Book object, with main database operations from CRUD methods.
  * 
  * @author Fatima Vasquez
- * <p>Created on 21 de mar de 2018</p>	
+ * <p>Created on 2018</p>	
  * @version 1.0 	
  *
  */
@@ -26,6 +26,7 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void addBook(final Book book) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -48,13 +49,14 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<Book> listBooks() throws DaoException {
 		List<Book> books = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ALL.getQuery())
-		) {	
-			ResultSet rs = ps.executeQuery();
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ALL.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {				
 			while(rs.next()) {
 				Book book = new Book();
 				book.setId(rs.getLong("book_id"));
@@ -79,6 +81,7 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void updateBook(final Book book) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -102,6 +105,7 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void removeBook(final Long id) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -117,32 +121,33 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Book findBook(Long id) throws BookNotFoundException, DaoException {
+	@Override
+	public Book findBook(final Long id) throws BookNotFoundException, DaoException {
 		Book book = new Book();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ID.getQuery())
 		) {	
-			ps.setLong(1, id);
-			ResultSet rs = ps.executeQuery();
-			
-			if(!rs.next()) {
-				throw new BookNotFoundException("Book with ID " + id + " not found");
-			} else {
-				do {
-					book.setId(rs.getLong("book_id"));
-					book.setTitle(rs.getString("book_title"));
-					book.setPublicationYear(rs.getInt("book_publication_year"));
-					book.setEditionNumber(rs.getInt("book_edition_number"));
-					book.setAuthor(rs.getString("book_author"));
-					book.setPrice(rs.getDouble("book_price"));
-					book.setIsbn(rs.getInt("book_isbn"));
-					book.setPublisher(rs.getString("book_publisher"));
-					book.setGenre(rs.getString("book_genre"));
-					book.setModificationDate(new Date(rs.getTimestamp(
-							"book_modification_date").getTime()));
-				} while (rs.next());
-			}			
+			ps.setLong(1, id);			
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new BookNotFoundException("Book with ID " + id + " not found");
+				} else {
+					do {
+						book.setId(rs.getLong("book_id"));
+						book.setTitle(rs.getString("book_title"));
+						book.setPublicationYear(rs.getInt("book_publication_year"));
+						book.setEditionNumber(rs.getInt("book_edition_number"));
+						book.setAuthor(rs.getString("book_author"));
+						book.setPrice(rs.getDouble("book_price"));
+						book.setIsbn(rs.getInt("book_isbn"));
+						book.setPublisher(rs.getString("book_publisher"));
+						book.setGenre(rs.getString("book_genre"));
+						book.setModificationDate(new Date(rs.getTimestamp(
+								"book_modification_date").getTime()));
+					} while (rs.next());
+				}			
+			} 
 		} catch(SQLException e) {
 			throw new DaoException("Error to find a book", e);
 		} 
