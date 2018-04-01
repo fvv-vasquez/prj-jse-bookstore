@@ -3,6 +3,8 @@ package com.fvv.bookstore.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fvv.bookstore.util.DateUtil;
+
 /**
  * Bean class for a Magazine object
  * 
@@ -177,7 +179,7 @@ public class Magazine implements Serializable {
 	/**
 	 * Sets the modificationDate.
 	 * 
-	 * @param date the date to set
+	 * @param modificationDate the date to set
 	 */
 	public void setModificationDate(final Date modificationDate) {
 		this.modificationDate = modificationDate;
@@ -197,7 +199,7 @@ public class Magazine implements Serializable {
 	 */
 	public String toString() {
 		return "Magazine ID: " + getId() + " - Name: " + getName() + ", Edition Number: " + 
-				getEditionNumber() + ", Publication Date: " + getPublicationDate() + 
-				", Price: " + getPrice();
+				getEditionNumber() + ", Publication Date: " + 
+				DateUtil.dateToString(getPublicationDate()) + ", Price: " + getPrice();
 	}
 }

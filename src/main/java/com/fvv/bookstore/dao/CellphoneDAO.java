@@ -19,26 +19,26 @@ public interface CellphoneDAO {
 	 * 
 	 * @param cellphone of Cellphone type.
 	 */
-	public void addCellphone(final Cellphone cellphone);
+	void addCellphone(final Cellphone cellphone);
 
 	/**
 	 * Lists all the cellphones in the database.
 	 * 
 	 * @return a list of cellphones.
 	 */
-	public List<Cellphone> listCellphones();
+	List<Cellphone> listCellphones();
 
 	/**
 	 * Update a cellphone already added in the database.
 	 * 
 	 * @param cellphone of Cellphone type.
 	 */
-	public void updateCellphone(final Cellphone cellphone);
+	void updateCellphone(final Cellphone cellphone);
 
 	/**
 	 * Delete a cellphone from the bookstore in the database.
 	 * 
 	 * @param id of Long type.
 	 */
-	public void removeCellphone(final Long id);
+	void removeCellphone(final Long id);
 }

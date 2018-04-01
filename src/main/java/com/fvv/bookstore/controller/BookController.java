@@ -24,7 +24,7 @@ public interface BookController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws BookValidationException when a field is empty.
 	 */
-	public boolean addBook(final Book book) throws BookValidationException, ControllerException;
+	boolean addBook(final Book book) throws BookValidationException, ControllerException;
 	
 	/**
 	 * Lists all the books using DAO.
@@ -32,7 +32,7 @@ public interface BookController {
 	 * @return a list of books.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	public List<Book> listBooks() throws ControllerException;
+	List<Book> listBooks() throws ControllerException;
 
 	/**
 	 * Update a book already added using DAO.
@@ -41,7 +41,7 @@ public interface BookController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws BookValidationException when a field is empty.
 	 */
-	public boolean updateBook(final Book book) throws BookValidationException, ControllerException;
+	boolean updateBook(final Book book) throws BookValidationException, ControllerException;
 	
 	/**
 	 * Delete a book using DAO.
@@ -49,7 +49,7 @@ public interface BookController {
 	 * @param id of Long type.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	public void removeBook(final Long id) throws ControllerException;
+	void removeBook(final Long id) throws ControllerException;
 	
 	/**
 	 * Search a book using DAO
@@ -59,6 +59,6 @@ public interface BookController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws BookNotFoundException when a book is not found.
 	 */
-	public Book findBook(final Long id) throws BookNotFoundException, ControllerException;
+	Book findBook(final Long id) throws BookNotFoundException, ControllerException;
 
 }

@@ -52,7 +52,7 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuBooks();
 					break;
-				case '4' : this.createSubMenuMagaziness();
+				case '4' : this.createSubMenuMagazines();
 					break;
 				case '0' : this.exit();
 					break;
@@ -97,7 +97,7 @@ public class Menu {
 	/**
 	 * Method to create and appear the magazine sub menu.
 	 */
-	private void createSubMenuMagaziness() {
+	private void createSubMenuMagazines() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
 					null, "Magazine Section\n\n" +

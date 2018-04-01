@@ -47,7 +47,7 @@ public enum SqlQueryEnum {
 	 * 
 	 * @param query of String type.
 	 */
-	private SqlQueryEnum(final String query) {
+	SqlQueryEnum(final String query) {
 		this.query = query;
 	}
 

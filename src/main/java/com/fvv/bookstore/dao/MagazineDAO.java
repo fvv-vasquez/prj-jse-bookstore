@@ -19,11 +19,10 @@ public interface MagazineDAO {
 	/**
 	 * Add a magazine at the bookstore in the database.
 	 * 
-	 * @param magazine of Magazine type.
-	 * @return 
+	 * @param magazine of Magazine type. 
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public boolean addMagazine(final Magazine magazine) throws DaoException;
+	boolean addMagazine(final Magazine magazine) throws DaoException;
 
 	/**
 	 * Lists all the magazines in the database.
@@ -31,7 +30,7 @@ public interface MagazineDAO {
 	 * @return a list of magazines.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public List<Magazine> listMagazines() throws DaoException;
+	List<Magazine> listMagazines() throws DaoException;
 
 	/**
 	 * Update a magazine already added in the database.
@@ -39,7 +38,7 @@ public interface MagazineDAO {
 	 * @param magazine of Magazine type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public boolean updateMagazine(final Magazine magazine) throws DaoException;
+	boolean updateMagazine(final Magazine magazine) throws DaoException;
 
 	/**
 	 * Delete a magazine from the bookstore in the database.
@@ -47,7 +46,7 @@ public interface MagazineDAO {
 	 * @param id of Long type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public void removeMagazine(final Long id) throws DaoException;
+	void removeMagazine(final Long id) throws DaoException;
 	
 	/**
 	 * Search a magazine in the database.
@@ -57,5 +56,5 @@ public interface MagazineDAO {
 	 * @throws MagazineNotFoundException when not found a magazine in the database.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	public Magazine findMagazine(final Long id) throws MagazineNotFoundException, DaoException;
+	Magazine findMagazine(final Long id) throws MagazineNotFoundException, DaoException;
 }

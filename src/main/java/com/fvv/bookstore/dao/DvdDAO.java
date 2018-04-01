@@ -19,26 +19,26 @@ public interface DvdDAO {
 	 * 
 	 * @param movieDvd of MovieDvd type.
 	 */
-	public void addMovieDvd(final MovieDvd movieDvd);
+	void addMovieDvd(final MovieDvd movieDvd);
 
 	/**
 	 * Lists all the movieDvds in the database.
 	 * 
 	 * @return a list of movieDvds.
 	 */
-	public List<MovieDvd> listMovieDvds();
+	List<MovieDvd> listMovieDvds();
 
 	/**
 	 * Update a movieDvd already added in the database.
 	 * 
 	 * @param movieDvd of MovieDvd type.
 	 */
-	public void updateMovieDvd(final MovieDvd movieDvd);
+	void updateMovieDvd(final MovieDvd movieDvd);
 
 	/**
 	 * Delete a movieDvd from the bookstore in the database.
 	 * 
 	 * @param id of Long type.
 	 */
-	public void removeMovieDvd(final Long id);
+	void removeMovieDvd(final Long id);
 }

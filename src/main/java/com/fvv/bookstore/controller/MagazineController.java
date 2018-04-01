@@ -24,7 +24,7 @@ public interface MagazineController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws MagazineValidationException when a field is empty.
 	 */
-	public boolean addMagazine(final Magazine magazine) throws 
+	boolean addMagazine(final Magazine magazine) throws 
 		MagazineValidationException, ControllerException;
 	
 	/**
@@ -33,7 +33,7 @@ public interface MagazineController {
 	 * @return a list of magazines.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	public List<Magazine> listMagazines() throws ControllerException;
+	List<Magazine> listMagazines() throws ControllerException;
 
 	/**
 	 * Update a magazine already added using DAO.
@@ -42,7 +42,7 @@ public interface MagazineController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws MagazineValidationException when a field is empty.
 	 */
-	public boolean updateMagazine(final Magazine magazine) throws MagazineValidationException, ControllerException;
+	boolean updateMagazine(final Magazine magazine) throws MagazineValidationException, ControllerException;
 	
 	/**
 	 * Delete a magazine using DAO.
@@ -50,7 +50,7 @@ public interface MagazineController {
 	 * @param id of Long type.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	public void removeMagazine(final Long id) throws ControllerException;
+	void removeMagazine(final Long id) throws ControllerException;
 	
 	/**
 	 * Search a magazine using DAO
@@ -60,5 +60,5 @@ public interface MagazineController {
 	 * @throws ControllerException when a problem in controller happens.
 	 * @throws MagazineNotFoundException when a magazine is not found.
 	 */
-	public Magazine findMagazine(final Long id) throws MagazineNotFoundException, ControllerException;
+	Magazine findMagazine(final Long id) throws MagazineNotFoundException, ControllerException;
 }

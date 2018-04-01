@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Class DateUtil to convert a String into a Date
+ * Utility class to handle date operations
  * 
  * @author Fatima Vasquez
  * <p>Created on 30 de mar de 2018</p>	
@@ -14,15 +14,37 @@ import java.util.Date;
  */
 public final class DateUtil {
 
+	
+
+	/**
+	 * Method to convert a String into a Date
+	 * 
+	 * @param strDate of String type.
+	 * @return a Date.
+	 */
 	public static Date stringToDate(final String strDate) {		
 		if (strDate != null) {
 			try {
-				SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+				SimpleDateFormat format = new SimpleDateFormat(Constants.DATE_MASK);
 				return format.parse(strDate);
 			} catch (ParseException e) {
 				System.err.println(e.getMessage());
 			}
 		} 
 		return null;
+	}
+	
+	/**
+	 * Method to convert a Date into a String
+	 * 
+	 * @param date of Date type
+	 * @return a String
+	 */
+	public static String dateToString(final Date date) {	
+		if (date != null) {
+			return new SimpleDateFormat(Constants.DATE_MASK).format(date);
+		} else {
+			return null;
+		}		
 	}
 }

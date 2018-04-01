@@ -9,6 +9,7 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.book.BookNotFoundException;
 import com.fvv.bookstore.exception.book.BookValidationException;
+import com.fvv.bookstore.util.Constants;
 
 /**
  * Controller class for a Book object.
@@ -95,28 +96,28 @@ public class BookControllerImpl implements BookController {
 	private void validateBook(final Book book) throws BookValidationException {
 		StringBuilder sb = new StringBuilder();
 		if(book.getAuthor().equals("")) {
-			sb.append("Field author cannot be empty.").append("\n");			
+			sb.append("Field author cannot be empty.").append(Constants.LINE_SEPARATOR);			
 		}
 		if(book.getTitle().equals("")) {
-			sb.append("Field title cannot be empty.").append("\n");
+			sb.append("Field title cannot be empty.").append(Constants.LINE_SEPARATOR);
 		}
 		if(book.getGenre().equals("")) {
-			sb.append("Field genre cannot be empty.").append("\n");
+			sb.append("Field genre cannot be empty.").append(Constants.LINE_SEPARATOR);
 		}
 		if(book.getPublisher().equals("")) {
-			sb.append("Field publisher cannot be empty.").append("\n");
+			sb.append("Field publisher cannot be empty.").append(Constants.LINE_SEPARATOR);
 		}
 		if(book.getEditionNumber() <= 0) {
-			sb.append("Field edition number cannot be smaller than 0.").append("\n");
+			sb.append("Field edition number cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(book.getIsbn() <= 0) {
-			sb.append("Field ISBN cannot be smaller than 0.").append("\n");
+			sb.append("Field ISBN cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(book.getPrice() <= 0) {
-			sb.append("Field price cannot be smaller than 0.").append("\n");
+			sb.append("Field price cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(book.getPublicationYear() <= 0) {
-			sb.append("Field publication year cannot be smaller than 0.").append("\n");
+			sb.append("Field publication year cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(sb.length() > 0) {
 			throw new BookValidationException(sb.toString());

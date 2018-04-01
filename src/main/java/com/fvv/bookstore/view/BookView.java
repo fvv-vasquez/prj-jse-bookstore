@@ -13,20 +13,20 @@ public interface BookView {
 	/**
 	 * Add a book using Controller.
 	 */
-	public void addBook();
+	void addBook();
 	
 	/**
 	 * Lists all the books using Controller.
 	 */
-	public void listBooks();
+	void listBooks();
 
 	/**
 	 * Update a book already added using Controller.
 	 */
-	public void updateBook();
+	void updateBook();
 	
 	/**
 	 * Delete a book using Controller.
 	 */
-	public void removeBook();
+	void removeBook();
 }

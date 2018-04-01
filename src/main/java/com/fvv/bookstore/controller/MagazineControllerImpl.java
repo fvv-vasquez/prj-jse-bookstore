@@ -9,6 +9,7 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.magazine.MagazineNotFoundException;
 import com.fvv.bookstore.exception.magazine.MagazineValidationException;
+import com.fvv.bookstore.util.Constants;
 
 /**
  * Controller class for a Magazine object.
@@ -96,22 +97,22 @@ public class MagazineControllerImpl implements MagazineController {
 	private void validateMagazine(final Magazine magazine) throws MagazineValidationException {
 		StringBuilder sb = new StringBuilder();
 		if(magazine.getName().equals("")) {
-			sb.append("Field name cannot be empty.").append("\n");			
+			sb.append("Field name cannot be empty.").append(Constants.LINE_SEPARATOR);			
 		}
 		if(magazine.getGenre().equals("")) {
-			sb.append("Field genre cannot be empty.").append("\n");
+			sb.append("Field genre cannot be empty.").append(Constants.LINE_SEPARATOR);
 		}
 		if(magazine.getPublisher().equals("")) {
-			sb.append("Field publisher cannot be empty.").append("\n");
+			sb.append("Field publisher cannot be empty.").append(Constants.LINE_SEPARATOR);
 		}
 		if(magazine.getEditionNumber() <= 0) {
-			sb.append("Field edition number cannot be smaller than 0.").append("\n");
+			sb.append("Field edition number cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(magazine.getPrice() <= 0) {
-			sb.append("Field price cannot be smaller than 0.").append("\n");
+			sb.append("Field price cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(magazine.getPublicationDate() == null) {
-			sb.append("Field publication date cannot be empty.").append("\n");
+			sb.append("Field publication date cannot be empty.").append(Constants.LINE_SEPARATOR);
 		}
 		if(sb.length() > 0) {
 			throw new MagazineValidationException(sb.toString());

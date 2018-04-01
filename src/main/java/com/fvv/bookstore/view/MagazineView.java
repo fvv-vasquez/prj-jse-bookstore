@@ -13,20 +13,20 @@ public interface MagazineView {
 	/**
 	 * Add a magazine using Controller.
 	 */
-	public void addMagazine();
+	void addMagazine();
 	
 	/**
 	 * Lists all the magazines using Controller.
 	 */
-	public void listMagazines();
+	void listMagazines();
 
 	/**
 	 * Update a magazine already added using Controller.
 	 */
-	public void updateMagazine();
+	void updateMagazine();
 	
 	/**
 	 * Delete a magazine using Controller.
 	 */
-	public void removeMagazine();
+	void removeMagazine();
 }
