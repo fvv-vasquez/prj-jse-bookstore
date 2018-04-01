@@ -17,8 +17,8 @@ import com.fvv.bookstore.view.MagazineViewImpl;
  */
 public class Menu {
 	
-	private BookView bookView;
-	private MagazineView magazineView;
+	private final BookView bookView;
+	private final MagazineView magazineView;
 	
 	/**
 	 * Class constructor instantiating a new View objects.
@@ -42,10 +42,10 @@ public class Menu {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
 					null, "Select an option below:\n" +
-					"1 - Books\n" +
-					"2 - DVDs\n" +
-					"3 - Hardwares\n" +
-					"4 - Magazines\n" +
+					"1 - Book\n" +
+					"2 - DVD\n" +
+					"3 - Hardware\n" +
+					"4 - Magazine\n" +
 					"0 - Exit",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -68,7 +68,7 @@ public class Menu {
 	private void createSubMenuBooks() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "Books Section\n\n" +
+					null, "Book Section\n\n" +
 					"Select an option below:\n" +
 					"1 - Add a book\n" +
 					"2 - Update a book\n" +
@@ -100,7 +100,7 @@ public class Menu {
 	private void createSubMenuMagaziness() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "Books Section\n\n" +
+					null, "Magazine Section\n\n" +
 					"Select an option below:\n" +
 					"1 - Add a magazine\n" +
 					"2 - Update a magazine\n" +

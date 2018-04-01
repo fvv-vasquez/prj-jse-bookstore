@@ -22,7 +22,7 @@ import com.fvv.bookstore.util.DateUtil;
  */
 public class MagazineViewImpl implements MagazineView {
 	
-	private MagazineController magazineController;
+	private final MagazineController magazineController;
 	
 	/**
 	 * Class constructor instantiating a new MagazineControllerImpl object.

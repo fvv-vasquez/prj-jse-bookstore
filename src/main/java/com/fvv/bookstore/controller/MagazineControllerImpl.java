@@ -20,7 +20,7 @@ import com.fvv.bookstore.exception.magazine.MagazineValidationException;
  */
 public class MagazineControllerImpl implements MagazineController {
 	
-	private MagazineDAO magazineDao;
+	private final MagazineDAO magazineDao;
 	
 	/**
 	 * Class constructor instantiating a new MagazineDAOImpl object.

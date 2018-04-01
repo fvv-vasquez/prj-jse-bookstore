@@ -40,7 +40,7 @@ public enum SqlQueryEnum {
 	
 	MAGAZINE_SELECT_ID("SELECT * FROM tb_magazine WHERE mag_id = ?");
 	
-	private String query;
+	private final String query;
 	
 	/**
 	 * Enum constructor.

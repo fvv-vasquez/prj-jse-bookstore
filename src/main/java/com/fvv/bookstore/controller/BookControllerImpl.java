@@ -20,7 +20,7 @@ import com.fvv.bookstore.exception.book.BookValidationException;
  */
 public class BookControllerImpl implements BookController {
 	
-	private BookDAO bookDao;
+	private final BookDAO bookDao;
 	
 	/**
 	 * Class constructor instantiating a new BookDAOImpl object.
