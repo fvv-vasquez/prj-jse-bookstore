@@ -38,7 +38,17 @@ public enum SqlQueryEnum {
 	
 	MAGAZINE_DELETE("DELETE FROM tb_magazine WHERE mag_id = ?"),
 	
-	MAGAZINE_SELECT_ID("SELECT * FROM tb_magazine WHERE mag_id = ?");
+	MAGAZINE_SELECT_ID("SELECT * FROM tb_magazine WHERE mag_id = ?"),
+	
+	DVD_SHOW_INSERT("INSERT INTO tb_dvd (dvd_title, dvd_total_duration, dvd_price, dvd_genre, "
+			+ "dvd_release_year, dvd_code, dvd_show_artist, "
+			+ "dvd_modification_date) VALUES(?, ?, ?, ?, ?, ?, ?, now())"),
+	
+	DVD_MOVIE_INSERT("INSERT INTO tb_dvd (dvd_title, dvd_total_duration, dvd_price, dvd_genre, "
+			+ "dvd_release_year, dvd_code, dvd_movie_director, "
+			+ "dvd_modification_date) VALUES(?, ?, ?, ?, ?, ?, ?, now())"),
+	
+	DVD_SELECT_ID("SELECT * FROM tb_dvd WHERE dvd_id = ?");
 	
 	private final String query;
 	
