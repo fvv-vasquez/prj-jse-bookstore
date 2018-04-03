@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.view.BookView;
 import com.fvv.bookstore.view.BookViewImpl;
+import com.fvv.bookstore.view.DvdView;
+import com.fvv.bookstore.view.DvdViewImpl;
 import com.fvv.bookstore.view.MagazineView;
 import com.fvv.bookstore.view.MagazineViewImpl;
 
@@ -19,6 +21,7 @@ public class Menu {
 	
 	private final BookView bookView;
 	private final MagazineView magazineView;
+	private final DvdView dvdView;
 	
 	/**
 	 * Class constructor instantiating a new View objects.
@@ -26,6 +29,7 @@ public class Menu {
 	public Menu() {
 		this.bookView = new BookViewImpl();
 		this.magazineView = new MagazineViewImpl();
+		this.dvdView = new DvdViewImpl();
 	}
 	
 	/**
@@ -51,6 +55,8 @@ public class Menu {
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuBooks();
+					break;
+				case '2' : this.createSubMenuDvds();
 					break;
 				case '4' : this.createSubMenuMagazines();
 					break;
@@ -127,6 +133,64 @@ public class Menu {
 	}
 	
 	/**
+	 * Method to create and appear the dvd sub menu.
+	 */
+	private void createSubMenuDvds() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "DVD Section\n\n" +
+					"Select an option below:\n" +
+					"1 - Add a DVD\n" +
+					"2 - Update a DVD\n" +
+					"3 - Delete a DVD\n" +
+					"4 - List the DVDs\n" +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.addDvd();
+					break;
+				case '2' : this.updateDvd();
+					break;
+				case '3' : this.removeDvd();
+					break;
+				case '4' : this.createSubMenuDvdsList();
+					break;
+				case '0' : this.createMenu();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and appear the list of dvds sub menu.
+	 */
+	private void createSubMenuDvdsList() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "List the DVDs Section\n\n" +
+					"Select an option below:\n" +
+					"1 - List all the shows\n" +
+					"2 - List all the movies\n" +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.listDvdsShow();
+					break;
+				case '2' : this.listDvdsMovie();
+					break;
+				case '0' : this.createSubMenuDvds();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	/**
 	 * Add a book by the menu.
 	 */
 	private void addBook() {
@@ -180,6 +244,41 @@ public class Menu {
 	 */
 	private void listMagazines() {
 		this.magazineView.listMagazines();
+	}
+	
+	/**
+	 * Add a dvd by the menu.
+	 */
+	private void addDvd() {
+		this.dvdView.addDvd();
+	}
+	
+	/**
+	 * Update a dvd by the menu.
+	 */
+	private void updateDvd() {
+		this.dvdView.updateDvd();
+	}
+	
+	/**
+	 * Remove a dvd by the menu.
+	 */
+	private void removeDvd() {
+		this.dvdView.removeDvd();
+	}
+	
+	/**
+	 * List all the movies' dvds by the menu.
+	 */
+	private void listDvdsMovie() {
+		this.dvdView.listDvdsMovie();
+	}
+
+	/**
+	 * List all the shows' dvds by the menu.
+	 */
+	private void listDvdsShow() {
+		this.dvdView.listDvdsShow();
 	}
 	
 	/**
