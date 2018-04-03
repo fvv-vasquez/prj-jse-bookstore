@@ -243,9 +243,9 @@ public class Menu {
 				/*case '2' : this.updateCellphone();
 					break;
 				case '3' : this.removeCellphone();
-					break;
-				case '4' : this.listCellphones();
 					break;*/
+				case '4' : this.listCellphones();
+					break;
 				case '0' : this.createSubMenuHardware();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -349,6 +349,13 @@ public class Menu {
 	 */
 	private void addCellphone() {
 		this.cellphoneView.addCellphone();
+	}
+	
+	/**
+	 * List all the cellphones by the menu.
+	 */
+	private void listCellphones() {
+		this.cellphoneView.listCellphones();
 	}
 	
 	/**

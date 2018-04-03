@@ -1,8 +1,11 @@
 package com.fvv.bookstore.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Cellphone;
@@ -46,8 +49,28 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	 */
 	@Override
 	public List<Cellphone> listCellphones() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cellphone> cellphones = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_SELECT_ALL.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {	
+			while(rs.next()) {
+				Cellphone cellphone = new Cellphone();
+				cellphone.setId(rs.getLong("cel_id"));
+				cellphone.setBrand(rs.getString("cel_brand"));
+				cellphone.setPrice(rs.getDouble("cel_price"));
+				cellphone.setWarranty(rs.getInt("cel_warranty"));
+				cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
+				cellphone.setCamera(rs.getInt("cel_camera"));
+				cellphone.setModificationDate(new Date(rs.getTimestamp(
+						"cel_modification_date").getTime()));
+				cellphones.add(cellphone);
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return cellphones;
 	}
 
 	/**

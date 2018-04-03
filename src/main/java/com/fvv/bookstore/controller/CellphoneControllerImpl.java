@@ -49,8 +49,11 @@ public class CellphoneControllerImpl implements CellphoneController {
 	 */
 	@Override
 	public List<Cellphone> listCellphones() throws ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.cellphoneDao.listCellphones();
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
 	}
 
 	/**
@@ -78,8 +81,11 @@ public class CellphoneControllerImpl implements CellphoneController {
 	@Override
 	public Cellphone findCellphone(final Long id) 
 			throws HardwareNotFoundException, ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.cellphoneDao.findCellphone(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a cellphone", e);
+		}
 	}
 
 	/**

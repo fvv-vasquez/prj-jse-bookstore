@@ -66,7 +66,9 @@ public enum SqlQueryEnum {
 	
 	CELLPHONE_INSERT("INSERT INTO tb_cellphone (cel_brand, cel_price, cel_warranty, "
 			+ "cel_storage_memory, cel_camera, cel_modification_date) "
-			+ "VALUES (?, ?, ?, ?, ?, now())");
+			+ "VALUES (?, ?, ?, ?, ?, now())"),
+	
+	CELLPHONE_SELECT_ALL("SELECT * FROM tb_cellphone");
 	
 	private final String query;
 	

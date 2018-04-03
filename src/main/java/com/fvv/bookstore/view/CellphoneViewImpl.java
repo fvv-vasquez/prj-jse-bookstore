@@ -1,5 +1,7 @@
 package com.fvv.bookstore.view;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.bean.Cellphone;
@@ -54,8 +56,23 @@ public class CellphoneViewImpl implements CellphoneView {
 	 */
 	@Override
 	public void listCellphones() {
-		// TODO Auto-generated method stub
-
+		try {
+			StringBuilder sb = new StringBuilder();
+			List<Cellphone> cellphones = this.cellphoneController.listCellphones();
+			if(cellphones != null && !cellphones.isEmpty()) {
+				for(Cellphone c : cellphones) {
+					sb.append(c).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Cellphones", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
