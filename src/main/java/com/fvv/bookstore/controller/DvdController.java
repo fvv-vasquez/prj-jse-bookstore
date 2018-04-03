@@ -10,7 +10,7 @@ import com.fvv.bookstore.exception.dvd.DvdNotFoundException;
 import com.fvv.bookstore.exception.dvd.DvdValidationException;
 
 /**
- * Controller interface for a Magazine object.
+ * Controller interface for a Dvd object.
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>
