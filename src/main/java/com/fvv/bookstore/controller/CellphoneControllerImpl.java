@@ -62,8 +62,12 @@ public class CellphoneControllerImpl implements CellphoneController {
 	@Override
 	public void updateCellphone(final Cellphone cellphone) 
 			throws HardwareValidationException, ControllerException {
-		// TODO Auto-generated method stub
-
+		try {
+			this.validateCellphone(cellphone);
+			this.cellphoneDao.updateCellphone(cellphone);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to update a cellphone", e);
+		}
 	}
 
 	/**

@@ -36,8 +36,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 			ps.setDouble(2, cellphone.getPrice());
 			ps.setInt(3, cellphone.getWarranty());
 			ps.setInt(4, cellphone.getStorageMemory());
-			ps.setInt(5, cellphone.getCamera());
-			
+			ps.setInt(5, cellphone.getCamera());			
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a cellphone", e);
@@ -78,8 +77,20 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	 */
 	@Override
 	public void updateCellphone(final Cellphone cellphone) throws DaoException {
-		// TODO Auto-generated method stub
-
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_UPDATE.getQuery())
+		) {	
+			ps.setString(1, cellphone.getBrand());
+			ps.setDouble(2, cellphone.getPrice());
+			ps.setInt(3, cellphone.getWarranty());
+			ps.setInt(4, cellphone.getStorageMemory());
+			ps.setInt(5, cellphone.getCamera());
+			ps.setLong(6, cellphone.getId());
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update a cellphone", e);
+		} 
 	}
 
 	/**
@@ -96,8 +107,33 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	 */
 	@Override
 	public Cellphone findCellphone(final Long id) throws HardwareNotFoundException, DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		Cellphone cellphone = new Cellphone();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(
+						SqlQueryEnum.CELLPHONE_SELECT_ID.getQuery())
+		) {	
+			ps.setLong(1, id);
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new HardwareNotFoundException("Cellphone with ID " + id + " not found");
+				} else {
+					do {
+						cellphone.setId(rs.getLong("cel_id"));
+						cellphone.setBrand(rs.getString("cel_brand"));
+						cellphone.setPrice(rs.getDouble("cel_price"));
+						cellphone.setWarranty(rs.getInt("cel_warranty"));
+						cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
+						cellphone.setCamera(rs.getInt("cel_camera"));
+						cellphone.setModificationDate(new Date(rs.getTimestamp(
+								"cel_modification_date").getTime()));
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a cellphone", e);
+		} 
+		return cellphone;
 	}
 
 }

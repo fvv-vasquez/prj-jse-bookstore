@@ -240,9 +240,9 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.addCellphone();
 					break;
-				/*case '2' : this.updateCellphone();
+				case '2' : this.updateCellphone();
 					break;
-				case '3' : this.removeCellphone();
+					/*case '3' : this.removeCellphone();
 					break;*/
 				case '4' : this.listCellphones();
 					break;
@@ -349,6 +349,13 @@ public class Menu {
 	 */
 	private void addCellphone() {
 		this.cellphoneView.addCellphone();
+	}
+	
+	/**
+	 * Update a cellphone by the menu.
+	 */
+	private void updateCellphone() {
+		this.cellphoneView.updateCellphone();
 	}
 	
 	/**

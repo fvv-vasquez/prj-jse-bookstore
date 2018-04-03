@@ -80,8 +80,19 @@ public class CellphoneViewImpl implements CellphoneView {
 	 */
 	@Override
 	public void updateCellphone() {
-		// TODO Auto-generated method stub
-
+		try {
+			final Cellphone cellphone = this.createCellphoneFromInput(Boolean.TRUE);
+			this.cellphoneController.updateCellphone(cellphone);
+			JOptionPane.showMessageDialog(null, "Cellphone updated successfully!");
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ControllerException | HardwareNotFoundException | HardwareValidationException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
