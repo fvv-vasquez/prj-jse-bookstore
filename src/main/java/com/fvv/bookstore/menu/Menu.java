@@ -242,8 +242,8 @@ public class Menu {
 					break;
 				case '2' : this.updateCellphone();
 					break;
-					/*case '3' : this.removeCellphone();
-					break;*/
+					case '3' : this.removeCellphone();
+					break;
 				case '4' : this.listCellphones();
 					break;
 				case '0' : this.createSubMenuHardware();
@@ -356,6 +356,13 @@ public class Menu {
 	 */
 	private void updateCellphone() {
 		this.cellphoneView.updateCellphone();
+	}
+	
+	/**
+	 * Remove a cellphone by the menu.
+	 */
+	private void removeCellphone() {
+		this.cellphoneView.removeCellphone();
 	}
 	
 	/**

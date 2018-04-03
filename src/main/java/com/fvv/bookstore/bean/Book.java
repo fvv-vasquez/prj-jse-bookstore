@@ -238,6 +238,7 @@ public class Book implements Serializable {
 	/**
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return "Book ID: " + getId() + " - Title: " + getTitle() + ", Publication Year: " + 
 				getPublicationYear() + ", Author: " + getAuthor() + ", Price: " + getPrice();

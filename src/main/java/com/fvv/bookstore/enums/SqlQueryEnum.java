@@ -74,6 +74,8 @@ public enum SqlQueryEnum {
 			+ "cel_storage_memory = ?, cel_camera = ?, cel_modification_date = now() "
 			+ "WHERE cel_id = ?"),
 	
+	CELLPHONE_DELETE("DELETE FROM tb_cellphone WHERE cel_id = ?"),
+	
 	CELLPHONE_SELECT_ID("SELECT * FROM tb_cellphone WHERE cel_id = ?");
 	
 	private final String query;

@@ -75,8 +75,11 @@ public class CellphoneControllerImpl implements CellphoneController {
 	 */
 	@Override
 	public void removeCellphone(final Long id) throws ControllerException {
-		// TODO Auto-generated method stub
-
+		try {
+			this.cellphoneDao.removeCellphone(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to delete a cellphone", e);
+		}
 	}
 
 	/**

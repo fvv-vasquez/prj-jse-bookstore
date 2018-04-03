@@ -98,8 +98,15 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	 */
 	@Override
 	public void removeCellphone(final Long id) throws DaoException {
-		// TODO Auto-generated method stub
-
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_DELETE.getQuery())
+		) {	
+			ps.setLong(1, id);
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to delete a cellphone", e);
+		}
 	}
 
 	/**
@@ -135,5 +142,4 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 		} 
 		return cellphone;
 	}
-
 }

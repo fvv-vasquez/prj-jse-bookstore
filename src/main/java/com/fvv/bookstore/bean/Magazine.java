@@ -197,6 +197,7 @@ public class Magazine implements Serializable {
 	/**
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return "Magazine ID: " + getId() + " - Name: " + getName() + ", Edition Number: " + 
 				getEditionNumber() + ", Publication Date: " + 

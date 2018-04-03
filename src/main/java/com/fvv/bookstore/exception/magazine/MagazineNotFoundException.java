@@ -11,7 +11,7 @@ package com.fvv.bookstore.exception.magazine;
 public class MagazineNotFoundException extends Exception {
 	
 	/**
-	 * Serial version for a Book not found Exception
+	 * Serial version for a Magazine not found Exception
 	 */
 	private static final long serialVersionUID = 1L;
 
