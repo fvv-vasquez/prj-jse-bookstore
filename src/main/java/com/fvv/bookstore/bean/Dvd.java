@@ -193,6 +193,7 @@ public abstract class Dvd {
 	/**
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return "DVD ID: " + getId() + " - Title: " + getTitle() + ", Price: " + getPrice() + 
 				", Genre: " + getGenre() + ", Release Year: " + getReleaseYear();	

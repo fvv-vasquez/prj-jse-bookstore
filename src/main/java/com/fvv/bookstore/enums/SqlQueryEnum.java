@@ -60,6 +60,8 @@ public enum SqlQueryEnum {
 			+ "dvd_genre = ?, dvd_release_year = ?, dvd_code = ?, dvd_movie_director = ?, "
 			+ "dvd_modification_date = now() WHERE dvd_id = ?"),
 	
+	DVD_DELETE("DELETE FROM tb_dvd WHERE dvd_id = ?"),
+	
 	DVD_SELECT_ID("SELECT * FROM tb_dvd WHERE dvd_id = ?");
 	
 	private final String query;

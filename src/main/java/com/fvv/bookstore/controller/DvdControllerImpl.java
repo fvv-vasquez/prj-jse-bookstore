@@ -87,8 +87,11 @@ public class DvdControllerImpl implements DvdController {
 	 */
 	@Override
 	public void removeDvd(final Long id) throws ControllerException {
-		// TODO Auto-generated method stub
-		
+		try {
+			this.dvdDao.removeDvd(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to delete a dvd", e);
+		}
 	}
 
 	/**

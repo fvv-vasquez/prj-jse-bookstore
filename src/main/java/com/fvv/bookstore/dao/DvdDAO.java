@@ -56,7 +56,7 @@ public interface DvdDAO {
 	 * @param id of Long type.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	void removeDvd(final Long id);
+	void removeDvd(final Long id) throws DaoException;
 	
 	/**
 	 * Search a dvd in the database.

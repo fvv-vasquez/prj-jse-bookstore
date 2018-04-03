@@ -59,6 +59,7 @@ public class MovieDvd extends Dvd implements Serializable {
 	/**
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return "Movie DVD ID: " + getId() + " - Title: " + getTitle() + ", Price: " + getPrice() +
 				", Genre: " + getGenre() + ", Release Year: " + getReleaseYear() + 

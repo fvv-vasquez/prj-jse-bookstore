@@ -152,8 +152,8 @@ public class Menu {
 					break;
 				case '2' : this.updateDvd();
 					break;
-					/*case '3' : this.removeDvd();
-					break;*/
+				case '3' : this.removeDvd();
+					break;
 				case '4' : this.createSubMenuDvdsList();
 					break;
 				case '0' : this.createMenu();
@@ -258,6 +258,13 @@ public class Menu {
 	 */
 	private void updateDvd() {
 		this.dvdView.updateDvd();
+	}
+	
+	/**
+	 * Remove a dvd by the menu.
+	 */
+	private void removeDvd() {
+		this.dvdView.removeDvd();
 	}
 	
 	/**

@@ -59,6 +59,7 @@ public class ShowDvd extends Dvd implements Serializable {
 	/**
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return "Show DVD ID: " + getId() + " - Title: " + getTitle() + ", Price: " + getPrice() + 
 				", Genre: " + getGenre() + ", Release Year: " + getReleaseYear() + 

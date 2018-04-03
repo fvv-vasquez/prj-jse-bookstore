@@ -156,9 +156,16 @@ public class DvdDAOImpl implements DvdDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void removeDvd(final Long id) {
-		// TODO Auto-generated method stub
-		
+	public void removeDvd(final Long id) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_DELETE.getQuery())
+		) {	
+			ps.setLong(1, id);
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to delete a dvd", e);
+		}
 	}
 
 	/**
