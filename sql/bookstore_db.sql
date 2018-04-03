@@ -31,7 +31,7 @@ CREATE TABLE `tb_book` (
   `book_genre` varchar(255) NOT NULL,
   `book_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_cellphone` */
 
@@ -40,12 +40,9 @@ DROP TABLE IF EXISTS `tb_cellphone`;
 CREATE TABLE `tb_cellphone` (
   `cel_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cel_brand` varchar(255) NOT NULL,
-  `cel_model` varchar(255) NOT NULL,
-  `cel_color` varchar(255) NOT NULL,
   `cel_price` double NOT NULL,
   `cel_warranty` int(11) NOT NULL,
-  `cel_screen_size` double NOT NULL,
-  `cel_storage_memory` double NOT NULL,
+  `cel_storage_memory` int(11) NOT NULL,
   `cel_camera` int(11) NOT NULL,
   `cel_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cel_id`)
@@ -67,7 +64,7 @@ CREATE TABLE `tb_dvd` (
   `dvd_show_artist` varchar(255) DEFAULT NULL,
   `dvd_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`dvd_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_laptop` */
 
@@ -76,13 +73,9 @@ DROP TABLE IF EXISTS `tb_laptop`;
 CREATE TABLE `tb_laptop` (
   `pc_id` int(11) NOT NULL AUTO_INCREMENT,
   `pc_brand` varchar(255) NOT NULL,
-  `pc_model` varchar(255) NOT NULL,
-  `pc_color` varchar(255) NOT NULL,
   `pc_price` double NOT NULL,
   `pc_warranty` int(11) NOT NULL,
   `pc_ram_size` int(11) NOT NULL,
-  `pc_processor` varchar(255) NOT NULL,
-  `pc_screen_size` double NOT NULL,
   `pc_hd_size` double NOT NULL,
   `pc_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`pc_id`)
@@ -102,7 +95,7 @@ CREATE TABLE `tb_magazine` (
   `mag_price` double NOT NULL,
   `mag_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`mag_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

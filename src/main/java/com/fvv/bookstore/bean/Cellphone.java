@@ -12,53 +12,29 @@ import java.io.Serializable;
  */
 public class Cellphone extends Hardware implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private Double screenSize;
+	private static final long serialVersionUID = 1L;	
 	private Integer storageMemory;
 	private Integer camera;
-	
+		
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
 	 * @param brand of the Cellphone
-	 * @param model of the Cellphone
-	 * @param color of the Cellphone
 	 * @param price of the Cellphone
 	 * @param warranty of the Cellphone
-	 * @param screenSize of the Cellphone
 	 * @param storageMemory of the Cellphone
 	 * @param camera of the Cellphone
 	 */
-	public Cellphone(final String brand, final String model, final String color, final Double 
-			price, final Integer warranty, final Double screenSize, final Integer storageMemory, 
-			final Integer camera) {
-		super(brand, model, color, price, warranty);
-		this.screenSize = screenSize;
+	public Cellphone(final String brand, final Double price, final Integer warranty, 
+			final Integer storageMemory, final Integer camera) {
+		super(brand, price, warranty);
 		this.storageMemory = storageMemory;
 		this.camera = camera;
 	}
-	
+
 	/**
 	 * Class constructor
 	 */
 	public Cellphone() {
-	}
-
-	/**
-	 * Sets the screen size.
-	 * 
-	 * @param screenSize of Double type.
-	 */
-	public void setScreenSize(final Double screenSize) {
-		this.screenSize = screenSize;
-	}
-
-	/**
-	 * Gets the last screen size.
-	 * 
-	 * @return the last screenSize of Double type.
-	 */
-	public Double getScreenSize() {
-		return this.screenSize;
 	}
 
 	/**
@@ -100,8 +76,10 @@ public class Cellphone extends Hardware implements Serializable {
 	/**
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return "Cellphone ID: " + getId() + " - Brand: " + getBrand() + ", Price: " + getPrice() + 
-				", Warranty: " + getWarranty() + ", Screen Size: " + getScreenSize();
+				", Warranty: " + getWarranty() + " months, Storage Memory: " + getStorageMemory() 
+				+ "MP";
 	}
 }

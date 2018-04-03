@@ -14,8 +14,6 @@ public abstract class Hardware {
 	
 	private Long id;
 	private String brand;
-	private String model;
-	private String color;
 	private Double price;
 	private Integer warranty;
 	private Date modificationDate;
@@ -23,16 +21,11 @@ public abstract class Hardware {
 	/**
 	 * Class constructor specifying the attributes
 	 * @param brand of the Hardware
-	 * @param model of the Hardware
-	 * @param color of the Hardware
 	 * @param price of the Hardware
 	 * @param warranty of the Hardware
 	 */
-	public Hardware(final String brand, final String model, final String color, 
-			final Double price, final Integer warranty) {
+	public Hardware(final String brand, final Double price, final Integer warranty) {
 		this.brand = brand;
-		this.model = model;
-		this.color = color;
 		this.price = price;
 		this.warranty = warranty;
 	}
@@ -77,42 +70,6 @@ public abstract class Hardware {
 	 */
 	public String getBrand() {
 		return this.brand;
-	}
-
-	/**
-	 * Sets the model.
-	 * 
-	 * @param model of String type.
-	 */
-	public void setModel(final String model) {
-		this.model = model;
-	}
-
-	/**
-	 * Gets the last model.
-	 * 
-	 * @return the last model of String type.
-	 */
-	public String getModel() {
-		return this.model;
-	}
-
-	/**
-	 * Sets the color.
-	 * 
-	 * @param color of String type.
-	 */
-	public void setColor(final String color) {
-		this.color = color;
-	}
-
-	/**
-	 * Gets the last color.
-	 * 
-	 * @return the last color of String type.
-	 */
-	public String getColor() {
-		return this.color;
 	}
 
 	/**
@@ -172,6 +129,7 @@ public abstract class Hardware {
 	/**
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		return "ID: " + getId() + " - Brand: " + getBrand() + ", Price: " + getPrice() + 
 				", Warranty: " + getWarranty();

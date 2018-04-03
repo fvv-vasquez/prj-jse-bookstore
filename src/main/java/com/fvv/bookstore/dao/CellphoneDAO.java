@@ -3,6 +3,8 @@ package com.fvv.bookstore.dao;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Cellphone;
+import com.fvv.bookstore.exception.DaoException;
+import com.fvv.bookstore.exception.hardware.HardwareNotFoundException;
 
 /**
  * DAO Interface of a Cellphone object, with main database operations from CRUD methods.
@@ -15,30 +17,44 @@ import com.fvv.bookstore.bean.Cellphone;
 public interface CellphoneDAO {
 
 	/**
-	 * Add a cellphone at the bookstore in the database.
+	 * Add a Cellphone at the bookstore in the database.
 	 * 
-	 * @param cellphone of Cellphone type.
+	 * @param cellphone of a Cellphone type.
+	 * @throws DaoException when a problem in database happens.
 	 */
-	void addCellphone(final Cellphone cellphone);
+	void addCellphone(final Cellphone cellphone) throws DaoException;
 
 	/**
-	 * Lists all the cellphones in the database.
+	 * Lists all the Cellphones in the database.
 	 * 
 	 * @return a list of cellphones.
+	 * @throws DaoException when a problem in database happens.
 	 */
-	List<Cellphone> listCellphones();
+	List<Cellphone> listCellphones() throws DaoException;
 
 	/**
-	 * Update a cellphone already added in the database.
+	 * Update a Cellphone already added in the database.
 	 * 
 	 * @param cellphone of Cellphone type.
+	 * @throws DaoException when a problem in database happens.
 	 */
-	void updateCellphone(final Cellphone cellphone);
+	void updateCellphone(final Cellphone cellphone) throws DaoException;
 
 	/**
-	 * Delete a cellphone from the bookstore in the database.
+	 * Delete a Cellphone from the bookstore in the database.
 	 * 
 	 * @param id of Long type.
+	 * @throws DaoException when a problem in database happens.
 	 */
-	void removeCellphone(final Long id);
+	void removeCellphone(final Long id) throws DaoException;
+	
+	/**
+	 * Search a Cellphone in the database.
+	 * 
+	 * @param id of Long type.
+	 * @return a Cellphone.
+	 * @throws HardwareNotFoundException when not found a hardware in the database.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	Cellphone findCellphone(final Long id) throws HardwareNotFoundException, DaoException;
 }

@@ -62,7 +62,11 @@ public enum SqlQueryEnum {
 	
 	DVD_DELETE("DELETE FROM tb_dvd WHERE dvd_id = ?"),
 	
-	DVD_SELECT_ID("SELECT * FROM tb_dvd WHERE dvd_id = ?");
+	DVD_SELECT_ID("SELECT * FROM tb_dvd WHERE dvd_id = ?"),
+	
+	CELLPHONE_INSERT("INSERT INTO tb_cellphone (cel_brand, cel_price, cel_warranty, "
+			+ "cel_storage_memory, cel_camera, cel_modification_date) "
+			+ "VALUES (?, ?, ?, ?, ?, now())");
 	
 	private final String query;
 	
