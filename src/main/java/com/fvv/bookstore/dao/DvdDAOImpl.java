@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Dvd;
@@ -15,7 +16,7 @@ import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.dvd.DvdNotFoundException;
 
 /**
- * DAO Class of a Magazine object, with main database operations from CRUD methods.
+ * DAO Class of a Dvd object, with main database operations from CRUD methods.
  * 
  * @author Fatima Vasquez
  * <p>Created on 1 de abr de 2018</p>	
@@ -59,9 +60,64 @@ public class DvdDAOImpl implements DvdDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<Dvd> listDvds() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ShowDvd> listDvdsShow() throws DaoException {
+		List<ShowDvd> dvds = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(
+						SqlQueryEnum.DVD_SELECT_ALL_SHOW.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {	
+			while(rs.next()) {
+				ShowDvd showDvd = new ShowDvd();
+				showDvd.setId(rs.getLong("dvd_id"));
+				showDvd.setTitle(rs.getString("dvd_title"));
+				showDvd.setTotalDuration(rs.getInt("dvd_total_duration"));
+				showDvd.setPrice(rs.getDouble("dvd_price"));
+				showDvd.setGenre(rs.getString("dvd_genre"));
+				showDvd.setReleaseYear(rs.getInt("dvd_release_year"));
+				showDvd.setCode(rs.getInt("dvd_code"));
+				showDvd.setArtist(rs.getString("dvd_show_artist"));
+				showDvd.setModificationDate(new Date(rs.getTimestamp(
+						"dvd_modification_date").getTime()));
+				dvds.add(showDvd);
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return dvds;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<MovieDvd> listDvdsMovie() throws DaoException {
+		List<MovieDvd> dvds = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(
+						SqlQueryEnum.DVD_SELECT_ALL_MOVIE.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {	
+			while(rs.next()) {
+				MovieDvd movieDvd = new MovieDvd();
+				movieDvd.setId(rs.getLong("dvd_id"));
+				movieDvd.setTitle(rs.getString("dvd_title"));
+				movieDvd.setTotalDuration(rs.getInt("dvd_total_duration"));
+				movieDvd.setPrice(rs.getDouble("dvd_price"));
+				movieDvd.setGenre(rs.getString("dvd_genre"));
+				movieDvd.setReleaseYear(rs.getInt("dvd_release_year"));
+				movieDvd.setCode(rs.getInt("dvd_code"));
+				movieDvd.setDirector(rs.getString("dvd_movie_director"));
+				movieDvd.setModificationDate(new Date(rs.getTimestamp(
+						"dvd_modification_date").getTime()));
+				dvds.add(movieDvd);
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return dvds;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package com.fvv.bookstore.view;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.bean.Dvd;
@@ -52,9 +54,48 @@ public class DvdViewImpl implements DvdView {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void listDvds() {
-		// TODO Auto-generated method stub
-
+	public void listDvdsShow() {
+		try {
+			StringBuilder sb = new StringBuilder();
+			List<ShowDvd> dvds = this.dvdController.listDvdsShow();
+			if(dvds != null && !dvds.isEmpty()) {
+				for(ShowDvd d : dvds) {
+					sb.append(d).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Shows' Dvds", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void listDvdsMovie() {
+		try {
+			StringBuilder sb = new StringBuilder();
+			List<MovieDvd> dvds = this.dvdController.listDvdsMovie();
+			if(dvds != null && !dvds.isEmpty()) {
+				for(MovieDvd d : dvds) {
+					sb.append(d).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Movies' Dvds", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**

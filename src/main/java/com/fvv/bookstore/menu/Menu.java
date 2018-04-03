@@ -153,9 +153,9 @@ public class Menu {
 				/*case '2' : this.updateDvd();
 					break;
 				case '3' : this.removeDvd();
-					break;
-				case '4' : this.listDvds();
 					break;*/
+				case '4' : this.createSubMenuDvdsList();
+					break;
 				case '0' : this.createMenu();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -164,6 +164,32 @@ public class Menu {
 		}
 	}
 	
+	/**
+	 * Method to create and appear the list of dvds sub menu.
+	 */
+	private void createSubMenuDvdsList() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "List the DVDs Section\n\n" +
+					"Select an option below:\n" +
+					"1 - List all the shows\n" +
+					"2 - List all the movies\n" +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.listDvdsShow();
+					break;
+				case '2' : this.listDvdsMovie();
+					break;
+				case '0' : this.createSubMenuDvds();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
 	/**
 	 * Add a book by the menu.
 	 */
@@ -225,6 +251,20 @@ public class Menu {
 	 */
 	private void addDvd() {
 		this.dvdView.addDvd();
+	}
+	
+	/**
+	 * List all the movies' dvds by the menu.
+	 */
+	private void listDvdsMovie() {
+		this.dvdView.listDvdsMovie();
+	}
+
+	/**
+	 * List all the shows' dvds by the menu.
+	 */
+	private void listDvdsShow() {
+		this.dvdView.listDvdsShow();
 	}
 	
 	/**

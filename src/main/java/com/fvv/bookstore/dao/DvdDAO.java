@@ -3,6 +3,8 @@ package com.fvv.bookstore.dao;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Dvd;
+import com.fvv.bookstore.bean.MovieDvd;
+import com.fvv.bookstore.bean.ShowDvd;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.dvd.DvdNotFoundException;
 
@@ -25,12 +27,20 @@ public interface DvdDAO {
 	void addDvd(final Dvd dvd) throws DaoException;
 
 	/**
-	 * Lists all the dvds in the database.
+	 * Lists all the shows' dvds in the database.
 	 * 
-	 * @return a list of dvds.
+	 * @return a list of shows' dvds.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	List<Dvd> listDvds() throws DaoException;
+	List<ShowDvd> listDvdsShow() throws DaoException;
+	
+	/**
+	 * Lists all the movies' dvds in the database.
+	 * 
+	 * @return a list of movies' dvds.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<MovieDvd> listDvdsMovie() throws DaoException;
 
 	/**
 	 * Update a Dvd already added in the database.

@@ -16,9 +16,14 @@ public interface DvdView {
 	void addDvd();
 	
 	/**
-	 * Lists all the dvds using Controller.
+	 * Lists all the shows' dvds using Controller.
 	 */
-	void listDvds();
+	void listDvdsShow();
+	
+	/**
+	 * Lists all the movies' dvds using Controller.
+	 */
+	void listDvdsMovie();
 
 	/**
 	 * Update a dvd already added using Controller.

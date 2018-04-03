@@ -1,6 +1,10 @@
 package com.fvv.bookstore.controller;
 
+import java.util.List;
+
 import com.fvv.bookstore.bean.Dvd;
+import com.fvv.bookstore.bean.MovieDvd;
+import com.fvv.bookstore.bean.ShowDvd;
 import com.fvv.bookstore.dao.DvdDAO;
 import com.fvv.bookstore.dao.DvdDAOImpl;
 import com.fvv.bookstore.exception.ControllerException;
@@ -20,7 +24,7 @@ import com.fvv.bookstore.util.Constants;
 public class DvdControllerImpl implements DvdController {
 	
 	private final DvdDAO dvdDao;
-	
+
 	/**
 	 * Class constructor instantiating a new DvdControllerImpl object.
 	 */
@@ -38,6 +42,60 @@ public class DvdControllerImpl implements DvdController {
 			this.dvdDao.addDvd(dvd);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to add a dvd", e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<ShowDvd> listDvdsShow() throws ControllerException {
+		try {
+			return this.dvdDao.listDvdsShow();
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<MovieDvd> listDvdsMovie() throws ControllerException {
+		try {
+			return this.dvdDao.listDvdsMovie();
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void updateDvd(final Dvd dvd) throws DvdValidationException, ControllerException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void removeDvd(final Long id) throws ControllerException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Dvd findDvd(final Long id) throws DvdNotFoundException, ControllerException {
+		try {
+			return this.dvdDao.findDvd(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a dvd", e);
 		}
 	}
 
@@ -69,18 +127,6 @@ public class DvdControllerImpl implements DvdController {
 		}
 		if(sb.length() > 0) {
 			throw new DvdValidationException(sb.toString());
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Dvd findDvd(Long id) throws DvdNotFoundException, ControllerException {
-		try {
-			return this.dvdDao.findDvd(id);
-		} catch (DaoException e) {
-			throw new ControllerException("Error to find a dvd", e);
 		}
 	}
 }
