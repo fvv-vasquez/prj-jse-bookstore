@@ -103,8 +103,19 @@ public class DvdViewImpl implements DvdView {
 	 */
 	@Override
 	public void updateDvd() {
-		// TODO Auto-generated method stub
-
+		try {
+			final Dvd dvd = this.createDvdFromInput(Boolean.TRUE);
+			this.dvdController.updateDvd(dvd);
+			JOptionPane.showMessageDialog(null, "DVD updated successfully!");	
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ControllerException | DvdNotFoundException | DvdValidationException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**

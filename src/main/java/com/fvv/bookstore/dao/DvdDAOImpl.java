@@ -125,8 +125,31 @@ public class DvdDAOImpl implements DvdDAO {
 	 */
 	@Override
 	public void updateDvd(final Dvd dvd) throws DaoException {
-		// TODO Auto-generated method stub
-		
+		String sql;
+		String person;
+		if (dvd instanceof MovieDvd) {
+			sql = SqlQueryEnum.DVD_MOVIE_UPDATE.getQuery();
+			person = ((MovieDvd) dvd).getDirector();
+		} else {
+			sql = SqlQueryEnum.DVD_SHOW_UPDATE.getQuery();
+			person = ((ShowDvd) dvd).getArtist();
+		}
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(sql)
+		) {
+			ps.setString(1, dvd.getTitle());
+			ps.setInt(2, dvd.getTotalDuration());
+			ps.setDouble(3, dvd.getPrice());
+			ps.setString(4, dvd.getGenre());
+			ps.setInt(5, dvd.getReleaseYear());
+			ps.setInt(6, dvd.getCode());
+			ps.setString(7, person);
+			ps.setLong(8, dvd.getId());
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update a dvd", e);
+		} 
 	}
 
 	/**
@@ -154,7 +177,7 @@ public class DvdDAOImpl implements DvdDAO {
 					throw new DvdNotFoundException("DVD with ID " + id + " not found");
 				} else {
 					do {
-						if(!rs.getString("dvd_movie_director").equals("")) {
+						if(rs.getString("dvd_movie_director") != null) {
 							MovieDvd dvdMovie = new MovieDvd();
 							dvdMovie.setDirector(rs.getString("dvd_movie_director"));
 							dvd = dvdMovie;

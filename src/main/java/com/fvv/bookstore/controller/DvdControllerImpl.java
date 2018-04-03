@@ -74,8 +74,12 @@ public class DvdControllerImpl implements DvdController {
 	 */
 	@Override
 	public void updateDvd(final Dvd dvd) throws DvdValidationException, ControllerException {
-		// TODO Auto-generated method stub
-		
+		try {
+			this.validateDvd(dvd);
+			this.dvdDao.updateDvd(dvd);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to update a dvd", e);
+		}
 	}
 
 	/**

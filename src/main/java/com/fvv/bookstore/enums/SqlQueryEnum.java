@@ -52,6 +52,14 @@ public enum SqlQueryEnum {
 	
 	DVD_SELECT_ALL_MOVIE("SELECT * FROM tb_dvd WHERE dvd_movie_director IS NOT NULL"),
 	
+	DVD_SHOW_UPDATE("UPDATE tb_dvd SET dvd_title = ?, dvd_total_duration = ?, dvd_price = ?, "
+			+ "dvd_genre = ?, dvd_release_year = ?, dvd_code = ?, dvd_show_artist = ?, "
+			+ "dvd_modification_date = now() WHERE dvd_id = ?"),
+	
+	DVD_MOVIE_UPDATE("UPDATE tb_dvd SET dvd_title = ?, dvd_total_duration = ?, dvd_price = ?, "
+			+ "dvd_genre = ?, dvd_release_year = ?, dvd_code = ?, dvd_movie_director = ?, "
+			+ "dvd_modification_date = now() WHERE dvd_id = ?"),
+	
 	DVD_SELECT_ID("SELECT * FROM tb_dvd WHERE dvd_id = ?");
 	
 	private final String query;

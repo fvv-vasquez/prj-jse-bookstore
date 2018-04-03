@@ -150,9 +150,9 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.addDvd();
 					break;
-				/*case '2' : this.updateDvd();
+				case '2' : this.updateDvd();
 					break;
-				case '3' : this.removeDvd();
+					/*case '3' : this.removeDvd();
 					break;*/
 				case '4' : this.createSubMenuDvdsList();
 					break;
@@ -251,6 +251,13 @@ public class Menu {
 	 */
 	private void addDvd() {
 		this.dvdView.addDvd();
+	}
+	
+	/**
+	 * Update a dvd by the menu.
+	 */
+	private void updateDvd() {
+		this.dvdView.updateDvd();
 	}
 	
 	/**
