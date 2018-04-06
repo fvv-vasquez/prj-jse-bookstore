@@ -276,9 +276,9 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.addLaptop();
 					break;
-				/*case '2' : this.updateLaptop();
+				case '2' : this.updateLaptop();
 					break;
-					case '3' : this.removeLaptop();
+				/*case '3' : this.removeLaptop();
 					break; */
 				case '4' : this.listLaptops();
 					break;
@@ -414,6 +414,13 @@ public class Menu {
 	 */
 	private void addLaptop() {
 		this.laptopView.addLaptop();
+	}
+	
+	/**
+	 * Update a laptop by the menu.
+	 */
+	private void updateLaptop() {
+		this.laptopView.updateLaptop();
 	}
 	
 	/**

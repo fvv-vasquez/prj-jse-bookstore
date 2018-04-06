@@ -81,7 +81,12 @@ public enum SqlQueryEnum {
 	LAPTOP_INSERT("INSERT INTO tb_laptop (pc_brand, pc_price, pc_warranty, pc_ram_size, "
 			+ "pc_hd_size, pc_modification_date) VALUES (?, ?, ?, ?, ?, now())"),
 	
-	LAPTOP_SELECT_ALL("SELECT * FROM tb_laptop");
+	LAPTOP_SELECT_ALL("SELECT * FROM tb_laptop"),
+	
+	LAPTOP_UPDATE("UPDATE tb_laptop SET pc_brand = ?, pc_price = ?, pc_warranty = ?, "
+			+ "pc_ram_size = ?, pc_hd_size = ?, pc_modification_date = now() WHERE pc_id = ?"),
+	
+	LAPTOP_SELECT_ID("SELECT * FROM tb_laptop WHERE pc_id = ?");
 	
 	private final String query;
 	

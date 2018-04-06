@@ -62,8 +62,12 @@ public class LaptopControllerImpl implements LaptopController {
 	@Override
 	public void updateLaptop(final Laptop laptop) 
 			throws HardwareValidationException, ControllerException {
-		// TODO Auto-generated method stub
-
+		try {
+			this.validateLaptop(laptop);
+			this.laptopDao.updateLaptop(laptop);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to update a laptop", e);
+		}
 	}
 
 	/**
@@ -80,8 +84,11 @@ public class LaptopControllerImpl implements LaptopController {
 	 */
 	@Override
 	public Laptop findLaptop(final Long id) throws HardwareNotFoundException, ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.laptopDao.findLaptop(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a laptop", e);
+		}
 	}
 
 	/**

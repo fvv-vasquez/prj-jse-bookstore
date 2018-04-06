@@ -80,8 +80,19 @@ public class LaptopViewImpl implements LaptopView {
 	 */
 	@Override
 	public void updateLaptop() {
-		// TODO Auto-generated method stub
-
+		try {
+			final Laptop laptop = this.createLaptopFromInput(Boolean.TRUE);
+			this.laptopController.updateLaptop(laptop);
+			JOptionPane.showMessageDialog(null, "Laptop updated successfully!");
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ControllerException | HardwareNotFoundException | HardwareValidationException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
