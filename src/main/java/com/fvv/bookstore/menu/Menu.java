@@ -278,8 +278,8 @@ public class Menu {
 					break;
 				case '2' : this.updateLaptop();
 					break;
-				/*case '3' : this.removeLaptop();
-					break; */
+				case '3' : this.removeLaptop();
+					break;
 				case '4' : this.listLaptops();
 					break;
 				case '0' : this.createSubMenuHardware();
@@ -421,6 +421,13 @@ public class Menu {
 	 */
 	private void updateLaptop() {
 		this.laptopView.updateLaptop();
+	}
+	
+	/**
+	 * Remove a laptop by the menu.
+	 */
+	private void removeLaptop() {
+		this.laptopView.removeLaptop();
 	}
 	
 	/**

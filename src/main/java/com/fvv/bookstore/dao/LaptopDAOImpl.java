@@ -98,8 +98,15 @@ public class LaptopDAOImpl implements LaptopDAO {
 	 */
 	@Override
 	public void removeLaptop(final Long id) throws DaoException {
-		// TODO Auto-generated method stub
-
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_DELETE.getQuery())
+		) {	
+			ps.setLong(1, id);
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to delete a laptop", e);
+		}
 	}
 
 	/**

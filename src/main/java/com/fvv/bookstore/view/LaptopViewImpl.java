@@ -100,8 +100,21 @@ public class LaptopViewImpl implements LaptopView {
 	 */
 	@Override
 	public void removeLaptop() {
-		// TODO Auto-generated method stub
-
+		try {
+			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
+					"Insert the ID to delete")));
+			this.laptopController.findLaptop(idDelete);
+			this.laptopController.removeLaptop(idDelete);
+			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (HardwareNotFoundException | ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**

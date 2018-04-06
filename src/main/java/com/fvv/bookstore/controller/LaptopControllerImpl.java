@@ -75,8 +75,11 @@ public class LaptopControllerImpl implements LaptopController {
 	 */
 	@Override
 	public void removeLaptop(final Long id) throws ControllerException {
-		// TODO Auto-generated method stub
-
+		try {
+			this.laptopDao.removeLaptop(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to delete a laptop", e);
+		}
 	}
 
 	/**
