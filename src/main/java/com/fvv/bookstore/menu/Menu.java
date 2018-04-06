@@ -8,6 +8,8 @@ import com.fvv.bookstore.view.CellphoneView;
 import com.fvv.bookstore.view.CellphoneViewImpl;
 import com.fvv.bookstore.view.DvdView;
 import com.fvv.bookstore.view.DvdViewImpl;
+import com.fvv.bookstore.view.LaptopView;
+import com.fvv.bookstore.view.LaptopViewImpl;
 import com.fvv.bookstore.view.MagazineView;
 import com.fvv.bookstore.view.MagazineViewImpl;
 
@@ -25,6 +27,7 @@ public class Menu {
 	private final MagazineView magazineView;
 	private final DvdView dvdView;
 	private final CellphoneView cellphoneView;
+	private final LaptopView laptopView;
 	
 	/**
 	 * Class constructor instantiating a new View objects.
@@ -34,6 +37,7 @@ public class Menu {
 		this.magazineView = new MagazineViewImpl();
 		this.dvdView = new DvdViewImpl();
 		this.cellphoneView = new CellphoneViewImpl();
+		this.laptopView = new LaptopViewImpl();
 	}
 	
 	/**
@@ -212,8 +216,8 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuCellphone();
 					break;
-				/*case '2' : this.createSubMenuLaptop();
-					break;*/
+				case '2' : this.createSubMenuLaptop();
+					break;
 				case '0' : this.createMenu();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -253,6 +257,39 @@ public class Menu {
 			}
 		}
 	}
+	
+	/**
+	 * Method to create and appear the laptop sub menu.
+	 */
+	private void createSubMenuLaptop() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Laptop Section\n\n" +
+					"Select an option below:\n" +
+					"1 - Add a laptop\n" +
+					"2 - Update a laptop\n" +
+					"3 - Delete a laptop\n" +
+					"4 - List the laptop\n" +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.addLaptop();
+					break;
+				/*case '2' : this.updateLaptop();
+					break;
+					case '3' : this.removeLaptop();
+					break;
+				case '4' : this.listLaptops();
+					break;*/
+				case '0' : this.createSubMenuHardware();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
 	/**
 	 * Add a book by the menu.
 	 */
@@ -370,6 +407,13 @@ public class Menu {
 	 */
 	private void listCellphones() {
 		this.cellphoneView.listCellphones();
+	}
+	
+	/**
+	 * Add a laptop by the menu.
+	 */
+	private void addLaptop() {
+		this.laptopView.addLaptop();
 	}
 	
 	/**

@@ -76,7 +76,10 @@ public enum SqlQueryEnum {
 	
 	CELLPHONE_DELETE("DELETE FROM tb_cellphone WHERE cel_id = ?"),
 	
-	CELLPHONE_SELECT_ID("SELECT * FROM tb_cellphone WHERE cel_id = ?");
+	CELLPHONE_SELECT_ID("SELECT * FROM tb_cellphone WHERE cel_id = ?"),
+	
+	LAPTOP_INSERT("INSERT INTO tb_laptop (pc_brand, pc_price, pc_warranty, pc_ram_size, "
+			+ "pc_hd_size, pc_modification_date) VALUES (?, ?, ?, ?, ?, now())");
 	
 	private final String query;
 	
