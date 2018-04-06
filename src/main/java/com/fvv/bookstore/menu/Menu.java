@@ -237,7 +237,7 @@ public class Menu {
 					"1 - Add a cellphone\n" +
 					"2 - Update a cellphone\n" +
 					"3 - Delete a cellphone\n" +
-					"4 - List the cellphone\n" +
+					"4 - List the cellphones\n" +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -269,7 +269,7 @@ public class Menu {
 					"1 - Add a laptop\n" +
 					"2 - Update a laptop\n" +
 					"3 - Delete a laptop\n" +
-					"4 - List the laptop\n" +
+					"4 - List the laptops\n" +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -279,9 +279,9 @@ public class Menu {
 				/*case '2' : this.updateLaptop();
 					break;
 					case '3' : this.removeLaptop();
-					break;
+					break; */
 				case '4' : this.listLaptops();
-					break;*/
+					break;
 				case '0' : this.createSubMenuHardware();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -414,6 +414,13 @@ public class Menu {
 	 */
 	private void addLaptop() {
 		this.laptopView.addLaptop();
+	}
+	
+	/**
+	 * List all the laptops by the menu.
+	 */
+	private void listLaptops() {
+		this.laptopView.listLaptops();
 	}
 	
 	/**

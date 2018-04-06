@@ -1,5 +1,7 @@
 package com.fvv.bookstore.view;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.bean.Laptop;
@@ -54,8 +56,23 @@ public class LaptopViewImpl implements LaptopView {
 	 */
 	@Override
 	public void listLaptops() {
-		// TODO Auto-generated method stub
-
+		try {
+			StringBuilder sb = new StringBuilder();
+			List<Laptop> laptops = this.laptopController.listLaptops();
+			if(laptops != null && !laptops.isEmpty()) {
+				for(Laptop c : laptops) {
+					sb.append(c).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Laptops", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**

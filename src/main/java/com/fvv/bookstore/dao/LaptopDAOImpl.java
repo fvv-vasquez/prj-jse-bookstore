@@ -1,8 +1,11 @@
 package com.fvv.bookstore.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Laptop;
@@ -45,8 +48,28 @@ public class LaptopDAOImpl implements LaptopDAO {
 	 */
 	@Override
 	public List<Laptop> listLaptops() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Laptop> laptops = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_SELECT_ALL.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {	
+			while(rs.next()) {
+				Laptop laptop = new Laptop();
+				laptop.setId(rs.getLong("pc_id"));
+				laptop.setBrand(rs.getString("pc_brand"));
+				laptop.setPrice(rs.getDouble("pc_price"));
+				laptop.setWarranty(rs.getInt("pc_warranty"));
+				laptop.setRamSize(rs.getInt("pc_ram_size"));
+				laptop.setHdSize(rs.getDouble("pc_hd_size"));
+				laptop.setModificationDate(new Date(rs.getTimestamp(
+						"pc_modification_date").getTime()));
+				laptops.add(laptop);
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return laptops;
 	}
 
 	/**

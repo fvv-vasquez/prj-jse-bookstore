@@ -49,8 +49,11 @@ public class LaptopControllerImpl implements LaptopController {
 	 */
 	@Override
 	public List<Laptop> listLaptops() throws ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.laptopDao.listLaptops();
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
 	}
 
 	/**
