@@ -4,8 +4,12 @@ import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.view.BookView;
 import com.fvv.bookstore.view.BookViewImpl;
+import com.fvv.bookstore.view.CellphoneView;
+import com.fvv.bookstore.view.CellphoneViewImpl;
 import com.fvv.bookstore.view.DvdView;
 import com.fvv.bookstore.view.DvdViewImpl;
+import com.fvv.bookstore.view.LaptopView;
+import com.fvv.bookstore.view.LaptopViewImpl;
 import com.fvv.bookstore.view.MagazineView;
 import com.fvv.bookstore.view.MagazineViewImpl;
 
@@ -22,6 +26,8 @@ public class Menu {
 	private final BookView bookView;
 	private final MagazineView magazineView;
 	private final DvdView dvdView;
+	private final CellphoneView cellphoneView;
+	private final LaptopView laptopView;
 	
 	/**
 	 * Class constructor instantiating a new View objects.
@@ -30,6 +36,8 @@ public class Menu {
 		this.bookView = new BookViewImpl();
 		this.magazineView = new MagazineViewImpl();
 		this.dvdView = new DvdViewImpl();
+		this.cellphoneView = new CellphoneViewImpl();
+		this.laptopView = new LaptopViewImpl();
 	}
 	
 	/**
@@ -54,11 +62,13 @@ public class Menu {
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
-				case '1' : this.createSubMenuBooks();
+				case '1' : this.createSubMenuBook();
 					break;
-				case '2' : this.createSubMenuDvds();
+				case '2' : this.createSubMenuDvd();
 					break;
-				case '4' : this.createSubMenuMagazines();
+				case '3' : this.createSubMenuHardware();
+					break;
+				case '4' : this.createSubMenuMagazine();
 					break;
 				case '0' : this.exit();
 					break;
@@ -71,7 +81,7 @@ public class Menu {
 	/**
 	 * Method to create and appear the book sub menu.
 	 */
-	private void createSubMenuBooks() {
+	private void createSubMenuBook() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
 					null, "Book Section\n\n" +
@@ -103,7 +113,7 @@ public class Menu {
 	/**
 	 * Method to create and appear the magazine sub menu.
 	 */
-	private void createSubMenuMagazines() {
+	private void createSubMenuMagazine() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
 					null, "Magazine Section\n\n" +
@@ -135,7 +145,7 @@ public class Menu {
 	/**
 	 * Method to create and appear the dvd sub menu.
 	 */
-	private void createSubMenuDvds() {
+	private void createSubMenuDvd() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
 					null, "DVD Section\n\n" +
@@ -182,7 +192,33 @@ public class Menu {
 					break;
 				case '2' : this.listDvdsMovie();
 					break;
-				case '0' : this.createSubMenuDvds();
+				case '0' : this.createSubMenuDvd();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and appear the hardware sub menu.
+	 */
+	private void createSubMenuHardware() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Hardware Section\n\n" +
+					"Select an option below:\n" +
+					"1 - Cellphone\n" +
+					"2 - Laptop\n" +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.createSubMenuCellphone();
+					break;
+				case '2' : this.createSubMenuLaptop();
+					break;
+				case '0' : this.createMenu();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
 						"Error", JOptionPane.ERROR_MESSAGE);
@@ -190,6 +226,70 @@ public class Menu {
 		}
 	}
 
+	/**
+	 * Method to create and appear the cellphone sub menu.
+	 */
+	private void createSubMenuCellphone() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Cellphone Section\n\n" +
+					"Select an option below:\n" +
+					"1 - Add a cellphone\n" +
+					"2 - Update a cellphone\n" +
+					"3 - Delete a cellphone\n" +
+					"4 - List the cellphones\n" +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.addCellphone();
+					break;
+				case '2' : this.updateCellphone();
+					break;
+					case '3' : this.removeCellphone();
+					break;
+				case '4' : this.listCellphones();
+					break;
+				case '0' : this.createSubMenuHardware();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and appear the laptop sub menu.
+	 */
+	private void createSubMenuLaptop() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Laptop Section\n\n" +
+					"Select an option below:\n" +
+					"1 - Add a laptop\n" +
+					"2 - Update a laptop\n" +
+					"3 - Delete a laptop\n" +
+					"4 - List the laptops\n" +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.addLaptop();
+					break;
+				case '2' : this.updateLaptop();
+					break;
+				case '3' : this.removeLaptop();
+					break;
+				case '4' : this.listLaptops();
+					break;
+				case '0' : this.createSubMenuHardware();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
 	/**
 	 * Add a book by the menu.
 	 */
@@ -279,6 +379,62 @@ public class Menu {
 	 */
 	private void listDvdsShow() {
 		this.dvdView.listDvdsShow();
+	}
+	
+	/**
+	 * Add a cellphone by the menu.
+	 */
+	private void addCellphone() {
+		this.cellphoneView.addCellphone();
+	}
+	
+	/**
+	 * Update a cellphone by the menu.
+	 */
+	private void updateCellphone() {
+		this.cellphoneView.updateCellphone();
+	}
+	
+	/**
+	 * Remove a cellphone by the menu.
+	 */
+	private void removeCellphone() {
+		this.cellphoneView.removeCellphone();
+	}
+	
+	/**
+	 * List all the cellphones by the menu.
+	 */
+	private void listCellphones() {
+		this.cellphoneView.listCellphones();
+	}
+	
+	/**
+	 * Add a laptop by the menu.
+	 */
+	private void addLaptop() {
+		this.laptopView.addLaptop();
+	}
+	
+	/**
+	 * Update a laptop by the menu.
+	 */
+	private void updateLaptop() {
+		this.laptopView.updateLaptop();
+	}
+	
+	/**
+	 * Remove a laptop by the menu.
+	 */
+	private void removeLaptop() {
+		this.laptopView.removeLaptop();
+	}
+	
+	/**
+	 * List all the laptops by the menu.
+	 */
+	private void listLaptops() {
+		this.laptopView.listLaptops();
 	}
 	
 	/**

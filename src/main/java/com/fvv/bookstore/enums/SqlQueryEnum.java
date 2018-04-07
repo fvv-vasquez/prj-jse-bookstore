@@ -62,7 +62,34 @@ public enum SqlQueryEnum {
 	
 	DVD_DELETE("DELETE FROM tb_dvd WHERE dvd_id = ?"),
 	
-	DVD_SELECT_ID("SELECT * FROM tb_dvd WHERE dvd_id = ?");
+	DVD_SELECT_ID("SELECT * FROM tb_dvd WHERE dvd_id = ?"),
+	
+	CELLPHONE_INSERT("INSERT INTO tb_cellphone (cel_brand, cel_price, cel_warranty, "
+			+ "cel_storage_memory, cel_camera_pixels, cel_modification_date) "
+			+ "VALUES (?, ?, ?, ?, ?, now())"),
+	
+	CELLPHONE_SELECT_ALL("SELECT * FROM tb_cellphone"),
+	
+	CELLPHONE_UPDATE("UPDATE tb_cellphone SET cel_brand = ?, cel_price = ?, cel_warranty = ?, "
+			+ "cel_storage_memory = ?, cel_camera_pixels = ?, cel_modification_date = now() "
+			+ "WHERE cel_id = ?"),
+	
+	CELLPHONE_DELETE("DELETE FROM tb_cellphone WHERE cel_id = ?"),
+	
+	CELLPHONE_SELECT_ID("SELECT * FROM tb_cellphone WHERE cel_id = ?"),
+	
+	LAPTOP_INSERT("INSERT INTO tb_laptop (pc_brand, pc_price, pc_warranty, pc_ram_size, "
+			+ "pc_hd_size, pc_processor, pc_modification_date) VALUES (?, ?, ?, ?, ?, ?, now())"),
+	
+	LAPTOP_SELECT_ALL("SELECT * FROM tb_laptop"),
+	
+	LAPTOP_UPDATE("UPDATE tb_laptop SET pc_brand = ?, pc_price = ?, pc_warranty = ?, "
+			+ "pc_ram_size = ?, pc_hd_size = ?, pc_processor = ?, pc_modification_date = now() "
+			+ "WHERE pc_id = ?"),
+	
+	LAPTOP_DELETE("DELETE FROM tb_laptop WHERE pc_id = ?"),
+	
+	LAPTOP_SELECT_ID("SELECT * FROM tb_laptop WHERE pc_id = ?");
 	
 	private final String query;
 	

@@ -27,7 +27,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void addMagazine(Magazine magazine) throws DaoException {
+	public void addMagazine(final Magazine magazine) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_INSERT.getQuery())
@@ -78,7 +78,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateMagazine(Magazine magazine) throws DaoException {
+	public void updateMagazine(final Magazine magazine) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_UPDATE.getQuery())
@@ -100,7 +100,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void removeMagazine(Long id) throws DaoException {
+	public void removeMagazine(final Long id) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_DELETE.getQuery())
@@ -116,7 +116,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Magazine findMagazine(Long id) throws MagazineNotFoundException, DaoException {
+	public Magazine findMagazine(final Long id) throws MagazineNotFoundException, DaoException {
 		Magazine magazine = new Magazine();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
