@@ -2,7 +2,8 @@
 SQLyog Enterprise Trial - MySQL GUI v7.11 
 MySQL - 5.7.21-log : Database - bookstore_db
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -31,7 +32,7 @@ CREATE TABLE `tb_book` (
   `book_genre` varchar(255) NOT NULL,
   `book_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_cellphone` */
 
@@ -43,10 +44,10 @@ CREATE TABLE `tb_cellphone` (
   `cel_price` double NOT NULL,
   `cel_warranty` int(11) NOT NULL,
   `cel_storage_memory` int(11) NOT NULL,
-  `cel_camera` int(11) NOT NULL,
+  `cel_camera_pixels` int(11) NOT NULL,
   `cel_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cel_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_dvd` */
 
@@ -64,7 +65,7 @@ CREATE TABLE `tb_dvd` (
   `dvd_show_artist` varchar(255) DEFAULT NULL,
   `dvd_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`dvd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_laptop` */
 
@@ -77,9 +78,10 @@ CREATE TABLE `tb_laptop` (
   `pc_warranty` int(11) NOT NULL,
   `pc_ram_size` int(11) NOT NULL,
   `pc_hd_size` double NOT NULL,
+  `pc_processor` varchar(255) NOT NULL,
   `pc_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`pc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_magazine` */
 
@@ -95,7 +97,7 @@ CREATE TABLE `tb_magazine` (
   `mag_price` double NOT NULL,
   `mag_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`mag_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

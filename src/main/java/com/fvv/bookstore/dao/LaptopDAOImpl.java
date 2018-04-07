@@ -36,7 +36,8 @@ public class LaptopDAOImpl implements LaptopDAO {
 			ps.setDouble(2, laptop.getPrice());
 			ps.setInt(3, laptop.getWarranty());
 			ps.setInt(4, laptop.getRamSize());
-			ps.setDouble(5, laptop.getHdSize());			
+			ps.setDouble(5, laptop.getHdSize());
+			ps.setString(6, laptop.getProcessor());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a laptop", e);
@@ -62,6 +63,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 				laptop.setWarranty(rs.getInt("pc_warranty"));
 				laptop.setRamSize(rs.getInt("pc_ram_size"));
 				laptop.setHdSize(rs.getDouble("pc_hd_size"));
+				laptop.setProcessor(rs.getString("pc_processor"));
 				laptop.setModificationDate(new Date(rs.getTimestamp(
 						"pc_modification_date").getTime()));
 				laptops.add(laptop);
@@ -86,7 +88,8 @@ public class LaptopDAOImpl implements LaptopDAO {
 			ps.setInt(3, laptop.getWarranty());
 			ps.setInt(4, laptop.getRamSize());
 			ps.setDouble(5, laptop.getHdSize());
-			ps.setLong(6, laptop.getId());
+			ps.setString(6, laptop.getProcessor());
+			ps.setLong(7, laptop.getId());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to update a laptop", e);
@@ -132,6 +135,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 						laptop.setWarranty(rs.getInt("pc_warranty"));
 						laptop.setRamSize(rs.getInt("pc_ram_size"));
 						laptop.setHdSize(rs.getDouble("pc_hd_size"));
+						laptop.setProcessor(rs.getString("pc_processor"));
 						laptop.setModificationDate(new Date(rs.getTimestamp(
 								"pc_modification_date").getTime()));
 					} while (rs.next());

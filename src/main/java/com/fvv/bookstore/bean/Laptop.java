@@ -15,6 +15,7 @@ public class Laptop extends Hardware implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer ramSize;
 	private Double hdSize;
+	private String processor;
 	
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
@@ -23,12 +24,14 @@ public class Laptop extends Hardware implements Serializable {
 	 * @param warranty of the Laptop
 	 * @param ramSize of the Laptop
 	 * @param hdSize of the Laptop
+	 * @param processor of the Laptop
 	 */
 	public Laptop(final String brand, final Double price, final Integer warranty, 
-			final Integer ramSize, final Double hdSize) {
+			final Integer ramSize, final Double hdSize, final String processor) {
 		super(brand, price, warranty);
 		this.ramSize = ramSize;
 		this.hdSize = hdSize;
+		this.processor = processor;
 	}
 
 	/**
@@ -71,8 +74,26 @@ public class Laptop extends Hardware implements Serializable {
 	 */
 	public Double getHdSize() {
 		return this.hdSize;
-	}
+	}	
 	
+	/**
+	 * Sets the processor.
+	 * 
+	 * @param processor of String type.
+	 */
+	public void setProcessor(String processor) {
+		this.processor = processor;
+	}
+
+	/**
+	 * Gets the last processor.
+	 * 
+	 * @return the last processor of String type.
+	 */
+	public String getProcessor() {
+		return this.processor;
+	}
+
 	/**
 	 * @see java.lang.Object#toString()
 	 */

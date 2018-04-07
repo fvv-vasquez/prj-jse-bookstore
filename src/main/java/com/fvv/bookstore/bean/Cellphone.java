@@ -14,7 +14,7 @@ public class Cellphone extends Hardware implements Serializable {
 
 	private static final long serialVersionUID = 1L;	
 	private Integer storageMemory;
-	private Integer camera;
+	private Integer camPixels;
 		
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
@@ -22,13 +22,13 @@ public class Cellphone extends Hardware implements Serializable {
 	 * @param price of the Cellphone
 	 * @param warranty of the Cellphone
 	 * @param storageMemory of the Cellphone
-	 * @param camera of the Cellphone
+	 * @param camPixels of the Cellphone
 	 */
 	public Cellphone(final String brand, final Double price, final Integer warranty, 
-			final Integer storageMemory, final Integer camera) {
+			final Integer storageMemory, final Integer camPixels) {
 		super(brand, price, warranty);
 		this.storageMemory = storageMemory;
-		this.camera = camera;
+		this.camPixels = camPixels;
 	}
 
 	/**
@@ -56,21 +56,21 @@ public class Cellphone extends Hardware implements Serializable {
 	}
 
 	/**
-	 * Sets the camera.
+	 * Sets the camPixels.
 	 * 
-	 * @param camera of Integer type.
+	 * @param camPixels of Integer type.
 	 */
-	public void setCamera(final Integer camera) {
-		this.camera = camera;
+	public void setCamPixels(final Integer camPixels) {
+		this.camPixels = camPixels;
 	}
 
 	/**
-	 * Gets the last camera.
+	 * Gets the last camPixels.
 	 * 
-	 * @return the last camera of Integer type.
+	 * @return the last camPixels of Integer type.
 	 */
-	public Integer getCamera() {
-		return this.camera;
+	public Integer getCamPixels() {
+		return this.camPixels;
 	}
 	
 	/**
@@ -80,6 +80,6 @@ public class Cellphone extends Hardware implements Serializable {
 	public String toString() {
 		return "Cellphone ID: " + getId() + " - Brand: " + getBrand() + ", Price: " + getPrice() + 
 				", Warranty: " + getWarranty() + " months, Storage Memory: " + getStorageMemory() 
-				+ "MP";
+				+ "GB";
 	}
 }

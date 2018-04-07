@@ -105,6 +105,9 @@ public class LaptopControllerImpl implements LaptopController {
 		if(laptop.getBrand().equals("")) {
 			sb.append("Field brand cannot be empty.").append(Constants.LINE_SEPARATOR);			
 		}
+		if(laptop.getProcessor().equals("")) {
+			sb.append("Field processor cannot be empty.").append(Constants.LINE_SEPARATOR);			
+		}
 		if(laptop.getPrice() <= 0) {
 			sb.append("Field price cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}

@@ -142,8 +142,8 @@ public class CellphoneViewImpl implements CellphoneView {
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the warranty in months")));
 		cellphone.setStorageMemory(
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the storage memory - GB")));
-		cellphone.setCamera(
-				Integer.parseInt(JOptionPane.showInputDialog("Insert the camera - MP")));
+		cellphone.setCamPixels(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the camera pixels")));
 		return cellphone;
 	}
 }

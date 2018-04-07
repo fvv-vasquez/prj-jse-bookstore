@@ -36,7 +36,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 			ps.setDouble(2, cellphone.getPrice());
 			ps.setInt(3, cellphone.getWarranty());
 			ps.setInt(4, cellphone.getStorageMemory());
-			ps.setInt(5, cellphone.getCamera());			
+			ps.setInt(5, cellphone.getCamPixels());			
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a cellphone", e);
@@ -61,7 +61,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 				cellphone.setPrice(rs.getDouble("cel_price"));
 				cellphone.setWarranty(rs.getInt("cel_warranty"));
 				cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
-				cellphone.setCamera(rs.getInt("cel_camera"));
+				cellphone.setCamPixels(rs.getInt("cel_camera_pixels"));
 				cellphone.setModificationDate(new Date(rs.getTimestamp(
 						"cel_modification_date").getTime()));
 				cellphones.add(cellphone);
@@ -85,7 +85,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 			ps.setDouble(2, cellphone.getPrice());
 			ps.setInt(3, cellphone.getWarranty());
 			ps.setInt(4, cellphone.getStorageMemory());
-			ps.setInt(5, cellphone.getCamera());
+			ps.setInt(5, cellphone.getCamPixels());
 			ps.setLong(6, cellphone.getId());
 			ps.execute();
 		} catch(SQLException e) {
@@ -131,7 +131,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 						cellphone.setPrice(rs.getDouble("cel_price"));
 						cellphone.setWarranty(rs.getInt("cel_warranty"));
 						cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
-						cellphone.setCamera(rs.getInt("cel_camera"));
+						cellphone.setCamPixels(rs.getInt("cel_camera_pixels"));
 						cellphone.setModificationDate(new Date(rs.getTimestamp(
 								"cel_modification_date").getTime()));
 					} while (rs.next());

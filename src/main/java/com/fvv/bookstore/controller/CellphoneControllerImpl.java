@@ -116,8 +116,8 @@ public class CellphoneControllerImpl implements CellphoneController {
 		if(cellphone.getStorageMemory() <= 0) {
 			sb.append("Field storage memory cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
-		if(cellphone.getCamera() <= 0) {
-			sb.append("Field camera cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
+		if(cellphone.getCamPixels() <= 0) {
+			sb.append("Field camera pixels cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(sb.length() > 0) {
 			throw new HardwareValidationException(sb.toString());

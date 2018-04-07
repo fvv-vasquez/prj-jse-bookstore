@@ -144,6 +144,7 @@ public class LaptopViewImpl implements LaptopView {
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the RAM size - GB")));
 		laptop.setHdSize(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the HD size - GB")));
+		laptop.setProcessor(JOptionPane.showInputDialog("Insert the processor"));
 		return laptop;
 	}
 }
