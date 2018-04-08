@@ -75,8 +75,11 @@ public class CustomerControllerImpl implements CustomerController {
 	 */
 	@Override
 	public void removeCustomer(Long id) throws ControllerException {
-		// TODO Auto-generated method stub
-
+		try {
+			this.customerDao.removeCustomer(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to delete a customer", e);
+		}
 	}
 
 	/**

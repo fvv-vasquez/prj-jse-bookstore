@@ -365,8 +365,8 @@ public class Menu {
 					break;
 				case '2' : this.updateCustomer();
 					break;
-					/*case '3' : this.removeCustomer();
-					break;*/
+				case '3' : this.removeCustomer();
+					break;
 				case '4' : this.listCustomers();
 					break;
 				case '0' : this.createSubMenuIndividuals();
@@ -536,6 +536,13 @@ public class Menu {
 	 */
 	private void updateCustomer() {
 		this.customerView.updateCustomer();
+	}
+	
+	/**
+	 * Remove a customer by the menu.
+	 */
+	private void removeCustomer() {
+		this.customerView.removeCustomer();
 	}
 	
 	/**
