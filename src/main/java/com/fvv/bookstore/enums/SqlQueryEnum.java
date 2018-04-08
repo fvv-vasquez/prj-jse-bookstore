@@ -89,7 +89,10 @@ public enum SqlQueryEnum {
 	
 	LAPTOP_DELETE("DELETE FROM tb_laptop WHERE pc_id = ?"),
 	
-	LAPTOP_SELECT_ID("SELECT * FROM tb_laptop WHERE pc_id = ?");
+	LAPTOP_SELECT_ID("SELECT * FROM tb_laptop WHERE pc_id = ?"),
+	
+	CUSTOMER_INSERT("INSERT INTO tb_customer (cus_name, cus_email, cus_phone, cus_cpf, "
+			+ "cus_prod_pref, cus_modification_date) VALUES (?, ?, ?, ?, ?, now())");
 	
 	private final String query;
 	
