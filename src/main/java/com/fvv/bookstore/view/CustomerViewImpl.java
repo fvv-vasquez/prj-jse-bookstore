@@ -1,6 +1,5 @@
 package com.fvv.bookstore.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -12,6 +11,7 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.exception.person.PersonValidationException;
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.StringUtil;
 
 /**
  * CustomerView class to view the Customer object.
@@ -57,8 +57,23 @@ public class CustomerViewImpl implements CustomerView {
 	 */
 	@Override
 	public void listCustomers() {
-		// TODO Auto-generated method stub
-
+		try {
+			StringBuilder sb = new StringBuilder();
+			List<Customer> customers = this.customerController.listCustomers();
+			if(customers != null && !customers.isEmpty()) {
+				for(Customer c : customers) {
+					sb.append(c).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Customers", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
@@ -93,23 +108,8 @@ public class CustomerViewImpl implements CustomerView {
 		customer.setEmail(JOptionPane.showInputDialog("Insert the email"));
 		customer.setPhone(JOptionPane.showInputDialog("Insert the phone"));
 		customer.setCpf(JOptionPane.showInputDialog("Insert the CPF"));
-		customer.setProdPref(this.convertStringToList((JOptionPane.showInputDialog(
-				"Insert the products of preference. Use ',' to separate"))));
+		customer.setProdPref(StringUtil.convertStringToList(JOptionPane.showInputDialog(
+				"Insert the products of preference. Use ',' to separate"), Constants.COMMA));
 		return customer;
-	}
-	
-	/**
-	 * Convert a String into a List.
-	 * 
-	 * @param listProducts of String type.
-	 * @return a List of preferences products.
-	 */
-	private List<String> convertStringToList(final String listProducts) {
-		List<String> preferences = new ArrayList<>();
-		String[]products = listProducts.split(",");
-		for(String p : products) {
-			preferences.add(p);
-		}
-		return preferences;
 	}
 }

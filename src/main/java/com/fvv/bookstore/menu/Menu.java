@@ -366,9 +366,9 @@ public class Menu {
 				/*case '2' : this.updateCustomer();
 					break;
 				case '3' : this.removeCustomer();
-					break;
-				case '4' : this.listCustomers();
 					break;*/
+				case '4' : this.listCustomers();
+					break;
 				case '0' : this.createSubMenuIndividuals();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -529,6 +529,13 @@ public class Menu {
 	 */
 	private void addCustomer() {
 		this.customerView.addCustomer();
+	}
+	
+	/**
+	 * List all the customers by the menu.
+	 */
+	private void listCustomers() {
+		this.customerView.listCustomers();
 	}
 	
 	/**

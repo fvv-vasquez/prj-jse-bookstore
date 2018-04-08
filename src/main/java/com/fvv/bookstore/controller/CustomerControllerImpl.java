@@ -49,8 +49,11 @@ public class CustomerControllerImpl implements CustomerController {
 	 */
 	@Override
 	public List<Customer> listCustomers() throws ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.customerDao.listCustomers();
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
 	}
 
 	/**
