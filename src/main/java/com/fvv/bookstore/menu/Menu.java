@@ -363,9 +363,9 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.addCustomer();
 					break;
-				/*case '2' : this.updateCustomer();
+				case '2' : this.updateCustomer();
 					break;
-				case '3' : this.removeCustomer();
+					/*case '3' : this.removeCustomer();
 					break;*/
 				case '4' : this.listCustomers();
 					break;
@@ -529,6 +529,13 @@ public class Menu {
 	 */
 	private void addCustomer() {
 		this.customerView.addCustomer();
+	}
+	
+	/**
+	 * Update a customer by the menu.
+	 */
+	private void updateCustomer() {
+		this.customerView.updateCustomer();
 	}
 	
 	/**

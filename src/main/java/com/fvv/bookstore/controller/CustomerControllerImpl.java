@@ -62,8 +62,12 @@ public class CustomerControllerImpl implements CustomerController {
 	@Override
 	public void updateCustomer(Customer customer) throws 
 		PersonValidationException, ControllerException {
-		// TODO Auto-generated method stub
-
+		try {
+			this.validateCustomer(customer);
+			this.customerDao.updateCustomer(customer);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to update a customer", e);
+		}
 	}
 
 	/**
@@ -80,8 +84,11 @@ public class CustomerControllerImpl implements CustomerController {
 	 */
 	@Override
 	public Customer findCustomer(Long id) throws PersonNotFoundException, ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.customerDao.findCustomer(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a customer", e);
+		}
 	}
 
 	/**
@@ -94,6 +101,9 @@ public class CustomerControllerImpl implements CustomerController {
 		StringBuilder sb = new StringBuilder();
 		if(customer.getName().equals("")) {
 			sb.append("Field name cannot be empty.").append(Constants.LINE_SEPARATOR);			
+		}
+		if(customer.getEmail().equals("")) {
+			sb.append("Field email cannot be empty.").append(Constants.LINE_SEPARATOR);			
 		}
 		if(customer.getPhone().equals("")) {
 			sb.append("Field phone cannot be empty.").append(Constants.LINE_SEPARATOR);			

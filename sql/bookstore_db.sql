@@ -55,7 +55,7 @@ DROP TABLE IF EXISTS `tb_customer`;
 CREATE TABLE `tb_customer` (
   `cus_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cus_name` varchar(255) NOT NULL,
-  `cus_email` varchar(255) DEFAULT NULL,
+  `cus_email` varchar(255) NOT NULL,
   `cus_phone` varchar(255) NOT NULL,
   `cus_cpf` varchar(255) NOT NULL,
   `cus_prod_pref` varchar(255) DEFAULT NULL,

@@ -94,7 +94,12 @@ public enum SqlQueryEnum {
 	CUSTOMER_INSERT("INSERT INTO tb_customer (cus_name, cus_email, cus_phone, cus_cpf, "
 			+ "cus_prod_pref, cus_modification_date) VALUES (?, ?, ?, ?, ?, now())"),
 	
-	CUSTOMER_SELECT_ALL("SELECT * FROM tb_customer");
+	CUSTOMER_SELECT_ALL("SELECT * FROM tb_customer"),
+	
+	CUSTOMER_UPDATE("UPDATE tb_customer SET cus_name = ?, cus_email = ?, cus_phone = ?, "
+			+ "cus_cpf = ?, cus_prod_pref = ?, cus_modification_date = now() WHERE cus_id = ?"),
+	
+	CUSTOMER_SELECT_ID("SELECT * FROM tb_customer WHERE cus_id = ?");
 	
 	private final String query;
 	

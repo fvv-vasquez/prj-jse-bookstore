@@ -80,8 +80,20 @@ public class CustomerDAOImpl implements CustomerDAO {
 	 */
 	@Override
 	public void updateCustomer(Customer customer) throws DaoException {
-		// TODO Auto-generated method stub
-
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CUSTOMER_UPDATE.getQuery())
+		) {	
+			ps.setString(1, customer.getName());
+			ps.setString(2, customer.getEmail());
+			ps.setString(3, customer.getPhone());
+			ps.setString(4, customer.getCpf());
+			ps.setString(5, StringUtil.convertListToString(customer.getProdPref()));
+			ps.setLong(6, customer.getId());
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update a customer", e);
+		} 
 	}
 
 	/**
@@ -98,7 +110,33 @@ public class CustomerDAOImpl implements CustomerDAO {
 	 */
 	@Override
 	public Customer findCustomer(Long id) throws PersonNotFoundException, DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		Customer customer = new Customer();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(
+						SqlQueryEnum.CUSTOMER_SELECT_ID.getQuery())
+		) {	
+			ps.setLong(1, id);
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new PersonNotFoundException("Customer with ID " + id + " not found");
+				} else {
+					do {
+						customer.setId(rs.getLong("cus_id"));
+						customer.setName(rs.getString("cus_name"));
+						customer.setEmail(rs.getString("cus_email"));
+						customer.setPhone(rs.getString("cus_phone"));
+						customer.setCpf(rs.getString("cus_cpf"));
+						customer.setProdPref(StringUtil.convertStringToList(
+								rs.getString("cus_prod_pref"), Constants.PIPE));
+						customer.setModificationDate(new Date(rs.getTimestamp(
+								"cus_modification_date").getTime()));
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a customer", e);
+		} 
+		return customer;
 	}
 }

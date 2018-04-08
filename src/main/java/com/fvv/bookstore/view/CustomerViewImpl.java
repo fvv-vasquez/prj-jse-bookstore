@@ -81,8 +81,19 @@ public class CustomerViewImpl implements CustomerView {
 	 */
 	@Override
 	public void updateCustomer() {
-		// TODO Auto-generated method stub
-
+		try {
+			final Customer customer = this.createCustomerFromInput(Boolean.TRUE);
+			this.customerController.updateCustomer(customer);
+			JOptionPane.showMessageDialog(null, "Customer updated successfully!");
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ControllerException | PersonNotFoundException | PersonValidationException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
