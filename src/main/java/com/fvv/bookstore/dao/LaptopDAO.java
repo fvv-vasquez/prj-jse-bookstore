@@ -53,7 +53,7 @@ public interface LaptopDAO {
 	 * 
 	 * @param id of a Long type.
 	 * @return a Laptop.
-	 * @throws HardwareNotFoundException when not found a magazine in the database.
+	 * @throws HardwareNotFoundException when not found a laptop in the database.
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Laptop findLaptop(final Long id) throws HardwareNotFoundException, DaoException;

@@ -16,7 +16,7 @@ public class PersonValidationException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Message of validation for a hardware
+	 * Message of validation for a person
 	 * 
 	 * @param message of error
 	 */

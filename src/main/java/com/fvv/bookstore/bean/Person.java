@@ -21,6 +21,7 @@ public abstract class Person {
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * 
 	 * @param id of the person
 	 * @param name of the person
 	 * @param email of the person
@@ -52,9 +53,9 @@ public abstract class Person {
 	}
 
 	/**
-	 * Gets the last id.
+	 * Gets the id.
 	 * 
-	 * @return the last id of Long type.
+	 * @return the id of Long type.
 	 */
 	public Long getId() {
 		return this.id;
@@ -70,9 +71,9 @@ public abstract class Person {
 	}
 
 	/**
-	 * Gets the last name.
+	 * Gets the name.
 	 * 
-	 * @return the last name of String type.
+	 * @return the name of String type.
 	 */
 	public String getName() {
 		return this.name;
@@ -88,9 +89,9 @@ public abstract class Person {
 	}
 
 	/**
-	 * Gets the last email.
+	 * Gets the email.
 	 * 
-	 * @return the last email of String type.
+	 * @return the email of String type.
 	 */
 	public String getEmail() {
 		return this.email;
@@ -106,9 +107,9 @@ public abstract class Person {
 	}
 
 	/**
-	 * Gets the last phone.
+	 * Gets the phone.
 	 * 
-	 * @return the last phone of String type.
+	 * @return the phone of String type.
 	 */
 	public String getPhone() {
 		return this.phone;
@@ -124,9 +125,9 @@ public abstract class Person {
 	}
 
 	/**
-	 * Gets the last cpf.
+	 * Gets the cpf.
 	 * 
-	 * @return the last cpf of String type.
+	 * @return the cpf of String type.
 	 */
 	public String getCpf() {
 		return this.cpf;
@@ -142,9 +143,9 @@ public abstract class Person {
 	}
 
 	/**
-	 * Gets the last modification date.
+	 * Gets the modification date.
 	 * 
-	 * @return the last modification date of Date type.
+	 * @return the modification date of Date type.
 	 */
 	public Date getModificationDate() {
 		return this.modificationDate;

@@ -16,13 +16,13 @@ public final class StringUtil {
 	/**
 	 * Convert a List into a String.
 	 * 
-	 * @param customer of Customer type.
-	 * @return a String of preferences products.
+	 * @param listProducts of List type.
+	 * @return a String of products' preference 
 	 */
-	public static String convertListToString(final List<String> list) {
+	public static String convertListToString(final List<String> listProducts) {
 		String preferences = "";
-		for(String pp : list) {
-			preferences += pp + "|";
+		for(String pref : listProducts) {
+			preferences += pref + Constants.PIPE;
 		}
 		return preferences.substring(0, preferences.length()-1);
 	}
@@ -31,13 +31,14 @@ public final class StringUtil {
 	 * Convert a String into a List.
 	 * 
 	 * @param listProducts of String type.
-	 * @return a List of preferences products.
+	 * @param token of String type
+	 * @return a List of products' preference
 	 */
 	public static List<String> convertStringToList(final String listProducts, final String token) {
 		List<String> preferences = new ArrayList<>();
 		String[]products = listProducts.split(token);
-		for(String p : products) {
-			preferences.add(p);
+		for(String pref : products) {
+			preferences.add(pref);
 		}
 		return preferences;
 	}

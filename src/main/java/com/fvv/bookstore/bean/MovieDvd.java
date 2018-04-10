@@ -17,6 +17,7 @@ public class MovieDvd extends Dvd implements Serializable {
 
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Dvd
+	 * 
 	 * @param title of the Movie DVD
 	 * @param totalDuration of the Movie DVD
 	 * @param price of the Movie DVD
@@ -48,9 +49,9 @@ public class MovieDvd extends Dvd implements Serializable {
 	}
 
 	/**
-	 * Gets the last director.
+	 * Gets the director.
 	 * 
-	 * @return the last director of String type.
+	 * @return the director of String type.
 	 */
 	public String getDirector() {
 		return this.director;

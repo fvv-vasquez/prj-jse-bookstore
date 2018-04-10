@@ -23,6 +23,7 @@ public abstract class Dvd {
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * 
 	 * @param title of the DVD
 	 * @param totalDuration of the DVD
 	 * @param price of the DVD
@@ -56,9 +57,9 @@ public abstract class Dvd {
 	}
 
 	/**
-	 * Gets the last id.
+	 * Gets the id.
 	 * 
-	 * @return the last id of Long type.
+	 * @return the id of Long type.
 	 */
 	public Long getId() {
 		return this.id;
@@ -74,9 +75,9 @@ public abstract class Dvd {
 	}
 
 	/**
-	 * Gets the last title.
+	 * Gets the title.
 	 * 
-	 * @return the last title of String type.
+	 * @return the title of String type.
 	 */
 	public String getTitle() {
 		return this.title;
@@ -92,9 +93,9 @@ public abstract class Dvd {
 	}
 
 	/**
-	 * Gets the last total duration.
+	 * Gets the total duration.
 	 * 
-	 * @return the last totalDuration of Integer type.
+	 * @return the totalDuration of Integer type.
 	 */
 	public Integer getTotalDuration() {
 		return this.totalDuration;
@@ -110,9 +111,9 @@ public abstract class Dvd {
 	}
 
 	/**
-	 * Gets the last price.
+	 * Gets the price.
 	 * 
-	 * @return the last price of Double type.
+	 * @return the price of Double type.
 	 */
 	public Double getPrice() {
 		return this.price;
@@ -128,9 +129,9 @@ public abstract class Dvd {
 	}
 
 	/**
-	 * Gets the last genre.
+	 * Gets the genre.
 	 * 
-	 * @return the last genre of String type.
+	 * @return the genre of String type.
 	 */
 	public String getGenre() {
 		return this.genre;
@@ -146,9 +147,9 @@ public abstract class Dvd {
 	}
 
 	/**
-	 * Gets the last release year.
+	 * Gets the release year.
 	 * 
-	 * @return the last releaseYear of Integer type.
+	 * @return the releaseYear of Integer type.
 	 */
 	public Integer getReleaseYear() {
 		return this.releaseYear;
@@ -164,9 +165,9 @@ public abstract class Dvd {
 	}
 
 	/**
-	 * Gets the last code.
+	 * Gets the code.
 	 * 
-	 * @return the last code of Integer type.
+	 * @return the code of Integer type.
 	 */
 	public Integer getCode() {
 		return this.code;
@@ -182,9 +183,9 @@ public abstract class Dvd {
 	}
 
 	/**
-	 * Gets the last modification date.
+	 * Gets the modification date.
 	 * 
-	 * @return the last modification date of Date type.
+	 * @return the modificationDate of Date type.
 	 */
 	public Date getModificationDate() {
 		return this.modificationDate;

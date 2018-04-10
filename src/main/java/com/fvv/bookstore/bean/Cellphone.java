@@ -18,6 +18,7 @@ public class Cellphone extends Hardware implements Serializable {
 		
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
+	 * 
 	 * @param brand of the Cellphone
 	 * @param price of the Cellphone
 	 * @param warranty of the Cellphone
@@ -47,16 +48,16 @@ public class Cellphone extends Hardware implements Serializable {
 	}
 
 	/**
-	 * Gets the last storage memory.
+	 * Gets the storage memory.
 	 * 
-	 * @return the last storageMemory of Integer type.
+	 * @return the storageMemory of Integer type.
 	 */
 	public Integer getStorageMemory() {
 		return this.storageMemory;
 	}
 
 	/**
-	 * Sets the camPixels.
+	 * Sets the pixels of the camera.
 	 * 
 	 * @param camPixels of Integer type.
 	 */
@@ -65,9 +66,9 @@ public class Cellphone extends Hardware implements Serializable {
 	}
 
 	/**
-	 * Gets the last camPixels.
+	 * Gets the pixels of the camera.
 	 * 
-	 * @return the last camPixels of Integer type.
+	 * @return the camPixels of Integer type.
 	 */
 	public Integer getCamPixels() {
 		return this.camPixels;

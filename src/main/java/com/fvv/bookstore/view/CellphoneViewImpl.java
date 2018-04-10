@@ -25,7 +25,7 @@ public class CellphoneViewImpl implements CellphoneView {
 	private final CellphoneController cellphoneController;
 	
 	/**
-	 * Class constructor instantiating a new MagazineControllerImpl object.
+	 * Class constructor instantiating a new CellphoneControllerImpl object.
 	 */
 	public CellphoneViewImpl() {
 		this.cellphoneController = new CellphoneControllerImpl();

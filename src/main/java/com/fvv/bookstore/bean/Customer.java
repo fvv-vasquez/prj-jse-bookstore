@@ -18,6 +18,7 @@ public class Customer extends Person implements Serializable {
 
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Person
+	 * 
 	 * @param id of the Customer
 	 * @param name of the Customer
 	 * @param email of the Customer
@@ -38,7 +39,7 @@ public class Customer extends Person implements Serializable {
 	}
 
 	/**
-	 * Sets the prodPref.
+	 * Sets the preference products of a customer.
 	 * 
 	 * @param prodPref of List type.
 	 */
@@ -47,9 +48,9 @@ public class Customer extends Person implements Serializable {
 	}
 
 	/**
-	 * Gets the last products preferences list.
+	 * Gets the preferences products list.
 	 *  
-	 * @return the last list prodPref.
+	 * @return the list prodPref.
 	 */
 	public List<String> getProdPref() {
 		return this.prodPref;
