@@ -17,6 +17,7 @@ public class ShowDvd extends Dvd implements Serializable {
 
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Dvd
+	 * 
 	 * @param title of the Movie DVD
 	 * @param totalDuration of the Movie DVD
 	 * @param price of the Movie DVD
@@ -48,9 +49,9 @@ public class ShowDvd extends Dvd implements Serializable {
 	}
 
 	/**
-	 * Gets the last artist.
+	 * Gets the artist.
 	 * 
-	 * @return the last artist of String type.
+	 * @return the artist of String type.
 	 */
 	public String getArtist() {
 		return this.artist;

@@ -2,10 +2,13 @@ package com.fvv.bookstore.menu;
 
 import javax.swing.JOptionPane;
 
+import com.fvv.bookstore.util.Constants;
 import com.fvv.bookstore.view.BookView;
 import com.fvv.bookstore.view.BookViewImpl;
 import com.fvv.bookstore.view.CellphoneView;
 import com.fvv.bookstore.view.CellphoneViewImpl;
+import com.fvv.bookstore.view.CustomerView;
+import com.fvv.bookstore.view.CustomerViewImpl;
 import com.fvv.bookstore.view.DvdView;
 import com.fvv.bookstore.view.DvdViewImpl;
 import com.fvv.bookstore.view.LaptopView;
@@ -28,6 +31,7 @@ public class Menu {
 	private final DvdView dvdView;
 	private final CellphoneView cellphoneView;
 	private final LaptopView laptopView;
+	private final CustomerView customerView;
 	
 	/**
 	 * Class constructor instantiating a new View objects.
@@ -38,6 +42,7 @@ public class Menu {
 		this.dvdView = new DvdViewImpl();
 		this.cellphoneView = new CellphoneViewImpl();
 		this.laptopView = new LaptopViewImpl();
+		this.customerView = new CustomerViewImpl();
 	}
 	
 	/**
@@ -53,12 +58,38 @@ public class Menu {
 	private void createMenu() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "Select an option below:\n" +
-					"1 - Book\n" +
-					"2 - DVD\n" +
-					"3 - Hardware\n" +
-					"4 - Magazine\n" +
+					null, "Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Products" + Constants.LINE_SEPARATOR +
+					"2 - Individuals" + Constants.LINE_SEPARATOR +
 					"0 - Exit",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.createSubMenuProducts();
+					break;
+				case '2' : this.createSubMenuIndividuals();
+					break;
+				case '0' : this.exit();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and appear the products sub menu.
+	 */
+	private void createSubMenuProducts() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Products Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Book" + Constants.LINE_SEPARATOR +
+					"2 - DVD" + Constants.LINE_SEPARATOR +
+					"3 - Hardware" + Constants.LINE_SEPARATOR +
+					"4 - Magazine" + Constants.LINE_SEPARATOR +
+					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
@@ -70,7 +101,7 @@ public class Menu {
 					break;
 				case '4' : this.createSubMenuMagazine();
 					break;
-				case '0' : this.exit();
+				case '0' : this.createMenu();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
 						"Error", JOptionPane.ERROR_MESSAGE);
@@ -84,12 +115,12 @@ public class Menu {
 	private void createSubMenuBook() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "Book Section\n\n" +
-					"Select an option below:\n" +
-					"1 - Add a book\n" +
-					"2 - Update a book\n" +
-					"3 - Delete a book\n" +
-					"4 - List the books\n" +
+					null, "Book Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Add a book" + Constants.LINE_SEPARATOR +
+					"2 - Update a book" + Constants.LINE_SEPARATOR +
+					"3 - Delete a book" + Constants.LINE_SEPARATOR +
+					"4 - List the books" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -102,7 +133,7 @@ public class Menu {
 					break;
 				case '4' : this.listBooks();
 					break;
-				case '0' : this.createMenu();
+				case '0' : this.createSubMenuProducts();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
 						"Error", JOptionPane.ERROR_MESSAGE);
@@ -116,12 +147,12 @@ public class Menu {
 	private void createSubMenuMagazine() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "Magazine Section\n\n" +
-					"Select an option below:\n" +
-					"1 - Add a magazine\n" +
-					"2 - Update a magazine\n" +
-					"3 - Delete a magazine\n" +
-					"4 - List the magazines\n" +
+					null, "Magazine Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Add a magazine" + Constants.LINE_SEPARATOR +
+					"2 - Update a magazine" + Constants.LINE_SEPARATOR +
+					"3 - Delete a magazine" + Constants.LINE_SEPARATOR +
+					"4 - List the magazines" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -134,7 +165,7 @@ public class Menu {
 					break;
 				case '4' : this.listMagazines();
 					break;
-				case '0' : this.createMenu();
+				case '0' : this.createSubMenuProducts();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
 						"Error", JOptionPane.ERROR_MESSAGE);
@@ -148,12 +179,12 @@ public class Menu {
 	private void createSubMenuDvd() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "DVD Section\n\n" +
-					"Select an option below:\n" +
-					"1 - Add a DVD\n" +
-					"2 - Update a DVD\n" +
-					"3 - Delete a DVD\n" +
-					"4 - List the DVDs\n" +
+					null, "DVD Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Add a DVD" + Constants.LINE_SEPARATOR +
+					"2 - Update a DVD" + Constants.LINE_SEPARATOR +
+					"3 - Delete a DVD" + Constants.LINE_SEPARATOR +
+					"4 - List the DVDs" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -166,7 +197,7 @@ public class Menu {
 					break;
 				case '4' : this.createSubMenuDvdsList();
 					break;
-				case '0' : this.createMenu();
+				case '0' : this.createSubMenuProducts();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
 						"Error", JOptionPane.ERROR_MESSAGE);
@@ -180,10 +211,10 @@ public class Menu {
 	private void createSubMenuDvdsList() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "List the DVDs Section\n\n" +
-					"Select an option below:\n" +
-					"1 - List all the shows\n" +
-					"2 - List all the movies\n" +
+					null, "List the DVDs Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - List all the shows" + Constants.LINE_SEPARATOR +
+					"2 - List all the movies" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -206,10 +237,10 @@ public class Menu {
 	private void createSubMenuHardware() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "Hardware Section\n\n" +
-					"Select an option below:\n" +
-					"1 - Cellphone\n" +
-					"2 - Laptop\n" +
+					null, "Hardware Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Cellphone" + Constants.LINE_SEPARATOR +
+					"2 - Laptop" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -218,7 +249,7 @@ public class Menu {
 					break;
 				case '2' : this.createSubMenuLaptop();
 					break;
-				case '0' : this.createMenu();
+				case '0' : this.createSubMenuProducts();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
 						"Error", JOptionPane.ERROR_MESSAGE);
@@ -232,12 +263,12 @@ public class Menu {
 	private void createSubMenuCellphone() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "Cellphone Section\n\n" +
-					"Select an option below:\n" +
-					"1 - Add a cellphone\n" +
-					"2 - Update a cellphone\n" +
-					"3 - Delete a cellphone\n" +
-					"4 - List the cellphones\n" +
+					null, "Cellphone Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Add a cellphone" + Constants.LINE_SEPARATOR +
+					"2 - Update a cellphone" + Constants.LINE_SEPARATOR +
+					"3 - Delete a cellphone" + Constants.LINE_SEPARATOR +
+					"4 - List the cellphones" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -264,12 +295,12 @@ public class Menu {
 	private void createSubMenuLaptop() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
-					null, "Laptop Section\n\n" +
-					"Select an option below:\n" +
-					"1 - Add a laptop\n" +
-					"2 - Update a laptop\n" +
-					"3 - Delete a laptop\n" +
-					"4 - List the laptops\n" +
+					null, "Laptop Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Add a laptop" + Constants.LINE_SEPARATOR +
+					"2 - Update a laptop" + Constants.LINE_SEPARATOR +
+					"3 - Delete a laptop" + Constants.LINE_SEPARATOR +
+					"4 - List the laptops" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -283,6 +314,62 @@ public class Menu {
 				case '4' : this.listLaptops();
 					break;
 				case '0' : this.createSubMenuHardware();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and appear the individuals sub menu.
+	 */
+	private void createSubMenuIndividuals() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Individuals Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Customer" + Constants.LINE_SEPARATOR +
+					"2 - Employee" + Constants.LINE_SEPARATOR +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.createSubMenuCustomer();
+					break;
+				case '0' : this.createMenu();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and appear the customer sub menu.
+	 */
+	private void createSubMenuCustomer() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Customer Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Add a customer" + Constants.LINE_SEPARATOR +
+					"2 - Update a customer" + Constants.LINE_SEPARATOR +
+					"3 - Delete a customer" + Constants.LINE_SEPARATOR +
+					"4 - List the customers" + Constants.LINE_SEPARATOR +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.addCustomer();
+					break;
+				case '2' : this.updateCustomer();
+					break;
+				case '3' : this.removeCustomer();
+					break;
+				case '4' : this.listCustomers();
+					break;
+				case '0' : this.createSubMenuIndividuals();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
 						"Error", JOptionPane.ERROR_MESSAGE);
@@ -435,6 +522,34 @@ public class Menu {
 	 */
 	private void listLaptops() {
 		this.laptopView.listLaptops();
+	}
+	
+	/**
+	 * Add a customer by the menu.
+	 */
+	private void addCustomer() {
+		this.customerView.addCustomer();
+	}
+	
+	/**
+	 * Update a customer by the menu.
+	 */
+	private void updateCustomer() {
+		this.customerView.updateCustomer();
+	}
+	
+	/**
+	 * Remove a customer by the menu.
+	 */
+	private void removeCustomer() {
+		this.customerView.removeCustomer();
+	}
+	
+	/**
+	 * List all the customers by the menu.
+	 */
+	private void listCustomers() {
+		this.customerView.listCustomers();
 	}
 	
 	/**

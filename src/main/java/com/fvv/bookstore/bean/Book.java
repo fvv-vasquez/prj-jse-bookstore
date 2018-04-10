@@ -27,6 +27,7 @@ public class Book implements Serializable {
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * 
 	 * @param title of the book
 	 * @param publicationYear of the book
 	 * @param editionNumber of the book
@@ -65,9 +66,9 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Gets the last id.
+	 * Gets the id.
 	 * 
-	 * @return the last id of Long type.
+	 * @return the id of Long type.
 	 */
 	public Long getId() {
 		return this.id;
@@ -83,9 +84,9 @@ public class Book implements Serializable {
 	}
 	
 	/**
-	 * Gets the last title.
+	 * Gets the title.
 	 * 
-	 * @return the last title of String type.
+	 * @return the title of String type.
 	 */
 	public String getTitle() {
 		return this.title;
@@ -101,9 +102,9 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Gets the last publication year.
+	 * Gets the publication year.
 	 * 
-	 * @return the last publicationYear of Integer type.
+	 * @return the publicationYear of Integer type.
 	 */
 	public Integer getPublicationYear() {
 		return this.publicationYear;
@@ -119,9 +120,9 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Gets the last edition number.
+	 * Gets the edition number.
 	 * 
-	 * @return the last editionNumber of Integer type.
+	 * @return the editionNumber of Integer type.
 	 */
 	public Integer getEditionNumber() {
 		return this.editionNumber;
@@ -137,9 +138,9 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Gets the last author.
+	 * Gets the author.
 	 * 
-	 * @return the author title of String type.
+	 * @return the author of String type.
 	 */
 	public String getAuthor() {
 		return this.author;
@@ -155,9 +156,9 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Gets the last price.
+	 * Gets the price.
 	 * 
-	 * @return the last price of Double type.
+	 * @return the price of Double type.
 	 */
 	public Double getPrice() {
 		return this.price;
@@ -173,9 +174,9 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Gets the last isbn.
+	 * Gets the isbn.
 	 * 
-	 * @return the last isbn of Integer type.
+	 * @return the isbn of Integer type.
 	 */
 	public Integer getIsbn() {
 		return this.isbn;
@@ -191,9 +192,9 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Gets the last publisher.
+	 * Gets the publisher.
 	 * 
-	 * @return the last publisher of String type.
+	 * @return the publisher of String type.
 	 */
 	public String getPublisher() {
 		return this.publisher;
@@ -209,16 +210,16 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Gets the last genre.
+	 * Gets the genre.
 	 * 
-	 * @return the last genre of String type.
+	 * @return the genre of String type.
 	 */
 	public String getGenre() {
 		return this.genre;
 	}	
 	
 	/**
-	 * Sets the date.
+	 * Sets the modification date.
 	 * 
 	 * @param modificationDate of Date type.
 	 */
@@ -227,9 +228,9 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Gets the last modification date.
+	 * Gets the modification date.
 	 * 
-	 * @return the last modification date of Date type.
+	 * @return the modificationDate of Date type.
 	 */
 	public Date getModificationDate() {
 		return this.modificationDate;

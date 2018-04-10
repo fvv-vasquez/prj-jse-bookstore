@@ -27,6 +27,7 @@ public class Magazine implements Serializable {
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * 
 	 * @param name of the magazine
 	 * @param editionNumber of the magazine
 	 * @param genre of the magazine
@@ -60,9 +61,9 @@ public class Magazine implements Serializable {
 	}
 
 	/**
-	 * Gets the last id.
+	 * Gets the id.
 	 * 
-	 * @return the last id of Long type.
+	 * @return the id of Long type.
 	 */
 	public Long getId() {
 		return this.id;
@@ -78,9 +79,9 @@ public class Magazine implements Serializable {
 	}
 
 	/**
-	 * Gets the last name.
+	 * Gets the name.
 	 * 
-	 * @return the last name of String type.
+	 * @return the name of String type.
 	 */
 	public String getName() {
 		return this.name;
@@ -96,9 +97,9 @@ public class Magazine implements Serializable {
 	}
 
 	/**
-	 * Gets the last edition number.
+	 * Gets the edition number.
 	 * 
-	 * @return the last editionNumber of Integer type.
+	 * @return the editionNumber of Integer type.
 	 */
 	public Integer getEditionNumber() {
 		return this.editionNumber;
@@ -114,9 +115,9 @@ public class Magazine implements Serializable {
 	}
 
 	/**
-	 * Gets the last genre.
+	 * Gets the genre.
 	 * 
-	 * @return the last genre of String type.
+	 * @return the genre of String type.
 	 */
 	public String getGenre() {
 		return this.genre;
@@ -132,9 +133,9 @@ public class Magazine implements Serializable {
 	}
 
 	/**
-	 * Gets the last publication date.
+	 * Gets the publication date.
 	 * 
-	 * @return the last publicationDate of Date type.
+	 * @return the publicationDate of Date type.
 	 */
 	public Date getPublicationDate() {
 		return this.publicationDate;
@@ -150,9 +151,9 @@ public class Magazine implements Serializable {
 	}
 
 	/**
-	 * Gets the last publisher.
+	 * Gets the publisher.
 	 * 
-	 * @return the last publisher of String type.
+	 * @return the publisher of String type.
 	 */
 	public String getPublisher() {
 		return this.publisher;
@@ -168,27 +169,27 @@ public class Magazine implements Serializable {
 	}
 
 	/**
-	 * Gets the last price.
+	 * Gets the price.
 	 * 
-	 * @return the last price of Double type.
+	 * @return the price of Double type.
 	 */
 	public Double getPrice() {
 		return this.price;
 	}
 	
 	/**
-	 * Sets the modificationDate.
+	 * Sets the modification date.
 	 * 
-	 * @param modificationDate the date to set
+	 * @param modificationDate of Date type.
 	 */
 	public void setModificationDate(final Date modificationDate) {
 		this.modificationDate = modificationDate;
 	}
 
 	/**
-	 * Gets the last modification date.
+	 * Gets the modification date.
 	 * 
-	 * @return the last modification date of Date type.
+	 * @return the modification date of Date type.
 	 */
 	public Date getModificationDate() {
 		return this.modificationDate;

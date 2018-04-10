@@ -19,5 +19,15 @@ public class Constants {
 	 * Constant that represents a date mask.
 	 */
 	public static final String DATE_MASK = "MM/dd/yyyy";
+	
+	/**
+	 * Constant that represents a comma.
+	 */
+	public static final String COMMA = ",";
+	
+	/**
+	 * Constant that represents a pipe.
+	 */
+	public static final String PIPE = "|";
 
 }

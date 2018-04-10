@@ -20,6 +20,7 @@ public abstract class Hardware {
 	
 	/**
 	 * Class constructor specifying the attributes
+	 * 
 	 * @param brand of the Hardware
 	 * @param price of the Hardware
 	 * @param warranty of the Hardware
@@ -46,9 +47,9 @@ public abstract class Hardware {
 	}
 
 	/**
-	 * Gets the last id.
+	 * Gets the id.
 	 * 
-	 * @return the last id of Long type.
+	 * @return the id of Long type.
 	 */
 	public Long getId() {
 		return this.id;
@@ -64,9 +65,9 @@ public abstract class Hardware {
 	}
 
 	/**
-	 * Gets the last brand.
+	 * Gets the brand.
 	 * 
-	 * @return the last brand of String type.
+	 * @return the brand of String type.
 	 */
 	public String getBrand() {
 		return this.brand;
@@ -82,9 +83,9 @@ public abstract class Hardware {
 	}
 
 	/**
-	 * Gets the last price.
+	 * Gets the price.
 	 * 
-	 * @return the last price of Double type.
+	 * @return the price of Double type.
 	 */
 	public Double getPrice() {
 		return this.price;
@@ -100,9 +101,9 @@ public abstract class Hardware {
 	}
 
 	/**
-	 * Gets the last warranty.
+	 * Gets the warranty.
 	 * 
-	 * @return the last warranty of Integer type.
+	 * @return the warranty of Integer type.
 	 */
 	public Integer getWarranty() {
 		return this.warranty;
@@ -118,9 +119,9 @@ public abstract class Hardware {
 	}
 
 	/**
-	 * Gets the last modification date.
+	 * Gets the modification date.
 	 * 
-	 * @return the last modification date of Date type.
+	 * @return the modificationDate of Date type.
 	 */
 	public Date getModificationDate() {
 		return this.modificationDate;

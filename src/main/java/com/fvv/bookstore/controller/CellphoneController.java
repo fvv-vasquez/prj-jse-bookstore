@@ -58,7 +58,7 @@ public interface CellphoneController {
 	 * @param id of Long type.
 	 * @return a Cellphone.
 	 * @throws ControllerException when a problem in controller happens.
-	 * @throws HardwareValidationException when a cellphone is not found.
+	 * @throws HardwareNotFoundException when a cellphone is not found.
 	 */
 	Cellphone findCellphone(final Long id) throws HardwareNotFoundException, ControllerException;
 }

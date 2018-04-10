@@ -19,6 +19,7 @@ public class Laptop extends Hardware implements Serializable {
 	
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
+	 * 
 	 * @param brand of the Laptop
 	 * @param price of the Laptop
 	 * @param warranty of the Laptop
@@ -50,9 +51,9 @@ public class Laptop extends Hardware implements Serializable {
 	}
 
 	/**
-	 * Gets the last RAM size in GB.
+	 * Gets the RAM size in GB.
 	 * 
-	 * @return the last ramSize of Integer type.
+	 * @return the ramSize of Integer type.
 	 */
 	public Integer getRamSize() {
 		return this.ramSize;
@@ -68,9 +69,9 @@ public class Laptop extends Hardware implements Serializable {
 	}
 
 	/**
-	 * Gets the last HD size.
+	 * Gets the HD size.
 	 * 
-	 * @return the last hdSize of Double type.
+	 * @return the hdSize of Double type.
 	 */
 	public Double getHdSize() {
 		return this.hdSize;
@@ -86,9 +87,9 @@ public class Laptop extends Hardware implements Serializable {
 	}
 
 	/**
-	 * Gets the last processor.
+	 * Gets the processor.
 	 * 
-	 * @return the last processor of String type.
+	 * @return the processor of String type.
 	 */
 	public String getProcessor() {
 		return this.processor;

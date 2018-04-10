@@ -2,8 +2,7 @@
 SQLyog Enterprise Trial - MySQL GUI v7.11 
 MySQL - 5.7.21-log : Database - bookstore_db
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -32,7 +31,7 @@ CREATE TABLE `tb_book` (
   `book_genre` varchar(255) NOT NULL,
   `book_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_cellphone` */
 
@@ -47,7 +46,22 @@ CREATE TABLE `tb_cellphone` (
   `cel_camera_pixels` int(11) NOT NULL,
   `cel_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `tb_customer` */
+
+DROP TABLE IF EXISTS `tb_customer`;
+
+CREATE TABLE `tb_customer` (
+  `cus_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cus_name` varchar(255) NOT NULL,
+  `cus_email` varchar(255) NOT NULL,
+  `cus_phone` varchar(255) NOT NULL,
+  `cus_cpf` varchar(255) NOT NULL,
+  `cus_prod_pref` varchar(255) DEFAULT NULL,
+  `cus_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cus_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_dvd` */
 
@@ -65,7 +79,7 @@ CREATE TABLE `tb_dvd` (
   `dvd_show_artist` varchar(255) DEFAULT NULL,
   `dvd_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`dvd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_laptop` */
 
@@ -81,7 +95,7 @@ CREATE TABLE `tb_laptop` (
   `pc_processor` varchar(255) NOT NULL,
   `pc_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`pc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_magazine` */
 
@@ -97,7 +111,7 @@ CREATE TABLE `tb_magazine` (
   `mag_price` double NOT NULL,
   `mag_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`mag_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
