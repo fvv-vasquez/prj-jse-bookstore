@@ -1,6 +1,7 @@
 package com.fvv.bookstore.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,9 +21,9 @@ public final class StringUtil {
 	 * @return a String of products' preference 
 	 */
 	public static String convertListToString(final List<String> listProducts) {
-		String preferences = "";
+		StringBuilder preferences = new StringBuilder();
 		for(String pref : listProducts) {
-			preferences += pref + Constants.PIPE;
+			preferences.append(pref).append(Constants.PIPE);
 		}
 		return preferences.substring(0, preferences.length()-1);
 	}
@@ -35,11 +36,7 @@ public final class StringUtil {
 	 * @return a List of products' preference
 	 */
 	public static List<String> convertStringToList(final String listProducts, final String token) {
-		List<String> preferences = new ArrayList<>();
 		String[]products = listProducts.split(token);
-		for(String pref : products) {
-			preferences.add(pref);
-		}
-		return preferences;
+		return new ArrayList<>(Arrays.asList(products));
 	}
 }

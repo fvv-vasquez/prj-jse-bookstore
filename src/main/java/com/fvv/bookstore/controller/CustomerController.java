@@ -59,7 +59,7 @@ public interface CustomerController {
 	 * @param id of Long type.
 	 * @return a Customer.
 	 * @throws ControllerException when a problem in controller happens.
-	 * @throws PersonValidationException when a customer is not found.
+	 * @throws PersonNotFoundException when a customer is not found.
 	 */
 	Customer findCustomer(final Long id) throws PersonNotFoundException, ControllerException;
 }

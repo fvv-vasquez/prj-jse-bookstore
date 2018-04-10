@@ -58,7 +58,7 @@ public interface LaptopController {
 	 * @param id of Long type.
 	 * @return a Laptop.
 	 * @throws ControllerException when a problem in controller happens.
-	 * @throws HardwareValidationException when a laptop is not found.
+	 * @throws HardwareNotFoundException when a laptop is not found.
 	 */
 	Laptop findLaptop(final Long id) throws HardwareNotFoundException, ControllerException;
 }
