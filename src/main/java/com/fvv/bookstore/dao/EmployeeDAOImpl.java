@@ -79,8 +79,21 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	 */
 	@Override
 	public void updateEmployee(final Employee employee) throws DaoException {
-		// TODO Auto-generated method stub
-
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.EMPLOYEE_UPDATE.getQuery())
+		) {	
+			ps.setString(1, employee.getName());
+			ps.setString(2, employee.getEmail());
+			ps.setString(3, employee.getPhone());
+			ps.setString(4, employee.getCpf());
+			ps.setString(5, employee.getPosition());
+			ps.setDouble(6, employee.getSalary());
+			ps.setLong(7, employee.getId());
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update a employee", e);
+		} 
 	}
 
 	/**
@@ -97,8 +110,33 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	 */
 	@Override
 	public Employee findEmployee(final Long id) throws PersonNotFoundException, DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		Employee employee = new Employee();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(
+						SqlQueryEnum.EMPLOYEE_SELECT_ID.getQuery())
+		) {	
+			ps.setLong(1, id);
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new PersonNotFoundException("Employee with ID " + id + " not found");
+				} else {
+					do {
+						employee.setId(rs.getLong("emp_id"));
+						employee.setName(rs.getString("emp_name"));
+						employee.setEmail(rs.getString("emp_email"));
+						employee.setPhone(rs.getString("emp_phone"));
+						employee.setCpf(rs.getString("emp_cpf"));
+						employee.setPosition(rs.getString("emp_position"));
+						employee.setSalary(rs.getDouble("emp_salary"));
+						employee.setModificationDate(new Date(rs.getTimestamp(
+								"emp_modification_date").getTime()));
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a employee", e);
+		} 
+		return employee;
 	}
-
 }

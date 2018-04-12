@@ -106,7 +106,15 @@ public enum SqlQueryEnum {
 	EMPLOYEE_INSERT("INSERT INTO tb_employee (emp_name, emp_email, emp_phone, emp_cpf, "
 			+ "emp_position, emp_salary, emp_modification_date) VALUES (?, ?, ?, ?, ?, ?, now())"),
 	
-	EMPLOYEE_SELECT_ALL("SELECT * FROM tb_employee");
+	EMPLOYEE_SELECT_ALL("SELECT * FROM tb_employee"),
+	
+	EMPLOYEE_UPDATE("UPDATE tb_employee SET emp_name = ?, emp_email = ?, emp_phone = ?, "
+			+ "emp_cpf = ?, emp_position = ?, emp_salary = ?, emp_modification_date = now() "
+			+ "WHERE emp_id = ?"),
+	
+	EMPLOYEE_DELETE("DELETE FROM tb_employee WHERE emp_id = ?"),
+	
+	EMPLOYEE_SELECT_ID("SELECT * FROM tb_employee WHERE emp_id = ?");
 	
 	private final String query;
 	

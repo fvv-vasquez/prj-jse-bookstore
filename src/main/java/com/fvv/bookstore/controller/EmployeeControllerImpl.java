@@ -62,8 +62,12 @@ public class EmployeeControllerImpl implements EmployeeController {
 	@Override
 	public void updateEmployee(final Employee employee) 
 			throws PersonValidationException, ControllerException {
-		// TODO Auto-generated method stub
-
+		try {
+			this.validateEmployee(employee);
+			this.employeeDao.updateEmployee(employee);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to update a employee", e);
+		}
 	}
 
 	/**
@@ -81,8 +85,11 @@ public class EmployeeControllerImpl implements EmployeeController {
 	@Override
 	public Employee findEmployee(final Long id) 
 			throws PersonNotFoundException, ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.employeeDao.findEmployee(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a employee", e);
+		}
 	}
 
 	/**

@@ -401,9 +401,9 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.addEmployee();
 					break;
-				/*case '2' : this.updateEmployee();
+				case '2' : this.updateEmployee();
 					break;
-				case '3' : this.removeEmployee();
+					/*case '3' : this.removeEmployee();
 					break;*/
 				case '4' : this.listEmployees();
 					break;
@@ -595,6 +595,13 @@ public class Menu {
 	 */
 	private void addEmployee() {
 		this.employeeView.addEmployee();
+	}
+	
+	/**
+	 * Update a employee by the menu.
+	 */
+	private void updateEmployee() {
+		this.employeeView.updateEmployee();
 	}
 	
 	/**
