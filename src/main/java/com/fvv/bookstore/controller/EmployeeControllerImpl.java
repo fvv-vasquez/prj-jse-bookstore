@@ -75,8 +75,11 @@ public class EmployeeControllerImpl implements EmployeeController {
 	 */
 	@Override
 	public void removeEmployee(final Long id) throws ControllerException {
-		// TODO Auto-generated method stub
-
+		try {
+			this.employeeDao.removeEmployee(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to delete a employee", e);
+		}
 	}
 
 	/**

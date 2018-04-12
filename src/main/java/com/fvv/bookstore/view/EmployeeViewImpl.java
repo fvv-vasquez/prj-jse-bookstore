@@ -100,8 +100,21 @@ public class EmployeeViewImpl implements EmployeeView {
 	 */
 	@Override
 	public void removeEmployee() {
-		// TODO Auto-generated method stub
-
+		try {
+			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
+					"Insert the ID to delete")));
+			this.employeeController.findEmployee(idDelete);
+			this.employeeController.removeEmployee(idDelete);
+			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (PersonNotFoundException | ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private Employee createEmployeeFromInput(final boolean isUpdate) 

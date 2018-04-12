@@ -403,8 +403,8 @@ public class Menu {
 					break;
 				case '2' : this.updateEmployee();
 					break;
-					/*case '3' : this.removeEmployee();
-					break;*/
+				case '3' : this.removeEmployee();
+					break;
 				case '4' : this.listEmployees();
 					break;
 				case '0' : this.createSubMenuIndividuals();
@@ -602,6 +602,13 @@ public class Menu {
 	 */
 	private void updateEmployee() {
 		this.employeeView.updateEmployee();
+	}
+	
+	/**
+	 * Remove a employee by the menu.
+	 */
+	private void removeEmployee() {
+		this.employeeView.removeEmployee();
 	}
 	
 	/**

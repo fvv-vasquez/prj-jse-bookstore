@@ -101,8 +101,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	 */
 	@Override
 	public void removeEmployee(final Long id) throws DaoException {
-		// TODO Auto-generated method stub
-
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.EMPLOYEE_DELETE.getQuery())
+		) {	
+			ps.setLong(1, id);
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to delete a employee", e);
+		}
 	}
 
 	/**
