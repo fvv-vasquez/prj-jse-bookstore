@@ -43,7 +43,7 @@ public class Customer extends Person implements Serializable {
 	 * 
 	 * @param prodPref of List type.
 	 */
-	public void setProdPref(List<String> prodPref) {
+	public void setProdPref(final List<String> prodPref) {
 		this.prodPref = prodPref;
 	}
 

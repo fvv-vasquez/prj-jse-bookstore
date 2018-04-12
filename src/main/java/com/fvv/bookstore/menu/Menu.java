@@ -11,6 +11,8 @@ import com.fvv.bookstore.view.CustomerView;
 import com.fvv.bookstore.view.CustomerViewImpl;
 import com.fvv.bookstore.view.DvdView;
 import com.fvv.bookstore.view.DvdViewImpl;
+import com.fvv.bookstore.view.EmployeeView;
+import com.fvv.bookstore.view.EmployeeViewImpl;
 import com.fvv.bookstore.view.LaptopView;
 import com.fvv.bookstore.view.LaptopViewImpl;
 import com.fvv.bookstore.view.MagazineView;
@@ -32,6 +34,7 @@ public class Menu {
 	private final CellphoneView cellphoneView;
 	private final LaptopView laptopView;
 	private final CustomerView customerView;
+	private final EmployeeView employeeView;
 	
 	/**
 	 * Class constructor instantiating a new View objects.
@@ -43,6 +46,7 @@ public class Menu {
 		this.cellphoneView = new CellphoneViewImpl();
 		this.laptopView = new LaptopViewImpl();
 		this.customerView = new CustomerViewImpl();
+		this.employeeView = new EmployeeViewImpl();
 	}
 	
 	/**
@@ -337,6 +341,8 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuCustomer();
 					break;
+				case '2' : this.createSubMenuEmployee();
+					break;
 				case '0' : this.createMenu();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -369,6 +375,38 @@ public class Menu {
 					break;
 				case '4' : this.listCustomers();
 					break;
+				case '0' : this.createSubMenuIndividuals();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and appear the customer sub menu.
+	 */
+	private void createSubMenuEmployee() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Employee Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Add a employee" + Constants.LINE_SEPARATOR +
+					"2 - Update a employee" + Constants.LINE_SEPARATOR +
+					"3 - Delete a employee" + Constants.LINE_SEPARATOR +
+					"4 - List the employees" + Constants.LINE_SEPARATOR +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.addEmployee();
+					break;
+				/*case '2' : this.updateEmployee();
+					break;
+				case '3' : this.removeEmployee();
+					break;
+				case '4' : this.listEmployees();
+					break;*/
 				case '0' : this.createSubMenuIndividuals();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -550,6 +588,13 @@ public class Menu {
 	 */
 	private void listCustomers() {
 		this.customerView.listCustomers();
+	}
+	
+	/**
+	 * Add a employee by the menu.
+	 */
+	private void addEmployee() {
+		this.employeeView.addEmployee();
 	}
 	
 	/**

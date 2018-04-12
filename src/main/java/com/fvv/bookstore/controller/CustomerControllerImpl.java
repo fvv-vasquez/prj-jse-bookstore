@@ -34,7 +34,7 @@ public class CustomerControllerImpl implements CustomerController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void addCustomer(Customer customer) throws 
+	public void addCustomer(final Customer customer) throws 
 		PersonValidationException, ControllerException {
 		try {
 			this.validateCustomer(customer);
@@ -60,7 +60,7 @@ public class CustomerControllerImpl implements CustomerController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateCustomer(Customer customer) throws 
+	public void updateCustomer(final Customer customer) throws 
 		PersonValidationException, ControllerException {
 		try {
 			this.validateCustomer(customer);
@@ -74,7 +74,7 @@ public class CustomerControllerImpl implements CustomerController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void removeCustomer(Long id) throws ControllerException {
+	public void removeCustomer(final Long id) throws ControllerException {
 		try {
 			this.customerDao.removeCustomer(id);
 		} catch (DaoException e) {
@@ -86,7 +86,7 @@ public class CustomerControllerImpl implements CustomerController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Customer findCustomer(Long id) throws PersonNotFoundException, ControllerException {
+	public Customer findCustomer(final Long id) throws PersonNotFoundException, ControllerException {
 		try {
 			return this.customerDao.findCustomer(id);
 		} catch (DaoException e) {

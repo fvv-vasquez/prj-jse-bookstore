@@ -61,7 +61,7 @@ CREATE TABLE `tb_customer` (
   `cus_prod_pref` varchar(255) DEFAULT NULL,
   `cus_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`cus_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_dvd` */
 
@@ -80,6 +80,21 @@ CREATE TABLE `tb_dvd` (
   `dvd_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`dvd_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `tb_employee` */
+
+DROP TABLE IF EXISTS `tb_employee`;
+
+CREATE TABLE `tb_employee` (
+  `emp_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `emp_name` varchar(255) NOT NULL,
+  `emp_email` varchar(255) NOT NULL,
+  `emp_phone` varchar(255) NOT NULL,
+  `emp_cpf` varchar(255) NOT NULL,
+  `emp_position` varchar(255) NOT NULL,
+  `emp_salary` double NOT NULL,
+  PRIMARY KEY (`emp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_laptop` */
 
