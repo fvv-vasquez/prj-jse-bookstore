@@ -404,9 +404,9 @@ public class Menu {
 				/*case '2' : this.updateEmployee();
 					break;
 				case '3' : this.removeEmployee();
-					break;
-				case '4' : this.listEmployees();
 					break;*/
+				case '4' : this.listEmployees();
+					break;
 				case '0' : this.createSubMenuIndividuals();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -595,6 +595,13 @@ public class Menu {
 	 */
 	private void addEmployee() {
 		this.employeeView.addEmployee();
+	}
+	
+	/**
+	 * List all the employees by the menu.
+	 */
+	private void listEmployees() {
+		this.employeeView.listEmployees();
 	}
 	
 	/**

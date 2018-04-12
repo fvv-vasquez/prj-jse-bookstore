@@ -1,5 +1,7 @@
 package com.fvv.bookstore.view;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.bean.Employee;
@@ -54,8 +56,23 @@ public class EmployeeViewImpl implements EmployeeView {
 	 */
 	@Override
 	public void listEmployees() {
-		// TODO Auto-generated method stub
-
+		try {
+			StringBuilder sb = new StringBuilder();
+			List<Employee> employees = this.employeeController.listEmployees();
+			if(employees != null && !employees.isEmpty()) {
+				for(Employee c : employees) {
+					sb.append(c).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Employees", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**

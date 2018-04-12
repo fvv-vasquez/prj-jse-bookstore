@@ -104,7 +104,9 @@ public enum SqlQueryEnum {
 	CUSTOMER_SELECT_ID("SELECT * FROM tb_customer WHERE cus_id = ?"),
 	
 	EMPLOYEE_INSERT("INSERT INTO tb_employee (emp_name, emp_email, emp_phone, emp_cpf, "
-			+ "emp_position, emp_salary, emp_modification_date) VALUES (?, ?, ?, ?, ?, ?, now())");
+			+ "emp_position, emp_salary, emp_modification_date) VALUES (?, ?, ?, ?, ?, ?, now())"),
+	
+	EMPLOYEE_SELECT_ALL("SELECT * FROM tb_employee");
 	
 	private final String query;
 	

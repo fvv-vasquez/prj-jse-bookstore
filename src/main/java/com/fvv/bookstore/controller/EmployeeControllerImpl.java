@@ -49,8 +49,11 @@ public class EmployeeControllerImpl implements EmployeeController {
 	 */
 	@Override
 	public List<Employee> listEmployees() throws ControllerException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.employeeDao.listEmployees();
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
 	}
 
 	/**

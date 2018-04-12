@@ -1,8 +1,11 @@
 package com.fvv.bookstore.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
@@ -46,8 +49,29 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	 */
 	@Override
 	public List<Employee> listEmployees() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> employees = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.EMPLOYEE_SELECT_ALL.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {	
+			while(rs.next()) {
+				Employee employee = new Employee();
+				employee.setId(rs.getLong("emp_id"));
+				employee.setName(rs.getString("emp_name"));
+				employee.setEmail(rs.getString("emp_email"));
+				employee.setPhone(rs.getString("emp_phone"));
+				employee.setCpf(rs.getString("emp_cpf"));
+				employee.setPosition(rs.getString("emp_position"));
+				employee.setSalary(rs.getDouble("emp_salary"));
+				employee.setModificationDate(new Date(rs.getTimestamp(
+						"emp_modification_date").getTime()));
+				employees.add(employee);
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return employees;
 	}
 
 	/**
