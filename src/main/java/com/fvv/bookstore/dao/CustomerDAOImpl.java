@@ -29,7 +29,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void addCustomer(Customer customer) throws DaoException {		
+	public void addCustomer(final Customer customer) throws DaoException {		
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CUSTOMER_INSERT.getQuery())
@@ -79,7 +79,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateCustomer(Customer customer) throws DaoException {
+	public void updateCustomer(final Customer customer) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CUSTOMER_UPDATE.getQuery())
@@ -100,7 +100,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void removeCustomer(Long id) throws DaoException {
+	public void removeCustomer(final Long id) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CUSTOMER_DELETE.getQuery())
@@ -116,7 +116,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Customer findCustomer(Long id) throws PersonNotFoundException, DaoException {
+	public Customer findCustomer(final Long id) throws PersonNotFoundException, DaoException {
 		Customer customer = new Customer();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 

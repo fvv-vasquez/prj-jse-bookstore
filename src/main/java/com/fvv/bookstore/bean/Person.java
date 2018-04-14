@@ -48,7 +48,7 @@ public abstract class Person {
 	 * 
 	 * @param id of Long type.
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -66,7 +66,7 @@ public abstract class Person {
 	 * 
 	 * @param name of String type.
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -84,7 +84,7 @@ public abstract class Person {
 	 * 
 	 * @param email of String type.
 	 */
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
@@ -102,7 +102,7 @@ public abstract class Person {
 	 * 
 	 * @param phone of String type.
 	 */
-	public void setPhone(String phone) {
+	public void setPhone(final String phone) {
 		this.phone = phone;
 	}
 
@@ -120,7 +120,7 @@ public abstract class Person {
 	 * 
 	 * @param cpf of String type.
 	 */
-	public void setCpf(String cpf) {
+	public void setCpf(final String cpf) {
 		this.cpf = cpf;
 	}
 
