@@ -10,61 +10,44 @@ import java.util.Date;
  * @version 1.0 	
  *
  */
-public abstract class Dvd {
+public abstract class Dvd extends Product {
 	
-	private Long id;
 	private String title;
 	private Integer totalDuration;
-	private Double price;
 	private String genre;
 	private Integer releaseYear;
 	private Integer code;
-	private Date modificationDate;
 	
 	/**
-	 * Class constructor specifying the attributes
+	 * Class constructor specifying the attributes and with super from the Class Product
 	 * 
+	 * @param id of the DVD
+	 * @param unitPrice of the DVD
+	 * @param stockQty of the DVD
+	 * @param modificationDate of the DVD
 	 * @param title of the DVD
 	 * @param totalDuration of the DVD
-	 * @param price of the DVD
 	 * @param genre of the DVD
 	 * @param releaseYear of the DVD
 	 * @param code of the DVD
 	 */
-	public Dvd(final String title, final Integer totalDuration, final Double price, 
-			final String genre, final Integer releaseYear, final Integer code) {
+	public Dvd(final Long id, final Double unitPrice, final Integer stockQty, final Date 
+			modificationDate, final String title, final Integer totalDuration, final String genre, 
+			final Integer releaseYear, final Integer code) {
+		super(id, unitPrice, stockQty, modificationDate);
 		this.title = title;
 		this.totalDuration = totalDuration;
-		this.price = price;
 		this.genre = genre;
 		this.releaseYear = releaseYear;
 		this.code = code;
 	}
-	
+
 	/**
 	 * Class constructor
 	 */
 	public Dvd() {
 	}
 
-	/**
-	 * Sets the id.
-	 * 
-	 * @param id of Long type.
-	 */
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * Gets the id.
-	 * 
-	 * @return the id of Long type.
-	 */
-	public Long getId() {
-		return this.id;
-	}
-	
 	/**
 	 * Sets the title.
 	 * 
@@ -99,24 +82,6 @@ public abstract class Dvd {
 	 */
 	public Integer getTotalDuration() {
 		return this.totalDuration;
-	}
-
-	/**
-	 * Sets the price.
-	 * 
-	 * @param price of Double type.
-	 */
-	public void setPrice(final Double price) {
-		this.price = price;
-	}
-
-	/**
-	 * Gets the price.
-	 * 
-	 * @return the price of Double type.
-	 */
-	public Double getPrice() {
-		return this.price;
 	}
 
 	/**
@@ -174,29 +139,12 @@ public abstract class Dvd {
 	}
 	
 	/**
-	 * Sets the modification date.
-	 * 
-	 * @param modificationDate of Date type.
-	 */
-	public void setModificationDate(final Date modificationDate) {
-		this.modificationDate = modificationDate;
-	}
-
-	/**
-	 * Gets the modification date.
-	 * 
-	 * @return the modificationDate of Date type.
-	 */
-	public Date getModificationDate() {
-		return this.modificationDate;
-	}
-	
-	/**
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "DVD ID: " + getId() + " - Title: " + getTitle() + ", Price: " + getPrice() + 
-				", Genre: " + getGenre() + ", Release Year: " + getReleaseYear();	
+		return "DVD ID: " + getId() + " - Title: " + getTitle() + ", Genre: " + getGenre() + 
+				", Release Year: " + getReleaseYear() + ", Unit Price: " + getUnitPrice() +
+				", Stock Quantity: " + getStockQty();
 	}
 }

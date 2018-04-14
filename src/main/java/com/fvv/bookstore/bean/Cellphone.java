@@ -1,6 +1,7 @@
 package com.fvv.bookstore.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Bean class for a Cellphone object 
@@ -15,19 +16,23 @@ public class Cellphone extends Hardware implements Serializable {
 	private static final long serialVersionUID = 1L;	
 	private Integer storageMemory;
 	private Integer camPixels;
-		
+
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
 	 * 
+	 * @param id of the Cellphone
+	 * @param unitPrice of the Cellphone
+	 * @param stockQty of the Cellphone
+	 * @param modificationDate of the Cellphone
 	 * @param brand of the Cellphone
-	 * @param price of the Cellphone
 	 * @param warranty of the Cellphone
 	 * @param storageMemory of the Cellphone
 	 * @param camPixels of the Cellphone
 	 */
-	public Cellphone(final String brand, final Double price, final Integer warranty, 
+	public Cellphone(final Long id, final Double unitPrice, final Integer stockQty, 
+			final Date modificationDate, final String brand, final Integer warranty, 
 			final Integer storageMemory, final Integer camPixels) {
-		super(brand, price, warranty);
+		super(id, unitPrice, stockQty, modificationDate, brand, warranty);
 		this.storageMemory = storageMemory;
 		this.camPixels = camPixels;
 	}
@@ -79,8 +84,8 @@ public class Cellphone extends Hardware implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Cellphone ID: " + getId() + " - Brand: " + getBrand() + ", Price: " + getPrice() + 
-				", Warranty: " + getWarranty() + " months, Storage Memory: " + getStorageMemory() 
-				+ "GB";
+		return "Cellphone ID: " + getId() + " - Brand: " + getBrand() + ", Warranty: " + 
+				getWarranty() + " months, Storage Memory: " + getStorageMemory() +
+				" GB, Unit Price: " + getUnitPrice() + ", Stock Quantity: " + getStockQty();
 	}
 }
