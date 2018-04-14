@@ -33,10 +33,11 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_INSERT.getQuery())
 		) {	
 			ps.setString(1, cellphone.getBrand());
-			ps.setDouble(2, cellphone.getPrice());
+			ps.setDouble(2, cellphone.getUnitPrice());
 			ps.setInt(3, cellphone.getWarranty());
 			ps.setInt(4, cellphone.getStorageMemory());
-			ps.setInt(5, cellphone.getCamPixels());			
+			ps.setInt(5, cellphone.getCamPixels());		
+			ps.setInt(6, cellphone.getStockQty());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a cellphone", e);
@@ -58,10 +59,11 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 				Cellphone cellphone = new Cellphone();
 				cellphone.setId(rs.getLong("cel_id"));
 				cellphone.setBrand(rs.getString("cel_brand"));
-				cellphone.setPrice(rs.getDouble("cel_price"));
+				cellphone.setUnitPrice(rs.getDouble("cel_unit_price"));
 				cellphone.setWarranty(rs.getInt("cel_warranty"));
 				cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
 				cellphone.setCamPixels(rs.getInt("cel_camera_pixels"));
+				cellphone.setStockQty(rs.getInt("cel_stock_qty"));
 				cellphone.setModificationDate(new Date(rs.getTimestamp(
 						"cel_modification_date").getTime()));
 				cellphones.add(cellphone);
@@ -82,11 +84,12 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_UPDATE.getQuery())
 		) {	
 			ps.setString(1, cellphone.getBrand());
-			ps.setDouble(2, cellphone.getPrice());
+			ps.setDouble(2, cellphone.getUnitPrice());
 			ps.setInt(3, cellphone.getWarranty());
 			ps.setInt(4, cellphone.getStorageMemory());
 			ps.setInt(5, cellphone.getCamPixels());
-			ps.setLong(6, cellphone.getId());
+			ps.setInt(6, cellphone.getStockQty());
+			ps.setLong(7, cellphone.getId());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to update a cellphone", e);
@@ -128,10 +131,11 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 					do {
 						cellphone.setId(rs.getLong("cel_id"));
 						cellphone.setBrand(rs.getString("cel_brand"));
-						cellphone.setPrice(rs.getDouble("cel_price"));
+						cellphone.setUnitPrice(rs.getDouble("cel_unit_price"));
 						cellphone.setWarranty(rs.getInt("cel_warranty"));
 						cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
 						cellphone.setCamPixels(rs.getInt("cel_camera_pixels"));
+						cellphone.setStockQty(rs.getInt("cel_stock_qty"));
 						cellphone.setModificationDate(new Date(rs.getTimestamp(
 								"cel_modification_date").getTime()));
 					} while (rs.next());

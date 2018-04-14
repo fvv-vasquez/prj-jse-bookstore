@@ -36,10 +36,11 @@ public class BookDAOImpl implements BookDAO {
 			ps.setInt(2, book.getPublicationYear());
 			ps.setInt(3, book.getEditionNumber());
 			ps.setString(4, book.getAuthor());
-			ps.setDouble(5, book.getPrice());
+			ps.setDouble(5, book.getUnitPrice());
 			ps.setInt(6, book.getIsbn());
 			ps.setString(7, book.getPublisher());
 			ps.setString(8, book.getGenre());
+			ps.setInt(9, book.getStockQty());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a book", e);
@@ -64,10 +65,11 @@ public class BookDAOImpl implements BookDAO {
 				book.setPublicationYear(rs.getInt("book_publication_year"));
 				book.setEditionNumber(rs.getInt("book_edition_number"));
 				book.setAuthor(rs.getString("book_author"));
-				book.setPrice(rs.getDouble("book_price"));
+				book.setUnitPrice(rs.getDouble("book_unit_price"));
 				book.setIsbn(rs.getInt("book_isbn"));
 				book.setPublisher(rs.getString("book_publisher"));
 				book.setGenre(rs.getString("book_genre"));
+				book.setStockQty(rs.getInt("book_stock_qty"));
 				book.setModificationDate(new Date(rs.getTimestamp(
 						"book_modification_date").getTime()));
 				books.add(book);
@@ -91,11 +93,12 @@ public class BookDAOImpl implements BookDAO {
 			ps.setInt(2, book.getPublicationYear());
 			ps.setInt(3, book.getEditionNumber());
 			ps.setString(4, book.getAuthor());
-			ps.setDouble(5, book.getPrice());
+			ps.setDouble(5, book.getUnitPrice());
 			ps.setInt(6, book.getIsbn());
 			ps.setString(7, book.getPublisher());
 			ps.setString(8, book.getGenre());
-			ps.setLong(9, book.getId());
+			ps.setInt(9, book.getStockQty());
+			ps.setLong(10, book.getId());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to update a book", e);
@@ -139,10 +142,11 @@ public class BookDAOImpl implements BookDAO {
 						book.setPublicationYear(rs.getInt("book_publication_year"));
 						book.setEditionNumber(rs.getInt("book_edition_number"));
 						book.setAuthor(rs.getString("book_author"));
-						book.setPrice(rs.getDouble("book_price"));
+						book.setUnitPrice(rs.getDouble("book_unit_price"));
 						book.setIsbn(rs.getInt("book_isbn"));
 						book.setPublisher(rs.getString("book_publisher"));
 						book.setGenre(rs.getString("book_genre"));
+						book.setStockQty(rs.getInt("book_stock_qty"));
 						book.setModificationDate(new Date(rs.getTimestamp(
 								"book_modification_date").getTime()));
 					} while (rs.next());

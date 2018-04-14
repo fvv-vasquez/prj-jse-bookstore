@@ -33,11 +33,12 @@ public class LaptopDAOImpl implements LaptopDAO {
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_INSERT.getQuery())
 		) {	
 			ps.setString(1, laptop.getBrand());
-			ps.setDouble(2, laptop.getPrice());
+			ps.setDouble(2, laptop.getUnitPrice());
 			ps.setInt(3, laptop.getWarranty());
 			ps.setInt(4, laptop.getRamSize());
 			ps.setDouble(5, laptop.getHdSize());
 			ps.setString(6, laptop.getProcessor());
+			ps.setInt(7, laptop.getStockQty());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a laptop", e);
@@ -59,11 +60,12 @@ public class LaptopDAOImpl implements LaptopDAO {
 				Laptop laptop = new Laptop();
 				laptop.setId(rs.getLong("pc_id"));
 				laptop.setBrand(rs.getString("pc_brand"));
-				laptop.setPrice(rs.getDouble("pc_price"));
+				laptop.setUnitPrice(rs.getDouble("pc_unit_price"));
 				laptop.setWarranty(rs.getInt("pc_warranty"));
 				laptop.setRamSize(rs.getInt("pc_ram_size"));
 				laptop.setHdSize(rs.getDouble("pc_hd_size"));
 				laptop.setProcessor(rs.getString("pc_processor"));
+				laptop.setStockQty(rs.getInt("pc_stock_qty"));
 				laptop.setModificationDate(new Date(rs.getTimestamp(
 						"pc_modification_date").getTime()));
 				laptops.add(laptop);
@@ -84,12 +86,13 @@ public class LaptopDAOImpl implements LaptopDAO {
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_UPDATE.getQuery())
 		) {	
 			ps.setString(1, laptop.getBrand());
-			ps.setDouble(2, laptop.getPrice());
+			ps.setDouble(2, laptop.getUnitPrice());
 			ps.setInt(3, laptop.getWarranty());
 			ps.setInt(4, laptop.getRamSize());
 			ps.setDouble(5, laptop.getHdSize());
 			ps.setString(6, laptop.getProcessor());
-			ps.setLong(7, laptop.getId());
+			ps.setInt(7, laptop.getStockQty());
+			ps.setLong(8, laptop.getId());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to update a laptop", e);
@@ -131,11 +134,12 @@ public class LaptopDAOImpl implements LaptopDAO {
 					do {
 						laptop.setId(rs.getLong("pc_id"));
 						laptop.setBrand(rs.getString("pc_brand"));
-						laptop.setPrice(rs.getDouble("pc_price"));
+						laptop.setUnitPrice(rs.getDouble("pc_unit_price"));
 						laptop.setWarranty(rs.getInt("pc_warranty"));
 						laptop.setRamSize(rs.getInt("pc_ram_size"));
 						laptop.setHdSize(rs.getDouble("pc_hd_size"));
 						laptop.setProcessor(rs.getString("pc_processor"));
+						laptop.setStockQty(rs.getInt("pc_stock_qty"));
 						laptop.setModificationDate(new Date(rs.getTimestamp(
 								"pc_modification_date").getTime()));
 					} while (rs.next());
@@ -146,5 +150,4 @@ public class LaptopDAOImpl implements LaptopDAO {
 		} 
 		return laptop;
 	}
-
 }

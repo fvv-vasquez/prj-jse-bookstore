@@ -45,11 +45,12 @@ public class DvdDAOImpl implements DvdDAO {
 		) {
 			ps.setString(1, dvd.getTitle());
 			ps.setInt(2, dvd.getTotalDuration());
-			ps.setDouble(3, dvd.getPrice());
+			ps.setDouble(3, dvd.getUnitPrice());
 			ps.setString(4, dvd.getGenre());
 			ps.setInt(5, dvd.getReleaseYear());
 			ps.setInt(6, dvd.getCode());
 			ps.setString(7, person);
+			ps.setInt(8, dvd.getStockQty());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a dvd", e);
@@ -73,11 +74,12 @@ public class DvdDAOImpl implements DvdDAO {
 				showDvd.setId(rs.getLong("dvd_id"));
 				showDvd.setTitle(rs.getString("dvd_title"));
 				showDvd.setTotalDuration(rs.getInt("dvd_total_duration"));
-				showDvd.setPrice(rs.getDouble("dvd_price"));
+				showDvd.setUnitPrice(rs.getDouble("dvd_unit_price"));
 				showDvd.setGenre(rs.getString("dvd_genre"));
 				showDvd.setReleaseYear(rs.getInt("dvd_release_year"));
 				showDvd.setCode(rs.getInt("dvd_code"));
 				showDvd.setArtist(rs.getString("dvd_show_artist"));
+				showDvd.setStockQty(rs.getInt("dvd_stock_qty"));
 				showDvd.setModificationDate(new Date(rs.getTimestamp(
 						"dvd_modification_date").getTime()));
 				dvds.add(showDvd);
@@ -105,11 +107,12 @@ public class DvdDAOImpl implements DvdDAO {
 				movieDvd.setId(rs.getLong("dvd_id"));
 				movieDvd.setTitle(rs.getString("dvd_title"));
 				movieDvd.setTotalDuration(rs.getInt("dvd_total_duration"));
-				movieDvd.setPrice(rs.getDouble("dvd_price"));
+				movieDvd.setUnitPrice(rs.getDouble("dvd_unit_price"));
 				movieDvd.setGenre(rs.getString("dvd_genre"));
 				movieDvd.setReleaseYear(rs.getInt("dvd_release_year"));
 				movieDvd.setCode(rs.getInt("dvd_code"));
 				movieDvd.setDirector(rs.getString("dvd_movie_director"));
+				movieDvd.setStockQty(rs.getInt("dvd_stock_qty"));
 				movieDvd.setModificationDate(new Date(rs.getTimestamp(
 						"dvd_modification_date").getTime()));
 				dvds.add(movieDvd);
@@ -140,12 +143,13 @@ public class DvdDAOImpl implements DvdDAO {
 		) {
 			ps.setString(1, dvd.getTitle());
 			ps.setInt(2, dvd.getTotalDuration());
-			ps.setDouble(3, dvd.getPrice());
+			ps.setDouble(3, dvd.getUnitPrice());
 			ps.setString(4, dvd.getGenre());
 			ps.setInt(5, dvd.getReleaseYear());
 			ps.setInt(6, dvd.getCode());
 			ps.setString(7, person);
-			ps.setLong(8, dvd.getId());
+			ps.setInt(8, dvd.getStockQty());
+			ps.setLong(9, dvd.getId());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to update a dvd", e);
@@ -195,10 +199,11 @@ public class DvdDAOImpl implements DvdDAO {
 						}
 						dvd.setTitle(rs.getString("dvd_title"));
 						dvd.setTotalDuration(rs.getInt("dvd_total_duration"));
-						dvd.setPrice(rs.getDouble("dvd_price"));
+						dvd.setUnitPrice(rs.getDouble("dvd_unit_price"));
 						dvd.setGenre(rs.getString("dvd_genre"));
 						dvd.setReleaseYear(rs.getInt("dvd_release_year"));
 						dvd.setCode(rs.getInt("dvd_code"));
+						dvd.setStockQty(rs.getInt("dvd_stock_qty"));
 						dvd.setModificationDate(new Date(rs.getTimestamp(
 								"dvd_modification_date").getTime()));
 					} while (rs.next());
