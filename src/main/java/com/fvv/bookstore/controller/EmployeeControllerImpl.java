@@ -12,7 +12,7 @@ import com.fvv.bookstore.exception.person.PersonValidationException;
 import com.fvv.bookstore.util.Constants;
 
 /**
- * Controller class for a Employee object.
+ * Controller class for an Employee object.
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>
@@ -40,7 +40,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 			this.validateEmployee(employee);
 			this.employeeDao.addEmployee(employee);
 		} catch (DaoException e) {
-			throw new ControllerException("Error to add a employee", e);
+			throw new ControllerException("Error to add an employee", e);
 		}
 	}
 
@@ -66,7 +66,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 			this.validateEmployee(employee);
 			this.employeeDao.updateEmployee(employee);
 		} catch (DaoException e) {
-			throw new ControllerException("Error to update a employee", e);
+			throw new ControllerException("Error to update an employee", e);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 		try {
 			this.employeeDao.removeEmployee(id);
 		} catch (DaoException e) {
-			throw new ControllerException("Error to delete a employee", e);
+			throw new ControllerException("Error to delete an employee", e);
 		}
 	}
 
@@ -91,7 +91,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 		try {
 			return this.employeeDao.findEmployee(id);
 		} catch (DaoException e) {
-			throw new ControllerException("Error to find a employee", e);
+			throw new ControllerException("Error to find an employee", e);
 		}
 	}
 

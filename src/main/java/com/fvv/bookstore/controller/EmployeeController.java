@@ -8,7 +8,7 @@ import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.exception.person.PersonValidationException;
 
 /**
- * Controller interface for a Employee object.
+ * Controller interface for an Employee object.
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>
@@ -18,7 +18,7 @@ import com.fvv.bookstore.exception.person.PersonValidationException;
 public interface EmployeeController {
 
 	/**
-	 * Add a employee using DAO.
+	 * Add an employee using DAO.
 	 * 
 	 * @param employee of Employee type.
 	 * @throws ControllerException when a problem in controller happens.
@@ -36,7 +36,7 @@ public interface EmployeeController {
 	List<Employee> listEmployees() throws ControllerException;
 
 	/**
-	 * Update a employee already added using DAO.
+	 * Update an employee already added using DAO.
 	 * 
 	 * @param employee of Employee type.
 	 * @throws ControllerException when a problem in controller happens.
@@ -46,7 +46,7 @@ public interface EmployeeController {
 		PersonValidationException, ControllerException;
 	
 	/**
-	 * Delete a employee using DAO.
+	 * Delete an employee using DAO.
 	 * 
 	 * @param id of Long type.
 	 * @throws ControllerException when a problem in controller happens.
@@ -54,12 +54,12 @@ public interface EmployeeController {
 	void removeEmployee(final Long id) throws ControllerException;
 	
 	/**
-	 * Search a employee using DAO
+	 * Search an employee using DAO
 	 * 
 	 * @param id of Long type.
-	 * @return a Employee.
+	 * @return an Employee.
 	 * @throws ControllerException when a problem in controller happens.
-	 * @throws PersonNotFoundException when a employee is not found.
+	 * @throws PersonNotFoundException when an employee is not found.
 	 */
 	Employee findEmployee(final Long id) throws PersonNotFoundException, ControllerException;
 }

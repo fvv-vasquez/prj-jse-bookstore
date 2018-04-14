@@ -11,7 +11,7 @@ package com.fvv.bookstore.view;
 public interface EmployeeView {
 
 	/**
-	 * Add a Employee using Controller.
+	 * Add an Employee using Controller.
 	 */
 	void addEmployee();
 	
@@ -21,12 +21,12 @@ public interface EmployeeView {
 	void listEmployees();
 
 	/**
-	 * Update a Employee already added using Controller.
+	 * Update an Employee already added using Controller.
 	 */
 	void updateEmployee();
 	
 	/**
-	 * Delete a Employee using Controller.
+	 * Delete an Employee using Controller.
 	 */
 	void removeEmployee();
 }

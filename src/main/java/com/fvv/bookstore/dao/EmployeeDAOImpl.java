@@ -14,7 +14,7 @@ import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 
 /**
- * DAO Class of a Employee object, with main database operations from CRUD methods.
+ * DAO Class of an Employee object, with main database operations from CRUD methods.
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>
@@ -40,7 +40,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			ps.setDouble(6, employee.getSalary());
 			ps.execute();
 		} catch(SQLException e) {
-			throw new DaoException("Error to add a employee", e);
+			throw new DaoException("Error to add an employee", e);
 		}
 	}
 
@@ -92,7 +92,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			ps.setLong(7, employee.getId());
 			ps.execute();
 		} catch(SQLException e) {
-			throw new DaoException("Error to update a employee", e);
+			throw new DaoException("Error to update an employee", e);
 		} 
 	}
 
@@ -108,7 +108,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			ps.setLong(1, id);
 			ps.execute();
 		} catch(SQLException e) {
-			throw new DaoException("Error to delete a employee", e);
+			throw new DaoException("Error to delete an employee", e);
 		}
 	}
 
@@ -142,7 +142,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				}
 			}
 		} catch(SQLException e) {
-			throw new DaoException("Error to find a employee", e);
+			throw new DaoException("Error to find an employee", e);
 		} 
 		return employee;
 	}

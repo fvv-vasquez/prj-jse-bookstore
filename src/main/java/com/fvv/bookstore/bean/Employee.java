@@ -3,7 +3,7 @@ package com.fvv.bookstore.bean;
 import java.io.Serializable;
 
 /**
- * Bean class for a Employee object
+ * Bean class for an Employee object
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>
@@ -41,7 +41,7 @@ public class Employee extends Person implements Serializable {
 	}
 	
 	/**
-	 * Sets the position of a employee.
+	 * Sets the position of an employee.
 	 * 
 	 * @param position of String type.
 	 */
@@ -59,7 +59,7 @@ public class Employee extends Person implements Serializable {
 	}
 
 	/**
-	 * Sets the salary of a employee.
+	 * Sets the salary of an employee.
 	 * 
 	 * @param salary of Double type.
 	 */

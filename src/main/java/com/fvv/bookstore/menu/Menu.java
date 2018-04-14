@@ -391,9 +391,9 @@ public class Menu {
 			String input = JOptionPane.showInputDialog(
 					null, "Employee Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
 					"Select an option below:" + Constants.LINE_SEPARATOR +
-					"1 - Add a employee" + Constants.LINE_SEPARATOR +
-					"2 - Update a employee" + Constants.LINE_SEPARATOR +
-					"3 - Delete a employee" + Constants.LINE_SEPARATOR +
+					"1 - Add an employee" + Constants.LINE_SEPARATOR +
+					"2 - Update an employee" + Constants.LINE_SEPARATOR +
+					"3 - Delete an employee" + Constants.LINE_SEPARATOR +
 					"4 - List the employees" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
@@ -591,21 +591,21 @@ public class Menu {
 	}
 	
 	/**
-	 * Add a employee by the menu.
+	 * Add an employee by the menu.
 	 */
 	private void addEmployee() {
 		this.employeeView.addEmployee();
 	}
 	
 	/**
-	 * Update a employee by the menu.
+	 * Update an employee by the menu.
 	 */
 	private void updateEmployee() {
 		this.employeeView.updateEmployee();
 	}
 	
 	/**
-	 * Remove a employee by the menu.
+	 * Remove an employee by the menu.
 	 */
 	private void removeEmployee() {
 		this.employeeView.removeEmployee();

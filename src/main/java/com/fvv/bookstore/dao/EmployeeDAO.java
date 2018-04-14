@@ -7,7 +7,7 @@ import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 
 /**
- * DAO Interface of a Employee object, with main database operations from CRUD methods.
+ * DAO Interface of an Employee object, with main database operations from CRUD methods.
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>
@@ -17,7 +17,7 @@ import com.fvv.bookstore.exception.person.PersonNotFoundException;
 public interface EmployeeDAO {
 
 	/**
-	 * Add a employee at the bookstore in the database.
+	 * Add an employee at the bookstore in the database.
 	 * 
 	 * @param employee of Employee type.
 	 * @throws DaoException when a problem in database happens.
@@ -33,7 +33,7 @@ public interface EmployeeDAO {
 	List<Employee> listEmployees() throws DaoException;
 
 	/**
-	 * Update a employee already added in the database.
+	 * Update an employee already added in the database.
 	 * 
 	 * @param employee of Employee type.
 	 * @throws DaoException when a problem in database happens.
@@ -41,7 +41,7 @@ public interface EmployeeDAO {
 	void updateEmployee(final Employee employee) throws DaoException;
 
 	/**
-	 * Delete a employee from the bookstore in the database.
+	 * Delete an employee from the bookstore in the database.
 	 * 
 	 * @param id of Long type.
 	 * @throws DaoException when a problem in database happens.
@@ -49,10 +49,10 @@ public interface EmployeeDAO {
 	void removeEmployee(final Long id) throws DaoException;
 	
 	/**
-	 * Search a employee in the database.
+	 * Search an employee in the database.
 	 * 
 	 * @param id of a Long type.
-	 * @return a Employee.
+	 * @return an Employee.
 	 * @throws PersonNotFoundException when not found a person in the database.
 	 * @throws DaoException when a problem in database happens.
 	 */
