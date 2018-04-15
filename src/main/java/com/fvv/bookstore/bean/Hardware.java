@@ -74,13 +74,4 @@ public abstract class Hardware extends Product {
 	public Integer getWarranty() {
 		return this.warranty;
 	}
-
-	/**
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "ID: " + getId() + " - Brand: " + getBrand() + ", Warranty: " + getWarranty() +
-				", Unit Price: " + getUnitPrice() + ", Stock Quantity: " + getStockQty();
-	}
 }
