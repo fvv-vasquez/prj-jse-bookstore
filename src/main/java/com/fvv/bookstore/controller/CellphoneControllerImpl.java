@@ -106,7 +106,7 @@ public class CellphoneControllerImpl implements CellphoneController {
 		if(cellphone.getBrand().equals("")) {
 			sb.append("Field brand cannot be empty.").append(Constants.LINE_SEPARATOR);			
 		}
-		if(cellphone.getPrice() <= 0) {
+		if(cellphone.getUnitPrice() <= 0) {
 			sb.append("Field price cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(cellphone.getWarranty() <= 0) {
@@ -118,6 +118,9 @@ public class CellphoneControllerImpl implements CellphoneController {
 		}
 		if(cellphone.getCamPixels() <= 0) {
 			sb.append("Field camera pixels cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
+		}
+		if(cellphone.getStockQty() <= 0) {
+			sb.append("Field stock quantity cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(sb.length() > 0) {
 			throw new HardwareValidationException(sb.toString());

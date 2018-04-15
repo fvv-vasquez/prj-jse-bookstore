@@ -150,13 +150,4 @@ public abstract class Person {
 	public Date getModificationDate() {
 		return this.modificationDate;
 	}
-
-	/**
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "ID: " + getId() + " - Name: " + getName() + ", Email: " + getEmail() + 
-				", Phone: " + getPhone();
-	}
 }

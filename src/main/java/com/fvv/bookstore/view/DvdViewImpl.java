@@ -172,11 +172,13 @@ public class DvdViewImpl implements DvdView {
 		dvd.setTitle(JOptionPane.showInputDialog("Insert the title"));
 		dvd.setTotalDuration(
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the total duration")));
-		dvd.setPrice(
+		dvd.setUnitPrice(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
 		dvd.setGenre(JOptionPane.showInputDialog("Insert the genre"));
 		dvd.setReleaseYear(Integer.parseInt(JOptionPane.showInputDialog("Insert the release year")));
 		dvd.setCode(Integer.parseInt(JOptionPane.showInputDialog("Insert the code")));
+		dvd.setStockQty(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity in stock")));
 		return dvd;		
 	}
 }

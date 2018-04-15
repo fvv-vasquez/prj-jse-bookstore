@@ -136,7 +136,7 @@ public class LaptopViewImpl implements LaptopView {
 		}
 		
 		laptop.setBrand(JOptionPane.showInputDialog("Insert the brand"));
-		laptop.setPrice(
+		laptop.setUnitPrice(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
 		laptop.setWarranty(
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the warranty in months")));
@@ -145,6 +145,8 @@ public class LaptopViewImpl implements LaptopView {
 		laptop.setHdSize(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the HD size - GB")));
 		laptop.setProcessor(JOptionPane.showInputDialog("Insert the processor"));
+		laptop.setStockQty(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity in stock")));
 		return laptop;
 	}
 }

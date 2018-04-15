@@ -143,8 +143,10 @@ public class MagazineViewImpl implements MagazineView {
 		magazine.setPublicationDate(DateUtil.stringToDate(
 				JOptionPane.showInputDialog("Insert the date (mm/dd/yyyy)")));
 		magazine.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
-		magazine.setPrice(
+		magazine.setUnitPrice(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
+		magazine.setStockQty(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity in stock")));
 		return magazine;
 	}
 }

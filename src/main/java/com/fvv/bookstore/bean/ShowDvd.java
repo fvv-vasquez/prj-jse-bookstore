@@ -1,6 +1,7 @@
 package com.fvv.bookstore.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Bean class for a ShowDvd object
@@ -18,18 +19,20 @@ public class ShowDvd extends Dvd implements Serializable {
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Dvd
 	 * 
-	 * @param title of the Movie DVD
-	 * @param totalDuration of the Movie DVD
-	 * @param price of the Movie DVD
-	 * @param genre of the Movie DVD
-	 * @param releaseYear of the Movie DVD
-	 * @param code of the Movie DVD
-	 * @param artist of the Movie DVD
+	 * @param id of the Show DVD
+	 * @param unitPrice of the Show DVD
+	 * @param stockQty of the Show DVD
+	 * @param modificationDate of the Show DVD
+	 * @param title of the Show DVD
+	 * @param totalDuration of the Show DVD
+	 * @param genre of the Show DVD
+	 * @param releaseYear of the Show DVD
+	 * @param code of the Show DVD
+	 * @param artist of the Show DVD
 	 */
-	public ShowDvd(final String title, final Integer totalDuration, final Double price, 
-			final String genre, final Integer releaseYear, final Integer code, 
-			final String artist) {
-		super(title, totalDuration, price, genre, releaseYear, code);
+	public ShowDvd(Long id, Double unitPrice, Integer stockQty, Date modificationDate, String title,
+			Integer totalDuration, String genre, Integer releaseYear, Integer code, String artist) {
+		super(id, unitPrice, stockQty, modificationDate, title, totalDuration, genre, releaseYear, code);
 		this.artist = artist;
 	}
 
@@ -62,8 +65,8 @@ public class ShowDvd extends Dvd implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Show DVD ID: " + getId() + " - Title: " + getTitle() + ", Price: " + getPrice() + 
-				", Genre: " + getGenre() + ", Release Year: " + getReleaseYear() + 
-				", Artist: " + getArtist();	
+		return "Show DVD ID: " + getId() + " - Title: " + getTitle() + ", Genre: " + getGenre() + 
+				", Artist: " + getArtist() + ", Unit Price: " + getUnitPrice() + 
+				", Stock Quantity: " + getStockQty();
 	}
 }

@@ -13,60 +13,43 @@ import com.fvv.bookstore.util.DateUtil;
  * @version 1.0 	
  *
  */
-public class Magazine implements Serializable {
+public class Magazine extends Product implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private Long id;
 	private String name;
 	private Integer editionNumber;
 	private String genre;
 	private Date publicationDate;
 	private String publisher;
-	private Double price;
-	private Date modificationDate;
 	
 	/**
-	 * Class constructor specifying the attributes
+	 * Class constructor specifying the attributes  and with super from the Class Product
 	 * 
-	 * @param name of the magazine
-	 * @param editionNumber of the magazine
-	 * @param genre of the magazine
-	 * @param publicationDate of the magazine
-	 * @param publisher of the magazine
-	 * @param price of the magazine
-	 */
-	public Magazine(final String name, final Integer editionNumber, final String genre, 
-			final Date publicationDate, final String publisher, final Double price) {
+	 * @param id of the Magazine
+	 * @param unitPrice of the Magazine
+	 * @param stockQty of the Magazine
+	 * @param modificationDate of the Magazine
+	 * @param name of the Magazine
+	 * @param editionNumber of the Magazine
+	 * @param genre of the Magazine
+	 * @param publicationDate of the Magazine
+	 * @param publisher of the Magazine
+	 */ 
+	public Magazine(final Long id, final Double unitPrice, final Integer stockQty, final Date 
+			modificationDate, final String name, final Integer editionNumber, final String genre, 
+			final Date publicationDate, final String publisher) {
+		super(id, unitPrice, stockQty, modificationDate);
 		this.name = name;
 		this.editionNumber = editionNumber;
 		this.genre = genre;
 		this.publicationDate = publicationDate;
 		this.publisher = publisher;
-		this.price = price;
 	}
-	
+
 	/**
 	 * Class constructor
 	 */
 	public Magazine() {
-	}
-	
-	/**
-	 * Sets the id.
-	 * 
-	 * @param id of Long type.
-	 */
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * Gets the id.
-	 * 
-	 * @return the id of Long type.
-	 */
-	public Long getId() {
-		return this.id;
 	}
 
 	/**
@@ -158,50 +141,14 @@ public class Magazine implements Serializable {
 	public String getPublisher() {
 		return this.publisher;
 	}
-
-	/**
-	 * Sets the price.
-	 * 
-	 * @param price of Double type.
-	 */
-	public void setPrice(final Double price) {
-		this.price = price;
-	}
-
-	/**
-	 * Gets the price.
-	 * 
-	 * @return the price of Double type.
-	 */
-	public Double getPrice() {
-		return this.price;
-	}
-	
-	/**
-	 * Sets the modification date.
-	 * 
-	 * @param modificationDate of Date type.
-	 */
-	public void setModificationDate(final Date modificationDate) {
-		this.modificationDate = modificationDate;
-	}
-
-	/**
-	 * Gets the modification date.
-	 * 
-	 * @return the modification date of Date type.
-	 */
-	public Date getModificationDate() {
-		return this.modificationDate;
-	}
 	
 	/**
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Magazine ID: " + getId() + " - Name: " + getName() + ", Edition Number: " + 
-				getEditionNumber() + ", Publication Date: " + 
-				DateUtil.dateToString(getPublicationDate()) + ", Price: " + getPrice();
+		return "Magazine ID: " + getId() + " - Name: " + getName() + ", Publication Date: " + 
+				DateUtil.dateToString(getPublicationDate()) + ", Unit Price: " + getUnitPrice() +
+				", Stock Quantity: " + getStockQty();
 	}
 }

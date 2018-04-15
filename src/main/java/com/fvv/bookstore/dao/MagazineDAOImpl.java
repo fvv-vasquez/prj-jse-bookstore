@@ -37,7 +37,8 @@ public class MagazineDAOImpl implements MagazineDAO {
 			ps.setString(3, magazine.getGenre());
 			ps.setDate(4, new Date(magazine.getPublicationDate().getTime()));
 			ps.setString(5, magazine.getPublisher());
-			ps.setDouble(6, magazine.getPrice());
+			ps.setDouble(6, magazine.getUnitPrice());
+			ps.setInt(7, magazine.getStockQty());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to add a magazine", e);
@@ -63,7 +64,8 @@ public class MagazineDAOImpl implements MagazineDAO {
 				magazine.setGenre(rs.getString("mag_genre"));
 				magazine.setPublicationDate(rs.getDate("mag_publication_date"));
 				magazine.setPublisher(rs.getString("mag_publisher"));
-				magazine.setPrice(rs.getDouble("mag_price"));
+				magazine.setUnitPrice(rs.getDouble("mag_unit_price"));
+				magazine.setStockQty(rs.getInt("mag_stock_qty"));
 				magazine.setModificationDate(new Date(rs.getTimestamp(
 						"mag_modification_date").getTime()));
 				magazines.add(magazine);
@@ -88,8 +90,9 @@ public class MagazineDAOImpl implements MagazineDAO {
 			ps.setString(3, magazine.getGenre());
 			ps.setDate(4, new Date(magazine.getPublicationDate().getTime()));
 			ps.setString(5, magazine.getPublisher());
-			ps.setDouble(6, magazine.getPrice());
-			ps.setLong(7, magazine.getId());
+			ps.setDouble(6, magazine.getUnitPrice());
+			ps.setInt(7, magazine.getStockQty());
+			ps.setLong(8, magazine.getId());
 			ps.execute();
 		} catch(SQLException e) {
 			throw new DaoException("Error to update a magazine", e);
@@ -134,7 +137,8 @@ public class MagazineDAOImpl implements MagazineDAO {
 						magazine.setGenre(rs.getString("mag_genre"));
 						magazine.setPublicationDate(rs.getDate("mag_publication_date"));
 						magazine.setPublisher(rs.getString("mag_publisher"));
-						magazine.setPrice(rs.getDouble("mag_price"));
+						magazine.setUnitPrice(rs.getDouble("mag_unit_price"));
+						magazine.setStockQty(rs.getInt("mag_stock_qty"));
 						magazine.setModificationDate(new Date(rs.getTimestamp(
 								"mag_modification_date").getTime()));
 					} while (rs.next());

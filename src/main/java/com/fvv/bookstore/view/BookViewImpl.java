@@ -141,12 +141,14 @@ public class BookViewImpl implements BookView {
 		book.setEditionNumber(
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
 		book.setAuthor(JOptionPane.showInputDialog("Insert the author"));
-		book.setPrice(
+		book.setUnitPrice(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
 		book.setIsbn(
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the isbn")));
 		book.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
 		book.setGenre(JOptionPane.showInputDialog("Insert the genre"));
+		book.setStockQty(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity in stock")));
 		return book;
 	}
 }

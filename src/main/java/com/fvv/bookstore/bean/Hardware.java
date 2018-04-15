@@ -10,24 +10,26 @@ import java.util.Date;
  * @version 1.0 	
  *
  */
-public abstract class Hardware {
+public abstract class Hardware extends Product {
 	
-	private Long id;
 	private String brand;
-	private Double price;
 	private Integer warranty;
-	private Date modificationDate;
 	
+
 	/**
-	 * Class constructor specifying the attributes
+	 * Class constructor specifying the attributes and with super from the Class Product
 	 * 
+	 * @param id of the Hardware
+	 * @param unitPrice of the Hardware
+	 * @param stockQty of the Hardware
+	 * @param modificationDate of the Hardware
 	 * @param brand of the Hardware
-	 * @param price of the Hardware
 	 * @param warranty of the Hardware
 	 */
-	public Hardware(final String brand, final Double price, final Integer warranty) {
+	public Hardware(final Long id, final Double unitPrice, final Integer stockQty,
+			final Date modificationDate, final String brand, final Integer warranty) {
+		super(id, unitPrice, stockQty, modificationDate);
 		this.brand = brand;
-		this.price = price;
 		this.warranty = warranty;
 	}
 
@@ -35,24 +37,6 @@ public abstract class Hardware {
 	 * Class constructor
 	 */
 	public Hardware() {
-	}
-
-	/**
-	 * Sets the id.
-	 * 
-	 * @param id of Long type.
-	 */
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * Gets the id.
-	 * 
-	 * @return the id of Long type.
-	 */
-	public Long getId() {
-		return this.id;
 	}
 
 	/**
@@ -74,24 +58,6 @@ public abstract class Hardware {
 	}
 
 	/**
-	 * Sets the price.
-	 * 
-	 * @param price of Double type.
-	 */
-	public void setPrice(final Double price) {
-		this.price = price;
-	}
-
-	/**
-	 * Gets the price.
-	 * 
-	 * @return the price of Double type.
-	 */
-	public Double getPrice() {
-		return this.price;
-	}
-
-	/**
 	 * Sets the warranty.
 	 * 
 	 * @param warranty of Integer type.
@@ -107,32 +73,5 @@ public abstract class Hardware {
 	 */
 	public Integer getWarranty() {
 		return this.warranty;
-	}
-	
-	/**
-	 * Sets the modification date.
-	 * 
-	 * @param modificationDate of Date type.
-	 */
-	public void setModificationDate(final Date modificationDate) {
-		this.modificationDate = modificationDate;
-	}
-
-	/**
-	 * Gets the modification date.
-	 * 
-	 * @return the modificationDate of Date type.
-	 */
-	public Date getModificationDate() {
-		return this.modificationDate;
-	}
-
-	/**
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "ID: " + getId() + " - Brand: " + getBrand() + ", Price: " + getPrice() + 
-				", Warranty: " + getWarranty();
 	}
 }

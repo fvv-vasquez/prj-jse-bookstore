@@ -1,6 +1,7 @@
 package com.fvv.bookstore.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Bean class for a Laptop object
@@ -16,20 +17,24 @@ public class Laptop extends Hardware implements Serializable {
 	private Integer ramSize;
 	private Double hdSize;
 	private String processor;
-	
+
 	/**
 	 * Class constructor specifying the attributes and with super from the Class Hardware
 	 * 
+	 * @param id of the Laptop
+	 * @param unitPrice of the Laptop
+	 * @param stockQty of the Laptop
+	 * @param modificationDate of the Laptop
 	 * @param brand of the Laptop
-	 * @param price of the Laptop
 	 * @param warranty of the Laptop
 	 * @param ramSize of the Laptop
 	 * @param hdSize of the Laptop
 	 * @param processor of the Laptop
 	 */
-	public Laptop(final String brand, final Double price, final Integer warranty, 
-			final Integer ramSize, final Double hdSize, final String processor) {
-		super(brand, price, warranty);
+	public Laptop(final Long id, final Double unitPrice, final Integer stockQty, final Date 
+			modificationDate, final String brand, final Integer warranty, final Integer ramSize, 
+			final Double hdSize, final String processor) {
+		super(id, unitPrice, stockQty, modificationDate, brand, warranty);
 		this.ramSize = ramSize;
 		this.hdSize = hdSize;
 		this.processor = processor;
@@ -100,7 +105,8 @@ public class Laptop extends Hardware implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Laptop ID: " + getId() + " - Brand: " + getBrand() + ", Price: " + getPrice() + 
-				", Warranty: " + getWarranty() + " months, HD Size: " + getHdSize() + " GB";
+		return "Laptop ID: " + getId() + " - Brand: " + getBrand() + ", Warranty: " + 
+				getWarranty() + " months, HD Size: " + getHdSize() + " GB, Unit Price: " +
+				getUnitPrice() + ", Stock Quantity: " + getStockQty();
 	}
 }

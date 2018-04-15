@@ -11,67 +11,51 @@ import java.util.Date;
  * @version 1.0 	
  *
  */
-public class Book implements Serializable {
+public class Book extends Product implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private Long id;
 	private String title;
 	private Integer publicationYear;
 	private Integer editionNumber;
 	private String author;
-	private Double price;
 	private Integer isbn;
 	private String publisher;
 	private String genre;
-	private Date modificationDate;
+	
 	
 	/**
-	 * Class constructor specifying the attributes
+	 * Class constructor specifying the attributes  and with super from the Class Product
 	 * 
-	 * @param title of the book
-	 * @param publicationYear of the book
-	 * @param editionNumber of the book
-	 * @param author of the book
-	 * @param price of the book
-	 * @param isbn of the book
-	 * @param publisher of the book
-	 * @param genre of the book
+	 * @param id of the Book
+	 * @param unitPrice of the Book
+	 * @param stockQty of the Book
+	 * @param modificationDate of the Book
+	 * @param title of the Book
+	 * @param publicationYear of the Book
+	 * @param editionNumber of the Book
+	 * @param author of the Book
+	 * @param isbn of the Book
+	 * @param publisher of the Book
+	 * @param genre of the Book
 	 */
-	public Book(final String title, final Integer publicationYear, final Integer editionNumber, 
-			final String author, final Double price, final Integer isbn, final String publisher, 
+	public Book(final Long id, final Double unitPrice, final Integer stockQty, final Date 
+			modificationDate, final String title, final Integer publicationYear, final Integer 
+			editionNumber, final String author, final Integer isbn, final String publisher,
 			final String genre) {
+		super(id, unitPrice, stockQty, modificationDate);
 		this.title = title;
 		this.publicationYear = publicationYear;
 		this.editionNumber = editionNumber;
 		this.author = author;
-		this.price = price;
 		this.isbn = isbn;
 		this.publisher = publisher;
 		this.genre = genre;
 	}
-	
+
 	/**
 	 * Class constructor
 	 */
 	public Book() {
-	}
-	
-	/**
-	 * Sets the id.
-	 * 
-	 * @param id of Long type.
-	 */
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * Gets the id.
-	 * 
-	 * @return the id of Long type.
-	 */
-	public Long getId() {
-		return this.id;
 	}
 
 	/**
@@ -147,24 +131,6 @@ public class Book implements Serializable {
 	}
 
 	/**
-	 * Sets the price.
-	 * 
-	 * @param price of Double type.
-	 */
-	public void setPrice(final Double price) {
-		this.price = price;
-	}
-
-	/**
-	 * Gets the price.
-	 * 
-	 * @return the price of Double type.
-	 */
-	public Double getPrice() {
-		return this.price;
-	}
-
-	/**
 	 * Sets the isbn.
 	 * 
 	 * @param isbn of Integer type.
@@ -217,31 +183,13 @@ public class Book implements Serializable {
 	public String getGenre() {
 		return this.genre;
 	}	
-	
-	/**
-	 * Sets the modification date.
-	 * 
-	 * @param modificationDate of Date type.
-	 */
-	public void setModificationDate(final Date modificationDate) {
-		this.modificationDate = modificationDate;
-	}
-
-	/**
-	 * Gets the modification date.
-	 * 
-	 * @return the modificationDate of Date type.
-	 */
-	public Date getModificationDate() {
-		return this.modificationDate;
-	}
 
 	/**
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Book ID: " + getId() + " - Title: " + getTitle() + ", Publication Year: " + 
-				getPublicationYear() + ", Author: " + getAuthor() + ", Price: " + getPrice();
+		return "Book ID: " + getId() + " - Title: " + getTitle() + ", Author: " + getAuthor() + 
+				", Unit Price: " + getUnitPrice() + ", Stock Quantity: " + getStockQty();
 	}	
 }

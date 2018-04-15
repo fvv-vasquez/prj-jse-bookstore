@@ -113,11 +113,14 @@ public class MagazineControllerImpl implements MagazineController {
 		if(magazine.getEditionNumber() <= 0) {
 			sb.append("Field edition number cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
-		if(magazine.getPrice() <= 0) {
+		if(magazine.getUnitPrice() <= 0) {
 			sb.append("Field price cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(magazine.getPublicationDate() == null) {
 			sb.append("Field publication date cannot be empty.").append(Constants.LINE_SEPARATOR);
+		}
+		if(magazine.getStockQty() <= 0) {
+			sb.append("Field stock quantity cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(sb.length() > 0) {
 			throw new MagazineValidationException(sb.toString());
