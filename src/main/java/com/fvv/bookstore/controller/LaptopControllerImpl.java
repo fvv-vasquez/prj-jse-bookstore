@@ -108,7 +108,7 @@ public class LaptopControllerImpl implements LaptopController {
 		if(laptop.getProcessor().equals("")) {
 			sb.append("Field processor cannot be empty.").append(Constants.LINE_SEPARATOR);			
 		}
-		if(laptop.getPrice() <= 0) {
+		if(laptop.getUnitPrice() <= 0) {
 			sb.append("Field price cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(laptop.getWarranty() <= 0) {
@@ -120,6 +120,9 @@ public class LaptopControllerImpl implements LaptopController {
 		}
 		if(laptop.getHdSize() <= 0) {
 			sb.append("Field HD size cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
+		}
+		if(laptop.getStockQty() <= 0) {
+			sb.append("Field stock quantity cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(sb.length() > 0) {
 			throw new HardwareValidationException(sb.toString());

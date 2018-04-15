@@ -118,11 +118,14 @@ public class BookControllerImpl implements BookController {
 		if(book.getIsbn() <= 0) {
 			sb.append("Field ISBN cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
-		if(book.getPrice() <= 0) {
+		if(book.getUnitPrice() <= 0) {
 			sb.append("Field price cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(book.getPublicationYear() <= 0) {
 			sb.append("Field publication year cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
+		}
+		if(book.getStockQty() <= 0) {
+			sb.append("Field stock quantity cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(sb.length() > 0) {
 			throw new BookValidationException(sb.toString());

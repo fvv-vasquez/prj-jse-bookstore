@@ -123,7 +123,7 @@ public class DvdControllerImpl implements DvdController {
 		if(dvd.getCode() <= 0) {
 			sb.append("Field code cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
-		if(dvd.getPrice() <= 0) {
+		if(dvd.getUnitPrice() <= 0) {
 			sb.append("Field price cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(dvd.getTotalDuration() <= 0) {
@@ -131,6 +131,9 @@ public class DvdControllerImpl implements DvdController {
 		}
 		if(dvd.getReleaseYear() <= 0) {
 			sb.append("Field release year cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
+		}
+		if(dvd.getStockQty() <= 0) {
+			sb.append("Field stock quantity cannot be smaller than 0.").append(Constants.LINE_SEPARATOR);
 		}
 		if(sb.length() > 0) {
 			throw new DvdValidationException(sb.toString());
