@@ -41,11 +41,11 @@ public enum SqlQueryEnum {
 	MAGAZINE_SELECT_ID("SELECT * FROM tb_magazine WHERE mag_id = ?"),
 	
 	DVD_SHOW_INSERT("INSERT INTO tb_dvd (dvd_title, dvd_total_duration, dvd_unit_price, "
-			+ "dvd_genre, dvd_release_year, dvd_code, dvd_show_artist, dvd_stock_qty"
+			+ "dvd_genre, dvd_release_year, dvd_code, dvd_show_artist, dvd_stock_qty, "
 			+ "dvd_modification_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, now())"),
 	
 	DVD_MOVIE_INSERT("INSERT INTO tb_dvd (dvd_title, dvd_total_duration, dvd_unit_price, "
-			+ "dvd_genre, dvd_release_year, dvd_code, dvd_movie_director, dvd_stock_qty"
+			+ "dvd_genre, dvd_release_year, dvd_code, dvd_movie_director, dvd_stock_qty, "
 			+ "dvd_modification_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, now())"),
 	
 	DVD_SELECT_ALL_SHOW("SELECT * FROM tb_dvd WHERE dvd_show_artist IS NOT NULL"),
