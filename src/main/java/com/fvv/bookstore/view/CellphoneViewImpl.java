@@ -136,7 +136,7 @@ public class CellphoneViewImpl implements CellphoneView {
 		}
 		
 		cellphone.setBrand(JOptionPane.showInputDialog("Insert the brand"));
-		cellphone.setPrice(
+		cellphone.setUnitPrice(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
 		cellphone.setWarranty(
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the warranty in months")));
@@ -144,6 +144,8 @@ public class CellphoneViewImpl implements CellphoneView {
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the storage memory - GB")));
 		cellphone.setCamPixels(
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the camera pixels")));
+		cellphone.setStockQty(
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity in stock")));
 		return cellphone;
 	}
 }
