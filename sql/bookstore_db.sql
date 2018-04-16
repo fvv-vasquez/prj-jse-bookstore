@@ -32,7 +32,7 @@ CREATE TABLE `tb_book` (
   `book_stock_qty` int(11) NOT NULL,
   `book_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_cellphone` */
 
@@ -48,7 +48,7 @@ CREATE TABLE `tb_cellphone` (
   `cel_stock_qty` int(11) NOT NULL,
   `cel_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_customer` */
 
@@ -82,7 +82,7 @@ CREATE TABLE `tb_dvd` (
   `dvd_stock_qty` int(11) NOT NULL,
   `dvd_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`dvd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_employee` */
 
@@ -100,6 +100,21 @@ CREATE TABLE `tb_employee` (
   PRIMARY KEY (`emp_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
+/*Table structure for table `tb_item_order_book` */
+
+DROP TABLE IF EXISTS `tb_item_order_book`;
+
+CREATE TABLE `tb_item_order_book` (
+  `ite_ord_book_ord_id` bigint(20) NOT NULL,
+  `ite_ord_book_book_id` bigint(20) NOT NULL,
+  `ite_ord_book_quatity` int(11) NOT NULL,
+  `ite_ord_book_amount` double NOT NULL,
+  PRIMARY KEY (`ite_ord_book_ord_id`,`ite_ord_book_book_id`),
+  KEY `FK_tb_order_book` (`ite_ord_book_book_id`),
+  CONSTRAINT `FK_tb_item_order_book` FOREIGN KEY (`ite_ord_book_ord_id`) REFERENCES `tb_order` (`ord_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_tb_order_book` FOREIGN KEY (`ite_ord_book_book_id`) REFERENCES `tb_book` (`book_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*Table structure for table `tb_laptop` */
 
 DROP TABLE IF EXISTS `tb_laptop`;
@@ -115,7 +130,7 @@ CREATE TABLE `tb_laptop` (
   `pc_stock_qty` int(11) NOT NULL,
   `pc_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`pc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_magazine` */
 
@@ -132,7 +147,24 @@ CREATE TABLE `tb_magazine` (
   `mag_stock_qty` int(11) NOT NULL,
   `mag_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`mag_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `tb_order` */
+
+DROP TABLE IF EXISTS `tb_order`;
+
+CREATE TABLE `tb_order` (
+  `ord_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ord_emp_id` bigint(20) NOT NULL,
+  `ord_cus_id` bigint(20) NOT NULL,
+  `ord_date` datetime NOT NULL,
+  `ord_amount` double NOT NULL,
+  PRIMARY KEY (`ord_id`),
+  KEY `FK_tb_order_cus` (`ord_cus_id`),
+  KEY `FK_tb_order_emp` (`ord_emp_id`),
+  CONSTRAINT `FK_tb_order_cus` FOREIGN KEY (`ord_cus_id`) REFERENCES `tb_customer` (`cus_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_tb_order_emp` FOREIGN KEY (`ord_emp_id`) REFERENCES `tb_employee` (`emp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
