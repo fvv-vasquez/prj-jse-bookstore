@@ -1,5 +1,7 @@
 package com.fvv.bookstore.bean;
 
+import java.io.Serializable;
+
 /**
  * Bean class for an Order Item object
  * 
@@ -8,8 +10,9 @@ package com.fvv.bookstore.bean;
  * @version 1.0 	
  *
  */
-public class OrderItem {
+public class OrderItem implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Product product;
 	private Order order;
 	private Integer quantity;

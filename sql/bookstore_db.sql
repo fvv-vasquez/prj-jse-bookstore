@@ -111,8 +111,8 @@ CREATE TABLE `tb_item_order_book` (
   `ite_ord_book_amount` double NOT NULL,
   PRIMARY KEY (`ite_ord_book_ord_id`,`ite_ord_book_book_id`),
   KEY `FK_tb_order_book` (`ite_ord_book_book_id`),
-  CONSTRAINT `FK_tb_item_order_book` FOREIGN KEY (`ite_ord_book_ord_id`) REFERENCES `tb_order` (`ord_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tb_order_book` FOREIGN KEY (`ite_ord_book_book_id`) REFERENCES `tb_book` (`book_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_tb_item_order_book` FOREIGN KEY (`ite_ord_book_ord_id`) REFERENCES `tb_order` (`ord_id`),
+  CONSTRAINT `FK_tb_order_book` FOREIGN KEY (`ite_ord_book_book_id`) REFERENCES `tb_book` (`book_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_laptop` */
@@ -155,16 +155,16 @@ DROP TABLE IF EXISTS `tb_order`;
 
 CREATE TABLE `tb_order` (
   `ord_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ord_emp_id` bigint(20) NOT NULL,
-  `ord_cus_id` bigint(20) NOT NULL,
+  `ord_emp_id` bigint(20) DEFAULT NULL,
+  `ord_cus_id` bigint(20) DEFAULT NULL,
   `ord_date` datetime NOT NULL,
   `ord_amount` double NOT NULL,
   PRIMARY KEY (`ord_id`),
   KEY `FK_tb_order_cus` (`ord_cus_id`),
   KEY `FK_tb_order_emp` (`ord_emp_id`),
-  CONSTRAINT `FK_tb_order_cus` FOREIGN KEY (`ord_cus_id`) REFERENCES `tb_customer` (`cus_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tb_order_emp` FOREIGN KEY (`ord_emp_id`) REFERENCES `tb_employee` (`emp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_tb_order_cus` FOREIGN KEY (`ord_cus_id`) REFERENCES `tb_customer` (`cus_id`),
+  CONSTRAINT `FK_tb_order_emp` FOREIGN KEY (`ord_emp_id`) REFERENCES `tb_employee` (`emp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

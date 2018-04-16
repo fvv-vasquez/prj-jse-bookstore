@@ -1,5 +1,6 @@
 package com.fvv.bookstore.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +12,9 @@ import java.util.List;
  * @version 1.0 	
  *
  */
-public class Order {
+public class Order implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private Employee employee;
 	private Customer customer;
@@ -26,16 +28,14 @@ public class Order {
 	 * @param id of the Order
 	 * @param employee of the Order
 	 * @param customer of the Order
-	 * @param itemsOrder of the Order
 	 * @param date of the Order
 	 * @param amount of the Order
 	 */
 	public Order(final Long id, final Employee employee, final Customer customer, 
-			final List<OrderItem> itemsOrder, final Date date, final Double amount) {
+			final Date date, final Double amount) {
 		this.id = id;
 		this.employee = employee;
 		this.customer = customer;
-		this.itemsOrder = itemsOrder;
 		this.date = date;
 		this.orderAmount = amount;
 	}

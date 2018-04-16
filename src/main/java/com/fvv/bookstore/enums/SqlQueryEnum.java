@@ -116,7 +116,10 @@ public enum SqlQueryEnum {
 	
 	EMPLOYEE_DELETE("DELETE FROM tb_employee WHERE emp_id = ?"),
 	
-	EMPLOYEE_SELECT_ID("SELECT * FROM tb_employee WHERE emp_id = ?");
+	EMPLOYEE_SELECT_ID("SELECT * FROM tb_employee WHERE emp_id = ?"),
+	
+	ORDER_INSERT("INSERT INTO tb_order (ord_emp_id, ord_cus_id, ord_amount, ord_date) VALUES "
+			+ "(?, ?, ?, now())");
 	
 	private final String query;
 	
