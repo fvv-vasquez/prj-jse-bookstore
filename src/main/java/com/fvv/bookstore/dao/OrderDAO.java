@@ -14,7 +14,7 @@ import com.fvv.bookstore.exception.DaoException;
 public interface OrderDAO {
 
 	/**
-	 * Add a order at the bookstore in the database.
+	 * Add an order at the bookstore in the database.
 	 * 
 	 * @param order of Order type.
 	 * @throws DaoException when a problem in database happens.

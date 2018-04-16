@@ -119,7 +119,10 @@ public enum SqlQueryEnum {
 	EMPLOYEE_SELECT_ID("SELECT * FROM tb_employee WHERE emp_id = ?"),
 	
 	ORDER_INSERT("INSERT INTO tb_order (ord_emp_id, ord_cus_id, ord_amount, ord_date) VALUES "
-			+ "(?, ?, ?, now())");
+			+ "(?, ?, ?, now())"),
+	
+	ORDER_ITEM_INSERT("INSERT INTO tb_item_order_book (ite_ord_book_ord_id, ite_ord_book_book_id, "
+			+ "ite_ord_book_quatity, ite_ord_book_amount) VALUES (?, ?, ?, ?)");
 	
 	private final String query;
 	
