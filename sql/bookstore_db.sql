@@ -1,25 +1,23 @@
-/*
-SQLyog Enterprise Trial - MySQL GUI v7.11 
-MySQL - 5.7.21-log : Database - bookstore_db
-*********************************************************************
-*/
+-- --------------------------------------------------------
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           5.7.21-log - MySQL Community Server (GPL)
+-- OS do Servidor:               Win64
+-- HeidiSQL Versão:              9.5.0.5196
+-- --------------------------------------------------------
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
-
-/*!40101 SET SQL_MODE=''*/;
-
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`bookstore_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
+-- Copiando estrutura do banco de dados para bookstore_db
+CREATE DATABASE IF NOT EXISTS `bookstore_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bookstore_db`;
 
-/*Table structure for table `tb_book` */
-
-DROP TABLE IF EXISTS `tb_book`;
-
-CREATE TABLE `tb_book` (
+-- Copiando estrutura para tabela bookstore_db.tb_book
+CREATE TABLE IF NOT EXISTS `tb_book` (
   `book_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `book_title` varchar(255) NOT NULL,
   `book_publication_year` int(11) NOT NULL,
@@ -34,11 +32,9 @@ CREATE TABLE `tb_book` (
   PRIMARY KEY (`book_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `tb_cellphone` */
-
-DROP TABLE IF EXISTS `tb_cellphone`;
-
-CREATE TABLE `tb_cellphone` (
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_cellphone
+CREATE TABLE IF NOT EXISTS `tb_cellphone` (
   `cel_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cel_brand` varchar(255) NOT NULL,
   `cel_unit_price` double NOT NULL,
@@ -50,11 +46,9 @@ CREATE TABLE `tb_cellphone` (
   PRIMARY KEY (`cel_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `tb_customer` */
-
-DROP TABLE IF EXISTS `tb_customer`;
-
-CREATE TABLE `tb_customer` (
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_customer
+CREATE TABLE IF NOT EXISTS `tb_customer` (
   `cus_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cus_name` varchar(255) NOT NULL,
   `cus_email` varchar(255) NOT NULL,
@@ -65,11 +59,9 @@ CREATE TABLE `tb_customer` (
   PRIMARY KEY (`cus_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `tb_dvd` */
-
-DROP TABLE IF EXISTS `tb_dvd`;
-
-CREATE TABLE `tb_dvd` (
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_dvd
+CREATE TABLE IF NOT EXISTS `tb_dvd` (
   `dvd_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `dvd_title` varchar(255) NOT NULL,
   `dvd_total_duration` int(11) NOT NULL,
@@ -84,11 +76,9 @@ CREATE TABLE `tb_dvd` (
   PRIMARY KEY (`dvd_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `tb_employee` */
-
-DROP TABLE IF EXISTS `tb_employee`;
-
-CREATE TABLE `tb_employee` (
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_employee
+CREATE TABLE IF NOT EXISTS `tb_employee` (
   `emp_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `emp_name` varchar(255) NOT NULL,
   `emp_email` varchar(255) NOT NULL,
@@ -100,11 +90,9 @@ CREATE TABLE `tb_employee` (
   PRIMARY KEY (`emp_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `tb_item_order_book` */
-
-DROP TABLE IF EXISTS `tb_item_order_book`;
-
-CREATE TABLE `tb_item_order_book` (
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_item_order_book
+CREATE TABLE IF NOT EXISTS `tb_item_order_book` (
   `ite_ord_book_ord_id` bigint(20) NOT NULL,
   `ite_ord_book_book_id` bigint(20) NOT NULL,
   `ite_ord_book_quatity` int(11) NOT NULL,
@@ -115,11 +103,9 @@ CREATE TABLE `tb_item_order_book` (
   CONSTRAINT `FK_tb_order_book` FOREIGN KEY (`ite_ord_book_book_id`) REFERENCES `tb_book` (`book_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `tb_laptop` */
-
-DROP TABLE IF EXISTS `tb_laptop`;
-
-CREATE TABLE `tb_laptop` (
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_laptop
+CREATE TABLE IF NOT EXISTS `tb_laptop` (
   `pc_id` int(11) NOT NULL AUTO_INCREMENT,
   `pc_brand` varchar(255) NOT NULL,
   `pc_unit_price` double NOT NULL,
@@ -132,11 +118,9 @@ CREATE TABLE `tb_laptop` (
   PRIMARY KEY (`pc_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `tb_magazine` */
-
-DROP TABLE IF EXISTS `tb_magazine`;
-
-CREATE TABLE `tb_magazine` (
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_magazine
+CREATE TABLE IF NOT EXISTS `tb_magazine` (
   `mag_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `mag_name` varchar(255) NOT NULL,
   `mag_edition_number` int(11) NOT NULL,
@@ -149,14 +133,12 @@ CREATE TABLE `tb_magazine` (
   PRIMARY KEY (`mag_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `tb_order` */
-
-DROP TABLE IF EXISTS `tb_order`;
-
-CREATE TABLE `tb_order` (
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_order
+CREATE TABLE IF NOT EXISTS `tb_order` (
   `ord_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ord_emp_id` bigint(20) DEFAULT NULL,
-  `ord_cus_id` bigint(20) DEFAULT NULL,
+  `ord_emp_id` bigint(20) NOT NULL,
+  `ord_cus_id` bigint(20) NOT NULL,
   `ord_date` datetime NOT NULL,
   `ord_amount` double NOT NULL,
   PRIMARY KEY (`ord_id`),
@@ -164,7 +146,9 @@ CREATE TABLE `tb_order` (
   KEY `FK_tb_order_emp` (`ord_emp_id`),
   CONSTRAINT `FK_tb_order_cus` FOREIGN KEY (`ord_cus_id`) REFERENCES `tb_customer` (`cus_id`),
   CONSTRAINT `FK_tb_order_emp` FOREIGN KEY (`ord_emp_id`) REFERENCES `tb_employee` (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+-- Exportação de dados foi desmarcado.
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -18,7 +18,7 @@ public class Order implements Serializable {
 	private Long id;
 	private Employee employee;
 	private Customer customer;
-	private List<OrderItem> itemsOrder;
+	private List<OrderItem> orderItems;
 	private Date date;
 	private Double orderAmount;
 	
@@ -105,8 +105,8 @@ public class Order implements Serializable {
 	 * 
 	 * @param itemsOrder of List<> type.
 	 */
-	public void setItemsOrder(final List<OrderItem> itemsOrder) {
-		this.itemsOrder = itemsOrder;
+	public void setOrderItems(final List<OrderItem> itemsOrder) {
+		this.orderItems = itemsOrder;
 	}
 
 	/**
@@ -114,8 +114,8 @@ public class Order implements Serializable {
 	 * 
 	 * @return the itemsOrder list of List<> type.
 	 */
-	public List<OrderItem> getItemsOrder() {
-		return this.itemsOrder;
+	public List<OrderItem> getOrderItems() {
+		return this.orderItems;
 	}
 
 	/**

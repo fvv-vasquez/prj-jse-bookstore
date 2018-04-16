@@ -47,7 +47,7 @@ public class OrderDAOImpl implements OrderDAO {
 			Long orderPK = this.getPrimaryKey(ps);
 			order.setId(orderPK);
 			
-			this.ordemItemDao.addOrderItemInBatch(order.getItemsOrder());
+			this.ordemItemDao.addOrderItemInBatch(order.getOrderItems());
 			
 		} catch(SQLException e) {
 			throw new DaoException("Error to add an order", e);
