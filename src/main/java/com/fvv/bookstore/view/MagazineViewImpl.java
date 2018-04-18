@@ -14,7 +14,7 @@ import com.fvv.bookstore.util.Constants;
 import com.fvv.bookstore.util.DateUtil;
 
 /**
- * MagazineView class to view the Book object.
+ * MagazineView class to view the Magazine object.
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>	

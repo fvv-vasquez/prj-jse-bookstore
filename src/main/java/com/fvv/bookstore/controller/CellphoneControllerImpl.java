@@ -96,6 +96,19 @@ public class CellphoneControllerImpl implements CellphoneController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Cellphone findCellphoneByBrand(final String brand) 
+			throws HardwareNotFoundException, ControllerException {
+		try {
+			return this.cellphoneDao.findCellphoneByBrand(brand);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a cellphone", e);
+		}
+	}
+
+	/**
 	 * Validate if a field is empty.
 	 * 
 	 * @param cellphone of type Cellphone

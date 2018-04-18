@@ -61,4 +61,14 @@ public interface LaptopController {
 	 * @throws HardwareNotFoundException when a laptop is not found.
 	 */
 	Laptop findLaptop(final Long id) throws HardwareNotFoundException, ControllerException;
+	
+	/**
+	 * Search a laptop by the brand using DAO
+	 * 
+	 * @param brand of String type.
+	 * @return a Laptop.
+	 * @throws ControllerException when a problem in controller happens.
+	 * @throws HardwareNotFoundException when a laptop is not found.
+	 */
+	Laptop findLaptopByBrand(final String brand) throws HardwareNotFoundException, ControllerException;
 }

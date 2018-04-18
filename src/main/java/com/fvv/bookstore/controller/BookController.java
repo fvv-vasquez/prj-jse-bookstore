@@ -60,4 +60,14 @@ public interface BookController {
 	 * @throws BookNotFoundException when a book is not found.
 	 */
 	Book findBook(final Long id) throws BookNotFoundException, ControllerException;
+
+	/**
+	 * Search a book by the title using DAO.
+	 * 
+	 * @param title of String type.
+	 * @return a book.
+	 * @throws BookNotFoundException when a book is not found.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	Book findBookByTitle(final String title) throws BookNotFoundException, ControllerException;
 }

@@ -67,4 +67,14 @@ public interface DvdDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Dvd findDvd(final Long id) throws DvdNotFoundException, DaoException;
+	
+	/**
+	 * Search a dvd in the database by the title.
+	 * 
+	 * @param title of String type..
+	 * @return a Dvd.
+	 * @throws DvdNotFoundException when not found a dvd in the database.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	Dvd findDvdByTitle(final String title) throws DvdNotFoundException, DaoException;
 }

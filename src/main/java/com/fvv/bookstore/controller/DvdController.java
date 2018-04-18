@@ -70,4 +70,14 @@ public interface DvdController {
 	 * @throws ControllerException when a problem in controller happens.
 	 */
 	Dvd findDvd(final Long id) throws DvdNotFoundException, ControllerException;
+	
+	/**
+	 * Search a dvd by the title using DAO.
+	 * 
+	 * @param title of String type.
+	 * @return a Dvd
+	 * @throws DvdNotFoundException when a dvd is not found.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	Dvd findDvdByTitle(final String title) throws DvdNotFoundException, ControllerException;
 }

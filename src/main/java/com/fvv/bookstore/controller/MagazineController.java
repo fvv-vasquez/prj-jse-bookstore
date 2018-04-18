@@ -61,4 +61,14 @@ public interface MagazineController {
 	 * @throws MagazineNotFoundException when a magazine is not found.
 	 */
 	Magazine findMagazine(final Long id) throws MagazineNotFoundException, ControllerException;
+	
+	/**
+	 * Search a magazine by the name using DAO
+	 * 
+	 * @param name of String type.
+	 * @return a Magazine.
+	 * @throws ControllerException when a problem in controller happens.
+	 * @throws MagazineNotFoundException when a magazine is not found.
+	 */
+	Magazine findMagazineByName(final String name) throws MagazineNotFoundException, ControllerException;
 }

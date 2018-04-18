@@ -91,6 +91,18 @@ public class BookControllerImpl implements BookController {
 			throw new ControllerException("Error to find a book", e);
 		}
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Book findBookByTitle(final String title) throws BookNotFoundException, ControllerException {
+		try {
+			return this.bookDao.findBookByTitle(title);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a book", e);
+		}
+	}
 
 	/**
 	 * Validate if a field is empty.

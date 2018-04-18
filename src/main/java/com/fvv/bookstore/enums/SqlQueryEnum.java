@@ -25,6 +25,8 @@ public enum SqlQueryEnum {
 	
 	BOOK_SELECT_ID("SELECT * FROM tb_book WHERE book_id = ?"),
 	
+	BOOK_SELECT_TITLE("SELECT * FROM tb_book WHERE book_title = ?"),
+	
 	MAGAZINE_INSERT("INSERT INTO tb_magazine (mag_name, mag_edition_number, mag_genre, "
 					+ "mag_publication_date, mag_publisher, mag_unit_price, mag_stock_qty, "
 					+ "mag_modification_date) VALUES (?, ?, ?, ?, ?, ?, ?, now())"),
@@ -39,6 +41,8 @@ public enum SqlQueryEnum {
 	MAGAZINE_DELETE("DELETE FROM tb_magazine WHERE mag_id = ?"),
 	
 	MAGAZINE_SELECT_ID("SELECT * FROM tb_magazine WHERE mag_id = ?"),
+	
+	MAGAZINE_SELECT_NAME("SELECT * FROM tb_magazine WHERE mag_name = ?"),
 	
 	DVD_SHOW_INSERT("INSERT INTO tb_dvd (dvd_title, dvd_total_duration, dvd_unit_price, "
 			+ "dvd_genre, dvd_release_year, dvd_code, dvd_show_artist, dvd_stock_qty, "
@@ -65,6 +69,8 @@ public enum SqlQueryEnum {
 	
 	DVD_SELECT_ID("SELECT * FROM tb_dvd WHERE dvd_id = ?"),
 	
+	DVD_SELECT_TITLE("SELECT * FROM tb_dvd WHERE dvd_title = ?"),
+	
 	CELLPHONE_INSERT("INSERT INTO tb_cellphone (cel_brand, cel_unit_price, cel_warranty, "
 			+ "cel_storage_memory, cel_camera_pixels, cel_stock_qty, cel_modification_date) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, now())"),
@@ -79,6 +85,8 @@ public enum SqlQueryEnum {
 	
 	CELLPHONE_SELECT_ID("SELECT * FROM tb_cellphone WHERE cel_id = ?"),
 	
+	CELLPHONE_SELECT_BRAND("SELECT * FROM tb_cellphone WHERE cel_brand = ?"),
+	
 	LAPTOP_INSERT("INSERT INTO tb_laptop (pc_brand, pc_unit_price, pc_warranty, pc_ram_size, "
 			+ "pc_hd_size, pc_processor, pc_stock_qty, pc_modification_date) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, now())"),
@@ -92,6 +100,8 @@ public enum SqlQueryEnum {
 	LAPTOP_DELETE("DELETE FROM tb_laptop WHERE pc_id = ?"),
 	
 	LAPTOP_SELECT_ID("SELECT * FROM tb_laptop WHERE pc_id = ?"),
+	
+	LAPTOP_SELECT_BRAND("SELECT * FROM tb_laptop WHERE pc_brand = ?"),
 	
 	CUSTOMER_INSERT("INSERT INTO tb_customer (cus_name, cus_email, cus_phone, cus_cpf, "
 			+ "cus_prod_pref, cus_modification_date) VALUES (?, ?, ?, ?, ?, now())"),

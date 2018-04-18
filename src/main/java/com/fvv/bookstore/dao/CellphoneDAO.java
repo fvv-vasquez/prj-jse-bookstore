@@ -57,4 +57,14 @@ public interface CellphoneDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Cellphone findCellphone(final Long id) throws HardwareNotFoundException, DaoException;
+	
+	/**
+	 * Search a Cellphone in the database by the brand.
+	 * 
+	 * @param brand of String type.
+	 * @return a Cellphone.
+	 * @throws HardwareNotFoundException when not found a hardware in the database.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	Cellphone findCellphoneByBrand(final String brand) throws HardwareNotFoundException, DaoException;
 }

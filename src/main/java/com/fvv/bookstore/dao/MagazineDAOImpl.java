@@ -149,4 +149,39 @@ public class MagazineDAOImpl implements MagazineDAO {
 		} 
 		return magazine;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Magazine findMagazineByName(final String name) throws MagazineNotFoundException, DaoException {
+		Magazine magazine = new Magazine();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_NAME.getQuery())
+		) {	
+			ps.setString(1, name);
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new MagazineNotFoundException("Magazine with name " + name + " not found");
+				} else {
+					do {
+						magazine.setId(rs.getLong("mag_id"));
+						magazine.setName(rs.getString("mag_name"));
+						magazine.setEditionNumber(rs.getInt("mag_edition_number"));
+						magazine.setGenre(rs.getString("mag_genre"));
+						magazine.setPublicationDate(rs.getDate("mag_publication_date"));
+						magazine.setPublisher(rs.getString("mag_publisher"));
+						magazine.setUnitPrice(rs.getDouble("mag_unit_price"));
+						magazine.setStockQty(rs.getInt("mag_stock_qty"));
+						magazine.setModificationDate(new Date(rs.getTimestamp(
+								"mag_modification_date").getTime()));
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a magazine", e);
+		} 
+		return magazine;
+	}
 }

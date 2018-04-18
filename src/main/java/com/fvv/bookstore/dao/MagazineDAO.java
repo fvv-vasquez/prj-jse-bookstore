@@ -57,4 +57,14 @@ public interface MagazineDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Magazine findMagazine(final Long id) throws MagazineNotFoundException, DaoException;
+	
+	/**
+	 * Search a magazine in the database by the name.
+	 * 
+	 * @param name of String type.
+	 * @return a Magazine.
+	 * @throws MagazineNotFoundException when not found a magazine in the database.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	Magazine findMagazineByName(final String name) throws MagazineNotFoundException, DaoException;
 }

@@ -94,6 +94,18 @@ public class MagazineControllerImpl implements MagazineController {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Magazine findMagazineByName(String name) throws MagazineNotFoundException, ControllerException {
+		try {
+			return this.magazineDao.findMagazineByName(name);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a magazine", e);
+		}
+	}
+
+	/**
 	 * Validate if a field is empty.
 	 * 
 	 * @param magazine of type Magazine

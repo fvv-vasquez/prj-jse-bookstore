@@ -107,6 +107,18 @@ public class DvdControllerImpl implements DvdController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Dvd findDvdByTitle(final String title) throws DvdNotFoundException, ControllerException {
+		try {
+			return this.dvdDao.findDvdByTitle(title);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a dvd", e);
+		}
+	}
+
+	/**
 	 * Validate if a field is empty.
 	 * 
 	 * @param dvd of Dvd type.

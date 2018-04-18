@@ -146,4 +146,39 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 		} 
 		return cellphone;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Cellphone findCellphoneByBrand(final String brand) throws HardwareNotFoundException, DaoException {
+		Cellphone cellphone = new Cellphone();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(
+						SqlQueryEnum.CELLPHONE_SELECT_BRAND.getQuery())
+		) {	
+			ps.setString(1, brand);
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new HardwareNotFoundException("Cellphone with brand " + brand + " not found");
+				} else {
+					do {
+						cellphone.setId(rs.getLong("cel_id"));
+						cellphone.setBrand(rs.getString("cel_brand"));
+						cellphone.setUnitPrice(rs.getDouble("cel_unit_price"));
+						cellphone.setWarranty(rs.getInt("cel_warranty"));
+						cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
+						cellphone.setCamPixels(rs.getInt("cel_camera_pixels"));
+						cellphone.setStockQty(rs.getInt("cel_stock_qty"));
+						cellphone.setModificationDate(new Date(rs.getTimestamp(
+								"cel_modification_date").getTime()));
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a cellphone", e);
+		} 
+		return cellphone;
+	}
 }

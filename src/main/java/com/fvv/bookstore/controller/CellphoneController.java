@@ -61,4 +61,14 @@ public interface CellphoneController {
 	 * @throws HardwareNotFoundException when a cellphone is not found.
 	 */
 	Cellphone findCellphone(final Long id) throws HardwareNotFoundException, ControllerException;
+	
+	/**
+	 * Search a cellphone by the brand using DAO.
+	 * 
+	 * @param brand of String type.
+	 * @return a Cellphone.
+	 * @throws ControllerException when a problem in controller happens.
+	 * @throws HardwareNotFoundException when a cellphone is not found.
+	 */
+	Cellphone findCellphoneByBrand(final String brand) throws HardwareNotFoundException, ControllerException;
 }

@@ -95,6 +95,18 @@ public class LaptopControllerImpl implements LaptopController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Laptop findLaptopByBrand(final String brand) throws HardwareNotFoundException, ControllerException {
+		try {
+			return this.laptopDao.findLaptopByBrand(brand);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a laptop", e);
+		}
+	}
+
+	/**
 	 * Validate if a field is empty.
 	 * 
 	 * @param laptop of type Laptop
