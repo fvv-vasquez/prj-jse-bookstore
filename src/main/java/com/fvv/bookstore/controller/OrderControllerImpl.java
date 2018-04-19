@@ -53,6 +53,12 @@ public class OrderControllerImpl implements OrderController {
 		}
 	}
 	
+	/**
+	 * Validate if a field is empty.
+	 * 
+	 * @param order of Order type.
+	 * @throws OrderValidationException if a field is empty.
+	 */
 	private void validateOrder(final Order order) throws OrderValidationException {
 		StringBuilder sb = new StringBuilder();
 		
@@ -78,7 +84,13 @@ public class OrderControllerImpl implements OrderController {
 			throw new OrderValidationException(sb.toString());
 		}
 	}
-	
+	/**
+	 * Validate if a field is empty.
+	 * 
+	 * @param orderItems of List<OrderItem> type.
+	 * @return a String.
+	 * @throws OrderValidationException if a field is empty.
+	 */
 	private String validateOrderItem(final List<OrderItem> orderItems) throws OrderValidationException {
 		StringBuilder sb = new StringBuilder();
 		
@@ -104,10 +116,23 @@ public class OrderControllerImpl implements OrderController {
 		return sb.toString();
 	}
 	
+	/**
+	 * Calculate the item amount.
+	 * 
+	 * @param itemsAmount of Integer type.
+	 * @param individualPrice of Double type.
+	 * @return the amount of Double type.
+	 */
 	private Double calculateItemAmount(final Integer itemsAmount, final Double individualPrice) {
 		return itemsAmount * individualPrice;
 	}
 	
+	/**
+	 * Calculate the total of order amount.
+	 * 
+	 * @param orderItems of List<OrdemItem> type.
+	 * @return the amount of Double type.
+	 */
 	private Double calculateTotalOrderAmount(final List<OrderItem> orderItems) {
 		Double amount = 0.0;
 		for (OrderItem oi : orderItems) {
