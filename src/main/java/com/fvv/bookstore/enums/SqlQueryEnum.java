@@ -131,8 +131,24 @@ public enum SqlQueryEnum {
 	ORDER_INSERT("INSERT INTO tb_order (ord_emp_id, ord_cus_id, ord_amount, ord_date) VALUES "
 			+ "(?, ?, ?, now())"),
 	
-	ORDER_ITEM_INSERT("INSERT INTO tb_item_order_book (ite_ord_book_ord_id, ite_ord_book_book_id, "
-			+ "ite_ord_book_quatity, ite_ord_book_amount) VALUES (?, ?, ?, ?)");
+	ORDER_ITEM_BOOK_INSERT("INSERT INTO tb_order_item_book (ord_ite_book_ord_id, "
+			+ "ord_ite_book_book_id, ord_ite_book_quantity, ord_ite_book_amount) "
+			+ "VALUES (?, ?, ?, ?)"),
+	
+	ORDER_ITEM_CELLPHONE_INSERT("INSERT INTO tb_order_item_cellphone (ord_ite_cel_ord_id, "
+			+ "ord_ite_cel_cel_id, ord_ite_cel_quantity, ord_ite_cel_amount) "
+			+ "VALUES (?, ?, ?, ?)"),
+	
+	ORDER_ITEM_DVD_INSERT("INSERT INTO tb_order_item_dvd (ord_ite_dvd_ord_id, ord_ite_dvd_dvd_id, "
+			+ "ord_ite_dvd_quantity, ord_ite_dvd_amount) VALUES (?, ?, ?, ?)"),
+	
+	ORDER_ITEM_LAPTOP_INSERT("INSERT INTO tb_order_item_laptop (ord_ite_pc_ord_id, "
+			+ "ord_ite_pc_pc_id, ord_ite_pc_quantity, ord_ite_pc_amount) "
+			+ "VALUES (?, ?, ?, ?)"),
+	
+	ORDER_ITEM_MAGAZINE_INSERT("INSERT INTO tb_order_item_magazine (ord_ite_mag_ord_id, "
+			+ "ord_ite_mag_mag_id, ord_ite_mag_quantity, ord_ite_mag_amount) "
+			+ "VALUES (?, ?, ?, ?)");
 	
 	private final String query;
 	

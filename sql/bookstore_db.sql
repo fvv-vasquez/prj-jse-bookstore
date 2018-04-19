@@ -91,22 +91,9 @@ CREATE TABLE IF NOT EXISTS `tb_employee` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
--- Copiando estrutura para tabela bookstore_db.tb_item_order_book
-CREATE TABLE IF NOT EXISTS `tb_item_order_book` (
-  `ite_ord_book_ord_id` bigint(20) NOT NULL,
-  `ite_ord_book_book_id` bigint(20) NOT NULL,
-  `ite_ord_book_quatity` int(11) NOT NULL,
-  `ite_ord_book_amount` double NOT NULL,
-  PRIMARY KEY (`ite_ord_book_ord_id`,`ite_ord_book_book_id`),
-  KEY `FK_tb_order_book` (`ite_ord_book_book_id`),
-  CONSTRAINT `FK_tb_item_order_book` FOREIGN KEY (`ite_ord_book_ord_id`) REFERENCES `tb_order` (`ord_id`),
-  CONSTRAINT `FK_tb_order_book` FOREIGN KEY (`ite_ord_book_book_id`) REFERENCES `tb_book` (`book_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_laptop
 CREATE TABLE IF NOT EXISTS `tb_laptop` (
-  `pc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pc_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `pc_brand` varchar(255) NOT NULL,
   `pc_unit_price` double NOT NULL,
   `pc_warranty` int(11) NOT NULL,
@@ -146,7 +133,72 @@ CREATE TABLE IF NOT EXISTS `tb_order` (
   KEY `FK_tb_order_emp` (`ord_emp_id`),
   CONSTRAINT `FK_tb_order_cus` FOREIGN KEY (`ord_cus_id`) REFERENCES `tb_customer` (`cus_id`),
   CONSTRAINT `FK_tb_order_emp` FOREIGN KEY (`ord_emp_id`) REFERENCES `tb_employee` (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_order_item_book
+CREATE TABLE IF NOT EXISTS `tb_order_item_book` (
+  `ord_ite_book_ord_id` bigint(20) NOT NULL,
+  `ord_ite_book_book_id` bigint(20) NOT NULL,
+  `ord_ite_book_quantity` int(11) NOT NULL,
+  `ord_ite_book_amount` double NOT NULL,
+  PRIMARY KEY (`ord_ite_book_ord_id`,`ord_ite_book_book_id`),
+  KEY `FK_tb_order_book` (`ord_ite_book_book_id`),
+  CONSTRAINT `FK_tb_order_book` FOREIGN KEY (`ord_ite_book_book_id`) REFERENCES `tb_book` (`book_id`),
+  CONSTRAINT `FK_tb_order_item_book` FOREIGN KEY (`ord_ite_book_ord_id`) REFERENCES `tb_order` (`ord_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_order_item_cellphone
+CREATE TABLE IF NOT EXISTS `tb_order_item_cellphone` (
+  `ord_ite_cel_ord_id` bigint(20) NOT NULL,
+  `ord_ite_cel_cel_id` bigint(20) NOT NULL,
+  `ord_ite_cel_quantity` int(11) NOT NULL,
+  `ord_ite_cel_amount` double NOT NULL,
+  PRIMARY KEY (`ord_ite_cel_ord_id`,`ord_ite_cel_cel_id`),
+  KEY `FK_tb_order_cellphone` (`ord_ite_cel_cel_id`),
+  CONSTRAINT `FK_tb_order_cellphone` FOREIGN KEY (`ord_ite_cel_cel_id`) REFERENCES `tb_cellphone` (`cel_id`),
+  CONSTRAINT `FK_tb_order_item_cellphone` FOREIGN KEY (`ord_ite_cel_ord_id`) REFERENCES `tb_order` (`ord_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_order_item_dvd
+CREATE TABLE IF NOT EXISTS `tb_order_item_dvd` (
+  `ord_ite_dvd_ord_id` bigint(20) NOT NULL,
+  `ord_ite_dvd_dvd_id` bigint(20) NOT NULL,
+  `ord_ite_dvd_quantity` int(11) NOT NULL,
+  `ord_ite_dvd_amount` double NOT NULL,
+  PRIMARY KEY (`ord_ite_dvd_ord_id`,`ord_ite_dvd_dvd_id`),
+  KEY `FK_tb_order_dvd` (`ord_ite_dvd_dvd_id`),
+  CONSTRAINT `FK_tb_order_dvd` FOREIGN KEY (`ord_ite_dvd_dvd_id`) REFERENCES `tb_dvd` (`dvd_id`),
+  CONSTRAINT `FK_tb_order_item_dvd` FOREIGN KEY (`ord_ite_dvd_ord_id`) REFERENCES `tb_order` (`ord_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_order_item_laptop
+CREATE TABLE IF NOT EXISTS `tb_order_item_laptop` (
+  `ord_ite_pc_ord_id` bigint(20) NOT NULL,
+  `ord_ite_pc_pc_id` bigint(20) NOT NULL,
+  `ord_ite_pc_quantity` int(11) NOT NULL,
+  `ord_ite_pc_amount` double NOT NULL,
+  PRIMARY KEY (`ord_ite_pc_ord_id`,`ord_ite_pc_pc_id`),
+  KEY `FK_tb_order_laptop` (`ord_ite_pc_pc_id`),
+  CONSTRAINT `FK_tb_order_item_laptop` FOREIGN KEY (`ord_ite_pc_ord_id`) REFERENCES `tb_order` (`ord_id`),
+  CONSTRAINT `FK_tb_order_laptop` FOREIGN KEY (`ord_ite_pc_pc_id`) REFERENCES `tb_laptop` (`pc_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bookstore_db.tb_order_item_magazine
+CREATE TABLE IF NOT EXISTS `tb_order_item_magazine` (
+  `ord_ite_mag_ord_id` bigint(20) NOT NULL,
+  `ord_ite_mag_mag_id` bigint(20) NOT NULL,
+  `ord_ite_mag_quantity` int(11) NOT NULL,
+  `ord_ite_mag_amount` double NOT NULL,
+  PRIMARY KEY (`ord_ite_mag_ord_id`,`ord_ite_mag_mag_id`),
+  KEY `FK_tb_order_magazine` (`ord_ite_mag_mag_id`),
+  CONSTRAINT `FK_tb_order_item_magazine` FOREIGN KEY (`ord_ite_mag_ord_id`) REFERENCES `tb_order` (`ord_id`),
+  CONSTRAINT `FK_tb_order_magazine` FOREIGN KEY (`ord_ite_mag_mag_id`) REFERENCES `tb_magazine` (`mag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
