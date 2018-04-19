@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.fvv.bookstore.bean.Order;
+import com.fvv.bookstore.bean.OrderItem;
 import com.fvv.bookstore.enums.SqlQueryEnum;
 import com.fvv.bookstore.exception.DaoException;
 
@@ -46,6 +47,10 @@ public class OrderDAOImpl implements OrderDAO {
 			
 			Long orderPK = this.getPrimaryKey(ps);
 			order.setId(orderPK);
+			
+			for (OrderItem orderItem : order.getOrderItems()) {
+				orderItem.setOrder(order);
+			}
 			
 			this.ordemItemDao.addOrderItemInBatch(order.getOrderItems());
 			

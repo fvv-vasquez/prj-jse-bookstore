@@ -37,7 +37,6 @@ public class OrderControllerImpl implements OrderController {
 	@Override
 	public void addOrder(final Order order) throws OrderValidationException, ControllerException {
 		try {
-			this.validateOrderItem(order.getOrderItems());			
 			this.validateOrder(order);
 			
 			for (OrderItem orderItem : order.getOrderItems()) {
