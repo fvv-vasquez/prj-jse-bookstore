@@ -197,6 +197,7 @@ public class DvdDAOImpl implements DvdDAO {
 							dvdShow.setArtist(rs.getString("dvd_show_artist"));
 							dvd = dvdShow;
 						}
+						dvd.setId(rs.getLong("dvd_id"));
 						dvd.setTitle(rs.getString("dvd_title"));
 						dvd.setTotalDuration(rs.getInt("dvd_total_duration"));
 						dvd.setUnitPrice(rs.getDouble("dvd_unit_price"));
@@ -225,7 +226,7 @@ public class DvdDAOImpl implements DvdDAO {
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_SELECT_TITLE.getQuery())
 		) {	
-			ps.setString(1, title);
+			ps.setString(1, "%" + title + "%");
 			try (ResultSet rs = ps.executeQuery()) {			
 				if(!rs.next()) {
 					throw new DvdNotFoundException("DVD with title " + title + " not found");
@@ -240,6 +241,7 @@ public class DvdDAOImpl implements DvdDAO {
 							dvdShow.setArtist(rs.getString("dvd_show_artist"));
 							dvd = dvdShow;
 						}
+						dvd.setId(rs.getLong("dvd_id"));
 						dvd.setTitle(rs.getString("dvd_title"));
 						dvd.setTotalDuration(rs.getInt("dvd_total_duration"));
 						dvd.setUnitPrice(rs.getDouble("dvd_unit_price"));

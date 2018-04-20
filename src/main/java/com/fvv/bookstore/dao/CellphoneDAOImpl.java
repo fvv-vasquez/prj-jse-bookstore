@@ -158,7 +158,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 				PreparedStatement ps = conn.prepareStatement(
 						SqlQueryEnum.CELLPHONE_SELECT_BRAND.getQuery())
 		) {	
-			ps.setString(1, brand);
+			ps.setString(1, "%" + brand + "%");
 			try (ResultSet rs = ps.executeQuery()) {			
 				if(!rs.next()) {
 					throw new HardwareNotFoundException("Cellphone with brand " + brand + " not found");

@@ -107,10 +107,15 @@ public class OrderControllerImpl implements OrderController {
 				}			
 			}
 			
-			if(orderItem.getQuantity() <= 0) {
-				sb.append("Field quantity cannot be smaller than 0.").append(
-						Constants.LINE_SEPARATOR);
+			try {
+				if(orderItem.getQuantity() <= 0) {
+					sb.append("Field quantity cannot be smaller than 0.").append(
+							Constants.LINE_SEPARATOR);
+				}
+			} catch (NullPointerException e) {
+				e.printStackTrace();
 			}
+			
 		}
 		return sb.toString();
 	}

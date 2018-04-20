@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `tb_order` (
   KEY `FK_tb_order_emp` (`ord_emp_id`),
   CONSTRAINT `FK_tb_order_cus` FOREIGN KEY (`ord_cus_id`) REFERENCES `tb_customer` (`cus_id`),
   CONSTRAINT `FK_tb_order_emp` FOREIGN KEY (`ord_emp_id`) REFERENCES `tb_employee` (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_order_item_book

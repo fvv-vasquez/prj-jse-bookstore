@@ -45,13 +45,11 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 					Connection conn = ConnectionFactory.getConnection(); 
 					PreparedStatement ps = conn.prepareStatement(sql)
 			) {	
-				for(OrderItem ordItem : orderItems) {
-					ps.setLong(1, ordItem.getOrder().getId());
-					ps.setLong(2, ordItem.getProduct().getId());
-					ps.setInt(3, ordItem.getQuantity());
-					ps.setDouble(4, ordItem.getItemAmount());
-					ps.execute();
-				}				
+				ps.setLong(1, orderItem.getOrder().getId());
+				ps.setLong(2, orderItem.getProduct().getId());
+				ps.setInt(3, orderItem.getQuantity());
+				ps.setDouble(4, orderItem.getItemAmount());
+				ps.execute();
 			} catch(SQLException e) {
 				throw new DaoException("Error to add an order item", e);
 			}

@@ -162,7 +162,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 				PreparedStatement ps = conn.prepareStatement(
 						SqlQueryEnum.LAPTOP_SELECT_BRAND.getQuery())
 		) {	
-			ps.setString(1, brand);
+			ps.setString(1, "%" + brand + "%");
 			try (ResultSet rs = ps.executeQuery()) {			
 				if(!rs.next()) {
 					throw new HardwareNotFoundException("Laptop with brand " + brand + " not found");

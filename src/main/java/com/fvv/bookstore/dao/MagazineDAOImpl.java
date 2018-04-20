@@ -160,7 +160,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_NAME.getQuery())
 		) {	
-			ps.setString(1, name);
+			ps.setString(1, "%" + name + "%");
 			try (ResultSet rs = ps.executeQuery()) {			
 				if(!rs.next()) {
 					throw new MagazineNotFoundException("Magazine with name " + name + " not found");
