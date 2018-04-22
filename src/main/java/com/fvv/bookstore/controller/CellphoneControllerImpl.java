@@ -109,6 +109,18 @@ public class CellphoneControllerImpl implements CellphoneController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(Cellphone cellphone, Integer quantityToReduce) throws ControllerException {
+		try {
+			this.cellphoneDao.reduceStockItem(cellphone, quantityToReduce);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to update stock quantity of a cellphone", e);
+		}
+	}
+
+	/**
 	 * Validate if a field is empty.
 	 * 
 	 * @param cellphone of type Cellphone

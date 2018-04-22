@@ -160,7 +160,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_NAME.getQuery())
 		) {	
-			ps.setString(1, "%" + name + "%");
+			ps.setString(1, name);
 			try (ResultSet rs = ps.executeQuery()) {			
 				if(!rs.next()) {
 					throw new MagazineNotFoundException("Magazine with name " + name + " not found");
@@ -183,5 +183,22 @@ public class MagazineDAOImpl implements MagazineDAO {
 			throw new DaoException("Error to find a magazine", e);
 		} 
 		return magazine;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(Magazine magazine, Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, magazine.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a magazine", e);
+		} 
 	}
 }

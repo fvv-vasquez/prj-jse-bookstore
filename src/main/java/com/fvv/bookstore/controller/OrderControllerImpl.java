@@ -2,8 +2,14 @@ package com.fvv.bookstore.controller;
 
 import java.util.List;
 
+import com.fvv.bookstore.bean.Book;
+import com.fvv.bookstore.bean.Cellphone;
+import com.fvv.bookstore.bean.Dvd;
+import com.fvv.bookstore.bean.Laptop;
+import com.fvv.bookstore.bean.Magazine;
 import com.fvv.bookstore.bean.Order;
 import com.fvv.bookstore.bean.OrderItem;
+import com.fvv.bookstore.bean.Product;
 import com.fvv.bookstore.dao.OrderDAO;
 import com.fvv.bookstore.dao.OrderDAOImpl;
 import com.fvv.bookstore.exception.ControllerException;
@@ -23,12 +29,22 @@ import com.fvv.bookstore.util.Constants;
 public class OrderControllerImpl implements OrderController {
 	
 	private final OrderDAO orderDao;
+	private final BookController bookController;
+	private final CellphoneController cellphoneController;
+	private final DvdController dvdController;
+	private final LaptopController laptopController;
+	private final MagazineController magazineController;
 	
 	/**
 	 * Class constructor instantiating a new OrderDAOImpl object.
 	 */
 	public OrderControllerImpl() {
 		this.orderDao = new OrderDAOImpl();
+		this.bookController = new BookControllerImpl();
+		this.cellphoneController = new CellphoneControllerImpl();
+		this.dvdController = new DvdControllerImpl();
+		this.laptopController = new LaptopControllerImpl();
+		this.magazineController = new MagazineControllerImpl();
 	}
 
 	/**
@@ -45,6 +61,26 @@ public class OrderControllerImpl implements OrderController {
 			}
 			
 			order.setOrderAmount(this.calculateTotalOrderAmount(order.getOrderItems()));
+			
+			for (OrderItem items : order.getOrderItems()) {
+				Integer newStockQty = this.calculateStockAmount(items.getProduct(), items.getQuantity());
+				
+				if (items.getProduct() instanceof Book) {
+					this.bookController.reduceStockItem((Book) items.getProduct(), newStockQty);
+				}
+				if (items.getProduct() instanceof Cellphone) {
+					this.cellphoneController.reduceStockItem((Cellphone) items.getProduct(), newStockQty);
+				}
+				if (items.getProduct() instanceof Dvd) {
+					this.dvdController.reduceStockItem((Dvd) items.getProduct(), newStockQty);
+				}
+				if (items.getProduct() instanceof Laptop) {
+					this.laptopController.reduceStockItem((Laptop) items.getProduct(), newStockQty);
+				}
+				if (items.getProduct() instanceof Magazine) {
+					this.magazineController.reduceStockItem((Magazine) items.getProduct(), newStockQty);
+				}
+			}
 			
 			this.orderDao.addOrder(order);
 		} catch (DaoException e) {
@@ -77,7 +113,7 @@ public class OrderControllerImpl implements OrderController {
 			}
 		}
 		
-		sb.append(this.validateOrderItem(order.getOrderItems())); 
+		sb.append(this.validateOrderItem(order.getOrderItems()));
 		
 		if(sb.length() > 0) {
 			throw new OrderValidationException(sb.toString());
@@ -107,15 +143,18 @@ public class OrderControllerImpl implements OrderController {
 				}			
 			}
 			
-			try {
-				if(orderItem.getQuantity() <= 0) {
-					sb.append("Field quantity cannot be smaller than 0.").append(
-							Constants.LINE_SEPARATOR);
-				}
-			} catch (NullPointerException e) {
-				e.printStackTrace();
+			if(orderItem.getQuantity() <= 0) {
+				sb.append("Field quantity cannot be smaller than 0.").append(
+						Constants.LINE_SEPARATOR);
 			}
 			
+			if(orderItem.getProduct().getStockQty() <= 0) {
+				sb.append("Stock quantity 0").append(Constants.LINE_SEPARATOR);
+			}
+			
+			if(orderItem.getQuantity() > orderItem.getProduct().getStockQty()) {
+				sb.append("Quantity in stock is not enough").append(Constants.LINE_SEPARATOR);
+			}
 		}
 		return sb.toString();
 	}
@@ -143,5 +182,16 @@ public class OrderControllerImpl implements OrderController {
 			amount += oi.getItemAmount();
 		}
 		return amount;
+	}
+	
+	/**
+	 * Calculate the stock amount.
+	 * 
+	 * @param product of Product type.
+	 * @param quantityBougth of Integer type.
+	 * @return the quantity to reduce in database.
+	 */
+	private Integer calculateStockAmount(final Product product, final Integer quantityBougth) {
+		return product.getStockQty() - quantityBougth;
 	}
 }

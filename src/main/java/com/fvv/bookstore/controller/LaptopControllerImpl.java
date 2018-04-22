@@ -107,6 +107,18 @@ public class LaptopControllerImpl implements LaptopController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(Laptop laptop, Integer quantityToReduce) throws ControllerException {
+		try {
+			this.laptopDao.reduceStockItem(laptop, quantityToReduce);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to update stock quantity of a laptop", e);
+		}
+	}
+
+	/**
 	 * Validate if a field is empty.
 	 * 
 	 * @param laptop of type Laptop

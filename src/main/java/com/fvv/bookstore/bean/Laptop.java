@@ -99,6 +99,23 @@ public class Laptop extends Hardware implements Serializable {
 	public String getProcessor() {
 		return this.processor;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Laptop)) {
+			return false;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		return true;
+	}
 
 	/**
 	 * @see java.lang.Object#toString()

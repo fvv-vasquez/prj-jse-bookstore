@@ -80,4 +80,13 @@ public interface DvdController {
 	 * @throws ControllerException when a problem in controller happens.
 	 */
 	Dvd findDvdByTitle(final String title) throws DvdNotFoundException, ControllerException;
+	
+	/**
+	 * Reduce the quantity of a stock item using DAO.
+	 * 
+	 * @param dvd of Dvd type.
+	 * @param quantityToReduce of Integer type.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	void reduceStockItem(final Dvd dvd, final Integer quantityToReduce) throws ControllerException;
 }

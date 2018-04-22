@@ -119,6 +119,18 @@ public class DvdControllerImpl implements DvdController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(Dvd dvd, Integer quantityToReduce) throws ControllerException {
+		try {
+			this.dvdDao.reduceStockItem(dvd, quantityToReduce);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to update stock quantity of a DVD", e);
+		}
+	}
+
+	/**
 	 * Validate if a field is empty.
 	 * 
 	 * @param dvd of Dvd type.

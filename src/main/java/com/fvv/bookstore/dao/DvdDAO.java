@@ -77,4 +77,13 @@ public interface DvdDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Dvd findDvdByTitle(final String title) throws DvdNotFoundException, DaoException;
+	
+	/**
+	 * Reduce the quantity of a stock item.
+	 * 
+	 * @param dvd of Dvd type.
+	 * @param quantityToReduce of Integer type.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	void reduceStockItem(final Dvd dvd, final Integer quantityToReduce) throws DaoException;
 }

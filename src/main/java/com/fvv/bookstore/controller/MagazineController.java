@@ -71,4 +71,13 @@ public interface MagazineController {
 	 * @throws MagazineNotFoundException when a magazine is not found.
 	 */
 	Magazine findMagazineByName(final String name) throws MagazineNotFoundException, ControllerException;
+
+	/**
+	 * Reduce the quantity of a stock item using DAO.
+	 * 
+	 * @param magazine of Magazine type.
+	 * @param quantityToReduce of Integer type.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	void reduceStockItem(final Magazine magazine, final Integer quantityToReduce) throws ControllerException;
 }

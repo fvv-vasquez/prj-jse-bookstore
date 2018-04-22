@@ -71,4 +71,13 @@ public interface LaptopController {
 	 * @throws HardwareNotFoundException when a laptop is not found.
 	 */
 	Laptop findLaptopByBrand(final String brand) throws HardwareNotFoundException, ControllerException;
+
+	/**
+	 * Reduce the quantity of a stock item using DAO.
+	 * 
+	 * @param laptop of Laptop type.
+	 * @param quantityToReduce of Integer type.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	void reduceStockItem(final Laptop laptop, final Integer quantityToReduce) throws ControllerException;
 }

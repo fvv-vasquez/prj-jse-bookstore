@@ -226,7 +226,7 @@ public class DvdDAOImpl implements DvdDAO {
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_SELECT_TITLE.getQuery())
 		) {	
-			ps.setString(1, "%" + title + "%");
+			ps.setString(1, title);
 			try (ResultSet rs = ps.executeQuery()) {			
 				if(!rs.next()) {
 					throw new DvdNotFoundException("DVD with title " + title + " not found");
@@ -258,5 +258,22 @@ public class DvdDAOImpl implements DvdDAO {
 			throw new DaoException("Error to find a dvd", e);
 		} 
 		return dvd;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(Dvd dvd, Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, dvd.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a DVD", e);
+		} 
 	}	
 }

@@ -194,4 +194,21 @@ public class BookDAOImpl implements BookDAO {
 		} 
 		return book;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(final Book book, final Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, book.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a book", e);
+		} 
+	}
 }

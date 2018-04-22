@@ -185,6 +185,23 @@ public class Book extends Product implements Serializable {
 	}	
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Book)) {
+			return false;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

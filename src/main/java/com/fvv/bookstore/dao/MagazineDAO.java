@@ -67,4 +67,13 @@ public interface MagazineDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Magazine findMagazineByName(final String name) throws MagazineNotFoundException, DaoException;
+	
+	/**
+	 * Reduce the quantity of a stock item.
+	 * 
+	 * @param magazine of Magazine type.
+	 * @param quantityToReduce of Integer type.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	void reduceStockItem(final Magazine magazine, final Integer quantityToReduce) throws DaoException;
 }

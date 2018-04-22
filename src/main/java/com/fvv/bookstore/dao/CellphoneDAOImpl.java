@@ -158,7 +158,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 				PreparedStatement ps = conn.prepareStatement(
 						SqlQueryEnum.CELLPHONE_SELECT_BRAND.getQuery())
 		) {	
-			ps.setString(1, "%" + brand + "%");
+			ps.setString(1, brand);
 			try (ResultSet rs = ps.executeQuery()) {			
 				if(!rs.next()) {
 					throw new HardwareNotFoundException("Cellphone with brand " + brand + " not found");
@@ -180,5 +180,22 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 			throw new DaoException("Error to find a cellphone", e);
 		} 
 		return cellphone;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(Cellphone cellphone, Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, cellphone.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a cellphone", e);
+		} 
 	}
 }

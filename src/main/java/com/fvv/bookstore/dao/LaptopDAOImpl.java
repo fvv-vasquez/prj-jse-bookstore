@@ -162,7 +162,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 				PreparedStatement ps = conn.prepareStatement(
 						SqlQueryEnum.LAPTOP_SELECT_BRAND.getQuery())
 		) {	
-			ps.setString(1, "%" + brand + "%");
+			ps.setString(1, brand);
 			try (ResultSet rs = ps.executeQuery()) {			
 				if(!rs.next()) {
 					throw new HardwareNotFoundException("Laptop with brand " + brand + " not found");
@@ -185,5 +185,22 @@ public class LaptopDAOImpl implements LaptopDAO {
 			throw new DaoException("Error to find a laptop", e);
 		} 
 		return laptop;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(Laptop laptop, Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, laptop.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a laptop", e);
+		} 
 	}
 }

@@ -71,4 +71,13 @@ public interface CellphoneController {
 	 * @throws HardwareNotFoundException when a cellphone is not found.
 	 */
 	Cellphone findCellphoneByBrand(final String brand) throws HardwareNotFoundException, ControllerException;
+	
+	/**
+	 * Reduce the quantity of a stock item using DAO.
+	 * 
+	 * @param cellphone of Cellphone type.
+	 * @param quantityToReduce of Integer type.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	void reduceStockItem(final Cellphone cellphone, final Integer quantityToReduce) throws ControllerException;
 }

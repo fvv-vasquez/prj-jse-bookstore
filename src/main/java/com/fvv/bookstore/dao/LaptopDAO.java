@@ -67,4 +67,13 @@ public interface LaptopDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Laptop findLaptopByBrand(final String brand) throws HardwareNotFoundException, DaoException;
+	
+	/**
+	 * Reduce the quantity of a stock item.
+	 * 
+	 * @param laptop of Laptop type.
+	 * @param quantityToReduce of Integer type.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	void reduceStockItem(final Laptop laptop, final Integer quantityToReduce) throws DaoException;
 }

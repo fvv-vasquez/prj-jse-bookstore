@@ -14,6 +14,7 @@ import com.fvv.bookstore.bean.Laptop;
 import com.fvv.bookstore.bean.Magazine;
 import com.fvv.bookstore.bean.Order;
 import com.fvv.bookstore.bean.OrderItem;
+import com.fvv.bookstore.bean.Product;
 import com.fvv.bookstore.controller.BookController;
 import com.fvv.bookstore.controller.BookControllerImpl;
 import com.fvv.bookstore.controller.CellphoneController;
@@ -87,8 +88,7 @@ public class OrderViewImpl implements OrderView {
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | OrderValidationException | PersonNotFoundException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -136,61 +136,107 @@ public class OrderViewImpl implements OrderView {
 					"5 - Magazine" + Constants.LINE_SEPARATOR
 			);
 			switch(input.charAt(0)) {
-				case '1' : final Book book = this.findBookByTitle();
+				case '1' : 
+					final Book book = this.findBookByTitle();
 					if (book != null) {
-						orderItem.setProduct(book);
-						orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-								"Insert the quantity")));
+						if (!this.isProductExistsInOrderItemsList(items, book)) {
+							orderItem.setProduct(book);
+							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
+									"Insert the quantity")));
+							items.add(orderItem);
+						} else {
+							JOptionPane.showMessageDialog(null, Book.class.getSimpleName() + " already in the list");	
+						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Field title cannot be null");
+						JOptionPane.showMessageDialog(null, "Book not found");
 					}
 					break;
 				case '2' : final Cellphone cellphone = this.findCellphoneByBrand();
 					if (cellphone != null) {
-						orderItem.setProduct(cellphone);
-						orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-								"Insert the quantity")));
+						if (!this.isProductExistsInOrderItemsList(items, cellphone)) {
+							orderItem.setProduct(cellphone);
+							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
+									"Insert the quantity")));
+							items.add(orderItem);
+						} else {
+							JOptionPane.showMessageDialog(null, Cellphone.class.getSimpleName() + " already in the list");	
+						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Field brand cannot be null");
+						JOptionPane.showMessageDialog(null, "Cellphone not found");
 					}
 					break;
 				case '3' : final Dvd dvd = this.findDvdByTitle();
 					if (dvd != null) {
-						orderItem.setProduct(dvd);
-						orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-								"Insert the quantity")));
+						if (!this.isProductExistsInOrderItemsList(items, dvd)) {
+							orderItem.setProduct(dvd);
+							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
+									"Insert the quantity")));
+							items.add(orderItem);
+						} else {
+							JOptionPane.showMessageDialog(null, Dvd.class.getSimpleName() + " already in the list");	
+						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Field title cannot be null");
+						JOptionPane.showMessageDialog(null, "DVD not found");
 					}
 					break;
 				case '4' : final Laptop laptop = this.findLaptopByBrand();
 					if (laptop != null) {
-						orderItem.setProduct(laptop);
-						orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-								"Insert the quantity")));
+						if (!this.isProductExistsInOrderItemsList(items, laptop)) {
+							orderItem.setProduct(laptop);
+							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
+									"Insert the quantity")));
+							items.add(orderItem);
+						} else {
+							JOptionPane.showMessageDialog(null, Laptop.class.getSimpleName() + " already in the list");	
+						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Field brand cannot be null");
+						JOptionPane.showMessageDialog(null, "Laptop not found");
 					}
 					break;
 				case '5' : final Magazine magazine = this.findMagazineByName();
 					if (magazine != null) {
-						orderItem.setProduct(magazine);
-						orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-								"Insert the quantity")));
+						if (!this.isProductExistsInOrderItemsList(items, magazine)) {
+							orderItem.setProduct(magazine);
+							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
+									"Insert the quantity")));
+							items.add(orderItem);
+						} else {
+							JOptionPane.showMessageDialog(null, Magazine.class.getSimpleName() + " already in the list");	
+						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Field name cannot be null");
+						JOptionPane.showMessageDialog(null, "Magazine not found");
 					}
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
 						"Error", JOptionPane.ERROR_MESSAGE);
 			}
-			items.add(orderItem);
-			addMoreItems = JOptionPane.showInputDialog(
-					"Wanna add more products?" + Constants.LINE_SEPARATOR +
-					"y = yes" + Constants.LINE_SEPARATOR +
-					"n = no").charAt(0);
+			if (orderItem.getProduct() != null) {
+				addMoreItems = JOptionPane.showInputDialog(
+						"Wanna add more products?" + Constants.LINE_SEPARATOR +
+						"y = yes" + Constants.LINE_SEPARATOR +
+						"n = no").charAt(0);
+			}							
 		}
 		return items;
+	}
+	
+	/**
+	 * Verify if the product already exists in the database.
+	 * 
+	 * @param items of List<OrderItem> type.
+	 * @param productToAdd of Product type.
+	 * @return a boolean.
+	 */
+	private boolean isProductExistsInOrderItemsList(final List<OrderItem> items, final Product productToAdd) {
+		if (items.size() > 0) {
+			for (OrderItem orderItem : items) {
+				Product product = orderItem.getProduct();
+				if (product.equals(productToAdd)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	/**
