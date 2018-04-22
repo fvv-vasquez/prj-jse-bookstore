@@ -26,7 +26,7 @@ public abstract class Hardware extends Product {
 	 * @param brand of the Hardware
 	 * @param warranty of the Hardware
 	 */
-	public Hardware(final Long id, final Double unitPrice, final Integer stockQty,
+	Hardware(final Long id, final Double unitPrice, final Integer stockQty,
 			final Date modificationDate, final String brand, final Integer warranty) {
 		super(id, unitPrice, stockQty, modificationDate);
 		this.brand = brand;
@@ -36,7 +36,7 @@ public abstract class Hardware extends Product {
 	/**
 	 * Class constructor
 	 */
-	public Hardware() {
+	Hardware() {
 	}
 
 	/**

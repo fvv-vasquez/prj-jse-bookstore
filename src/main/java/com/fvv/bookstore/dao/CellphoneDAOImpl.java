@@ -129,15 +129,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 					throw new HardwareNotFoundException("Cellphone with ID " + id + " not found");
 				} else {
 					do {
-						cellphone.setId(rs.getLong("cel_id"));
-						cellphone.setBrand(rs.getString("cel_brand"));
-						cellphone.setUnitPrice(rs.getDouble("cel_unit_price"));
-						cellphone.setWarranty(rs.getInt("cel_warranty"));
-						cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
-						cellphone.setCamPixels(rs.getInt("cel_camera_pixels"));
-						cellphone.setStockQty(rs.getInt("cel_stock_qty"));
-						cellphone.setModificationDate(new Date(rs.getTimestamp(
-								"cel_modification_date").getTime()));
+						this.populateCellphoneFromDatabase(cellphone, rs);
 					} while (rs.next());
 				}
 			}
@@ -164,18 +156,35 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 					throw new HardwareNotFoundException("Cellphone with brand " + brand + " not found");
 				} else {
 					do {
-						cellphone.setId(rs.getLong("cel_id"));
-						cellphone.setBrand(rs.getString("cel_brand"));
-						cellphone.setUnitPrice(rs.getDouble("cel_unit_price"));
-						cellphone.setWarranty(rs.getInt("cel_warranty"));
-						cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
-						cellphone.setCamPixels(rs.getInt("cel_camera_pixels"));
-						cellphone.setStockQty(rs.getInt("cel_stock_qty"));
-						cellphone.setModificationDate(new Date(rs.getTimestamp(
-								"cel_modification_date").getTime()));
+						this.populateCellphoneFromDatabase(cellphone, rs);
 					} while (rs.next());
 				}
 			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a cellphone", e);
+		} 
+		return cellphone;
+	}
+	
+	/**
+	 * Populate a cellphone fron database.
+	 * 
+	 * @param cellphone of Cellphone type.
+	 * @param rs of ResultSet type.
+	 * @return a cellphone
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Cellphone populateCellphoneFromDatabase(final Cellphone cellphone, final ResultSet rs) throws DaoException {
+		try {
+			cellphone.setId(rs.getLong("cel_id"));
+			cellphone.setBrand(rs.getString("cel_brand"));
+			cellphone.setUnitPrice(rs.getDouble("cel_unit_price"));
+			cellphone.setWarranty(rs.getInt("cel_warranty"));
+			cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
+			cellphone.setCamPixels(rs.getInt("cel_camera_pixels"));
+			cellphone.setStockQty(rs.getInt("cel_stock_qty"));
+			cellphone.setModificationDate(new Date(rs.getTimestamp(
+					"cel_modification_date").getTime()));
 		} catch(SQLException e) {
 			throw new DaoException("Error to find a cellphone", e);
 		} 
@@ -186,7 +195,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void reduceStockItem(Cellphone cellphone, Integer quantityToReduce) throws DaoException {
+	public void reduceStockItem(final Cellphone cellphone, final Integer quantityToReduce) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_REDUCE_STOCK.getQuery())

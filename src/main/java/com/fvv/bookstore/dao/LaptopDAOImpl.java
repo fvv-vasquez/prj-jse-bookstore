@@ -132,16 +132,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 					throw new HardwareNotFoundException("Laptop with ID " + id + " not found");
 				} else {
 					do {
-						laptop.setId(rs.getLong("pc_id"));
-						laptop.setBrand(rs.getString("pc_brand"));
-						laptop.setUnitPrice(rs.getDouble("pc_unit_price"));
-						laptop.setWarranty(rs.getInt("pc_warranty"));
-						laptop.setRamSize(rs.getInt("pc_ram_size"));
-						laptop.setHdSize(rs.getDouble("pc_hd_size"));
-						laptop.setProcessor(rs.getString("pc_processor"));
-						laptop.setStockQty(rs.getInt("pc_stock_qty"));
-						laptop.setModificationDate(new Date(rs.getTimestamp(
-								"pc_modification_date").getTime()));
+						this.populateLaptopFromDatabase(laptop, rs);
 					} while (rs.next());
 				}
 			}
@@ -168,19 +159,36 @@ public class LaptopDAOImpl implements LaptopDAO {
 					throw new HardwareNotFoundException("Laptop with brand " + brand + " not found");
 				} else {
 					do {
-						laptop.setId(rs.getLong("pc_id"));
-						laptop.setBrand(rs.getString("pc_brand"));
-						laptop.setUnitPrice(rs.getDouble("pc_unit_price"));
-						laptop.setWarranty(rs.getInt("pc_warranty"));
-						laptop.setRamSize(rs.getInt("pc_ram_size"));
-						laptop.setHdSize(rs.getDouble("pc_hd_size"));
-						laptop.setProcessor(rs.getString("pc_processor"));
-						laptop.setStockQty(rs.getInt("pc_stock_qty"));
-						laptop.setModificationDate(new Date(rs.getTimestamp(
-								"pc_modification_date").getTime()));
+						this.populateLaptopFromDatabase(laptop, rs);
 					} while (rs.next());
 				}
 			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a laptop", e);
+		} 
+		return laptop;
+	}
+	
+	/**
+	 * Populate a laptop from database.
+	 * 
+	 * @param laptop of Laptop type.
+	 * @param rs of ResultSet type.
+	 * @return a laptop.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Laptop populateLaptopFromDatabase(final Laptop laptop, final ResultSet rs) throws DaoException {
+		try {
+			laptop.setId(rs.getLong("pc_id"));
+			laptop.setBrand(rs.getString("pc_brand"));
+			laptop.setUnitPrice(rs.getDouble("pc_unit_price"));
+			laptop.setWarranty(rs.getInt("pc_warranty"));
+			laptop.setRamSize(rs.getInt("pc_ram_size"));
+			laptop.setHdSize(rs.getDouble("pc_hd_size"));
+			laptop.setProcessor(rs.getString("pc_processor"));
+			laptop.setStockQty(rs.getInt("pc_stock_qty"));
+			laptop.setModificationDate(new Date(rs.getTimestamp(
+					"pc_modification_date").getTime()));
 		} catch(SQLException e) {
 			throw new DaoException("Error to find a laptop", e);
 		} 
@@ -191,7 +199,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void reduceStockItem(Laptop laptop, Integer quantityToReduce) throws DaoException {
+	public void reduceStockItem(final Laptop laptop, final Integer quantityToReduce) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_REDUCE_STOCK.getQuery())

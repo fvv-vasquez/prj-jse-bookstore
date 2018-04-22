@@ -28,7 +28,7 @@ public abstract class Person {
 	 * @param phone of the person
 	 * @param cpf of the person
 	 */
-	public Person(final Long id, final String name, final String email, final String phone, 
+	Person(final Long id, final String name, final String email, final String phone, 
 			final String cpf) {
 		this.id = id;
 		this.name = name;
@@ -40,7 +40,7 @@ public abstract class Person {
 	/**
 	 * Class constructor
 	 */
-	public Person() {
+	Person() {
 	}
 
 	/**

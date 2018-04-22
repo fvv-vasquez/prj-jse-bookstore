@@ -19,7 +19,7 @@ public class Order implements Serializable {
 	private Employee employee;
 	private Customer customer;
 	private List<OrderItem> orderItems;
-	private Date date;
+	private Date creationDate;
 	private Double orderAmount;
 	
 	/**
@@ -36,7 +36,7 @@ public class Order implements Serializable {
 		this.id = id;
 		this.employee = employee;
 		this.customer = customer;
-		this.date = date;
+		this.creationDate = date;
 		this.orderAmount = amount;
 	}
 	
@@ -119,21 +119,21 @@ public class Order implements Serializable {
 	}
 
 	/**
-	 * Sets the date.
+	 * Sets the creation date.
 	 * 
-	 * @param date of Date type.
+	 * @param creationDate of Date type.
 	 */
-	public void setDate(final Date date) {
-		this.date = date;
+	public void setCreationDate(final Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	/**
-	 * Gets the date.
+	 * Gets the creation date.
 	 * 
-	 * @return the date of Date type.
+	 * @return the creationDate of Date type.
 	 */
-	public Date getDate() {
-		return this.date;
+	public Date getCreationDate() {
+		return this.creationDate;
 	}
 
 	/**
@@ -160,6 +160,6 @@ public class Order implements Serializable {
 	@Override
 	public String toString() {
 		return "Order ID: " + getId() + " - Customer: " + getCustomer() + ", Employee: " +
-				getEmployee() + ", Order Amount: " + getOrderAmount() + ", Date: " + getDate();
+				getEmployee() + ", Order Amount: " + getOrderAmount() + ", Date: " + getCreationDate();
 	}
 }

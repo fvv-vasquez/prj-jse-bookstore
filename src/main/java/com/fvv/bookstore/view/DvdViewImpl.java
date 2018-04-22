@@ -159,7 +159,7 @@ public class DvdViewImpl implements DvdView {
 			dvd.setId(idUp);
 		} else {
 			String input = JOptionPane.showInputDialog("Insert the DVD type: Movie (M) or Show (S)");
-			if (input.charAt(0) == 'M') {
+			if (Character.toUpperCase(input.charAt(0)) == 'M') {
 				MovieDvd dvdMovie = new MovieDvd();
 				dvdMovie.setDirector(JOptionPane.showInputDialog("Insert the director"));
 				dvd = dvdMovie;
@@ -171,7 +171,7 @@ public class DvdViewImpl implements DvdView {
 		}
 		dvd.setTitle(JOptionPane.showInputDialog("Insert the title"));
 		dvd.setTotalDuration(
-				Integer.parseInt(JOptionPane.showInputDialog("Insert the total duration")));
+				Integer.parseInt(JOptionPane.showInputDialog("Insert the total duration in minutes")));
 		dvd.setUnitPrice(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
 		dvd.setGenre(JOptionPane.showInputDialog("Insert the genre"));

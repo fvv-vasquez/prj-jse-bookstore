@@ -137,18 +137,7 @@ public class BookDAOImpl implements BookDAO {
 					throw new BookNotFoundException("Book with ID " + id + " not found");
 				} else {
 					do {
-						book.setId(rs.getLong("book_id"));
-						book.setTitle(rs.getString("book_title"));
-						book.setPublicationYear(rs.getInt("book_publication_year"));
-						book.setEditionNumber(rs.getInt("book_edition_number"));
-						book.setAuthor(rs.getString("book_author"));
-						book.setUnitPrice(rs.getDouble("book_unit_price"));
-						book.setIsbn(rs.getInt("book_isbn"));
-						book.setPublisher(rs.getString("book_publisher"));
-						book.setGenre(rs.getString("book_genre"));
-						book.setStockQty(rs.getInt("book_stock_qty"));
-						book.setModificationDate(new Date(rs.getTimestamp(
-								"book_modification_date").getTime()));
+						this.populateBookFromDatabase(book, rs);
 					} while (rs.next());
 				}			
 			} 
@@ -174,24 +163,41 @@ public class BookDAOImpl implements BookDAO {
 					throw new BookNotFoundException("Book with title " + title + " not found");
 				} else {
 					do {
-						book.setId(rs.getLong("book_id"));
-						book.setTitle(rs.getString("book_title"));
-						book.setPublicationYear(rs.getInt("book_publication_year"));
-						book.setEditionNumber(rs.getInt("book_edition_number"));
-						book.setAuthor(rs.getString("book_author"));
-						book.setUnitPrice(rs.getDouble("book_unit_price"));
-						book.setIsbn(rs.getInt("book_isbn"));
-						book.setPublisher(rs.getString("book_publisher"));
-						book.setGenre(rs.getString("book_genre"));
-						book.setStockQty(rs.getInt("book_stock_qty"));
-						book.setModificationDate(new Date(rs.getTimestamp(
-								"book_modification_date").getTime()));
+						this.populateBookFromDatabase(book, rs);
 					} while (rs.next());
 				}			
 			} 
 		} catch(SQLException e) {
 			throw new DaoException("Error to find a book", e);
 		} 
+		return book;
+	}
+
+	/**
+	 * Populate a book from database.
+	 * 
+	 * @param book of Book type.
+	 * @param rs of ResultSet type.
+	 * @return a book.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Book populateBookFromDatabase(final Book book, final ResultSet rs) throws DaoException {
+		try {
+			book.setId(rs.getLong("book_id"));
+			book.setTitle(rs.getString("book_title"));
+			book.setPublicationYear(rs.getInt("book_publication_year"));
+			book.setEditionNumber(rs.getInt("book_edition_number"));
+			book.setAuthor(rs.getString("book_author"));
+			book.setUnitPrice(rs.getDouble("book_unit_price"));
+			book.setIsbn(rs.getInt("book_isbn"));
+			book.setPublisher(rs.getString("book_publisher"));
+			book.setGenre(rs.getString("book_genre"));
+			book.setStockQty(rs.getInt("book_stock_qty"));
+			book.setModificationDate(new Date(rs.getTimestamp(
+					"book_modification_date").getTime()));	
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a book", e);
+		}
 		return book;
 	}
 

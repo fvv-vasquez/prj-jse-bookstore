@@ -29,5 +29,10 @@ public class Constants {
 	 * Constant that represents a pipe.
 	 */
 	public static final String PIPE = "|";
+	
+	/**
+	 * Constant that represents a number to round
+	 */
+	public static final Integer PRECISION = 2;
 
 }

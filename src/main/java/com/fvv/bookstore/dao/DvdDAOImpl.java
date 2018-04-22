@@ -188,25 +188,7 @@ public class DvdDAOImpl implements DvdDAO {
 					throw new DvdNotFoundException("DVD with ID " + id + " not found");
 				} else {
 					do {
-						if(rs.getString("dvd_movie_director") != null) {
-							MovieDvd dvdMovie = new MovieDvd();
-							dvdMovie.setDirector(rs.getString("dvd_movie_director"));
-							dvd = dvdMovie;
-						} else {
-							ShowDvd dvdShow = new ShowDvd();
-							dvdShow.setArtist(rs.getString("dvd_show_artist"));
-							dvd = dvdShow;
-						}
-						dvd.setId(rs.getLong("dvd_id"));
-						dvd.setTitle(rs.getString("dvd_title"));
-						dvd.setTotalDuration(rs.getInt("dvd_total_duration"));
-						dvd.setUnitPrice(rs.getDouble("dvd_unit_price"));
-						dvd.setGenre(rs.getString("dvd_genre"));
-						dvd.setReleaseYear(rs.getInt("dvd_release_year"));
-						dvd.setCode(rs.getInt("dvd_code"));
-						dvd.setStockQty(rs.getInt("dvd_stock_qty"));
-						dvd.setModificationDate(new Date(rs.getTimestamp(
-								"dvd_modification_date").getTime()));
+						this.populateDvdFromDatabase(dvd, rs);
 					} while (rs.next());
 				}
 			}
@@ -232,28 +214,45 @@ public class DvdDAOImpl implements DvdDAO {
 					throw new DvdNotFoundException("DVD with title " + title + " not found");
 				} else {
 					do {
-						if(rs.getString("dvd_movie_director") != null) {
-							MovieDvd dvdMovie = new MovieDvd();
-							dvdMovie.setDirector(rs.getString("dvd_movie_director"));
-							dvd = dvdMovie;
-						} else {
-							ShowDvd dvdShow = new ShowDvd();
-							dvdShow.setArtist(rs.getString("dvd_show_artist"));
-							dvd = dvdShow;
-						}
-						dvd.setId(rs.getLong("dvd_id"));
-						dvd.setTitle(rs.getString("dvd_title"));
-						dvd.setTotalDuration(rs.getInt("dvd_total_duration"));
-						dvd.setUnitPrice(rs.getDouble("dvd_unit_price"));
-						dvd.setGenre(rs.getString("dvd_genre"));
-						dvd.setReleaseYear(rs.getInt("dvd_release_year"));
-						dvd.setCode(rs.getInt("dvd_code"));
-						dvd.setStockQty(rs.getInt("dvd_stock_qty"));
-						dvd.setModificationDate(new Date(rs.getTimestamp(
-								"dvd_modification_date").getTime()));
+						this.populateDvdFromDatabase(dvd, rs);
 					} while (rs.next());
 				}
 			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a dvd", e);
+		} 
+		return dvd;
+	}
+	
+	/**
+	 * Populate a dvd from database.
+	 * 
+	 * @param dvd of Dvd type.
+	 * @param rs of ResultSet type.
+	 * @return a dvd.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Dvd populateDvdFromDatabase(Dvd dvd, final ResultSet rs) throws DaoException {
+		try {
+			if(rs.getString("dvd_movie_director") != null) {
+				MovieDvd dvdMovie = new MovieDvd();
+				dvdMovie.setDirector(rs.getString("dvd_movie_director"));
+				dvd = dvdMovie;
+			} else {
+				ShowDvd dvdShow = new ShowDvd();
+				dvdShow.setArtist(rs.getString("dvd_show_artist"));
+				dvd = dvdShow;
+			}
+			dvd.setId(rs.getLong("dvd_id"));
+			dvd.setTitle(rs.getString("dvd_title"));
+			dvd.setTotalDuration(rs.getInt("dvd_total_duration"));
+			dvd.setUnitPrice(rs.getDouble("dvd_unit_price"));
+			dvd.setGenre(rs.getString("dvd_genre"));
+			dvd.setReleaseYear(rs.getInt("dvd_release_year"));
+			dvd.setCode(rs.getInt("dvd_code"));
+			dvd.setStockQty(rs.getInt("dvd_stock_qty"));
+			dvd.setModificationDate(new Date(rs.getTimestamp(
+					"dvd_modification_date").getTime()));
 		} catch(SQLException e) {
 			throw new DaoException("Error to find a dvd", e);
 		} 
@@ -264,7 +263,7 @@ public class DvdDAOImpl implements DvdDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void reduceStockItem(Dvd dvd, Integer quantityToReduce) throws DaoException {
+	public void reduceStockItem(final Dvd dvd, final Integer quantityToReduce) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_REDUCE_STOCK.getQuery())

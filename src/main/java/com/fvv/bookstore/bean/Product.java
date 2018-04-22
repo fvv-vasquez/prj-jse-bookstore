@@ -25,7 +25,7 @@ public abstract class Product {
 	 * @param stockQty of the Product
 	 * @param modificationDate of the Product
 	 */
-	public Product(final Long id, final Double unitPrice, final Integer stockQty, 
+	Product(final Long id, final Double unitPrice, final Integer stockQty, 
 			final Date modificationDate) {
 		this.id = id;
 		this.unitPrice = unitPrice;
@@ -36,7 +36,7 @@ public abstract class Product {
 	/**
 	 * Class constructor
 	 */
-	public Product() {
+	Product() {
 	}
 
 	/**

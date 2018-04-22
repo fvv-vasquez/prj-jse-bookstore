@@ -17,6 +17,7 @@ import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.order.OrderValidationException;
 import com.fvv.bookstore.util.CollectionsUtil;
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.MathUtil;
 
 /**
  * Controller class for an Order object.
@@ -150,7 +151,8 @@ public class OrderControllerImpl implements OrderController {
 	 * @return the amount of Double type.
 	 */
 	private Double calculateItemAmount(final Integer itemsAmount, final Double individualPrice) {
-		return itemsAmount * individualPrice;
+		Double amount = itemsAmount * individualPrice;
+		return MathUtil.round(amount, 2);
 	}
 	
 	/**
@@ -164,7 +166,7 @@ public class OrderControllerImpl implements OrderController {
 		for (OrderItem oi : orderItems) {
 			amount += oi.getItemAmount();
 		}
-		return amount;
+		return MathUtil.round(amount, Constants.PRECISION);
 	}
 	
 	/**
