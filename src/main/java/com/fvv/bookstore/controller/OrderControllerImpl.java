@@ -62,27 +62,10 @@ public class OrderControllerImpl implements OrderController {
 			
 			order.setOrderAmount(this.calculateTotalOrderAmount(order.getOrderItems()));
 			
-			for (OrderItem items : order.getOrderItems()) {
-				Integer newStockQty = this.calculateStockAmount(items.getProduct(), items.getQuantity());
-				
-				if (items.getProduct() instanceof Book) {
-					this.bookController.reduceStockItem((Book) items.getProduct(), newStockQty);
-				}
-				if (items.getProduct() instanceof Cellphone) {
-					this.cellphoneController.reduceStockItem((Cellphone) items.getProduct(), newStockQty);
-				}
-				if (items.getProduct() instanceof Dvd) {
-					this.dvdController.reduceStockItem((Dvd) items.getProduct(), newStockQty);
-				}
-				if (items.getProduct() instanceof Laptop) {
-					this.laptopController.reduceStockItem((Laptop) items.getProduct(), newStockQty);
-				}
-				if (items.getProduct() instanceof Magazine) {
-					this.magazineController.reduceStockItem((Magazine) items.getProduct(), newStockQty);
-				}
-			}
-			
 			this.orderDao.addOrder(order);
+			
+			this.calculateNewStockAmount(order);
+			
 		} catch (DaoException e) {
 			throw new ControllerException("Error to add an order", e);
 		}
@@ -193,5 +176,33 @@ public class OrderControllerImpl implements OrderController {
 	 */
 	private Integer calculateStockAmount(final Product product, final Integer quantityBougth) {
 		return product.getStockQty() - quantityBougth;
+	}
+	
+	/**
+	 * Calculate the new stock amount.
+	 * 
+	 * @param order of Order type.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	private void calculateNewStockAmount(final Order order) throws ControllerException {
+		for (OrderItem items : order.getOrderItems()) {
+			Integer newStockQty = this.calculateStockAmount(items.getProduct(), items.getQuantity());
+			
+			if (items.getProduct() instanceof Book) {
+				this.bookController.reduceStockItem((Book) items.getProduct(), newStockQty);
+			}
+			if (items.getProduct() instanceof Cellphone) {
+				this.cellphoneController.reduceStockItem((Cellphone) items.getProduct(), newStockQty);
+			}
+			if (items.getProduct() instanceof Dvd) {
+				this.dvdController.reduceStockItem((Dvd) items.getProduct(), newStockQty);
+			}
+			if (items.getProduct() instanceof Laptop) {
+				this.laptopController.reduceStockItem((Laptop) items.getProduct(), newStockQty);
+			}
+			if (items.getProduct() instanceof Magazine) {
+				this.magazineController.reduceStockItem((Magazine) items.getProduct(), newStockQty);
+			}
+		}
 	}
 }

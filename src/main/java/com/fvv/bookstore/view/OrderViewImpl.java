@@ -139,11 +139,21 @@ public class OrderViewImpl implements OrderView {
 				case '1' : 
 					final Book book = this.findBookByTitle();
 					if (book != null) {
-						if (!this.isProductExistsInOrderItemsList(items, book)) {
-							orderItem.setProduct(book);
-							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-									"Insert the quantity")));
-							items.add(orderItem);
+						if (!this.isProductExistsInOrderItemsList(items, book)) {																					
+							if(book.getStockQty() > 0) {
+								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
+								if(book.getStockQty() >= amount) {
+									orderItem.setProduct(book);
+									orderItem.setQuantity(amount);
+									items.add(orderItem);
+								} else {
+									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
+											book.getTitle() + Constants.LINE_SEPARATOR + "Choose less items please");
+								}
+							} else {
+								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
+										book.getTitle() + Constants.LINE_SEPARATOR + "Choose another book please");
+							}							
 						} else {
 							JOptionPane.showMessageDialog(null, Book.class.getSimpleName() + " already in the list");	
 						}
@@ -151,13 +161,24 @@ public class OrderViewImpl implements OrderView {
 						JOptionPane.showMessageDialog(null, "Book not found");
 					}
 					break;
-				case '2' : final Cellphone cellphone = this.findCellphoneByBrand();
+				case '2' : 
+					final Cellphone cellphone = this.findCellphoneByBrand();
 					if (cellphone != null) {
 						if (!this.isProductExistsInOrderItemsList(items, cellphone)) {
-							orderItem.setProduct(cellphone);
-							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-									"Insert the quantity")));
-							items.add(orderItem);
+							if(cellphone.getStockQty() > 0) {
+								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
+								if(cellphone.getStockQty() >= amount) {
+									orderItem.setProduct(cellphone);
+									orderItem.setQuantity(amount);
+									items.add(orderItem);
+								} else {
+									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
+											cellphone.getBrand() + Constants.LINE_SEPARATOR + "Choose less items please");
+								}
+							} else {
+								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
+										cellphone.getBrand() + Constants.LINE_SEPARATOR + "Choose another book please");
+							}							
 						} else {
 							JOptionPane.showMessageDialog(null, Cellphone.class.getSimpleName() + " already in the list");	
 						}
@@ -165,13 +186,24 @@ public class OrderViewImpl implements OrderView {
 						JOptionPane.showMessageDialog(null, "Cellphone not found");
 					}
 					break;
-				case '3' : final Dvd dvd = this.findDvdByTitle();
+				case '3' : 
+					final Dvd dvd = this.findDvdByTitle();
 					if (dvd != null) {
 						if (!this.isProductExistsInOrderItemsList(items, dvd)) {
-							orderItem.setProduct(dvd);
-							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-									"Insert the quantity")));
-							items.add(orderItem);
+							if(dvd.getStockQty() > 0) {
+								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
+								if(dvd.getStockQty() >= amount) {
+									orderItem.setProduct(dvd);
+									orderItem.setQuantity(amount);
+									items.add(orderItem);
+								} else {
+									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
+											dvd.getTitle() + Constants.LINE_SEPARATOR + "Choose less items please");
+								}
+							} else {
+								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
+										dvd.getTitle() + Constants.LINE_SEPARATOR + "Choose another book please");
+							}					
 						} else {
 							JOptionPane.showMessageDialog(null, Dvd.class.getSimpleName() + " already in the list");	
 						}
@@ -179,13 +211,24 @@ public class OrderViewImpl implements OrderView {
 						JOptionPane.showMessageDialog(null, "DVD not found");
 					}
 					break;
-				case '4' : final Laptop laptop = this.findLaptopByBrand();
+				case '4' : 
+					final Laptop laptop = this.findLaptopByBrand();
 					if (laptop != null) {
 						if (!this.isProductExistsInOrderItemsList(items, laptop)) {
-							orderItem.setProduct(laptop);
-							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-									"Insert the quantity")));
-							items.add(orderItem);
+							if(laptop.getStockQty() > 0) {
+								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
+								if(laptop.getStockQty() >= amount) {
+									orderItem.setProduct(laptop);
+									orderItem.setQuantity(amount);
+									items.add(orderItem);
+								} else {
+									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
+											laptop.getBrand() + Constants.LINE_SEPARATOR + "Choose less items please");
+								}
+							} else {
+								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
+										laptop.getBrand() + Constants.LINE_SEPARATOR + "Choose another book please");
+							}		
 						} else {
 							JOptionPane.showMessageDialog(null, Laptop.class.getSimpleName() + " already in the list");	
 						}
@@ -193,13 +236,24 @@ public class OrderViewImpl implements OrderView {
 						JOptionPane.showMessageDialog(null, "Laptop not found");
 					}
 					break;
-				case '5' : final Magazine magazine = this.findMagazineByName();
+				case '5' : 
+					final Magazine magazine = this.findMagazineByName();
 					if (magazine != null) {
 						if (!this.isProductExistsInOrderItemsList(items, magazine)) {
-							orderItem.setProduct(magazine);
-							orderItem.setQuantity(Integer.parseInt(JOptionPane.showInputDialog(
-									"Insert the quantity")));
-							items.add(orderItem);
+							if(magazine.getStockQty() > 0) {
+								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
+								if(magazine.getStockQty() >= amount) {
+									orderItem.setProduct(magazine);
+									orderItem.setQuantity(amount);
+									items.add(orderItem);
+								} else {
+									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
+											magazine.getName() + Constants.LINE_SEPARATOR + "Choose less items please");
+								}
+							} else {
+								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
+										magazine.getName() + Constants.LINE_SEPARATOR + "Choose another book please");
+							}	
 						} else {
 							JOptionPane.showMessageDialog(null, Magazine.class.getSimpleName() + " already in the list");	
 						}
