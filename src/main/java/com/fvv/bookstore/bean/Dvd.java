@@ -31,7 +31,7 @@ public abstract class Dvd extends Product {
 	 * @param releaseYear of the DVD
 	 * @param code of the DVD
 	 */
-	public Dvd(final Long id, final Double unitPrice, final Integer stockQty, final Date 
+	Dvd(final Long id, final Double unitPrice, final Integer stockQty, final Date 
 			modificationDate, final String title, final Integer totalDuration, final String genre, 
 			final Integer releaseYear, final Integer code) {
 		super(id, unitPrice, stockQty, modificationDate);
@@ -45,7 +45,7 @@ public abstract class Dvd extends Product {
 	/**
 	 * Class constructor
 	 */
-	public Dvd() {
+	Dvd() {
 	}
 
 	/**

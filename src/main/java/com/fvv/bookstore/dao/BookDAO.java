@@ -57,4 +57,23 @@ public interface BookDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Book findBook(final Long id) throws BookNotFoundException, DaoException;
+	
+	/**
+	 * Search a book in the database by the title.
+	 * 
+	 * @param title of String type.
+	 * @return a book.
+	 * @throws BookNotFoundException when not found a book in the database.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	Book findBookByTitle(final String title) throws BookNotFoundException, DaoException;
+	
+	/**
+	 * Reduce the quantity of a stock item.
+	 * 
+	 * @param book of Book type.
+	 * @param quantityToReduce of Integer type.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	void reduceStockItem(final Book book, final Integer quantityToReduce) throws DaoException;
 }

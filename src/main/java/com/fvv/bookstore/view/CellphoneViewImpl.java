@@ -135,7 +135,7 @@ public class CellphoneViewImpl implements CellphoneView {
 			cellphone.setId(idUp);
 		}
 		
-		cellphone.setBrand(JOptionPane.showInputDialog("Insert the brand"));
+		cellphone.setBrand(JOptionPane.showInputDialog("Insert the brand and model"));
 		cellphone.setUnitPrice(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));
 		cellphone.setWarranty(

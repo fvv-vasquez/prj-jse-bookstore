@@ -120,7 +120,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 	 */
 	@Override
 	public Magazine findMagazine(final Long id) throws MagazineNotFoundException, DaoException {
-		Magazine magazine = new Magazine();
+		Magazine magazine = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_ID.getQuery())
@@ -131,16 +131,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 					throw new MagazineNotFoundException("Magazine with ID " + id + " not found");
 				} else {
 					do {
-						magazine.setId(rs.getLong("mag_id"));
-						magazine.setName(rs.getString("mag_name"));
-						magazine.setEditionNumber(rs.getInt("mag_edition_number"));
-						magazine.setGenre(rs.getString("mag_genre"));
-						magazine.setPublicationDate(rs.getDate("mag_publication_date"));
-						magazine.setPublisher(rs.getString("mag_publisher"));
-						magazine.setUnitPrice(rs.getDouble("mag_unit_price"));
-						magazine.setStockQty(rs.getInt("mag_stock_qty"));
-						magazine.setModificationDate(new Date(rs.getTimestamp(
-								"mag_modification_date").getTime()));
+						magazine = this.populateMagazineFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -148,5 +139,74 @@ public class MagazineDAOImpl implements MagazineDAO {
 			throw new DaoException("Error to find a magazine", e);
 		} 
 		return magazine;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Magazine findMagazineByName(final String name) throws MagazineNotFoundException, DaoException {
+		Magazine magazine = null;
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_NAME.getQuery())
+		) {	
+			ps.setString(1, name);
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new MagazineNotFoundException("Magazine with name " + name + " not found");
+				} else {
+					do {
+						magazine = this.populateMagazineFromDatabase(rs);
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a magazine", e);
+		} 
+		return magazine;
+	}
+	
+	/**
+	 * Populate a magazine from database.
+	 * 
+	 * @param rs of ResultSet type.
+	 * @return a magazine.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Magazine populateMagazineFromDatabase(final ResultSet rs) throws DaoException {
+		Magazine magazine = new Magazine();
+		try {
+			magazine.setId(rs.getLong("mag_id"));
+			magazine.setName(rs.getString("mag_name"));
+			magazine.setEditionNumber(rs.getInt("mag_edition_number"));
+			magazine.setGenre(rs.getString("mag_genre"));
+			magazine.setPublicationDate(rs.getDate("mag_publication_date"));
+			magazine.setPublisher(rs.getString("mag_publisher"));
+			magazine.setUnitPrice(rs.getDouble("mag_unit_price"));
+			magazine.setStockQty(rs.getInt("mag_stock_qty"));
+			magazine.setModificationDate(new Date(rs.getTimestamp(
+					"mag_modification_date").getTime()));
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a magazine", e);
+		} 
+		return magazine;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(final Magazine magazine, final Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, magazine.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a magazine", e);
+		} 
 	}
 }

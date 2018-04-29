@@ -126,7 +126,7 @@ public class BookDAOImpl implements BookDAO {
 	 */
 	@Override
 	public Book findBook(final Long id) throws BookNotFoundException, DaoException {
-		Book book = new Book();
+		Book book = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ID.getQuery())
@@ -137,18 +137,7 @@ public class BookDAOImpl implements BookDAO {
 					throw new BookNotFoundException("Book with ID " + id + " not found");
 				} else {
 					do {
-						book.setId(rs.getLong("book_id"));
-						book.setTitle(rs.getString("book_title"));
-						book.setPublicationYear(rs.getInt("book_publication_year"));
-						book.setEditionNumber(rs.getInt("book_edition_number"));
-						book.setAuthor(rs.getString("book_author"));
-						book.setUnitPrice(rs.getDouble("book_unit_price"));
-						book.setIsbn(rs.getInt("book_isbn"));
-						book.setPublisher(rs.getString("book_publisher"));
-						book.setGenre(rs.getString("book_genre"));
-						book.setStockQty(rs.getInt("book_stock_qty"));
-						book.setModificationDate(new Date(rs.getTimestamp(
-								"book_modification_date").getTime()));
+						book = this.populateBookFromDatabase(rs);
 					} while (rs.next());
 				}			
 			} 
@@ -156,5 +145,76 @@ public class BookDAOImpl implements BookDAO {
 			throw new DaoException("Error to find a book", e);
 		} 
 		return book;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Book findBookByTitle(final String title) throws BookNotFoundException, DaoException {
+		Book book = null;
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_TITLE.getQuery())
+		) {	
+			ps.setString(1, title);			
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new BookNotFoundException("Book with title " + title + " not found");
+				} else {
+					do {
+						book = this.populateBookFromDatabase(rs);
+					} while (rs.next());
+				}			
+			} 
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a book", e);
+		} 
+		return book;
+	}
+
+	/**
+	 * Populate a book from database.
+	 * 
+	 * @param rs of ResultSet type.
+	 * @return a book.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Book populateBookFromDatabase(final ResultSet rs) throws DaoException {
+		Book book = new Book();
+		try {			
+			book.setId(rs.getLong("book_id"));
+			book.setTitle(rs.getString("book_title"));
+			book.setPublicationYear(rs.getInt("book_publication_year"));
+			book.setEditionNumber(rs.getInt("book_edition_number"));
+			book.setAuthor(rs.getString("book_author"));
+			book.setUnitPrice(rs.getDouble("book_unit_price"));
+			book.setIsbn(rs.getInt("book_isbn"));
+			book.setPublisher(rs.getString("book_publisher"));
+			book.setGenre(rs.getString("book_genre"));
+			book.setStockQty(rs.getInt("book_stock_qty"));
+			book.setModificationDate(new Date(rs.getTimestamp(
+					"book_modification_date").getTime()));	
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a book", e);
+		}
+		return book;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(final Book book, final Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, book.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a book", e);
+		} 
 	}
 }

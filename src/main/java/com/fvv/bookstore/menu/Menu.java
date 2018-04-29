@@ -17,6 +17,8 @@ import com.fvv.bookstore.view.LaptopView;
 import com.fvv.bookstore.view.LaptopViewImpl;
 import com.fvv.bookstore.view.MagazineView;
 import com.fvv.bookstore.view.MagazineViewImpl;
+import com.fvv.bookstore.view.OrderView;
+import com.fvv.bookstore.view.OrderViewImpl;
 
 /**
  * Menu class to create a menu for the application.
@@ -35,6 +37,7 @@ public class Menu {
 	private final LaptopView laptopView;
 	private final CustomerView customerView;
 	private final EmployeeView employeeView;
+	private final OrderView orderView;
 	
 	/**
 	 * Class constructor instantiating a new View objects.
@@ -47,6 +50,7 @@ public class Menu {
 		this.laptopView = new LaptopViewImpl();
 		this.customerView = new CustomerViewImpl();
 		this.employeeView = new EmployeeViewImpl();
+		this.orderView = new OrderViewImpl();
 	}
 	
 	/**
@@ -65,6 +69,7 @@ public class Menu {
 					null, "Select an option below:" + Constants.LINE_SEPARATOR +
 					"1 - Products" + Constants.LINE_SEPARATOR +
 					"2 - Individuals" + Constants.LINE_SEPARATOR +
+					"3 - Order" + Constants.LINE_SEPARATOR +
 					"0 - Exit",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -72,6 +77,8 @@ public class Menu {
 				case '1' : this.createSubMenuProducts();
 					break;
 				case '2' : this.createSubMenuIndividuals();
+					break;
+				case '3' : this.addOrder();
 					break;
 				case '0' : this.exit();
 					break;
@@ -616,6 +623,13 @@ public class Menu {
 	 */
 	private void listEmployees() {
 		this.employeeView.listEmployees();
+	}
+	
+	/**
+	 * Add an order by the menu.
+	 */
+	private void addOrder() {
+		this.orderView.addOrder();
 	}
 	
 	/**

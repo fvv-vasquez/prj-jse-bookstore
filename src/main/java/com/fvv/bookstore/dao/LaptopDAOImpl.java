@@ -120,7 +120,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 	 */
 	@Override
 	public Laptop findLaptop(final Long id) throws HardwareNotFoundException, DaoException {
-		Laptop laptop = new Laptop();
+		Laptop laptop = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(
@@ -132,16 +132,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 					throw new HardwareNotFoundException("Laptop with ID " + id + " not found");
 				} else {
 					do {
-						laptop.setId(rs.getLong("pc_id"));
-						laptop.setBrand(rs.getString("pc_brand"));
-						laptop.setUnitPrice(rs.getDouble("pc_unit_price"));
-						laptop.setWarranty(rs.getInt("pc_warranty"));
-						laptop.setRamSize(rs.getInt("pc_ram_size"));
-						laptop.setHdSize(rs.getDouble("pc_hd_size"));
-						laptop.setProcessor(rs.getString("pc_processor"));
-						laptop.setStockQty(rs.getInt("pc_stock_qty"));
-						laptop.setModificationDate(new Date(rs.getTimestamp(
-								"pc_modification_date").getTime()));
+						laptop = this.populateLaptopFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -149,5 +140,75 @@ public class LaptopDAOImpl implements LaptopDAO {
 			throw new DaoException("Error to find a laptop", e);
 		} 
 		return laptop;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Laptop findLaptopByBrand(final String brand) throws HardwareNotFoundException, DaoException {
+		Laptop laptop = null;
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(
+						SqlQueryEnum.LAPTOP_SELECT_BRAND.getQuery())
+		) {	
+			ps.setString(1, brand);
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new HardwareNotFoundException("Laptop with brand " + brand + " not found");
+				} else {
+					do {
+						laptop = this.populateLaptopFromDatabase(rs);
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a laptop", e);
+		} 
+		return laptop;
+	}
+	
+	/**
+	 * Populate a laptop from database.
+	 * 
+	 * @param rs of ResultSet type.
+	 * @return a laptop.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Laptop populateLaptopFromDatabase(final ResultSet rs) throws DaoException {
+		Laptop laptop = new Laptop();
+		try {
+			laptop.setId(rs.getLong("pc_id"));
+			laptop.setBrand(rs.getString("pc_brand"));
+			laptop.setUnitPrice(rs.getDouble("pc_unit_price"));
+			laptop.setWarranty(rs.getInt("pc_warranty"));
+			laptop.setRamSize(rs.getInt("pc_ram_size"));
+			laptop.setHdSize(rs.getDouble("pc_hd_size"));
+			laptop.setProcessor(rs.getString("pc_processor"));
+			laptop.setStockQty(rs.getInt("pc_stock_qty"));
+			laptop.setModificationDate(new Date(rs.getTimestamp(
+					"pc_modification_date").getTime()));
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a laptop", e);
+		} 
+		return laptop;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(final Laptop laptop, final Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, laptop.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a laptop", e);
+		} 
 	}
 }
