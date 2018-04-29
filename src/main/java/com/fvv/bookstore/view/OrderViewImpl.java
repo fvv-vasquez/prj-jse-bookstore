@@ -39,6 +39,7 @@ import com.fvv.bookstore.exception.magazine.MagazineNotFoundException;
 import com.fvv.bookstore.exception.order.OrderValidationException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.OrderViewUtil;
 
 /**
  * OrderView class to view the Order object.
@@ -58,6 +59,7 @@ public class OrderViewImpl implements OrderView {
 	private final DvdController dvdController;
 	private final LaptopController laptopController;
 	private final MagazineController magazineController;
+	private List<OrderItem> items;
 	
 	/**
 	 * Class constructor instantiating a new Controller objects.
@@ -110,7 +112,7 @@ public class OrderViewImpl implements OrderView {
 				Long.parseLong(JOptionPane.showInputDialog("Insert the customer ID")));
 		order.setCustomer(customer);
 		
-		order.setOrderItems(this.createOrderItemFromInput());
+		order.setOrderItems(this.createOrderItemsFromInput());
 				
 		return order;
 	}
@@ -119,14 +121,13 @@ public class OrderViewImpl implements OrderView {
 	 * Creating a list of order items from the input.
 	 * 
 	 * @return a list of order items.
-	 * @throws ControllerException when a problem in controller happens.
 	 */
-	private List<OrderItem> createOrderItemFromInput() throws ControllerException {
-		final List<OrderItem> items = new ArrayList<OrderItem>();
-		Character addMoreItems = 'y';
+	private List<OrderItem> createOrderItemsFromInput() {
+		this.items = new ArrayList<>();
+		Character addMoreItems = Constants.YES;
+		boolean isOrderItemAdded = Boolean.FALSE;
 		
-		while(addMoreItems == 'y') {
-			final OrderItem orderItem = new OrderItem();
+		while(addMoreItems == Constants.YES) {
 			String input = JOptionPane.showInputDialog(
 					"Insert the Product type:" + Constants.LINE_SEPARATOR + 
 					"1 - Book" + Constants.LINE_SEPARATOR +
@@ -137,134 +138,23 @@ public class OrderViewImpl implements OrderView {
 			);
 			switch(input.charAt(0)) {
 				case '1' : 
-					final Book book = this.findBookByTitle();
-					if (book != null) {
-						if (!this.isProductExistsInOrderItemsList(items, book)) {																					
-							if(book.getStockQty() > 0) {
-								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
-								if(book.getStockQty() >= amount) {
-									orderItem.setProduct(book);
-									orderItem.setQuantity(amount);
-									items.add(orderItem);
-								} else {
-									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
-											book.getTitle() + Constants.LINE_SEPARATOR + "Choose less items please");
-								}
-							} else {
-								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
-										book.getTitle() + Constants.LINE_SEPARATOR + "Choose another book please");
-							}							
-						} else {
-							JOptionPane.showMessageDialog(null, Book.class.getSimpleName() + " already in the list");	
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Book not found");
-					}
+					isOrderItemAdded = this.addOrderItemByProductType(Book.class); 
 					break;
 				case '2' : 
-					final Cellphone cellphone = this.findCellphoneByBrand();
-					if (cellphone != null) {
-						if (!this.isProductExistsInOrderItemsList(items, cellphone)) {
-							if(cellphone.getStockQty() > 0) {
-								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
-								if(cellphone.getStockQty() >= amount) {
-									orderItem.setProduct(cellphone);
-									orderItem.setQuantity(amount);
-									items.add(orderItem);
-								} else {
-									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
-											cellphone.getBrand() + Constants.LINE_SEPARATOR + "Choose less items please");
-								}
-							} else {
-								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
-										cellphone.getBrand() + Constants.LINE_SEPARATOR + "Choose another book please");
-							}							
-						} else {
-							JOptionPane.showMessageDialog(null, Cellphone.class.getSimpleName() + " already in the list");	
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Cellphone not found");
-					}
+					isOrderItemAdded = this.addOrderItemByProductType(Cellphone.class);
 					break;
 				case '3' : 
-					final Dvd dvd = this.findDvdByTitle();
-					if (dvd != null) {
-						if (!this.isProductExistsInOrderItemsList(items, dvd)) {
-							if(dvd.getStockQty() > 0) {
-								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
-								if(dvd.getStockQty() >= amount) {
-									orderItem.setProduct(dvd);
-									orderItem.setQuantity(amount);
-									items.add(orderItem);
-								} else {
-									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
-											dvd.getTitle() + Constants.LINE_SEPARATOR + "Choose less items please");
-								}
-							} else {
-								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
-										dvd.getTitle() + Constants.LINE_SEPARATOR + "Choose another book please");
-							}					
-						} else {
-							JOptionPane.showMessageDialog(null, Dvd.class.getSimpleName() + " already in the list");	
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "DVD not found");
-					}
+					isOrderItemAdded = this.addOrderItemByProductType(Dvd.class);
 					break;
 				case '4' : 
-					final Laptop laptop = this.findLaptopByBrand();
-					if (laptop != null) {
-						if (!this.isProductExistsInOrderItemsList(items, laptop)) {
-							if(laptop.getStockQty() > 0) {
-								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
-								if(laptop.getStockQty() >= amount) {
-									orderItem.setProduct(laptop);
-									orderItem.setQuantity(amount);
-									items.add(orderItem);
-								} else {
-									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
-											laptop.getBrand() + Constants.LINE_SEPARATOR + "Choose less items please");
-								}
-							} else {
-								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
-										laptop.getBrand() + Constants.LINE_SEPARATOR + "Choose another book please");
-							}		
-						} else {
-							JOptionPane.showMessageDialog(null, Laptop.class.getSimpleName() + " already in the list");	
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Laptop not found");
-					}
+					isOrderItemAdded = this.addOrderItemByProductType(Laptop.class);
 					break;
 				case '5' : 
-					final Magazine magazine = this.findMagazineByName();
-					if (magazine != null) {
-						if (!this.isProductExistsInOrderItemsList(items, magazine)) {
-							if(magazine.getStockQty() > 0) {
-								final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
-								if(magazine.getStockQty() >= amount) {
-									orderItem.setProduct(magazine);
-									orderItem.setQuantity(amount);
-									items.add(orderItem);
-								} else {
-									JOptionPane.showMessageDialog(null, "Quantity in stock is not enough for " + 
-											magazine.getName() + Constants.LINE_SEPARATOR + "Choose less items please");
-								}
-							} else {
-								JOptionPane.showMessageDialog(null, "There is no stock left for the item " + 
-										magazine.getName() + Constants.LINE_SEPARATOR + "Choose another book please");
-							}	
-						} else {
-							JOptionPane.showMessageDialog(null, Magazine.class.getSimpleName() + " already in the list");	
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Magazine not found");
-					}
+					isOrderItemAdded = this.addOrderItemByProductType(Magazine.class);
 					break;
-				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
-						"Error", JOptionPane.ERROR_MESSAGE);
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-			if (orderItem.getProduct() != null) {
+			if (isOrderItemAdded) {
 				addMoreItems = JOptionPane.showInputDialog(
 						"Wanna add more products?" + Constants.LINE_SEPARATOR +
 						"y = yes" + Constants.LINE_SEPARATOR +
@@ -275,101 +165,100 @@ public class OrderViewImpl implements OrderView {
 	}
 	
 	/**
+	 * Add an order item to an order item list.
+	 * 
+	 * @param product of Product type.
+	 * @return true if the order item was add to the list, otherwise, return false.
+	 */
+	private boolean addOrderItemToOrderItemsList(final Product product) {
+		boolean isOrderItemAdded = Boolean.FALSE;
+		if (!this.isProductExistsInOrderItemsList(this.items, product)) {																					
+			if(product.getStockQty() > 0) {
+				final Integer amount = Integer.parseInt(JOptionPane.showInputDialog("Insert the quantity"));
+				if(product.getStockQty() >= amount) {
+					OrderItem orderItem = new OrderItem();
+					orderItem.setProduct(product);
+					orderItem.setQuantity(amount);
+					this.items.add(orderItem);
+					isOrderItemAdded = Boolean.TRUE;
+				} else {
+					JOptionPane.showMessageDialog(null, "Quantity in stock is not enough." + 
+							Constants.LINE_SEPARATOR + "Choose less items please");
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "There is no stock left for the selected item." + 
+						Constants.LINE_SEPARATOR + "Choose another one please");
+			}							
+		} else {
+			JOptionPane.showMessageDialog(null, "Product already in the list");	
+		}
+		return isOrderItemAdded;
+	}
+	
+	/**
 	 * Verify if the product already exists in the database.
 	 * 
-	 * @param items of List<OrderItem> type.
+	 * @param items of an order item list.
 	 * @param productToAdd of Product type.
-	 * @return a boolean.
+	 * @return true if a product already exists in the order item, otherwise, return false.
 	 */
 	private boolean isProductExistsInOrderItemsList(final List<OrderItem> items, final Product productToAdd) {
 		if (items.size() > 0) {
 			for (OrderItem orderItem : items) {
 				Product product = orderItem.getProduct();
 				if (product.equals(productToAdd)) {
-					return true;
+					return Boolean.TRUE;
 				}
 			}
 		}
-		return false;
+		return Boolean.FALSE;
 	}
 	
 	/**
-	 * Search a book by the title.
+	 * Add an order item by product type.
 	 * 
-	 * @return a book.
+	 * @param clazz object to identify the type of product.
+	 * @return true if an order item was add, otherwise, return false.
 	 */
-	private Book findBookByTitle() {
-		try {
-			final Book book = this.bookController.findBookByTitle(
-					JOptionPane.showInputDialog("Insert the book title"));
-			return book;
-		} catch (ControllerException | BookNotFoundException e) {
-			System.err.print(e);
+	@SuppressWarnings("rawtypes") 
+	private boolean addOrderItemByProductType(final Class clazz) {
+		boolean isOrderItemAdded = Boolean.FALSE;
+		final Product product = this.findProductByType(clazz, 
+				JOptionPane.showInputDialog("Insert the " + clazz.getSimpleName() + " " + OrderViewUtil.resolveProperValueByType(clazz)));
+		if (product != null) {
+			isOrderItemAdded = this.addOrderItemToOrderItemsList(product);
+		} else {
+			JOptionPane.showMessageDialog(null, clazz.getSimpleName() + " not found");
 		}
-		return null;
+		return isOrderItemAdded;
 	}
 	
 	/**
-	 * Search a cellphone by the brand.
+	 * Find a product by type.
 	 * 
-	 * @return a cellphone.
+	 * @param clazz object to identify the type of product.
+	 * @param value from the input to find the product.
+	 * @return a product.
 	 */
-	private Cellphone findCellphoneByBrand() {
+	@SuppressWarnings("rawtypes") 
+	private Product findProductByType(final Class clazz, final String value) {
+		Product product = null;
 		try {
-			final Cellphone cellphone = this.cellphoneController.findCellphoneByBrand(
-					JOptionPane.showInputDialog("Insert the cellphone brand"));
-			return cellphone;
-		} catch (ControllerException | HardwareNotFoundException e) {
+			if (clazz == Book.class) {
+				product = this.bookController.findBookByTitle(value);
+			} else if (clazz == Cellphone.class) {
+				product = this.cellphoneController.findCellphoneByBrand(value);
+			} else if (clazz == Dvd.class) {
+				product = this.dvdController.findDvdByTitle(value);
+			} else if (clazz == Laptop.class) {
+				product = this.laptopController.findLaptopByBrand(value);
+			} else if (clazz == Magazine.class) {
+				product = this.magazineController.findMagazineByName(value);
+			}
+		} catch (ControllerException | BookNotFoundException | HardwareNotFoundException 
+				| DvdNotFoundException | MagazineNotFoundException e) {
 			System.err.print(e);
 		}
-		return null;
-	}
-	
-	/**
-	 * Search a dvd by the title.
-	 * 
-	 * @return a dvd.
-	 */
-	private Dvd findDvdByTitle() {
-		try {
-			final Dvd dvd = this.dvdController.findDvdByTitle(
-					JOptionPane.showInputDialog("Insert the dvd title"));
-			return dvd;
-		} catch (ControllerException | DvdNotFoundException e) {
-			System.err.print(e);
-		}
-		return null;
-	}
-	
-	/**
-	 * Search a laptop by the brand.
-	 * 
-	 * @return a laptop.
-	 */
-	private Laptop findLaptopByBrand() {
-		try {
-			final Laptop laptop = this.laptopController.findLaptopByBrand(
-					JOptionPane.showInputDialog("Insert the laptop brand"));
-			return laptop;
-		} catch (ControllerException | HardwareNotFoundException e) {
-			System.err.print(e);
-		}
-		return null;
-	}
-	
-	/**
-	 * Search a magazine by the name.
-	 * 
-	 * @return a magazine.
-	 */
-	private Magazine findMagazineByName() {
-		try {
-			final Magazine magazine = this.magazineController.findMagazineByName(
-					JOptionPane.showInputDialog("Insert the magazine name"));
-			return magazine;
-		} catch (ControllerException | MagazineNotFoundException e) {
-			System.err.print(e);
-		}
-		return null;
+		return product;
 	}
 }

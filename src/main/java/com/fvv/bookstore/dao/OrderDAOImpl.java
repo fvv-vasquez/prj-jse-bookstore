@@ -21,13 +21,13 @@ import com.fvv.bookstore.exception.DaoException;
  */
 public class OrderDAOImpl implements OrderDAO {
 	
-	private final OrderItemDAO ordemItemDao;
+	private final OrderItemDAO orderItemDao;
 
 	/**
 	 * Class constructor instantiating a new OrderItemDAOImpl object.
 	 */
 	public OrderDAOImpl() {
-		this.ordemItemDao = new OrderItemDAOImpl();
+		this.orderItemDao = new OrderItemDAOImpl();
 	}
 
 	/**
@@ -45,14 +45,14 @@ public class OrderDAOImpl implements OrderDAO {
 			ps.setDouble(3, order.getOrderAmount());
 			ps.execute();
 			
-			Long orderPK = this.getPrimaryKey(ps);
+			final Long orderPK = this.getPrimaryKey(ps);
 			order.setId(orderPK);
 			
 			for (OrderItem orderItem : order.getOrderItems()) {
 				orderItem.setOrder(order);
 			}
 			
-			this.ordemItemDao.addOrderItemInBatch(order.getOrderItems());
+			this.orderItemDao.addOrderItemInBatch(order.getOrderItems());
 			
 		} catch(SQLException e) {
 			throw new DaoException("Error to add an order", e);
@@ -62,7 +62,7 @@ public class OrderDAOImpl implements OrderDAO {
 	/**
 	 * Gets the primary key from the database.
 	 * 
-	 * @param ps of PreparedStament type.
+	 * @param ps of PreparedStatement type.
 	 * @return the primary key generated.
 	 * @throws SQLException when a problem in database happens.
 	 */

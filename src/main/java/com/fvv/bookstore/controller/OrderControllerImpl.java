@@ -9,7 +9,6 @@ import com.fvv.bookstore.bean.Laptop;
 import com.fvv.bookstore.bean.Magazine;
 import com.fvv.bookstore.bean.Order;
 import com.fvv.bookstore.bean.OrderItem;
-import com.fvv.bookstore.bean.Product;
 import com.fvv.bookstore.dao.OrderDAO;
 import com.fvv.bookstore.dao.OrderDAOImpl;
 import com.fvv.bookstore.exception.ControllerException;
@@ -73,7 +72,7 @@ public class OrderControllerImpl implements OrderController {
 	}
 	
 	/**
-	 * Validate if a field is empty.
+	 * Validate if a field in the order is empty.
 	 * 
 	 * @param order of Order type.
 	 * @throws OrderValidationException if a field is empty.
@@ -104,13 +103,12 @@ public class OrderControllerImpl implements OrderController {
 		}
 	}
 	/**
-	 * Validate if a field is empty.
+	 * Validate if a field in the order item is empty.
 	 * 
 	 * @param orderItems of List<OrderItem> type.
 	 * @return a String.
-	 * @throws OrderValidationException if a field is empty.
 	 */
-	private String validateOrderItem(final List<OrderItem> orderItems) throws OrderValidationException {
+	private String validateOrderItem(final List<OrderItem> orderItems) {
 		StringBuilder sb = new StringBuilder();
 		
 		if(CollectionsUtil.isNullOrEmpty(orderItems)) {
@@ -133,7 +131,7 @@ public class OrderControllerImpl implements OrderController {
 			}
 			
 			if(orderItem.getProduct().getStockQty() <= 0) {
-				sb.append("Stock quantity 0").append(Constants.LINE_SEPARATOR);
+				sb.append("Quantity in stock is 0").append(Constants.LINE_SEPARATOR);
 			}
 			
 			if(orderItem.getQuantity() > orderItem.getProduct().getStockQty()) {
@@ -158,7 +156,7 @@ public class OrderControllerImpl implements OrderController {
 	/**
 	 * Calculate the total of order amount.
 	 * 
-	 * @param orderItems of List<OrdemItem> type.
+	 * @param orderItems of List<OrderItem> type.
 	 * @return the amount of Double type.
 	 */
 	private Double calculateTotalOrderAmount(final List<OrderItem> orderItems) {
@@ -172,12 +170,12 @@ public class OrderControllerImpl implements OrderController {
 	/**
 	 * Calculate the stock amount.
 	 * 
-	 * @param product of Product type.
-	 * @param quantityBougth of Integer type.
+	 * @param currentStockAmount of Product type.
+	 * @param quantityBought of Integer type.
 	 * @return the quantity to reduce in database.
 	 */
-	private Integer calculateStockAmount(final Product product, final Integer quantityBougth) {
-		return product.getStockQty() - quantityBougth;
+	private Integer calculateStockAmount(final Integer currentStockAmount, final Integer quantityBought) {
+		return currentStockAmount - quantityBought;
 	}
 	
 	/**
@@ -188,7 +186,7 @@ public class OrderControllerImpl implements OrderController {
 	 */
 	private void calculateNewStockAmount(final Order order) throws ControllerException {
 		for (OrderItem items : order.getOrderItems()) {
-			Integer newStockQty = this.calculateStockAmount(items.getProduct(), items.getQuantity());
+			final Integer newStockQty = this.calculateStockAmount(items.getProduct().getStockQty(), items.getQuantity());
 			
 			if (items.getProduct() instanceof Book) {
 				this.bookController.reduceStockItem((Book) items.getProduct(), newStockQty);

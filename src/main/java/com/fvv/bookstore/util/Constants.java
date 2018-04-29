@@ -34,5 +34,7 @@ public class Constants {
 	 * Constant that represents a number to round
 	 */
 	public static final Integer PRECISION = 2;
+	
+	public static final Character YES = 'y';
 
 }

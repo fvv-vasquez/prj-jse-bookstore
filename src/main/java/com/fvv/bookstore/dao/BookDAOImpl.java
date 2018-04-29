@@ -126,7 +126,7 @@ public class BookDAOImpl implements BookDAO {
 	 */
 	@Override
 	public Book findBook(final Long id) throws BookNotFoundException, DaoException {
-		Book book = new Book();
+		Book book = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_ID.getQuery())
@@ -137,7 +137,7 @@ public class BookDAOImpl implements BookDAO {
 					throw new BookNotFoundException("Book with ID " + id + " not found");
 				} else {
 					do {
-						this.populateBookFromDatabase(book, rs);
+						book = this.populateBookFromDatabase(rs);
 					} while (rs.next());
 				}			
 			} 
@@ -152,7 +152,7 @@ public class BookDAOImpl implements BookDAO {
 	 */
 	@Override
 	public Book findBookByTitle(final String title) throws BookNotFoundException, DaoException {
-		Book book = new Book();
+		Book book = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_SELECT_TITLE.getQuery())
@@ -163,7 +163,7 @@ public class BookDAOImpl implements BookDAO {
 					throw new BookNotFoundException("Book with title " + title + " not found");
 				} else {
 					do {
-						this.populateBookFromDatabase(book, rs);
+						book = this.populateBookFromDatabase(rs);
 					} while (rs.next());
 				}			
 			} 
@@ -176,13 +176,13 @@ public class BookDAOImpl implements BookDAO {
 	/**
 	 * Populate a book from database.
 	 * 
-	 * @param book of Book type.
 	 * @param rs of ResultSet type.
 	 * @return a book.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	private Book populateBookFromDatabase(final Book book, final ResultSet rs) throws DaoException {
-		try {
+	private Book populateBookFromDatabase(final ResultSet rs) throws DaoException {
+		Book book = new Book();
+		try {			
 			book.setId(rs.getLong("book_id"));
 			book.setTitle(rs.getString("book_title"));
 			book.setPublicationYear(rs.getInt("book_publication_year"));

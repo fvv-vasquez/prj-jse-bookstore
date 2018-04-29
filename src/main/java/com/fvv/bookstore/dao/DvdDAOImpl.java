@@ -188,7 +188,7 @@ public class DvdDAOImpl implements DvdDAO {
 					throw new DvdNotFoundException("DVD with ID " + id + " not found");
 				} else {
 					do {
-						this.populateDvdFromDatabase(dvd, rs);
+						dvd = this.populateDvdFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -214,7 +214,7 @@ public class DvdDAOImpl implements DvdDAO {
 					throw new DvdNotFoundException("DVD with title " + title + " not found");
 				} else {
 					do {
-						this.populateDvdFromDatabase(dvd, rs);
+						dvd = this.populateDvdFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -232,7 +232,8 @@ public class DvdDAOImpl implements DvdDAO {
 	 * @return a dvd.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	private Dvd populateDvdFromDatabase(Dvd dvd, final ResultSet rs) throws DaoException {
+	private Dvd populateDvdFromDatabase(final ResultSet rs) throws DaoException {
+		Dvd dvd;
 		try {
 			if(rs.getString("dvd_movie_director") != null) {
 				MovieDvd dvdMovie = new MovieDvd();

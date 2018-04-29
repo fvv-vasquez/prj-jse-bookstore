@@ -120,7 +120,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 	 */
 	@Override
 	public Magazine findMagazine(final Long id) throws MagazineNotFoundException, DaoException {
-		Magazine magazine = new Magazine();
+		Magazine magazine = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_ID.getQuery())
@@ -131,7 +131,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 					throw new MagazineNotFoundException("Magazine with ID " + id + " not found");
 				} else {
 					do {
-						this.populateMagazineFromDatabase(magazine, rs);
+						magazine = this.populateMagazineFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -146,7 +146,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 	 */
 	@Override
 	public Magazine findMagazineByName(final String name) throws MagazineNotFoundException, DaoException {
-		Magazine magazine = new Magazine();
+		Magazine magazine = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_NAME.getQuery())
@@ -157,7 +157,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 					throw new MagazineNotFoundException("Magazine with name " + name + " not found");
 				} else {
 					do {
-						this.populateMagazineFromDatabase(magazine, rs);
+						magazine = this.populateMagazineFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -167,7 +167,15 @@ public class MagazineDAOImpl implements MagazineDAO {
 		return magazine;
 	}
 	
-	private Magazine populateMagazineFromDatabase(final Magazine magazine, final ResultSet rs) throws DaoException {
+	/**
+	 * Populate a magazine from database.
+	 * 
+	 * @param rs of ResultSet type.
+	 * @return a magazine.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Magazine populateMagazineFromDatabase(final ResultSet rs) throws DaoException {
+		Magazine magazine = new Magazine();
 		try {
 			magazine.setId(rs.getLong("mag_id"));
 			magazine.setName(rs.getString("mag_name"));

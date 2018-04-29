@@ -117,7 +117,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	 */
 	@Override
 	public Cellphone findCellphone(final Long id) throws HardwareNotFoundException, DaoException {
-		Cellphone cellphone = new Cellphone();
+		Cellphone cellphone = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(
@@ -129,7 +129,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 					throw new HardwareNotFoundException("Cellphone with ID " + id + " not found");
 				} else {
 					do {
-						this.populateCellphoneFromDatabase(cellphone, rs);
+						cellphone = this.populateCellphoneFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -144,7 +144,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	 */
 	@Override
 	public Cellphone findCellphoneByBrand(final String brand) throws HardwareNotFoundException, DaoException {
-		Cellphone cellphone = new Cellphone();
+		Cellphone cellphone = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(
@@ -156,7 +156,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 					throw new HardwareNotFoundException("Cellphone with brand " + brand + " not found");
 				} else {
 					do {
-						this.populateCellphoneFromDatabase(cellphone, rs);
+						cellphone = this.populateCellphoneFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -169,12 +169,12 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	/**
 	 * Populate a cellphone fron database.
 	 * 
-	 * @param cellphone of Cellphone type.
 	 * @param rs of ResultSet type.
 	 * @return a cellphone
 	 * @throws DaoException when a problem in database happens.
 	 */
-	private Cellphone populateCellphoneFromDatabase(final Cellphone cellphone, final ResultSet rs) throws DaoException {
+	private Cellphone populateCellphoneFromDatabase(final ResultSet rs) throws DaoException {
+		Cellphone cellphone = new Cellphone();
 		try {
 			cellphone.setId(rs.getLong("cel_id"));
 			cellphone.setBrand(rs.getString("cel_brand"));

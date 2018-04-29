@@ -120,7 +120,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 	 */
 	@Override
 	public Laptop findLaptop(final Long id) throws HardwareNotFoundException, DaoException {
-		Laptop laptop = new Laptop();
+		Laptop laptop = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(
@@ -132,7 +132,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 					throw new HardwareNotFoundException("Laptop with ID " + id + " not found");
 				} else {
 					do {
-						this.populateLaptopFromDatabase(laptop, rs);
+						laptop = this.populateLaptopFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -147,7 +147,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 	 */
 	@Override
 	public Laptop findLaptopByBrand(final String brand) throws HardwareNotFoundException, DaoException {
-		Laptop laptop = new Laptop();
+		Laptop laptop = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(
@@ -159,7 +159,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 					throw new HardwareNotFoundException("Laptop with brand " + brand + " not found");
 				} else {
 					do {
-						this.populateLaptopFromDatabase(laptop, rs);
+						laptop = this.populateLaptopFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -172,12 +172,12 @@ public class LaptopDAOImpl implements LaptopDAO {
 	/**
 	 * Populate a laptop from database.
 	 * 
-	 * @param laptop of Laptop type.
 	 * @param rs of ResultSet type.
 	 * @return a laptop.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	private Laptop populateLaptopFromDatabase(final Laptop laptop, final ResultSet rs) throws DaoException {
+	private Laptop populateLaptopFromDatabase(final ResultSet rs) throws DaoException {
+		Laptop laptop = new Laptop();
 		try {
 			laptop.setId(rs.getLong("pc_id"));
 			laptop.setBrand(rs.getString("pc_brand"));

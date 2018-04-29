@@ -16,9 +16,9 @@ import com.fvv.bookstore.exception.DaoException;
 public interface OrderItemDAO {
 	
 	/**
-	 * Add order items at the bookstore in the database.
+	 * Add order items in batch at the bookstore in the database.
 	 * 
-	 * @param ordemItems of List<OrderItem> type.
+	 * @param orderItems of List<OrderItem> type.
 	 * @throws DaoException when a problem in database happens.
 	 */
 	void addOrderItemInBatch(final List<OrderItem> orderItems) throws DaoException;
