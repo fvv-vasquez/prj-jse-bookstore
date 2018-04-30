@@ -62,4 +62,6 @@ public interface CustomerController {
 	 * @throws PersonNotFoundException when a customer is not found.
 	 */
 	Customer findCustomer(final Long id) throws PersonNotFoundException, ControllerException;
+	
+	List<Customer> listCustomersByName(final String name) throws PersonNotFoundException, ControllerException;
 }

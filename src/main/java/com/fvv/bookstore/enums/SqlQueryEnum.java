@@ -125,6 +125,8 @@ public enum SqlQueryEnum {
 	
 	CUSTOMER_SELECT_ID("SELECT * FROM tb_customer WHERE cus_id = ?"),
 	
+	CUSTOMER_SELECT_NAME("SELECT * FROM tb_customer WHERE cus_name LIKE ?"),
+	
 	EMPLOYEE_INSERT("INSERT INTO tb_employee (emp_name, emp_email, emp_phone, emp_cpf, "
 			+ "emp_position, emp_salary, emp_modification_date) VALUES (?, ?, ?, ?, ?, ?, now())"),
 	

@@ -1,8 +1,10 @@
 package com.fvv.bookstore.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Customer;
+import com.fvv.bookstore.comparator.CustomerSort;
 import com.fvv.bookstore.dao.CustomerDAO;
 import com.fvv.bookstore.dao.CustomerDAOImpl;
 import com.fvv.bookstore.exception.ControllerException;
@@ -116,6 +118,20 @@ public class CustomerControllerImpl implements CustomerController {
 		}
 		if(sb.length() > 0) {
 			throw new PersonValidationException(sb.toString());
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Customer> listCustomersByName(final String name) throws PersonNotFoundException, ControllerException {
+		try {
+			List<Customer> customers = this.customerDao.listCustomersByName(name);
+			Collections.sort(customers, new CustomerSort());
+			return customers;
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find a customer", e);
 		}
 	}
 }

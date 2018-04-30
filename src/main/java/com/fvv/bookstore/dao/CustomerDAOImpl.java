@@ -120,8 +120,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		Customer customer = new Customer();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(
-						SqlQueryEnum.CUSTOMER_SELECT_ID.getQuery())
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CUSTOMER_SELECT_ID.getQuery())
 		) {	
 			ps.setLong(1, id);
 			try (ResultSet rs = ps.executeQuery()) {			
@@ -145,5 +144,41 @@ public class CustomerDAOImpl implements CustomerDAO {
 			throw new DaoException("Error to find a customer", e);
 		} 
 		return customer;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Customer> listCustomersByName(final String name) throws PersonNotFoundException, DaoException {
+		List<Customer> customers = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CUSTOMER_SELECT_NAME.getQuery())
+		) {
+			ps.setString(1, "%" + name + "%");
+			try (ResultSet rs = ps.executeQuery()) {
+				if(!rs.next()) {
+					throw new PersonNotFoundException("Customer " + name + " not found");
+				} else {
+					do {
+						Customer customer = new Customer();
+						customer.setId(rs.getLong("cus_id"));
+						customer.setName(rs.getString("cus_name"));
+						customer.setEmail(rs.getString("cus_email"));
+						customer.setPhone(rs.getString("cus_phone"));
+						customer.setCpf(rs.getString("cus_cpf"));
+						customer.setProdPref(StringUtil.convertStringToList(
+								rs.getString("cus_prod_pref"), Constants.PIPE));
+						customer.setModificationDate(new Date(rs.getTimestamp(
+								"cus_modification_date").getTime()));
+						customers.add(customer);
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find a customer", e);
+		} 
+		return customers;
 	}
 }

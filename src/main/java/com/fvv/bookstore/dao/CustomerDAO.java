@@ -57,5 +57,14 @@ public interface CustomerDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Customer findCustomer(final Long id) throws PersonNotFoundException, DaoException;
-
+	
+	/**
+	 * List the customers by search name.
+	 * 
+	 * @param name to search.
+	 * @return a list of customers by search name.
+	 * @throws PersonNotFoundException when not found a person in the database.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<Customer> listCustomersByName(final String name) throws PersonNotFoundException, DaoException;
 }
