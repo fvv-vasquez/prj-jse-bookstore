@@ -64,7 +64,7 @@ public interface EmployeeController {
 	Employee findEmployee(final Long id) throws PersonNotFoundException, ControllerException;
 	
 	/**
-	 * List the employees by search name.
+	 * List the employees by search name using DAO.
 	 * 
 	 * @param name to search.
 	 * @return a list of employees by search name.

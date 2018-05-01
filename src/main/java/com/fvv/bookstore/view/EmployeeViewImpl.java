@@ -135,4 +135,29 @@ public class EmployeeViewImpl implements EmployeeView {
 		employee.setSalary(Double.parseDouble(JOptionPane.showInputDialog("Insert the salary")));
 		return employee;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void listEmployeesByName() {
+		try {
+			StringBuilder sb = new StringBuilder();
+			String searchName = JOptionPane.showInputDialog("Insert a name to find");
+			List<Employee> employees = this.employeeController.listEmployeesByName(searchName);
+			if(employees != null && !employees.isEmpty()) {
+				for(Employee emp : employees) {
+					sb.append(emp).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Employees", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException | PersonNotFoundException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
 }

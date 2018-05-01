@@ -29,4 +29,9 @@ public interface EmployeeView {
 	 * Delete an Employee using Controller.
 	 */
 	void removeEmployee();
+	
+	/**
+	 * List the employees by search name using Controller.
+	 */
+	void listEmployeesByName();
 }

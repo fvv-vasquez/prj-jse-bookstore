@@ -70,6 +70,7 @@ public class Menu {
 					"1 - Products" + Constants.LINE_SEPARATOR +
 					"2 - Individuals" + Constants.LINE_SEPARATOR +
 					"3 - Order" + Constants.LINE_SEPARATOR +
+					"4 - Reports" + Constants.LINE_SEPARATOR +
 					"0 - Exit",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -79,6 +80,8 @@ public class Menu {
 				case '2' : this.createSubMenuIndividuals();
 					break;
 				case '3' : this.addOrder();
+					break;
+				case '4' : this.createSubMenuReports();
 					break;
 				case '0' : this.exit();
 					break;
@@ -423,6 +426,61 @@ public class Menu {
 	}
 	
 	/**
+	 * Method to create and appear the reports sub menu.
+	 */
+	private void createSubMenuReports() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Individuals" + Constants.LINE_SEPARATOR +
+					"2 - Products" + Constants.LINE_SEPARATOR +
+					"3 - Sales" + Constants.LINE_SEPARATOR +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.createSubMenuIndividualsReports();
+					break;
+				/*case '2' : this.createSubMenuProductsReports();
+					break;
+				case '3' : this.createSubMenuSalesReports();
+					break;*/
+				case '0' : this.createMenu();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and appear the individuals reports sub menu.
+	 */
+	private void createSubMenuIndividualsReports() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Individuals Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Customer Filtered and Ordered by Name" + Constants.LINE_SEPARATOR +
+					"2 - Employee Filtered by Name and Ordered by Salary" + Constants.LINE_SEPARATOR +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.listCustomersByName();
+					break;
+				case '2' : this.listEmployeesByName();
+					break;
+				case '0' : this.createSubMenuReports();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
 	 * Add a book by the menu.
 	 */
 	private void addBook() {
@@ -630,6 +688,20 @@ public class Menu {
 	 */
 	private void addOrder() {
 		this.orderView.addOrder();
+	}
+	
+	/**
+	 * List the customers by search name.
+	 */
+	private void listCustomersByName() {
+		this.customerView.listCustomersByName();
+	}
+	
+	/**
+	 * List the employees by search name.
+	 */
+	private void listEmployeesByName() {
+		this.employeeView.listEmployeesByName();
 	}
 	
 	/**

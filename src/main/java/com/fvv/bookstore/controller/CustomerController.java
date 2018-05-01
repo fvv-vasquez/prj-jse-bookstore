@@ -64,7 +64,7 @@ public interface CustomerController {
 	Customer findCustomer(final Long id) throws PersonNotFoundException, ControllerException;
 	
 	/**
-	 * List the customers by search name.
+	 * List the customers by search name using DAO.
 	 * 
 	 * @param name to search.
 	 * @return a list of customers by search name.

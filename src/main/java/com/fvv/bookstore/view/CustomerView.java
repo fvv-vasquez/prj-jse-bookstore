@@ -29,4 +29,9 @@ public interface CustomerView {
 	 * Delete a Customer using Controller.
 	 */
 	void removeCustomer();
+	
+	/**
+	 * List the customers by search name using Controller.
+	 */
+	void listCustomersByName();
 }
