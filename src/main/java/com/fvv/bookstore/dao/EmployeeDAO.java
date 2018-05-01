@@ -57,4 +57,14 @@ public interface EmployeeDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	Employee findEmployee(final Long id) throws PersonNotFoundException, DaoException;
+	
+	/**
+	 * List the employees by search name.
+	 * 
+	 * @param name to search.
+	 * @return a list of employees by search name.
+	 * @throws PersonNotFoundException when not found a person in the database.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<Employee> listEmployeesByName(final String name) throws PersonNotFoundException, DaoException;
 }

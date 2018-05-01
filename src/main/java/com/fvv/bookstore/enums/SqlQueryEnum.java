@@ -140,6 +140,8 @@ public enum SqlQueryEnum {
 	
 	EMPLOYEE_SELECT_ID("SELECT * FROM tb_employee WHERE emp_id = ?"),
 	
+	EMPLOYEE_SELECT_NAME("SELECT * FROM tb_employee WHERE emp_name LIKE ? ORDER BY emp_salary DESC"),
+	
 	ORDER_INSERT("INSERT INTO tb_order (ord_emp_id, ord_cus_id, ord_amount, ord_date) VALUES "
 			+ "(?, ?, ?, now())"),
 	

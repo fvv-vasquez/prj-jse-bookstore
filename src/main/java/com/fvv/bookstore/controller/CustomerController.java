@@ -63,5 +63,13 @@ public interface CustomerController {
 	 */
 	Customer findCustomer(final Long id) throws PersonNotFoundException, ControllerException;
 	
+	/**
+	 * List the customers by search name.
+	 * 
+	 * @param name to search.
+	 * @return a list of customers by search name.
+	 * @throws PersonNotFoundException when a customer is not found.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
 	List<Customer> listCustomersByName(final String name) throws PersonNotFoundException, ControllerException;
 }

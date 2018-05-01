@@ -125,4 +125,16 @@ public class EmployeeControllerImpl implements EmployeeController {
 			throw new PersonValidationException(sb.toString());
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Employee> listEmployeesByName(String name) throws PersonNotFoundException, ControllerException {
+		try {
+			return this.employeeDao.listEmployeesByName(name);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find an employee", e);
+		}
+	}
 }

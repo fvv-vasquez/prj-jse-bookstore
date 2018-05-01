@@ -62,4 +62,14 @@ public interface EmployeeController {
 	 * @throws PersonNotFoundException when an employee is not found.
 	 */
 	Employee findEmployee(final Long id) throws PersonNotFoundException, ControllerException;
+	
+	/**
+	 * List the employees by search name.
+	 * 
+	 * @param name to search.
+	 * @return a list of employees by search name.
+	 * @throws PersonNotFoundException when an employee is not found.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	List<Employee> listEmployeesByName(final String name) throws PersonNotFoundException, ControllerException;
 }

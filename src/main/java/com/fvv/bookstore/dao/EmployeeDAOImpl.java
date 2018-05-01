@@ -146,4 +146,40 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		} 
 		return employee;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Employee> listEmployeesByName(String name) throws PersonNotFoundException, DaoException {
+		List<Employee> employees = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.EMPLOYEE_SELECT_NAME.getQuery())
+		) {
+			ps.setString(1, "%" + name + "%");
+			try (ResultSet rs = ps.executeQuery()) {
+				if(!rs.next()) {
+					throw new PersonNotFoundException("Employee " + name + " not found");
+				} else {
+					do {
+						Employee employee = new Employee();
+						employee.setId(rs.getLong("emp_id"));
+						employee.setName(rs.getString("emp_name"));
+						employee.setEmail(rs.getString("emp_email"));
+						employee.setPhone(rs.getString("emp_phone"));
+						employee.setCpf(rs.getString("emp_cpf"));
+						employee.setPosition(rs.getString("emp_position"));
+						employee.setSalary(rs.getDouble("emp_salary"));
+						employee.setModificationDate(new Date(rs.getTimestamp(
+								"emp_modification_date").getTime()));
+						employees.add(employee);
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find an employee", e);
+		} 
+		return employees;
+	}
 }
