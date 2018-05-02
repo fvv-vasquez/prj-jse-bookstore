@@ -26,7 +26,7 @@ public interface OrderController {
 	void addOrder(final Order order) throws OrderValidationException, ControllerException;
 	
 	/**
-	 *  Lists all the order by search month.
+	 * Lists all the order by search month.
 	 * 
 	 * @param month to search.
 	 * @param year to search.

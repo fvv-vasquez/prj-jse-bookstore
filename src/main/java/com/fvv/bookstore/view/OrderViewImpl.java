@@ -95,6 +95,38 @@ public class OrderViewImpl implements OrderView {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void listTotalOrdersMonth() {
+		try {
+			StringBuilder sb = new StringBuilder();
+			Integer monthSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the number month to find"));
+			Integer yearSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the year to find"));
+			List<Order> orders = this.orderController.listTotalOrdersMonth(monthSearch, yearSearch);
+			if(orders != null && !orders.isEmpty()) {
+				Integer quantity = this.orderController.calculateQtyOrdersMonth(orders);
+				Double amount = this.orderController.calculateTotalOrdersMonth(orders);
+				sb.append("Quantity of orders: ").append(quantity).append(" - Amount in the month: R$").append(amount).append(Constants.LINE_SEPARATOR);
+				for(Order ord : orders) {
+					sb.append("Date: ").append(ord.getCreationDate()).append(" - Order ID: ").append(ord.getId()).
+					append(" - Order Amount: R$").append(ord.getOrderAmount()).append(Constants.LINE_SEPARATOR).append("Employee ID: ").
+					append(ord.getEmployee().getId()).append(" - Name: ").append(ord.getEmployee().getName()).append(", Customer ID: ").
+					append(ord.getCustomer().getId()).append(" - Name: ").append(ord.getCustomer().getName()).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Orders of the Searched Date: " + yearSearch + "-" + monthSearch, 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException | OrderValidationException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	/**
 	 * Creating an order from the input.
 	 * 
 	 * @return an Order.

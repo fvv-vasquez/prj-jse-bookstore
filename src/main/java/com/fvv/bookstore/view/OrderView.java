@@ -14,4 +14,9 @@ public interface OrderView {
 	 * Add an Order using Controller.
 	 */
 	void addOrder();
+	
+	/**
+	 * Lists all the order by search month using Controller.
+	 */
+	void listTotalOrdersMonth();
 }
