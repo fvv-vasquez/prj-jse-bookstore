@@ -19,6 +19,8 @@ import com.fvv.bookstore.view.MagazineView;
 import com.fvv.bookstore.view.MagazineViewImpl;
 import com.fvv.bookstore.view.OrderView;
 import com.fvv.bookstore.view.OrderViewImpl;
+import com.fvv.bookstore.view.ProductsReportView;
+import com.fvv.bookstore.view.ProductsReportViewImpl;
 
 /**
  * Menu class to create a menu for the application.
@@ -38,6 +40,7 @@ public class Menu {
 	private final CustomerView customerView;
 	private final EmployeeView employeeView;
 	private final OrderView orderView;
+	private final ProductsReportView productsReportView;
 	
 	/**
 	 * Class constructor instantiating a new View objects.
@@ -51,6 +54,7 @@ public class Menu {
 		this.customerView = new CustomerViewImpl();
 		this.employeeView = new EmployeeViewImpl();
 		this.orderView = new OrderViewImpl();
+		this.productsReportView = new ProductsReportViewImpl();
 	}
 	
 	/**
@@ -434,7 +438,7 @@ public class Menu {
 					null, "Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
 					"Select an option below:" + Constants.LINE_SEPARATOR +
 					"1 - Individuals" + Constants.LINE_SEPARATOR +
-					"2 - Products" + Constants.LINE_SEPARATOR +
+					"2 - Products - Stock to Replace" + Constants.LINE_SEPARATOR +
 					"3 - Sales" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
@@ -442,9 +446,9 @@ public class Menu {
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuIndividualsReports();
 					break;
-				/*case '2' : this.createSubMenuProductsReports();
+				case '2' : this.listStockToReplace();
 					break;
-				case '3' : this.createSubMenuSalesReports();
+				/*case '3' : this.createSubMenuSalesReports();
 					break;*/
 				case '0' : this.createMenu();
 					break;
@@ -702,6 +706,13 @@ public class Menu {
 	 */
 	private void listEmployeesByName() {
 		this.employeeView.listEmployeesByName();
+	}
+	
+	/**
+	 * Lists all the products that needs to be replaced in the stock by the menu.
+	 */
+	private void listStockToReplace() {
+		this.productsReportView.listStockToReplace();
 	}
 	
 	/**

@@ -181,7 +181,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 		List<Magazine> magazines = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_ALL.getQuery());
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_REPLACE_STOCK.getQuery());
 				ResultSet rs = ps.executeQuery()
 		) {	
 			while(rs.next()) {
