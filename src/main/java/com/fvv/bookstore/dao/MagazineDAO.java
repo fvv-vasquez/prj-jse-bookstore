@@ -76,4 +76,12 @@ public interface MagazineDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	void reduceStockItem(final Magazine magazine, final Integer quantityToReduce) throws DaoException;
+	
+	/**
+	 * Lists all the magazines that needs to be replaced in the stock.
+	 * 
+	 * @return a list of magazines that needs to be replaced.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<Magazine> listStockToReplace() throws DaoException;
 }

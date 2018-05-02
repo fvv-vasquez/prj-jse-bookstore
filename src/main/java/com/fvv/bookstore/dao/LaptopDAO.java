@@ -76,4 +76,12 @@ public interface LaptopDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	void reduceStockItem(final Laptop laptop, final Integer quantityToReduce) throws DaoException;
+	
+	/**
+	 * Lists all the laptops that needs to be replaced in the stock.
+	 * 
+	 * @return a list of laptops that needs to be replaced.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<Laptop> listStockToReplace() throws DaoException;
 }

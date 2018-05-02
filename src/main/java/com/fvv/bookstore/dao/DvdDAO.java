@@ -86,4 +86,12 @@ public interface DvdDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	void reduceStockItem(final Dvd dvd, final Integer quantityToReduce) throws DaoException;
+	
+	/**
+	 * Lists all the DVDs that needs to be replaced in the stock.
+	 * 
+	 * @return a list of dvds that needs to be replaced.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<Dvd> listStockToReplace() throws DaoException;
 }

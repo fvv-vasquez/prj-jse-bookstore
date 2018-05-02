@@ -2,9 +2,9 @@ package com.fvv.prj;
 
 import java.util.List;
 
-import com.fvv.bookstore.bean.Employee;
-import com.fvv.bookstore.controller.EmployeeController;
-import com.fvv.bookstore.controller.EmployeeControllerImpl;
+import com.fvv.bookstore.bean.Book;
+import com.fvv.bookstore.dao.BookDAO;
+import com.fvv.bookstore.dao.BookDAOImpl;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.order.OrderValidationException;
@@ -14,12 +14,12 @@ public class AppTest {
 	
 	public static void main( String[] args ) throws DaoException, ControllerException, OrderValidationException, PersonNotFoundException {
     	
-		EmployeeController emController = new EmployeeControllerImpl();
+		BookDAO boDao = new BookDAOImpl();
 		
-		List<Employee> employees = emController.listEmployeesByName("R");
+		List<Book> books = boDao.listStockToReplace();
 		
-		for (Employee emp : employees) {
-			System.out.println(emp);
+		for(Book b : books) {
+			System.out.println(b);
 		}
     }
 }

@@ -57,18 +57,7 @@ public class MagazineDAOImpl implements MagazineDAO {
 				ResultSet rs = ps.executeQuery()
 		) {	
 			while(rs.next()) {
-				Magazine magazine = new Magazine();
-				magazine.setId(rs.getLong("mag_id"));
-				magazine.setName(rs.getString("mag_name"));
-				magazine.setEditionNumber(rs.getInt("mag_edition_number"));
-				magazine.setGenre(rs.getString("mag_genre"));
-				magazine.setPublicationDate(rs.getDate("mag_publication_date"));
-				magazine.setPublisher(rs.getString("mag_publisher"));
-				magazine.setUnitPrice(rs.getDouble("mag_unit_price"));
-				magazine.setStockQty(rs.getInt("mag_stock_qty"));
-				magazine.setModificationDate(new Date(rs.getTimestamp(
-						"mag_modification_date").getTime()));
-				magazines.add(magazine);
+				magazines.add(this.populateMagazineFromDatabase(rs));
 			}
 		} catch(SQLException e) {
 			throw new DaoException("Error to load the list", e);
@@ -168,6 +157,43 @@ public class MagazineDAOImpl implements MagazineDAO {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(final Magazine magazine, final Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, magazine.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a magazine", e);
+		} 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Magazine> listStockToReplace() throws DaoException {
+		List<Magazine> magazines = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_SELECT_ALL.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {	
+			while(rs.next()) {
+				magazines.add(this.populateMagazineFromDatabase(rs));
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return magazines;
+	}
+
+	/**
 	 * Populate a magazine from database.
 	 * 
 	 * @param rs of ResultSet type.
@@ -188,25 +214,8 @@ public class MagazineDAOImpl implements MagazineDAO {
 			magazine.setModificationDate(new Date(rs.getTimestamp(
 					"mag_modification_date").getTime()));
 		} catch(SQLException e) {
-			throw new DaoException("Error to find a magazine", e);
+			throw new DaoException("Error to populate a magazine from a result set", e);
 		} 
 		return magazine;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void reduceStockItem(final Magazine magazine, final Integer quantityToReduce) throws DaoException {
-		try (
-				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.MAGAZINE_REDUCE_STOCK.getQuery())
-		) {	
-			ps.setInt(1, quantityToReduce);	
-			ps.setLong(2, magazine.getId());		
-			ps.execute();
-		} catch(SQLException e) {
-			throw new DaoException("Error to update stock quantity of a magazine", e);
-		} 
 	}
 }
