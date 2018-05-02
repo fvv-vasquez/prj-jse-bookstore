@@ -5,6 +5,7 @@ import java.util.List;
 import com.fvv.bookstore.bean.Book;
 import com.fvv.bookstore.bean.Cellphone;
 import com.fvv.bookstore.bean.Dvd;
+import com.fvv.bookstore.bean.Employee;
 import com.fvv.bookstore.bean.Laptop;
 import com.fvv.bookstore.bean.Magazine;
 import com.fvv.bookstore.bean.Order;
@@ -13,7 +14,9 @@ import com.fvv.bookstore.dao.OrderDAO;
 import com.fvv.bookstore.dao.OrderDAOImpl;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
+import com.fvv.bookstore.exception.order.OrderNotFoundException;
 import com.fvv.bookstore.exception.order.OrderValidationException;
+import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.util.CollectionsUtil;
 import com.fvv.bookstore.util.Constants;
 import com.fvv.bookstore.util.MathUtil;
@@ -75,8 +78,8 @@ public class OrderControllerImpl implements OrderController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<Order> listTotalOrdersMonth(Integer month, Integer year)
-			throws OrderValidationException, ControllerException {
+	public List<Order> listTotalOrdersMonth(final Integer month, final Integer year)
+			throws OrderNotFoundException, ControllerException {
 		try {
 			return this.orderDao.listTotalOrdersMonth(month, year);
 		} catch (DaoException e) {
@@ -88,7 +91,7 @@ public class OrderControllerImpl implements OrderController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double calculateTotalOrdersMonth(final List<Order> orders) {
+	public Double calculateTotalOrders(final List<Order> orders) {
 		Double amount = 0.0;
 		for (Order ord : orders) {
 			amount += ord.getOrderAmount();
@@ -100,8 +103,21 @@ public class OrderControllerImpl implements OrderController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Integer calculateQtyOrdersMonth(final List<Order> orders) {
+	public Integer calculateQtyOrders(final List<Order> orders) {
 		return orders.size();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Order> listTotalSalesPerSeller(final Employee employee) 
+			throws PersonNotFoundException, ControllerException {
+		try {
+			return this.orderDao.listTotalSalesPerSeller(employee);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
 	}
 
 	/**

@@ -15,7 +15,8 @@ import com.fvv.bookstore.bean.Order;
 import com.fvv.bookstore.bean.OrderItem;
 import com.fvv.bookstore.enums.SqlQueryEnum;
 import com.fvv.bookstore.exception.DaoException;
-import com.fvv.bookstore.exception.order.OrderValidationException;
+import com.fvv.bookstore.exception.order.OrderNotFoundException;
+import com.fvv.bookstore.exception.person.PersonNotFoundException;
 
 /**
  * DAO Class of an Order object, with main database operation.
@@ -70,7 +71,7 @@ public class OrderDAOImpl implements OrderDAO {
 	 */
 	@Override
 	public List<Order> listTotalOrdersMonth(final Integer month, final Integer year) 
-			throws DaoException, OrderValidationException {
+			throws DaoException, OrderNotFoundException {
 		List<Order> orders = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -80,7 +81,7 @@ public class OrderDAOImpl implements OrderDAO {
 			ps.setInt(2, year);
 			try (ResultSet rs = ps.executeQuery()) {
 				if(!rs.next()) {
-					throw new OrderValidationException("Not found orders on the date " + month + "-" + year);
+					throw new OrderNotFoundException("Not found orders on the date " + month + "-" + year);
 				} else {
 					do {
 						Order order = new Order();
@@ -105,6 +106,48 @@ public class OrderDAOImpl implements OrderDAO {
 			}
 		} catch(SQLException e) {
 			throw new DaoException("Error to find orders in the search date", e);
+		} 
+		return orders;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Order> listTotalSalesPerSeller(final Employee employee) 
+			throws DaoException, PersonNotFoundException {
+		List<Order> orders = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.ORDER_SELECT_SELLER.getQuery())
+		) {
+			ps.setLong(1, employee.getId());
+			try (ResultSet rs = ps.executeQuery()) {
+				if(!rs.next()) {
+					throw new PersonNotFoundException("Not found orders for the seller " + employee.getId());
+				} else {
+					do {
+						Order order = new Order();
+					
+						employee.setId(rs.getLong("ord_emp_id"));
+						employee.setName(rs.getString("emp_name"));
+						
+						Customer customer = new Customer();
+						customer.setId(rs.getLong("ord_cus_id"));
+						customer.setName(rs.getString("cus_name"));
+
+						
+						order.setEmployee(employee);
+						order.setCustomer(customer);						
+						order.setId(rs.getLong("ord_id"));
+						order.setOrderAmount(rs.getDouble("ord_amount"));
+						order.setCreationDate(new Date(rs.getTimestamp("ord_date").getTime()));
+						orders.add(order);
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find orders for the seller searched", e);
 		} 
 		return orders;
 	}

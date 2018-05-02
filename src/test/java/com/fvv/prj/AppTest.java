@@ -7,24 +7,20 @@ import com.fvv.bookstore.controller.OrderController;
 import com.fvv.bookstore.controller.OrderControllerImpl;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
+import com.fvv.bookstore.exception.order.OrderNotFoundException;
 import com.fvv.bookstore.exception.order.OrderValidationException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 
 public class AppTest {
 	
-	public static void main( String[] args ) throws DaoException, ControllerException, OrderValidationException, PersonNotFoundException {
+	public static void main( String[] args ) throws DaoException, ControllerException, OrderValidationException, PersonNotFoundException, OrderNotFoundException {
     	
-		OrderController orController = new OrderControllerImpl();
+		/*OrderController oController = new OrderControllerImpl();
 		
-		List<Order> orders = orController.listTotalOrdersMonth(4, 2018);
-		Integer i = orController.calculateQtyOrdersMonth(orders);
-		Double d = orController.calculateTotalOrdersMonth(orders);
-		
-		System.out.println("Qty: " + i);
-		System.out.println("Amount: " + d);
+		List<Order> orders = oController.listTotalSalesPerSeller(2L);
 		
 		for(Order o : orders) {
 			System.out.println(o);
-		}
+		}*/
     }
 }

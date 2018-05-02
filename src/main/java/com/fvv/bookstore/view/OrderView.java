@@ -19,4 +19,9 @@ public interface OrderView {
 	 * Lists all the order by search month using Controller.
 	 */
 	void listTotalOrdersMonth();
+	
+	/**
+	 * Lists all the sales per seller using Controller.
+	 */
+	void listTotalSalesPerSeller();
 }

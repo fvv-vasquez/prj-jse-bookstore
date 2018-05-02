@@ -493,11 +493,14 @@ public class Menu {
 					null, "Sales Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
 					"Select an option below:" + Constants.LINE_SEPARATOR +
 					"1 - Total Order in a Month" + Constants.LINE_SEPARATOR +
+					"2 - Total Sales per Seller" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.listTotalOrdersMonth();
+					break;
+				case '2' : this.listTotalSalesPerSeller();
 					break;
 				case '0' : this.createSubMenuReports();
 					break;
@@ -743,6 +746,13 @@ public class Menu {
 	 */
 	private void listTotalOrdersMonth() {
 		this.orderView.listTotalOrdersMonth();
+	}
+	
+	/**
+	 * Lists all the sales per seller.
+	 */
+	private void listTotalSalesPerSeller() {
+		this.orderView.listTotalSalesPerSeller();
 	}
 	
 	/**

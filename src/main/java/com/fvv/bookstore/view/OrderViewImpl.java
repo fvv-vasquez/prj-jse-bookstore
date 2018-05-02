@@ -36,6 +36,7 @@ import com.fvv.bookstore.exception.book.BookNotFoundException;
 import com.fvv.bookstore.exception.dvd.DvdNotFoundException;
 import com.fvv.bookstore.exception.hardware.HardwareNotFoundException;
 import com.fvv.bookstore.exception.magazine.MagazineNotFoundException;
+import com.fvv.bookstore.exception.order.OrderNotFoundException;
 import com.fvv.bookstore.exception.order.OrderValidationException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.util.Constants;
@@ -101,12 +102,12 @@ public class OrderViewImpl implements OrderView {
 	public void listTotalOrdersMonth() {
 		try {
 			StringBuilder sb = new StringBuilder();
-			Integer monthSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the number month to find"));
-			Integer yearSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the year to find"));
+			Integer monthSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the number month to search"));
+			Integer yearSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the year to search"));
 			List<Order> orders = this.orderController.listTotalOrdersMonth(monthSearch, yearSearch);
 			if(orders != null && !orders.isEmpty()) {
-				Integer quantity = this.orderController.calculateQtyOrdersMonth(orders);
-				Double amount = this.orderController.calculateTotalOrdersMonth(orders);
+				Integer quantity = this.orderController.calculateQtyOrders(orders);
+				Double amount = this.orderController.calculateTotalOrders(orders);
 				sb.append("Quantity of orders: ").append(quantity).append(" - Amount in the month: R$").append(amount).append(Constants.LINE_SEPARATOR);
 				for(Order ord : orders) {
 					sb.append("Date: ").append(ord.getCreationDate()).append(" - Order ID: ").append(ord.getId()).
@@ -119,7 +120,41 @@ public class OrderViewImpl implements OrderView {
 			} else {
 				JOptionPane.showMessageDialog(null, "There are no items to show!");
 			}			
-		} catch (ControllerException | OrderValidationException e) {
+		} catch (ControllerException | OrderNotFoundException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void listTotalSalesPerSeller() {
+		try {
+			StringBuilder sb = new StringBuilder();
+			Long idSearch = Long.parseLong(JOptionPane.showInputDialog("Insert the employee ID to search"));
+			Employee employee = this.employeeController.findEmployee(idSearch);
+			List<Order> orders = this.orderController.listTotalSalesPerSeller(employee);
+			
+			if(orders != null && !orders.isEmpty()) {
+				Integer quantity = this.orderController.calculateQtyOrders(orders);
+				Double amount = this.orderController.calculateTotalOrders(orders);
+				sb.append("Employee ID: ").append(employee.getId()).append(" - Name: ").append(employee.getName()).append(Constants.LINE_SEPARATOR).
+				append("Quantity of orders: ").append(quantity).append(" - Amount in the period: R$").append(amount).append(Constants.LINE_SEPARATOR);
+				
+				for(Order ord : orders) {
+					sb.append("Order ID: ").append(ord.getId()).append(" - Order Amount: R$").append(ord.getOrderAmount()).append(", Customer ID: ").
+					append(ord.getCustomer().getId()).append(" - Name: ").append(ord.getCustomer().getName()).append(Constants.LINE_SEPARATOR);
+				}
+				
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Orders of the Employee Searched: " + idSearch, 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException | PersonNotFoundException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
 					JOptionPane.ERROR_MESSAGE);

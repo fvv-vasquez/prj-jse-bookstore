@@ -2,9 +2,12 @@ package com.fvv.bookstore.controller;
 
 import java.util.List;
 
+import com.fvv.bookstore.bean.Employee;
 import com.fvv.bookstore.bean.Order;
 import com.fvv.bookstore.exception.ControllerException;
+import com.fvv.bookstore.exception.order.OrderNotFoundException;
 import com.fvv.bookstore.exception.order.OrderValidationException;
+import com.fvv.bookstore.exception.person.PersonNotFoundException;
 
 /**
  * Controller interface for an Order object.
@@ -31,11 +34,11 @@ public interface OrderController {
 	 * @param month to search.
 	 * @param year to search.
 	 * @return a list of orders.
-	 * @throws OrderValidationException when a field is empty.
+	 * @throws OrderNotFoundException when not found an order in the database.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
 	List<Order> listTotalOrdersMonth(final Integer month, final Integer year) 
-			throws OrderValidationException, ControllerException;
+			throws OrderNotFoundException, ControllerException;
 	
 	/**
 	 * Calculate the total of order amount in the search date.
@@ -43,7 +46,7 @@ public interface OrderController {
 	 * @param orders to calculate.
 	 * @return the amount in the search date.
 	 */
-	Double calculateTotalOrdersMonth(final List<Order> orders);
+	Double calculateTotalOrders(final List<Order> orders);
 	
 	/**
 	 * Calculate the quantity of orders amount in the search date.
@@ -51,5 +54,16 @@ public interface OrderController {
 	 * @param orders to calculate.
 	 * @return the amount in the search date.
 	 */
-	Integer calculateQtyOrdersMonth(final List<Order> orders);
+	Integer calculateQtyOrders(final List<Order> orders);
+	
+	/**
+	 * Lists all the sales per seller.
+	 * 
+	 * @param employee to search its sales.
+	 * @return a list of orders.
+	 * @throws PersonNotFoundException when not found a person in the database.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	List<Order> listTotalSalesPerSeller(final Employee employee) 
+			throws PersonNotFoundException, ControllerException;
 }
