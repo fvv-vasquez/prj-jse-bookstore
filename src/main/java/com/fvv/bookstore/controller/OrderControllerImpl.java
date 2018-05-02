@@ -72,6 +72,39 @@ public class OrderControllerImpl implements OrderController {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Order> listTotalOrdersMonth(Integer month, Integer year)
+			throws OrderValidationException, ControllerException {
+		try {
+			return this.orderDao.listTotalOrdersMonth(month, year);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Double calculateTotalOrdersMonth(final List<Order> orders) {
+		Double amount = 0.0;
+		for (Order ord : orders) {
+			amount += ord.getOrderAmount();
+		}
+		return MathUtil.round(amount, Constants.PRECISION);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Integer calculateQtyOrdersMonth(final List<Order> orders) {
+		return orders.size();
+	}
+
+	/**
 	 * Validate if a field in the order is empty.
 	 * 
 	 * @param order of Order type.

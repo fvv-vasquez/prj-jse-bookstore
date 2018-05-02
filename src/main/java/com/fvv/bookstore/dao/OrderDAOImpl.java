@@ -1,15 +1,21 @@
 package com.fvv.bookstore.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.fvv.bookstore.bean.Customer;
+import com.fvv.bookstore.bean.Employee;
 import com.fvv.bookstore.bean.Order;
 import com.fvv.bookstore.bean.OrderItem;
 import com.fvv.bookstore.enums.SqlQueryEnum;
 import com.fvv.bookstore.exception.DaoException;
+import com.fvv.bookstore.exception.order.OrderValidationException;
 
 /**
  * DAO Class of an Order object, with main database operation.
@@ -59,6 +65,50 @@ public class OrderDAOImpl implements OrderDAO {
 		} 
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Order> listTotalOrdersMonth(final Integer month, final Integer year) 
+			throws DaoException, OrderValidationException {
+		List<Order> orders = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.ORDER_SELECT_MONTH.getQuery())
+		) {
+			ps.setInt(1, month);
+			ps.setInt(2, year);
+			try (ResultSet rs = ps.executeQuery()) {
+				if(!rs.next()) {
+					throw new OrderValidationException("Not found orders on the date " + month + "-" + year);
+				} else {
+					do {
+						Order order = new Order();
+						
+						Employee employee = new Employee();
+						employee.setId(rs.getLong("ord_emp_id"));
+						employee.setName(rs.getString("emp_name"));
+						
+						Customer customer = new Customer();
+						customer.setId(rs.getLong("ord_cus_id"));
+						customer.setName(rs.getString("cus_name"));
+
+						
+						order.setEmployee(employee);
+						order.setCustomer(customer);						
+						order.setId(rs.getLong("ord_id"));
+						order.setOrderAmount(rs.getDouble("ord_amount"));
+						order.setCreationDate(new Date(rs.getTimestamp("ord_date").getTime()));
+						orders.add(order);
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find orders in the search date", e);
+		} 
+		return orders;
+	}
+
 	/**
 	 * Gets the primary key from the database.
 	 * 

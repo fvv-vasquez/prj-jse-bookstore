@@ -155,6 +155,11 @@ public enum SqlQueryEnum {
 	ORDER_INSERT("INSERT INTO tb_order (ord_emp_id, ord_cus_id, ord_amount, ord_date) VALUES "
 			+ "(?, ?, ?, now())"),
 	
+	ORDER_SELECT_MONTH("SELECT ord_id, ord_date, ord_emp_id, ord_cus_id, ord_amount, emp_name, cus_name "
+			+ "FROM tb_order, tb_employee, tb_customer "
+			+ "WHERE ord_emp_id = emp_id AND ord_cus_id = cus_id "
+			+ "AND MONTH(ord_date) = ? AND YEAR(ord_date) = ?"),
+	
 	ORDER_ITEM_BOOK_INSERT("INSERT INTO tb_order_item_book (ord_ite_book_ord_id, "
 			+ "ord_ite_book_book_id, ord_ite_book_quantity, ord_ite_book_amount) "
 			+ "VALUES (?, ?, ?, ?)"),
