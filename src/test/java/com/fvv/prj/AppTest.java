@@ -1,8 +1,13 @@
 package com.fvv.prj;
 
+import java.util.List;
+
 import com.fvv.bookstore.bean.Order;
+import com.fvv.bookstore.bean.OrderItem;
 import com.fvv.bookstore.dao.OrderDAO;
 import com.fvv.bookstore.dao.OrderDAOImpl;
+import com.fvv.bookstore.dao.OrderItemDAO;
+import com.fvv.bookstore.dao.OrderItemDAOImpl;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.order.OrderNotFoundException;
@@ -13,8 +18,15 @@ public class AppTest {
 	
 	public static void main( String[] args ) throws DaoException, ControllerException, OrderValidationException, PersonNotFoundException, OrderNotFoundException {
     	
-		OrderDAO oDao = new OrderDAOImpl();
-		Order o = oDao.findOrder(90l);
-		System.out.println(o);
+		OrderItemDAO orItemDAO = new OrderItemDAOImpl();
+		
+		Order order = new Order();
+		order.setId(96l);
+		
+		List<OrderItem> orList = orItemDAO.findDvdtemsByOrder(order);
+		
+		for(OrderItem o : orList ) {
+			System.out.println(o);
+		}
     }
 }

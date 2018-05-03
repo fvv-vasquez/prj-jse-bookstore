@@ -155,7 +155,7 @@ public class OrderDAOImpl implements OrderDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Order findOrder(final Long id) throws OrderNotFoundException, DaoException {
+	public Order getOrderByOrderId(final Long id) throws OrderNotFoundException, DaoException {
 		Order order = new Order();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -201,5 +201,37 @@ public class OrderDAOImpl implements OrderDAO {
 		    generatedKey = rs.getLong(1);
 		}
 		return generatedKey;
+	}
+	
+	private List<OrderItem> getOrderItemByOrder(final Order order) throws DaoException, OrderNotFoundException {
+		List<OrderItem> items = new ArrayList<>();
+		
+		final List<OrderItem> bookItems = this.orderItemDao.findBookItemsByOrder(order);
+		if(!bookItems.isEmpty()) {
+			items.addAll(bookItems);
+		}
+		
+		final List<OrderItem> celItems = this.orderItemDao.findCellphoneItemsByOrder(order);
+		if(!celItems.isEmpty()) {
+			items.addAll(celItems);
+		}
+		
+		final List<OrderItem> dvdItems = this.orderItemDao.findDvdtemsByOrder(order);
+		if(!dvdItems.isEmpty()) {
+			items.addAll(dvdItems);
+		}
+		
+		final List<OrderItem> lapItems = this.orderItemDao.findLaptopItemsByOrder(order);
+		if(!lapItems.isEmpty()) {
+			items.addAll(lapItems);
+		}
+		
+		final List<OrderItem> magItems = this.orderItemDao.findMagazienItemsByOrder(order);
+		if(!magItems.isEmpty()) {
+			items.addAll(magItems);
+		}
+		
+		order.setOrderItems(items);
+		return items;
 	}
 }
