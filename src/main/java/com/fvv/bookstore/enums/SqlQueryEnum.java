@@ -164,24 +164,41 @@ public enum SqlQueryEnum {
 			+ "cus_name FROM tb_order, tb_employee, tb_customer WHERE ord_emp_id = ? "
 			+ "AND ord_emp_id = emp_id AND ord_cus_id = cus_id"),
 	
+	ORDER_SELECT_ID("SELECT * FROM tb_order WHERE ord_id = ?"),
+	
 	ORDER_ITEM_BOOK_INSERT("INSERT INTO tb_order_item_book (ord_ite_book_ord_id, "
 			+ "ord_ite_book_book_id, ord_ite_book_quantity, ord_ite_book_amount) "
 			+ "VALUES (?, ?, ?, ?)"),
+	
+	ORDER_ITEM_BOOK_SELECT_ORDER_ID("SELECT * FROM tb_order_item_book, tb_order "
+			+ "WHERE ord_id = ? AND ord_ite_book_ord_id = ord_id"),
 	
 	ORDER_ITEM_CELLPHONE_INSERT("INSERT INTO tb_order_item_cellphone (ord_ite_cel_ord_id, "
 			+ "ord_ite_cel_cel_id, ord_ite_cel_quantity, ord_ite_cel_amount) "
 			+ "VALUES (?, ?, ?, ?)"),
 	
+	ORDER_ITEM_CELLPHONE_SELECT_ORDER_ID("SELECT * FROM tb_order_item_cellphone, tb_order "
+			+ "WHERE ord_id = ? AND ord_ite_cel_ord_id = ord_id"),
+	
 	ORDER_ITEM_DVD_INSERT("INSERT INTO tb_order_item_dvd (ord_ite_dvd_ord_id, ord_ite_dvd_dvd_id, "
 			+ "ord_ite_dvd_quantity, ord_ite_dvd_amount) VALUES (?, ?, ?, ?)"),
+	
+	ORDER_ITEM_DVD_SELECT_ORDER_ID("SELECT * FROM tb_order_item_dvd, tb_order "
+			+ "WHERE ord_id = ? AND ord_ite_dvd_ord_id = ord_id"),
 	
 	ORDER_ITEM_LAPTOP_INSERT("INSERT INTO tb_order_item_laptop (ord_ite_pc_ord_id, "
 			+ "ord_ite_pc_pc_id, ord_ite_pc_quantity, ord_ite_pc_amount) "
 			+ "VALUES (?, ?, ?, ?)"),
 	
+	ORDER_ITEM_LAPTOP_SELECT_ORDER_ID("SELECT * FROM tb_order_item_laptop, tb_order "
+			+ "WHERE ord_id = ? AND ord_ite_pc_ord_id = ord_id"),
+	
 	ORDER_ITEM_MAGAZINE_INSERT("INSERT INTO tb_order_item_magazine (ord_ite_mag_ord_id, "
 			+ "ord_ite_mag_mag_id, ord_ite_mag_quantity, ord_ite_mag_amount) "
-			+ "VALUES (?, ?, ?, ?)");
+			+ "VALUES (?, ?, ?, ?)"),
+	
+	ORDER_ITEM_MAGAZINE_SELECT_ORDER_ID("SELECT * FROM tb_order_item_magazine, tb_order "
+			+ "WHERE ord_id = ? AND ord_ite_mag_ord_id = ord_id");
 	
 	private final String query;
 	

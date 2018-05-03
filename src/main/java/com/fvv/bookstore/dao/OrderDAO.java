@@ -48,4 +48,14 @@ public interface OrderDAO {
 	 */
 	List<Order> listTotalSalesPerSeller(final Employee employee) 
 			throws DaoException, PersonNotFoundException;
+	
+	/**
+	 * Search an order in the database.
+	 * 
+	 * @param id to search.
+	 * @return an order.
+	 * @throws DaoException when a problem in database happens.
+	 * @throws OrderNotFoundException when not found an order in the database.
+	 */
+	Order findOrder(final Long id) throws OrderNotFoundException, DaoException;
 }

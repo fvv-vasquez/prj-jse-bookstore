@@ -135,7 +135,6 @@ public class OrderDAOImpl implements OrderDAO {
 						Customer customer = new Customer();
 						customer.setId(rs.getLong("ord_cus_id"));
 						customer.setName(rs.getString("cus_name"));
-
 						
 						order.setEmployee(employee);
 						order.setCustomer(customer);						
@@ -150,6 +149,42 @@ public class OrderDAOImpl implements OrderDAO {
 			throw new DaoException("Error to find orders for the seller searched", e);
 		} 
 		return orders;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Order findOrder(final Long id) throws OrderNotFoundException, DaoException {
+		Order order = new Order();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.ORDER_SELECT_ID.getQuery())
+		) {	
+			ps.setLong(1, id);
+			try (ResultSet rs = ps.executeQuery()) {			
+				if(!rs.next()) {
+					throw new OrderNotFoundException("Order with ID " + id + " not found");
+				} else {
+					do {
+						Employee employee = new Employee();
+						employee.setId(rs.getLong("ord_emp_id"));
+						
+						Customer customer = new Customer();
+						customer.setId(rs.getLong("ord_cus_id"));
+						
+						order.setEmployee(employee);
+						order.setCustomer(customer);
+						order.setId(rs.getLong("ord_id"));
+						order.setOrderAmount(rs.getDouble("ord_amount"));
+						order.setCreationDate(new Date(rs.getTimestamp("ord_date").getTime()));
+					} while (rs.next());
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find an order", e);
+		} 
+		return order;
 	}
 
 	/**
