@@ -141,12 +141,12 @@ public class OrderViewImpl implements OrderView {
 			if(orders != null && !orders.isEmpty()) {
 				Integer quantity = this.orderController.calculateQtyOrders(orders);
 				Double amount = this.orderController.calculateTotalOrders(orders);
-				sb.append("Employee ID: ").append(employee.getId()).append(" - Name: ").append(employee.getName()).append(Constants.LINE_SEPARATOR).
-				append("Quantity of orders: ").append(quantity).append(" - Amount in the period: R$").append(amount).append(Constants.LINE_SEPARATOR);
+				sb.append("Employee ID: ").append(employee.getId()).append(" - Name: ").append(employee.getName()).append(Constants.LINE_SEPARATOR)
+				.append("Quantity of orders: ").append(quantity).append(" - Amount in the period: R$").append(amount).append(Constants.LINE_SEPARATOR);
 				
 				for(Order ord : orders) {
-					sb.append("Order ID: ").append(ord.getId()).append(" - Order Amount: R$").append(ord.getOrderAmount()).append(", Customer ID: ").
-					append(ord.getCustomer().getId()).append(" - Name: ").append(ord.getCustomer().getName()).append(Constants.LINE_SEPARATOR);
+					sb.append("Order ID: ").append(ord.getId()).append(" - Order Amount: R$").append(ord.getOrderAmount()).append(", Customer ID: ")
+					.append(ord.getCustomer().getId()).append(" - Name: ").append(ord.getCustomer().getName()).append(Constants.LINE_SEPARATOR);
 				}
 				
 				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Orders of the Employee Searched: " + idSearch, 
@@ -155,6 +155,38 @@ public class OrderViewImpl implements OrderView {
 				JOptionPane.showMessageDialog(null, "There are no items to show!");
 			}			
 		} catch (ControllerException | PersonNotFoundException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void listOrderByOrderId() {
+		try {
+			StringBuilder sb = new StringBuilder();
+			Long idSearch = Long.parseLong(JOptionPane.showInputDialog("Insert the Order ID to list"));
+			Order order = this.orderController.listOrderByOrderId(idSearch);
+			List<OrderItem> items = order.getOrderItems();
+			if(order != null) {
+				sb.append("Order ID: ").append(order.getId()).append(" - Amount: R$").append(order.getOrderAmount())
+				.append(" - Date: ").append(order.getCreationDate()).append(Constants.LINE_SEPARATOR).append("Employee ID: ")
+				.append(order.getEmployee().getId()).append(" - Name: ").append(order.getEmployee().getName()).append(", Customer ID: ")
+				.append(order.getCustomer().getId()).append(" - Name: ").append(order.getCustomer().getName()).append(Constants.LINE_SEPARATOR);
+				
+				for(OrderItem orderItem : items) {
+					sb.append("Product ID: ").append(orderItem.getProduct().getId()).append(" - Description: ")
+					.append(OrderViewUtil.resolveProperDescription(orderItem.getProduct())).append(" - Quantity: ").append(orderItem.getQuantity())
+					.append(" - Unit Price: R$").append(orderItem.getItemAmount()).append(Constants.LINE_SEPARATOR);
+				}
+				
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Order Searched: " + idSearch, 
+						JOptionPane.PLAIN_MESSAGE);
+			}	
+		} catch (ControllerException | OrderNotFoundException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
 					JOptionPane.ERROR_MESSAGE);

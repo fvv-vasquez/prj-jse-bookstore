@@ -24,4 +24,9 @@ public interface OrderView {
 	 * Lists all the sales per seller using Controller.
 	 */
 	void listTotalSalesPerSeller();
+	
+	/**
+	 * Lists an order by search order id.
+	 */
+	void listOrderByOrderId();
 }

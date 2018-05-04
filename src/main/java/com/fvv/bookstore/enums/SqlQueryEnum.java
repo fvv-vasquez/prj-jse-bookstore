@@ -164,7 +164,9 @@ public enum SqlQueryEnum {
 			+ "cus_name FROM tb_order, tb_employee, tb_customer WHERE ord_emp_id = ? "
 			+ "AND ord_emp_id = emp_id AND ord_cus_id = cus_id"),
 	
-	ORDER_SELECT_ID("SELECT * FROM tb_order WHERE ord_id = ?"),
+	ORDER_SELECT_ID("SELECT ord_id, ord_date, ord_emp_id, ord_cus_id, ord_amount, emp_name, " 
+			+ "cus_name FROM tb_order, tb_employee, tb_customer WHERE ord_emp_id = emp_id AND "
+			+ "ord_cus_id = cus_id AND ord_id = ?"),
 	
 	ORDER_ITEM_BOOK_INSERT("INSERT INTO tb_order_item_book (ord_ite_book_ord_id, "
 			+ "ord_ite_book_book_id, ord_ite_book_quantity, ord_ite_book_amount) "

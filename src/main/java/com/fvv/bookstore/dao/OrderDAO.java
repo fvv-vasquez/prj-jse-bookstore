@@ -57,5 +57,5 @@ public interface OrderDAO {
 	 * @throws DaoException when a problem in database happens.
 	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	Order getOrderByOrderId(final Long id) throws OrderNotFoundException, DaoException;
+	Order listOrderByOrderId(final Long id) throws OrderNotFoundException, DaoException;
 }

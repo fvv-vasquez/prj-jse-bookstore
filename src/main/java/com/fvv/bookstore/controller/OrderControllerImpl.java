@@ -121,6 +121,18 @@ public class OrderControllerImpl implements OrderController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Order listOrderByOrderId(Long id) throws OrderNotFoundException, ControllerException {
+		try {
+			return this.orderDao.listOrderByOrderId(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
+	}
+
+	/**
 	 * Validate if a field in the order is empty.
 	 * 
 	 * @param order of Order type.

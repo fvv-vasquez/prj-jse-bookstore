@@ -66,4 +66,14 @@ public interface OrderController {
 	 */
 	List<Order> listTotalSalesPerSeller(final Employee employee) 
 			throws PersonNotFoundException, ControllerException;
+	
+	/**
+	 * Lists an order by search order id.
+	 * 
+	 * @param id to search.
+	 * @return the searched order.
+	 * @throws OrderNotFoundException when not found an order in the database.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	Order listOrderByOrderId(final Long id) throws OrderNotFoundException, ControllerException;
 }
