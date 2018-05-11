@@ -152,6 +152,9 @@ public enum SqlQueryEnum {
 	
 	EMPLOYEE_SELECT_NAME("SELECT * FROM tb_employee WHERE emp_name LIKE ? ORDER BY emp_salary DESC"),
 	
+	EMPLOYEE_SUM_ID("SELECT SUM(ord_amount) FROM tb_order WHERE ord_emp_id = ? "
+			+ "AND MONTH(ord_date) = ? AND YEAR(ord_date) = ?"),
+	
 	ORDER_INSERT("INSERT INTO tb_order (ord_emp_id, ord_cus_id, ord_amount, ord_date) VALUES "
 			+ "(?, ?, ?, now())"),
 	

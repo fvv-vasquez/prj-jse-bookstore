@@ -1,17 +1,18 @@
 package com.fvv.bookstore.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
 import com.fvv.bookstore.enums.SqlQueryEnum;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
+import com.fvv.bookstore.util.DateUtil;
 
 /**
  * DAO Class of an Employee object, with main database operations from CRUD methods.
@@ -181,5 +182,30 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			throw new DaoException("Error to find an employee", e);
 		} 
 		return employees;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Double getTotalSalesByEmployeeAndMonth(final Long idEmployee, final Date date)
+			throws PersonNotFoundException, DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.EMPLOYEE_SUM_ID.getQuery())
+		) {	
+			ps.setLong(1, idEmployee);
+			ps.setInt(2, DateUtil.extractMonthFromDate(date));
+			ps.setInt(3, DateUtil.extractYearFromDate(date));
+			try (ResultSet rs = ps.executeQuery()) {
+				if(!rs.next()) {
+					throw new PersonNotFoundException("Employee " + idEmployee + " not found");
+				} else {
+					return rs.getDouble(1);
+				}
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to find an employee", e);
+		} 
 	}
 }

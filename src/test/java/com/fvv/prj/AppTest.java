@@ -1,29 +1,28 @@
 package com.fvv.prj;
 
+import java.util.Date;
+
+import com.fvv.bookstore.dao.EmployeeDAO;
+import com.fvv.bookstore.dao.EmployeeDAOImpl;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.order.OrderNotFoundException;
 import com.fvv.bookstore.exception.order.OrderValidationException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
-import com.fvv.bookstore.view.OrderView;
-import com.fvv.bookstore.view.OrderViewImpl;
+import com.fvv.bookstore.util.DateUtil;
 
 public class AppTest {
 	
 	public static void main( String[] args ) throws DaoException, ControllerException, OrderValidationException, PersonNotFoundException, OrderNotFoundException {
     	
-		//OrderItemDAO orItemDAO = new OrderItemDAOImpl();
+		EmployeeDAO employeeDAO = new EmployeeDAOImpl();
 		
-		//Order order = new Order();
-		//order.setId(104L);
+		Date date = new Date();
 		
-		/*OrderDAO orDao = new OrderDAOImpl();
+		String inutil = "03/" + "01/" + "2018";
+		date = DateUtil.stringToDate(inutil);
 		
-		Order o = orDao.listOrderByOrderId(104L);
-		System.out.println(o);		
-		o.getOrderItems().forEach(System.out::println);*/
-		
-		OrderView orderView = new OrderViewImpl();
-		orderView.listOrderByOrderId();
+		Double d = employeeDAO.getTotalSalesByEmployeeAndMonth(2L, date);
+		System.out.println(d);
     }
 }
