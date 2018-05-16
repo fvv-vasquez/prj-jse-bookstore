@@ -34,4 +34,9 @@ public interface EmployeeView {
 	 * List the employees by search name using Controller.
 	 */
 	void listEmployeesByName();
+	
+	/**
+	 * Gets the salary based on the percentage using Controller.
+	 */
+	void getSalaryWithCommission();
 }

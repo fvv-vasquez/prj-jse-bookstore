@@ -1,5 +1,6 @@
 package com.fvv.bookstore.view;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -11,6 +12,7 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.exception.person.PersonValidationException;
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.DateUtil;
 
 /**
  * EmployeeView class to view the Employee object.
@@ -117,25 +119,6 @@ public class EmployeeViewImpl implements EmployeeView {
 		}
 	}
 
-	private Employee createEmployeeFromInput(final boolean isUpdate) 
-			throws PersonNotFoundException, ControllerException {
-		final Employee employee = new Employee();
-		
-		if(isUpdate) {
-			Long idUp = Long.parseLong(JOptionPane.showInputDialog("Insert the ID to update"));
-			this.employeeController.findEmployee(idUp);
-			employee.setId(idUp);
-		}
-		
-		employee.setName(JOptionPane.showInputDialog("Insert the full name"));
-		employee.setEmail(JOptionPane.showInputDialog("Insert the email"));
-		employee.setPhone(JOptionPane.showInputDialog("Insert the phone"));
-		employee.setCpf(JOptionPane.showInputDialog("Insert the CPF"));
-		employee.setPosition(JOptionPane.showInputDialog("Insert the position"));
-		employee.setSalary(Double.parseDouble(JOptionPane.showInputDialog("Insert the salary")));
-		return employee;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -159,5 +142,46 @@ public class EmployeeViewImpl implements EmployeeView {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
 					JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void getSalaryWithCommission() {
+		try {
+			Long searchId = Long.parseLong(JOptionPane.showInputDialog("Insert the employee ID"));
+			Employee employee = this.employeeController.findEmployee(searchId);
+			employee.setId(searchId);
+			
+			final Double percentage = Double.parseDouble(JOptionPane.showInputDialog("Input the percentage in decimal"));
+			final Date date = DateUtil.stringToDate(JOptionPane.showInputDialog("Insert the date"));
+			final Double newSalary = this.employeeController.getSalaryWithCommission(percentage, employee, date);
+			
+			JOptionPane.showMessageDialog(null, "Employee: " + employee.getId() + " - " + employee.getName() + " - Salary with Commission: " + newSalary);
+		} catch (ControllerException | PersonNotFoundException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private Employee createEmployeeFromInput(final boolean isUpdate) 
+			throws PersonNotFoundException, ControllerException {
+		final Employee employee = new Employee();
+		
+		if(isUpdate) {
+			Long idUp = Long.parseLong(JOptionPane.showInputDialog("Insert the ID to update"));
+			this.employeeController.findEmployee(idUp);
+			employee.setId(idUp);
+		}
+		
+		employee.setName(JOptionPane.showInputDialog("Insert the full name"));
+		employee.setEmail(JOptionPane.showInputDialog("Insert the email"));
+		employee.setPhone(JOptionPane.showInputDialog("Insert the phone"));
+		employee.setCpf(JOptionPane.showInputDialog("Insert the CPF"));
+		employee.setPosition(JOptionPane.showInputDialog("Insert the position"));
+		employee.setSalary(Double.parseDouble(JOptionPane.showInputDialog("Insert the salary")));
+		return employee;
 	}
 }

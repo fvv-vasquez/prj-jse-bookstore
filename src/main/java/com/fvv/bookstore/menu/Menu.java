@@ -468,6 +468,7 @@ public class Menu {
 					"Select an option below:" + Constants.LINE_SEPARATOR +
 					"1 - Customer Filtered and Ordered by Name" + Constants.LINE_SEPARATOR +
 					"2 - Employee Filtered by Name and Ordered by Salary" + Constants.LINE_SEPARATOR +
+					"3 - Salary Employee with Sales Commission" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
@@ -475,6 +476,8 @@ public class Menu {
 				case '1' : this.listCustomersByName();
 					break;
 				case '2' : this.listEmployeesByName();
+					break;
+				case '3' : this.getSalaryWithCommission();
 					break;
 				case '0' : this.createSubMenuReports();
 					break;
@@ -735,6 +738,13 @@ public class Menu {
 	 */
 	private void listEmployeesByName() {
 		this.employeeView.listEmployeesByName();
+	}
+	
+	/**
+	 * Gets the salary with commission.
+	 */
+	private void getSalaryWithCommission() {
+		this.employeeView.getSalaryWithCommission();
 	}
 	
 	/**

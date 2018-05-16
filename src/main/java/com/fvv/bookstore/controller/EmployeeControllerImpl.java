@@ -1,5 +1,6 @@
 package com.fvv.bookstore.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
@@ -96,6 +97,29 @@ public class EmployeeControllerImpl implements EmployeeController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Employee> listEmployeesByName(final String name) throws PersonNotFoundException, ControllerException {
+		try {
+			return this.employeeDao.listEmployeesByName(name);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find an employee", e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Double getSalaryWithCommission(final Double percentage, final Employee employee, final Date date)
+			throws PersonNotFoundException, ControllerException {
+		final Double totalSales = this.getTotalSalesByEmployeeAndMonth(employee.getId(), date);
+		final Double commission = totalSales * percentage;
+		return commission + employee.getSalary();
+	}
+
+	/**
 	 * Validate if a field is empty.
 	 * 
 	 * @param employee of type Employee
@@ -125,14 +149,20 @@ public class EmployeeControllerImpl implements EmployeeController {
 			throw new PersonValidationException(sb.toString());
 		}
 	}
-
+	
 	/**
-	 * {@inheritDoc}
+	 * Gets the sales in a specific period searching by Employee ID.
+	 * 
+	 * @param idEmployee to search.
+	 * @param date to search.
+	 * @return the total in the period.
+	 * @throws PersonNotFoundException when not found a person in the database.
+	 * @throws ControllerException when a problem in controller happens.
 	 */
-	@Override
-	public List<Employee> listEmployeesByName(String name) throws PersonNotFoundException, ControllerException {
+	private Double getTotalSalesByEmployeeAndMonth(final Long idEmployee, final Date date) 
+			throws PersonNotFoundException, ControllerException {
 		try {
-			return this.employeeDao.listEmployeesByName(name);
+			return this.employeeDao.getTotalSalesByEmployeeAndMonth(idEmployee, date);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to find an employee", e);
 		}
