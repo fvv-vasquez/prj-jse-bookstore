@@ -35,6 +35,13 @@ public class Constants {
 	 */
 	public static final Integer PRECISION = 2;
 	
+	/**
+	 * Constant that represents an abbreviation to yes.
+	 */
 	public static final Character YES = 'y';
-
+	
+	/**
+	 * Constant that represents the file name path.
+	 */
+	public static final String FILE_PATH = "audit.txt";
 }
