@@ -40,6 +40,7 @@ import com.fvv.bookstore.exception.order.OrderValidationException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.util.Constants;
 import com.fvv.bookstore.util.OrderViewUtil;
+import com.fvv.bookstore.util.PropertiesUtil;
 
 /**
  * OrderView class to view the Order object.
@@ -83,10 +84,10 @@ public class OrderViewImpl implements OrderView {
 		try {
 			final Order order = this.createOrderFromInput();
 			this.orderController.addOrder(order);
-			JOptionPane.showMessageDialog(null, "Order added successfully!");
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("orderAdd"));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value:" + Constants.LINE_SEPARATOR
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | OrderValidationException | PersonNotFoundException e) {
 			e.printStackTrace();

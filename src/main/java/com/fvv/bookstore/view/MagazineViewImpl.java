@@ -12,6 +12,7 @@ import com.fvv.bookstore.exception.magazine.MagazineNotFoundException;
 import com.fvv.bookstore.exception.magazine.MagazineValidationException;
 import com.fvv.bookstore.util.Constants;
 import com.fvv.bookstore.util.DateUtil;
+import com.fvv.bookstore.util.PropertiesUtil;
 
 /**
  * MagazineView class to view the Magazine object.
@@ -40,15 +41,14 @@ public class MagazineViewImpl implements MagazineView {
 		try {
 			final Magazine magazine = this.createMagazineFromInput(Boolean.FALSE);
 			this.magazineController.addMagazine(magazine);
-			JOptionPane.showMessageDialog(null, "Magazine added successfully!");	
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("magazineAdd"));	
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | MagazineNotFoundException | MagazineValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -64,15 +64,13 @@ public class MagazineViewImpl implements MagazineView {
 				for(Magazine m : magazines) {
 					sb.append(m).append(Constants.LINE_SEPARATOR);
 				}
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Magazines", 
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Magazines", JOptionPane.PLAIN_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "There are no items to show!");
+				JOptionPane.showMessageDialog(null, PropertiesUtil.get("noItems"));
 			}			
 		} catch (ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -84,15 +82,14 @@ public class MagazineViewImpl implements MagazineView {
 		try {
 			final Magazine magazine = this.createMagazineFromInput(Boolean.TRUE);			
 			this.magazineController.updateMagazine(magazine);
-			JOptionPane.showMessageDialog(null, "Magazine updated successfully!");	
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("magazineUpdated"));	
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | MagazineNotFoundException | MagazineValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -102,19 +99,17 @@ public class MagazineViewImpl implements MagazineView {
 	@Override
 	public void removeMagazine() {
 		try {
-			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
-					"Insert the ID to delete")));
+			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog("Insert the ID to delete")));
 			this.magazineController.findMagazine(idDelete);
 			this.magazineController.removeMagazine(idDelete);
-			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("deletedOk"));			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (MagazineNotFoundException | ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

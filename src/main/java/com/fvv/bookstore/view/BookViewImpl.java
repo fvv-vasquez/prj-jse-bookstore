@@ -11,6 +11,7 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.book.BookNotFoundException;
 import com.fvv.bookstore.exception.book.BookValidationException;
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.PropertiesUtil;
 
 /**
  * BookView class to view the Book object.
@@ -39,15 +40,14 @@ public class BookViewImpl implements BookView {
 		try {
 			final Book book = this.createBookFromInput(Boolean.FALSE);
 			this.bookController.addBook(book);
-			JOptionPane.showMessageDialog(null, "Book added successfully!");		
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("bookAdd"));		
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value:" + Constants.LINE_SEPARATOR
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | BookNotFoundException | BookValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} 	
 	}
 
@@ -63,15 +63,13 @@ public class BookViewImpl implements BookView {
 				for(Book b : books) {
 					sb.append(b).append(Constants.LINE_SEPARATOR);
 				}
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Books", 
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Books", JOptionPane.PLAIN_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "There are no items to show!");
+				JOptionPane.showMessageDialog(null, PropertiesUtil.get("noItems"));
 			}			
 		} catch (ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -83,15 +81,14 @@ public class BookViewImpl implements BookView {
 		try {
 			final Book book = this.createBookFromInput(Boolean.TRUE);
 			this.bookController.updateBook(book);
-			JOptionPane.showMessageDialog(null, "Book updated successfully!");			
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("bookUpdated"));			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | BookNotFoundException | BookValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -101,19 +98,17 @@ public class BookViewImpl implements BookView {
 	@Override
 	public void removeBook() {
 		try {
-			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
-					"Insert the ID to delete")));
+			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog("Insert the ID to delete")));
 			this.bookController.findBook(idDelete);
 			this.bookController.removeBook(idDelete);
-			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("deletedOk"));			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (BookNotFoundException | ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

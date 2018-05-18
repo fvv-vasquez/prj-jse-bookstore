@@ -11,6 +11,7 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.hardware.HardwareNotFoundException;
 import com.fvv.bookstore.exception.hardware.HardwareValidationException;
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.PropertiesUtil;
 
 /**
  * LaptopView class to view the Laptop object.
@@ -39,15 +40,14 @@ public class LaptopViewImpl implements LaptopView {
 		try {
 			final Laptop laptop = this.createLaptopFromInput(Boolean.FALSE);
 			this.laptopController.addLaptop(laptop);
-			JOptionPane.showMessageDialog(null, "Laptop added successfully!");	
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("pcAdd"));	
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | HardwareNotFoundException | HardwareValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -63,15 +63,13 @@ public class LaptopViewImpl implements LaptopView {
 				for(Laptop c : laptops) {
 					sb.append(c).append(Constants.LINE_SEPARATOR);
 				}
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Laptops", 
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Laptops", JOptionPane.PLAIN_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "There are no items to show!");
+				JOptionPane.showMessageDialog(null, PropertiesUtil.get("noItems"));
 			}			
 		} catch (ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -83,15 +81,14 @@ public class LaptopViewImpl implements LaptopView {
 		try {
 			final Laptop laptop = this.createLaptopFromInput(Boolean.TRUE);
 			this.laptopController.updateLaptop(laptop);
-			JOptionPane.showMessageDialog(null, "Laptop updated successfully!");
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("pcUpdated"));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | HardwareNotFoundException | HardwareValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -105,15 +102,14 @@ public class LaptopViewImpl implements LaptopView {
 					"Insert the ID to delete")));
 			this.laptopController.findLaptop(idDelete);
 			this.laptopController.removeLaptop(idDelete);
-			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("deletedOk"));			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (HardwareNotFoundException | ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

@@ -1,7 +1,6 @@
 package com.fvv.bookstore.view;
 
 import java.util.List;
-
 import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.bean.Cellphone;
@@ -11,6 +10,7 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.hardware.HardwareNotFoundException;
 import com.fvv.bookstore.exception.hardware.HardwareValidationException;
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.PropertiesUtil;
 
 /**
  * CellphoneView class to view the Cellphone object.
@@ -39,15 +39,14 @@ public class CellphoneViewImpl implements CellphoneView {
 		try {
 			final Cellphone cellphone = this.createCellphoneFromInput(Boolean.FALSE);
 			this.cellphoneController.addCellphone(cellphone);
-			JOptionPane.showMessageDialog(null, "Cellphone added successfully!");	
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("celAdd"));	
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | HardwareNotFoundException | HardwareValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -63,15 +62,13 @@ public class CellphoneViewImpl implements CellphoneView {
 				for(Cellphone c : cellphones) {
 					sb.append(c).append(Constants.LINE_SEPARATOR);
 				}
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Cellphones", 
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Cellphones", JOptionPane.PLAIN_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "There are no items to show!");
+				JOptionPane.showMessageDialog(null, PropertiesUtil.get("noItems"));
 			}			
 		} catch (ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -83,15 +80,14 @@ public class CellphoneViewImpl implements CellphoneView {
 		try {
 			final Cellphone cellphone = this.createCellphoneFromInput(Boolean.TRUE);
 			this.cellphoneController.updateCellphone(cellphone);
-			JOptionPane.showMessageDialog(null, "Cellphone updated successfully!");
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("celUpdated"));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | HardwareNotFoundException | HardwareValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -101,19 +97,17 @@ public class CellphoneViewImpl implements CellphoneView {
 	@Override
 	public void removeCellphone() {
 		try {
-			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
-					"Insert the ID to delete")));
+			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog("Insert the ID to delete")));
 			this.cellphoneController.findCellphone(idDelete);
 			this.cellphoneController.removeCellphone(idDelete);
-			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("deletedOk"));			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (HardwareNotFoundException | ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

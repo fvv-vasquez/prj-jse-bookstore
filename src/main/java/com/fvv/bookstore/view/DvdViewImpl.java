@@ -13,6 +13,7 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.dvd.DvdNotFoundException;
 import com.fvv.bookstore.exception.dvd.DvdValidationException;
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.PropertiesUtil;
 
 /**
  * DvdView class to view the Dvd object.
@@ -38,15 +39,14 @@ public class DvdViewImpl implements DvdView {
 		try {
 			final Dvd dvd = this.createDvdFromInput(Boolean.FALSE);
 			this.dvdController.addDvd(dvd);
-			JOptionPane.showMessageDialog(null, "DVD added successfully!");	
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("dvdAdd"));	
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | DvdNotFoundException | DvdValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -62,15 +62,13 @@ public class DvdViewImpl implements DvdView {
 				for(ShowDvd d : dvds) {
 					sb.append(d).append(Constants.LINE_SEPARATOR);
 				}
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Shows' Dvds", 
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Shows' Dvds", JOptionPane.PLAIN_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "There are no items to show!");
+				JOptionPane.showMessageDialog(null, PropertiesUtil.get("noItems"));
 			}			
 		} catch (ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -86,15 +84,13 @@ public class DvdViewImpl implements DvdView {
 				for(MovieDvd d : dvds) {
 					sb.append(d).append(Constants.LINE_SEPARATOR);
 				}
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Movies' Dvds", 
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Movies' Dvds", JOptionPane.PLAIN_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "There are no items to show!");
+				JOptionPane.showMessageDialog(null, PropertiesUtil.get("noItems"));
 			}			
 		} catch (ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -106,15 +102,14 @@ public class DvdViewImpl implements DvdView {
 		try {
 			final Dvd dvd = this.createDvdFromInput(Boolean.TRUE);
 			this.dvdController.updateDvd(dvd);
-			JOptionPane.showMessageDialog(null, "DVD updated successfully!");	
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("dvdUpdated"));	
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | DvdNotFoundException | DvdValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -124,19 +119,17 @@ public class DvdViewImpl implements DvdView {
 	@Override
 	public void removeDvd() {
 		try {
-			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
-					"Insert the ID to delete")));
+			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog("Insert the ID to delete")));
 			this.dvdController.findDvd(idDelete);
 			this.dvdController.removeDvd(idDelete);
-			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("deletedOk"));			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (DvdNotFoundException | ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

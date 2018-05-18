@@ -11,6 +11,7 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.exception.person.PersonValidationException;
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.PropertiesUtil;
 
 /**
  * EmployeeView class to view the Employee object.
@@ -39,15 +40,14 @@ public class EmployeeViewImpl implements EmployeeView {
 		try {
 			final Employee employee = this.createEmployeeFromInput(Boolean.FALSE);
 			this.employeeController.addEmployee(employee);
-			JOptionPane.showMessageDialog(null, "Employee added successfully!");	
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("employeeAdd"));	
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | PersonNotFoundException | PersonValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -63,15 +63,13 @@ public class EmployeeViewImpl implements EmployeeView {
 				for(Employee c : employees) {
 					sb.append(c).append(Constants.LINE_SEPARATOR);
 				}
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Employees", 
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Employees", JOptionPane.PLAIN_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "There are no items to show!");
+				JOptionPane.showMessageDialog(null, PropertiesUtil.get("noItems"));
 			}			
 		} catch (ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -83,15 +81,14 @@ public class EmployeeViewImpl implements EmployeeView {
 		try {
 			final Employee employee = this.createEmployeeFromInput(Boolean.TRUE);
 			this.employeeController.updateEmployee(employee);
-			JOptionPane.showMessageDialog(null, "Employee updated successfully!");
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("employeeUpdated"));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ControllerException | PersonNotFoundException | PersonValidationException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -101,19 +98,17 @@ public class EmployeeViewImpl implements EmployeeView {
 	@Override
 	public void removeEmployee() {
 		try {
-			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog(
-					"Insert the ID to delete")));
+			Long idDelete = (Long.parseLong(JOptionPane.showInputDialog("Insert the ID to delete")));
 			this.employeeController.findEmployee(idDelete);
 			this.employeeController.removeEmployee(idDelete);
-			JOptionPane.showMessageDialog(null, "Deleted successfully!");			
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("deletedOk"));			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Problems to convert the value: " + Constants.LINE_SEPARATOR 
+			JOptionPane.showMessageDialog(null, PropertiesUtil.get("problemsToConvert") + Constants.LINE_SEPARATOR 
 					+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (PersonNotFoundException | ControllerException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
