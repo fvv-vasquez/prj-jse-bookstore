@@ -229,7 +229,7 @@ public class DvdDAOImpl implements DvdDAO {
 	public void reduceStockItem(final Dvd dvd, final Integer quantityToReduce) throws DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_REPLACE_STOCK.getQuery())
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_REDUCE_STOCK.getQuery())
 		) {	
 			ps.setInt(1, quantityToReduce);	
 			ps.setLong(2, dvd.getId());		

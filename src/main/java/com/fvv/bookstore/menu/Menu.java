@@ -468,7 +468,7 @@ public class Menu {
 					"Select an option below:" + Constants.LINE_SEPARATOR +
 					"1 - Customer Filtered and Ordered by Name" + Constants.LINE_SEPARATOR +
 					"2 - Employee Filtered by Name and Ordered by Salary" + Constants.LINE_SEPARATOR +
-					"3 - Salary Employee with Sales Commission" + Constants.LINE_SEPARATOR +
+					"3 - Employee Salary with Commission by Month" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
 			);
