@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.fvv.bookstore.bean.OrderItem;
 import com.fvv.bookstore.exception.DaoException;
-import com.fvv.bookstore.exception.order.OrderNotFoundException;
 
 /**
  * DAO Interface of an Order Item object, with main database operation.
@@ -30,9 +29,8 @@ public interface OrderItemDAO {
 	 * @param idOrder to search.
 	 * @return a list of order item book.
 	 * @throws DaoException when a problem in database happens.
-	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	List<OrderItem> findBookItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException;
+	List<OrderItem> findBookItemsByOrder(final Long idOrder) throws DaoException;
 	
 	/**
 	 * Search a cellphone item in the database by the order.
@@ -40,9 +38,8 @@ public interface OrderItemDAO {
 	 * @param idOrder to search.
 	 * @return a list of order item cellphone.
 	 * @throws DaoException when a problem in database happens.
-	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	List<OrderItem> findCellphoneItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException;
+	List<OrderItem> findCellphoneItemsByOrder(final Long idOrder) throws DaoException;
 	
 	/**
 	 * Search a dvd item in the database by the order.
@@ -50,9 +47,8 @@ public interface OrderItemDAO {
 	 * @param idOrder to search.
 	 * @return a list of order item dvd.
 	 * @throws DaoException when a problem in database happens.
-	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	List<OrderItem> findDvdItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException;
+	List<OrderItem> findDvdItemsByOrder(final Long idOrder) throws DaoException;
 	
 	/**
 	 * Search a laptop item in the database by the order.
@@ -60,9 +56,8 @@ public interface OrderItemDAO {
 	 * @param idOrder to search.
 	 * @return a list of order item laptop.
 	 * @throws DaoException when a problem in database happens.
-	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	List<OrderItem> findLaptopItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException;
+	List<OrderItem> findLaptopItemsByOrder(final Long idOrder) throws DaoException;
 	
 	/**
 	 * Search a magazine item in the database by the order.
@@ -70,7 +65,6 @@ public interface OrderItemDAO {
 	 * @param idOrder to search.
 	 * @return a list of order item magazine.
 	 * @throws DaoException when a problem in database happens.
-	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	List<OrderItem> findMagazineItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException;
+	List<OrderItem> findMagazineItemsByOrder(final Long idOrder) throws DaoException;
 }

@@ -18,7 +18,6 @@ import com.fvv.bookstore.bean.MovieDvd;
 import com.fvv.bookstore.bean.Order;
 import com.fvv.bookstore.enums.SqlQueryEnum;
 import com.fvv.bookstore.exception.DaoException;
-import com.fvv.bookstore.exception.order.OrderNotFoundException;
 
 /**
  * DAO Class of an Order Item object, with main database operation.
@@ -67,7 +66,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<OrderItem> findBookItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
+	public List<OrderItem> findBookItemsByOrder(final Long idOrder) throws DaoException {
 		List<OrderItem> orderItems = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -104,7 +103,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<OrderItem> findCellphoneItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
+	public List<OrderItem> findCellphoneItemsByOrder(final Long idOrder) throws DaoException {
 		List<OrderItem> orderItems = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -141,7 +140,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<OrderItem> findDvdItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
+	public List<OrderItem> findDvdItemsByOrder(final Long idOrder) throws DaoException {
 		List<OrderItem> orderItems = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -186,7 +185,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<OrderItem> findLaptopItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
+	public List<OrderItem> findLaptopItemsByOrder(final Long idOrder) throws DaoException {
 		List<OrderItem> orderItems = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -223,7 +222,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<OrderItem> findMagazineItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
+	public List<OrderItem> findMagazineItemsByOrder(final Long idOrder) throws DaoException {
 		List<OrderItem> orderItems = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
