@@ -24,7 +24,7 @@ public class OrderViewUtil {
 	 * @return the value.
 	 */
 	@SuppressWarnings("rawtypes")
-	public static final String resolveProperValueByType(final Class clazz) {
+	public static String resolveProperValueByType(final Class clazz) {
 		String value = ProductValues.TITLE.getValue();
 		if (clazz == Magazine.class) {
 			value = ProductValues.NAME.getValue();
@@ -40,7 +40,7 @@ public class OrderViewUtil {
 	 * @param product to verify.
 	 * @return the proper description for the product.
 	 */
-	public static final String resolveProperDescription(final Product product) {
+	public static String resolveProperDescription(final Product product) {
 		String value = "";
 		
 		if (product instanceof Book) {

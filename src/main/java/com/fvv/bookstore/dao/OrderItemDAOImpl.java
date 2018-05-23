@@ -151,11 +151,9 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 				while (rs.next()) {
 					Dvd dvd;
 					if(rs.getString("dvd_movie_director") != null) {
-						MovieDvd dvdMovie = new MovieDvd();
-						dvd = dvdMovie;
+						dvd = new MovieDvd();
 					} else {
-						ShowDvd dvdShow = new ShowDvd();
-						dvd = dvdShow;
+						dvd = new ShowDvd();
 					}
 					
 					dvd.setId(rs.getLong("ord_ite_dvd_dvd_id"));

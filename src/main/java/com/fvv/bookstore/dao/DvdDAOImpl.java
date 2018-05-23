@@ -262,7 +262,6 @@ public class DvdDAOImpl implements DvdDAO {
 	/**
 	 * Populate a dvd from database.
 	 * 
-	 * @param dvd of Dvd type.
 	 * @param rs of ResultSet type.
 	 * @return a dvd.
 	 * @throws DaoException when a problem in database happens.

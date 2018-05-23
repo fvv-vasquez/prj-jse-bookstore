@@ -1,6 +1,5 @@
 package com.fvv.bookstore.controller;
 
-import java.util.Collections;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Customer;
@@ -128,7 +127,7 @@ public class CustomerControllerImpl implements CustomerController {
 	public List<Customer> listCustomersByName(final String name) throws PersonNotFoundException, ControllerException {
 		try {
 			List<Customer> customers = this.customerDao.listCustomersByName(name);
-			Collections.sort(customers, new CustomerSort());
+			customers.sort(new CustomerSort());
 			return customers;
 		} catch (DaoException e) {
 			throw new ControllerException("Error to find a customer", e);

@@ -13,6 +13,7 @@ import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.exception.person.PersonValidationException;
 import com.fvv.bookstore.util.Constants;
 import com.fvv.bookstore.util.DateUtil;
+import com.fvv.bookstore.util.MathUtil;
 
 /**
  * EmployeeView class to view the Employee object.
@@ -154,11 +155,11 @@ public class EmployeeViewImpl implements EmployeeView {
 			Employee employee = this.employeeController.findEmployee(searchId);
 			employee.setId(searchId);
 			
-			final Double percentage = Double.parseDouble(JOptionPane.showInputDialog("Input the percentage in decimal"));
-			final Date date = DateUtil.stringToDate(JOptionPane.showInputDialog("Insert the date"));
+			final Date date = DateUtil.stringToDate(JOptionPane.showInputDialog("Insert the date (dd/mm/yyyy)"));
+			final Double percentage = Double.parseDouble(JOptionPane.showInputDialog("Input the commission percentage"));
 			final Double newSalary = this.employeeController.getSalaryWithCommission(percentage, employee, date);
-			
-			JOptionPane.showMessageDialog(null, "Employee: " + employee.getId() + " - " + employee.getName() + " - Salary with Commission: " + newSalary);
+			JOptionPane.showMessageDialog(null, "Employee: " + employee.getId() + " - " + employee.getName() + " - Salary with Commission: " 
+			+ MathUtil.formatNumbers(newSalary));
 		} catch (ControllerException | PersonNotFoundException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
