@@ -26,7 +26,7 @@ public interface EmployeeDAO {
 	void addEmployee(final Employee employee) throws DaoException;
 
 	/**
-	 * Lists all the employees in the database.
+	 * Lists all employees in the database.
 	 * 
 	 * @return a list of employees.
 	 * @throws DaoException when a problem in database happens.
@@ -60,10 +60,10 @@ public interface EmployeeDAO {
 	Employee findEmployee(final Long id) throws PersonNotFoundException, DaoException;
 	
 	/**
-	 * List the employees by search name.
+	 * List the employees by name.
 	 * 
 	 * @param name to search.
-	 * @return a list of employees by search name.
+	 * @return a list of employees by name.
 	 * @throws PersonNotFoundException when not found a person in the database.
 	 * @throws DaoException when a problem in database happens.
 	 */

@@ -104,16 +104,16 @@ public class OrderViewImpl implements OrderView {
 			StringBuilder sb = new StringBuilder();
 			Integer monthSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the number month to search"));
 			Integer yearSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the year to search"));
-			List<Order> orders = this.orderController.listTotalOrdersMonth(monthSearch, yearSearch);
+			List<Order> orders = this.orderController.listTotalOrdersByMonth(monthSearch, yearSearch);
 			if(orders != null && !orders.isEmpty()) {
 				Integer quantity = this.orderController.calculateQtyOrders(orders);
 				Double amount = this.orderController.calculateTotalOrders(orders);
-				sb.append("Quantity of orders: ").append(quantity).append(" - Amount in the month: R$").append(amount).append(Constants.LINE_SEPARATOR)
+				sb.append("Amount of orders: ").append(quantity).append(" - Amount in the month: R$").append(amount).append(Constants.LINE_SEPARATOR)
 				.append(Constants.LINE_SEPARATOR);
 				for(Order ord : orders) {
-					sb.append("Date: ").append(ord.getCreationDate()).append(" - Order ID: ").append(ord.getId()).
-					append(" - Order Amount: R$").append(ord.getOrderAmount()).append(Constants.LINE_SEPARATOR).append("Employee ID: ").
-					append(ord.getEmployee().getId()).append(" - Name: ").append(ord.getEmployee().getName()).append(", Customer ID: ").
+					sb.append("Date: ").append(ord.getCreationDate()).append(" - Order: ").append(ord.getId()).
+					append(" - Order Amount: R$").append(ord.getOrderAmount()).append(Constants.LINE_SEPARATOR).append("Employee: ").
+					append(ord.getEmployee().getId()).append(" - Name: ").append(ord.getEmployee().getName()).append(", Customer: ").
 					append(ord.getCustomer().getId()).append(" - Name: ").append(ord.getCustomer().getName()).append(Constants.LINE_SEPARATOR).
 					append(Constants.LINE_SEPARATOR);
 				}
@@ -143,17 +143,17 @@ public class OrderViewImpl implements OrderView {
 			if(orders != null && !orders.isEmpty()) {
 				Integer quantity = this.orderController.calculateQtyOrders(orders);
 				Double amount = this.orderController.calculateTotalOrders(orders);
-				sb.append("Employee ID: ").append(employee.getId()).append(" - Name: ").append(employee.getName()).append(Constants.LINE_SEPARATOR)
-				.append("Quantity of orders: ").append(quantity).append(" - Amount in the period: R$").append(amount).append(Constants.LINE_SEPARATOR)
+				sb.append("Employee: ").append(employee.getId()).append(" - Name: ").append(employee.getName()).append(Constants.LINE_SEPARATOR)
+				.append("Amount of orders: ").append(quantity).append(" - Amount in the period: R$").append(amount).append(Constants.LINE_SEPARATOR)
 				.append(Constants.LINE_SEPARATOR);
 				
 				for(Order ord : orders) {
-					sb.append("Order ID: ").append(ord.getId()).append(" - Order Amount: R$").append(ord.getOrderAmount()).append(", Customer ID: ")
+					sb.append("Order: ").append(ord.getId()).append(" - Order Amount: R$").append(ord.getOrderAmount()).append(", Customer: ")
 					.append(ord.getCustomer().getId()).append(" - Name: ").append(ord.getCustomer().getName()).append(Constants.LINE_SEPARATOR)
 					.append(Constants.LINE_SEPARATOR);
 				}
 				
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Orders of the Employee Searched: " + idSearch, 
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Orders of the Employee: " + idSearch, 
 						JOptionPane.PLAIN_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "There are no items to show!");
@@ -176,9 +176,9 @@ public class OrderViewImpl implements OrderView {
 			Order order = this.orderController.listOrderByOrderId(idSearch);
 			List<OrderItem> items = order.getOrderItems();
 			if(order != null) {
-				sb.append("Order ID: ").append(order.getId()).append(" - Amount: R$").append(order.getOrderAmount())
-				.append(" - Date: ").append(order.getCreationDate()).append(Constants.LINE_SEPARATOR).append("Employee ID: ")
-				.append(order.getEmployee().getId()).append(" - Name: ").append(order.getEmployee().getName()).append(", Customer ID: ")
+				sb.append("Order: ").append(order.getId()).append(" - Amount: R$").append(order.getOrderAmount())
+				.append(" - Date: ").append(order.getCreationDate()).append(Constants.LINE_SEPARATOR).append("Employee: ")
+				.append(order.getEmployee().getId()).append(" - Name: ").append(order.getEmployee().getName()).append(", Customer: ")
 				.append(order.getCustomer().getId()).append(" - Name: ").append(order.getCustomer().getName()).append(Constants.LINE_SEPARATOR)
 				.append(Constants.LINE_SEPARATOR);
 				
@@ -187,8 +187,7 @@ public class OrderViewImpl implements OrderView {
 					.append(OrderViewUtil.resolveProperDescription(orderItem.getProduct())).append(" - Quantity: ").append(orderItem.getQuantity())
 					.append(" - Unit Price: R$").append(orderItem.getItemAmount()).append(Constants.LINE_SEPARATOR).append(Constants.LINE_SEPARATOR);
 				}
-				
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Order Searched: " + idSearch, 
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Order: " + idSearch, 
 						JOptionPane.PLAIN_MESSAGE);
 			}	
 		} catch (ControllerException | OrderNotFoundException e) {

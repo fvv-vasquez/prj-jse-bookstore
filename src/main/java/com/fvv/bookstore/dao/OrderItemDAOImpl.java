@@ -141,7 +141,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<OrderItem> findDvdtemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
+	public List<OrderItem> findDvdItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
 		List<OrderItem> orderItems = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
@@ -223,7 +223,7 @@ public class OrderItemDAOImpl implements OrderItemDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<OrderItem> findMagazienItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
+	public List<OrderItem> findMagazineItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
 		List<OrderItem> orderItems = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 

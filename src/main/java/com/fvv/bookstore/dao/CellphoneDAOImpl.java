@@ -192,7 +192,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	}
 
 	/**
-	 * Populate a cellphone fron database.
+	 * Populate a cellphone from database.
 	 * 
 	 * @param rs of ResultSet type.
 	 * @return a cellphone

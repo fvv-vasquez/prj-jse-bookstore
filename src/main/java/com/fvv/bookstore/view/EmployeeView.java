@@ -16,7 +16,7 @@ public interface EmployeeView {
 	void addEmployee();
 	
 	/**
-	 * Lists all the Employees using Controller.
+	 * Lists all Employees using Controller.
 	 */
 	void listEmployees();
 
@@ -31,7 +31,7 @@ public interface EmployeeView {
 	void removeEmployee();
 	
 	/**
-	 * List the employees by search name using Controller.
+	 * List the employees by name using Controller.
 	 */
 	void listEmployeesByName();
 	

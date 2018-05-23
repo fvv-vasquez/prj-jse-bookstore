@@ -52,7 +52,7 @@ public interface OrderItemDAO {
 	 * @throws DaoException when a problem in database happens.
 	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	List<OrderItem> findDvdtemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException;
+	List<OrderItem> findDvdItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException;
 	
 	/**
 	 * Search a laptop item in the database by the order.
@@ -72,5 +72,5 @@ public interface OrderItemDAO {
 	 * @throws DaoException when a problem in database happens.
 	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	List<OrderItem> findMagazienItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException;
+	List<OrderItem> findMagazineItemsByOrder(final Long idOrder) throws DaoException, OrderNotFoundException;
 }

@@ -16,7 +16,7 @@ public interface BookView {
 	void addBook();
 	
 	/**
-	 * Lists all the books using Controller.
+	 * Lists all books using Controller.
 	 */
 	void listBooks();
 

@@ -16,7 +16,7 @@ public interface CellphoneView {
 	void addCellphone();
 	
 	/**
-	 * Lists all the Cellphones using Controller.
+	 * Lists all Cellphones using Controller.
 	 */
 	void listCellphones();
 

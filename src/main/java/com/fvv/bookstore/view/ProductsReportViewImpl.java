@@ -41,7 +41,7 @@ public class ProductsReportViewImpl implements ProductsReportView {
 				for(Product prod : products) {
 					sb.append(prod).append(Constants.LINE_SEPARATOR);
 				}
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing All Products that Needs to be Replace", 
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing all products needing replacing", 
 						JOptionPane.PLAIN_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "There are no items to show!");

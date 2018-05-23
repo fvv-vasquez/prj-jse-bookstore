@@ -27,7 +27,7 @@ public interface DvdDAO {
 	void addDvd(final Dvd dvd) throws DaoException;
 
 	/**
-	 * Lists all the shows' dvds in the database.
+	 * Lists all shows' dvds in the database.
 	 * 
 	 * @return a list of shows' dvds.
 	 * @throws DaoException when a problem in database happens.
@@ -35,7 +35,7 @@ public interface DvdDAO {
 	List<ShowDvd> listDvdsShow() throws DaoException;
 	
 	/**
-	 * Lists all the movies' dvds in the database.
+	 * Lists all movies' dvds in the database.
 	 * 
 	 * @return a list of movies' dvds.
 	 * @throws DaoException when a problem in database happens.
@@ -88,7 +88,7 @@ public interface DvdDAO {
 	void reduceStockItem(final Dvd dvd, final Integer quantityToReduce) throws DaoException;
 	
 	/**
-	 * Lists all the DVDs that needs to be replaced in the stock.
+	 * Lists all DVDs that needs to be replaced in the stock.
 	 * 
 	 * @return a list of dvds that needs to be replaced.
 	 * @throws DaoException when a problem in database happens.

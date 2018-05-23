@@ -16,17 +16,17 @@ public interface OrderView {
 	void addOrder();
 	
 	/**
-	 * Lists all the order by search month using Controller.
+	 * Lists all orders by month using Controller.
 	 */
 	void listTotalOrdersMonth();
 	
 	/**
-	 * Lists all the sales per seller using Controller.
+	 * Lists all sales per seller using Controller.
 	 */
 	void listTotalSalesPerSeller();
 	
 	/**
-	 * Lists an order by search order id.
+	 * Lists an order by order id.
 	 */
 	void listOrderByOrderId();
 }

@@ -29,7 +29,7 @@ public interface OrderController {
 	void addOrder(final Order order) throws OrderValidationException, ControllerException;
 	
 	/**
-	 * Lists all the order by search month.
+	 * Lists all orders by month.
 	 * 
 	 * @param month to search.
 	 * @param year to search.
@@ -37,27 +37,27 @@ public interface OrderController {
 	 * @throws OrderNotFoundException when not found an order in the database.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	List<Order> listTotalOrdersMonth(final Integer month, final Integer year) 
+	List<Order> listTotalOrdersByMonth(final Integer month, final Integer year) 
 			throws OrderNotFoundException, ControllerException;
 	
 	/**
-	 * Calculate the total of order amount in the search date.
+	 * Calculate the total of order amount.
 	 * 
 	 * @param orders to calculate.
-	 * @return the amount in the search date.
+	 * @return the total.
 	 */
 	Double calculateTotalOrders(final List<Order> orders);
 	
 	/**
-	 * Calculate the quantity of orders amount in the search date.
+	 * Calculate the quantity of orders amount.
 	 * 
 	 * @param orders to calculate.
-	 * @return the amount in the search date.
+	 * @return the amount of orders.
 	 */
 	Integer calculateQtyOrders(final List<Order> orders);
 	
 	/**
-	 * Lists all the sales per seller.
+	 * Lists all sales per seller.
 	 * 
 	 * @param employee to search its sales.
 	 * @return a list of orders.
@@ -68,7 +68,7 @@ public interface OrderController {
 			throws PersonNotFoundException, ControllerException;
 	
 	/**
-	 * Lists an order by search order id.
+	 * Lists an order by order id.
 	 * 
 	 * @param id to search.
 	 * @return the searched order.

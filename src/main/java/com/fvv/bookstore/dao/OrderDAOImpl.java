@@ -70,7 +70,7 @@ public class OrderDAOImpl implements OrderDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<Order> listTotalOrdersMonth(final Integer month, final Integer year) 
+	public List<Order> listTotalOrdersByMonth(final Integer month, final Integer year) 
 			throws DaoException, OrderNotFoundException {
 		List<Order> orders = new ArrayList<>();
 		try (
@@ -181,7 +181,7 @@ public class OrderDAOImpl implements OrderDAO {
 						order.setOrderAmount(rs.getDouble("ord_amount"));
 						order.setCreationDate(new Date(rs.getTimestamp("ord_date").getTime()));
 					} while (rs.next());
-					order.setOrderItems(this.getOrderItemByOrder(id));
+					order.setOrderItems(this.getOrderItemsByOrder(id));
 				}
 			}
 		} catch(SQLException e) {
@@ -206,30 +206,38 @@ public class OrderDAOImpl implements OrderDAO {
 		return generatedKey;
 	}
 	
-	private List<OrderItem> getOrderItemByOrder(final Long idOrder) throws DaoException, OrderNotFoundException {
+	/**
+	 * Gets the order items by order.
+	 * 
+	 * @param orderId to search
+	 * @return a list of order items
+	 * @throws DaoException when a problem in database happens.
+	 * @throws OrderNotFoundException when not found an order in the database.
+	 */
+	private List<OrderItem> getOrderItemsByOrder(final Long orderId) throws DaoException, OrderNotFoundException {
 		List<OrderItem> items = new ArrayList<>();
 		
-		final List<OrderItem> bookItems = this.orderItemDao.findBookItemsByOrder(idOrder);
+		final List<OrderItem> bookItems = this.orderItemDao.findBookItemsByOrder(orderId);
 		if(!bookItems.isEmpty()) {
 			items.addAll(bookItems);
 		}
 		
-		final List<OrderItem> celItems = this.orderItemDao.findCellphoneItemsByOrder(idOrder);
+		final List<OrderItem> celItems = this.orderItemDao.findCellphoneItemsByOrder(orderId);
 		if(!celItems.isEmpty()) {
 			items.addAll(celItems);
 		}
 		
-		final List<OrderItem> dvdItems = this.orderItemDao.findDvdtemsByOrder(idOrder);
+		final List<OrderItem> dvdItems = this.orderItemDao.findDvdItemsByOrder(orderId);
 		if(!dvdItems.isEmpty()) {
 			items.addAll(dvdItems);
 		}
 		
-		final List<OrderItem> lapItems = this.orderItemDao.findLaptopItemsByOrder(idOrder);
+		final List<OrderItem> lapItems = this.orderItemDao.findLaptopItemsByOrder(orderId);
 		if(!lapItems.isEmpty()) {
 			items.addAll(lapItems);
 		}
 		
-		final List<OrderItem> magItems = this.orderItemDao.findMagazienItemsByOrder(idOrder);
+		final List<OrderItem> magItems = this.orderItemDao.findMagazineItemsByOrder(orderId);
 		if(!magItems.isEmpty()) {
 			items.addAll(magItems);
 		}

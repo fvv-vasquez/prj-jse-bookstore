@@ -29,7 +29,7 @@ public interface DvdController {
 	void addDvd(final Dvd dvd) throws DvdValidationException, ControllerException;
 	
 	/**
-	 * Lists all the shows' dvds using DAO.
+	 * Lists all shows' dvds using DAO.
 	 * 
 	 * @return a list of shows' dvds.
 	 * @throws ControllerException when a problem in controller happens.
@@ -37,7 +37,7 @@ public interface DvdController {
 	List<ShowDvd> listDvdsShow() throws ControllerException;
 	
 	/**
-	 * Lists all the movies' dvds using DAO.
+	 * Lists all movies' dvds using DAO.
 	 * 
 	 * @return a list of movies' dvds.
 	 * @throws ControllerException when a problem in controller happens.

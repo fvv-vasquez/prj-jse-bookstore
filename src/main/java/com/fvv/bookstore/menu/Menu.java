@@ -65,7 +65,7 @@ public class Menu {
 	}
 
 	/**
-	 * Method to create and appear the general menu
+	 * Method to create and show the general menu
 	 */
 	private void createMenu() {
 		while(true) {
@@ -96,7 +96,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the products sub menu.
+	 * Method to create and show the products sub menu.
 	 */
 	private void createSubMenuProducts() {
 		while(true) {
@@ -128,7 +128,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the book sub menu.
+	 * Method to create and show the book sub menu.
 	 */
 	private void createSubMenuBook() {
 		while(true) {
@@ -160,7 +160,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the magazine sub menu.
+	 * Method to create and show the magazine sub menu.
 	 */
 	private void createSubMenuMagazine() {
 		while(true) {
@@ -192,7 +192,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the dvd sub menu.
+	 * Method to create and show the dvd sub menu.
 	 */
 	private void createSubMenuDvd() {
 		while(true) {
@@ -224,7 +224,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the list of dvds sub menu.
+	 * Method to create and show the list of dvds sub menu.
 	 */
 	private void createSubMenuDvdsList() {
 		while(true) {
@@ -250,7 +250,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the hardware sub menu.
+	 * Method to create and show the hardware sub menu.
 	 */
 	private void createSubMenuHardware() {
 		while(true) {
@@ -276,7 +276,7 @@ public class Menu {
 	}
 
 	/**
-	 * Method to create and appear the cellphone sub menu.
+	 * Method to create and show the cellphone sub menu.
 	 */
 	private void createSubMenuCellphone() {
 		while(true) {
@@ -308,7 +308,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the laptop sub menu.
+	 * Method to create and show the laptop sub menu.
 	 */
 	private void createSubMenuLaptop() {
 		while(true) {
@@ -340,7 +340,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the individuals sub menu.
+	 * Method to create and show the individuals sub menu.
 	 */
 	private void createSubMenuIndividuals() {
 		while(true) {
@@ -366,7 +366,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the customer sub menu.
+	 * Method to create and show the customer sub menu.
 	 */
 	private void createSubMenuCustomer() {
 		while(true) {
@@ -398,7 +398,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the customer sub menu.
+	 * Method to create and show the customer sub menu.
 	 */
 	private void createSubMenuEmployee() {
 		while(true) {
@@ -430,7 +430,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the reports sub menu.
+	 * Method to create and show the reports sub menu.
 	 */
 	private void createSubMenuReports() {
 		while(true) {
@@ -459,15 +459,15 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the individuals reports sub menu.
+	 * Method to create and show the individuals reports sub menu.
 	 */
 	private void createSubMenuIndividualsReports() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
 					null, "Individuals Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
 					"Select an option below:" + Constants.LINE_SEPARATOR +
-					"1 - Customer Filtered and Ordered by Name" + Constants.LINE_SEPARATOR +
-					"2 - Employee Filtered by Name and Ordered by Salary" + Constants.LINE_SEPARATOR +
+					"1 - Customers Filtered and Ordered by Name" + Constants.LINE_SEPARATOR +
+					"2 - Employees Filtered by Name and Ordered by Highest Salary" + Constants.LINE_SEPARATOR +
 					"3 - Employee Salary with Commission by Month" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
@@ -488,14 +488,14 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the reports sub menu for sales.
+	 * Method to create and show the reports sub menu for sales.
 	 */
 	private void createSubMenuSalesReports() {
 		while(true) {
 			String input = JOptionPane.showInputDialog(
 					null, "Sales Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
 					"Select an option below:" + Constants.LINE_SEPARATOR +
-					"1 - Total Order in a Month" + Constants.LINE_SEPARATOR +
+					"1 - Total Orders in a Month" + Constants.LINE_SEPARATOR +
 					"2 - Total Sales per Seller" + Constants.LINE_SEPARATOR +
 					"3 - List an Order by ID" + Constants.LINE_SEPARATOR +
 					"0 - Return",
@@ -727,14 +727,14 @@ public class Menu {
 	}
 	
 	/**
-	 * List the customers by search name.
+	 * List the customers by name.
 	 */
 	private void listCustomersByName() {
 		this.customerView.listCustomersByName();
 	}
 	
 	/**
-	 * List the employees by search name.
+	 * List the employees by name.
 	 */
 	private void listEmployeesByName() {
 		this.employeeView.listEmployeesByName();
@@ -748,28 +748,28 @@ public class Menu {
 	}
 	
 	/**
-	 * Lists all the products that needs to be replaced in the stock by the menu.
+	 * Lists all products that needs to be replaced in the stock by the menu.
 	 */
 	private void listStockToReplace() {
 		this.productsReportView.listStockToReplace();
 	}
 	
 	/**
-	 * Lists all the order by search month.
+	 * Lists all orders by month.
 	 */
 	private void listTotalOrdersMonth() {
 		this.orderView.listTotalOrdersMonth();
 	}
 	
 	/**
-	 * Lists all the sales per seller.
+	 * Lists all sales per seller.
 	 */
 	private void listTotalSalesPerSeller() {
 		this.orderView.listTotalSalesPerSeller();
 	}
 	
 	/**
-	 * Lists an order by search order id.
+	 * Lists an order by order id.
 	 */
 	private void listOrderByOrderId() {
 		this.orderView.listOrderByOrderId();

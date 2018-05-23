@@ -78,10 +78,10 @@ public class OrderControllerImpl implements OrderController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<Order> listTotalOrdersMonth(final Integer month, final Integer year)
+	public List<Order> listTotalOrdersByMonth(final Integer month, final Integer year)
 			throws OrderNotFoundException, ControllerException {
 		try {
-			return this.orderDao.listTotalOrdersMonth(month, year);
+			return this.orderDao.listTotalOrdersByMonth(month, year);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to load the list", e);
 		}

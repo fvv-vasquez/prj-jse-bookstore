@@ -16,9 +16,9 @@ import com.fvv.bookstore.exception.ControllerException;
 public interface ProductsReportController {
 
 	/**
-	 * Lists all the products that needs to be replaced in the stock.
+	 * Lists all products that needs to be replaced in the stock.
 	 * 
-	 * @return a list of producs that needs to be replaced.
+	 * @return a list of products that needs to be replaced.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
 	List<Product> listStockToReplace() throws ControllerException;

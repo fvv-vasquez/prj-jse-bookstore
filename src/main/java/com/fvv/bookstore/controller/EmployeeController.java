@@ -29,7 +29,7 @@ public interface EmployeeController {
 		PersonValidationException, ControllerException;
 	
 	/**
-	 * Lists all the employees using DAO.
+	 * Lists all employees using DAO.
 	 * 
 	 * @return a list of employees.
 	 * @throws ControllerException when a problem in controller happens.
@@ -65,17 +65,17 @@ public interface EmployeeController {
 	Employee findEmployee(final Long id) throws PersonNotFoundException, ControllerException;
 	
 	/**
-	 * List the employees by search name using DAO.
+	 * Lists all employees by name using DAO.
 	 * 
 	 * @param name to search.
-	 * @return a list of employees by search name.
+	 * @return a list of employees ordered by name.
 	 * @throws PersonNotFoundException when an employee is not found.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
 	List<Employee> listEmployeesByName(final String name) throws PersonNotFoundException, ControllerException;
 	
 	/**
-	 * Gets the salary based on the percentage.
+	 * Gets the salary adding the percentage.
 	 * 
 	 * @param totalSales of an employee in a specific period.
 	 * @param percentage for commission.

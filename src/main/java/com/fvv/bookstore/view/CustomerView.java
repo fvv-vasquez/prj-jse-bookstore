@@ -16,7 +16,7 @@ public interface CustomerView {
 	void addCustomer();
 	
 	/**
-	 * Lists all the Customers using Controller.
+	 * Lists all Customers using Controller.
 	 */
 	void listCustomers();
 
@@ -31,7 +31,7 @@ public interface CustomerView {
 	void removeCustomer();
 	
 	/**
-	 * List the customers by search name using Controller.
+	 * List the customers by name using Controller.
 	 */
 	void listCustomersByName();
 }

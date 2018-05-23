@@ -11,7 +11,7 @@ package com.fvv.bookstore.view;
 public interface ProductsReportView {
 
 	/**
-	 * Lists all the products that needs to be replaced in the stock.
+	 * Lists all products that needs to be replaced in the stock.
 	 */
 	void listStockToReplace();
 }

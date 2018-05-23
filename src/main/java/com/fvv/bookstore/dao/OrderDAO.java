@@ -27,7 +27,7 @@ public interface OrderDAO {
 	void addOrder(final Order order) throws DaoException;
 	
 	/**
-	 * Lists all the order by search month.
+	 * Lists all order by month.
 	 * 
 	 * @param month to search.
 	 * @param year to search.
@@ -35,11 +35,11 @@ public interface OrderDAO {
 	 * @throws DaoException when a problem in database happens.
 	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	List<Order> listTotalOrdersMonth(final Integer month, final Integer year) 
+	List<Order> listTotalOrdersByMonth(final Integer month, final Integer year) 
 			throws DaoException, OrderNotFoundException;
 	
 	/**
-	 * Lists all the sales per seller.
+	 * Lists all sales per seller.
 	 * 
 	 * @param employee to search its sales.
 	 * @return a list of orders.

@@ -151,7 +151,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 	}
 	
 	/**
-	 * Gets the sales in a specific period searching by Employee ID.
+	 * Gets the sales in a specific period by Employee ID.
 	 * 
 	 * @param idEmployee to search.
 	 * @param date to search.

@@ -1,7 +1,7 @@
 package com.fvv.bookstore.exception.order;
 
 /**
- * Exception class for an order not found in a search
+ * Exception class for an order not found
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>
