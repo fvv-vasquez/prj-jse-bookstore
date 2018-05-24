@@ -438,7 +438,7 @@ public class Menu {
 					null, "Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
 					"Select an option below:" + Constants.LINE_SEPARATOR +
 					"1 - Individuals" + Constants.LINE_SEPARATOR +
-					"2 - Products - Stock to Replace" + Constants.LINE_SEPARATOR +
+					"2 - Stock - Products to Replace" + Constants.LINE_SEPARATOR +
 					"3 - Sales" + Constants.LINE_SEPARATOR +
 					"0 - Return",
 					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
