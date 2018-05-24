@@ -2,6 +2,8 @@ package com.fvv.bookstore.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -14,9 +16,7 @@ import java.util.Date;
  * @version 1.0 	
  *
  */
-public final class DateUtil {
-
-	
+public final class DateUtil {	
 
 	/**
 	 * Method to convert a String into a Date
@@ -50,6 +50,15 @@ public final class DateUtil {
 		}		
 	}
 	
+	/**
+	 * Gets the current date and time in a specific format.
+	 * 
+	 * @return the formated date.
+	 */
+	public static String getCurrentDateTime() {
+		return LocalDateTime.now().format(DateTimeFormatter.ofPattern(Constants.DATE_TIME_MASK));
+	}
+
 	/**
 	 * Gets the month as an Integer from a Date object.
 	 * 

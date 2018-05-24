@@ -35,6 +35,18 @@ public class Constants {
 	 */
 	public static final Integer PRECISION = 2;
 	
+	/**
+	 * Constant that represents an abbreviation to yes.
+	 */
 	public static final Character YES = 'y';
-
+	
+	/**
+	 * Constant that represents the file name.
+	 */
+	public static final String AUDIT_FILE_NAME = "audit.txt";
+	
+	/**
+	 * Constant that represents a date with time mask.
+	 */
+	public static final String DATE_TIME_MASK = "dd-MM-yyyy HH:mm:ss";
 }

@@ -3,6 +3,7 @@ package com.fvv.bookstore.controller;
 import java.time.YearMonth;
 import java.util.List;
 
+import com.fvv.bookstore.audit.OrderAudit;
 import com.fvv.bookstore.bean.Book;
 import com.fvv.bookstore.bean.Cellphone;
 import com.fvv.bookstore.bean.Dvd;
@@ -38,6 +39,7 @@ public class OrderControllerImpl implements OrderController {
 	private final DvdController dvdController;
 	private final LaptopController laptopController;
 	private final MagazineController magazineController;
+	private final OrderAudit orderAudit;
 	
 	/**
 	 * Class constructor instantiating a new OrderDAOImpl object.
@@ -49,6 +51,7 @@ public class OrderControllerImpl implements OrderController {
 		this.dvdController = new DvdControllerImpl();
 		this.laptopController = new LaptopControllerImpl();
 		this.magazineController = new MagazineControllerImpl();
+		this.orderAudit = new OrderAudit();
 	}
 
 	/**
@@ -69,6 +72,8 @@ public class OrderControllerImpl implements OrderController {
 			this.orderDao.addOrder(order);
 			
 			this.calculateNewStockAmount(order);
+			
+			this.orderAudit.addLogMessage(order);
 			
 		} catch (DaoException e) {
 			throw new ControllerException("Error to add an order", e);
