@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Class to save and read a file.
+ * Utility class to handle File operations.
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>
@@ -18,12 +18,12 @@ import java.io.PrintWriter;
 public class FileUtil {
 
 	/**
-	 * To create an audit file.
+	 * Adding an entry to an audit file.
 	 * 
-	 * @param message to save in the file.
+	 * @param message to audit entry to save in the file.
 	 */
 	public static void addAuditMessage(final String message) {
-		File file = new File(Constants.FILE_PATH);
+		File file = new File(Constants.AUDIT_FILE_NAME);
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter(new FileWriter(file, true));
@@ -36,12 +36,12 @@ public class FileUtil {
 	}
 
 	/**
-	 * To read the file.
+	 * To read an audit file with order logs.
 	 * 
 	 * @return the content in the file.
 	 */
 	public static String readOrderLog() {
-		File file = new File(Constants.FILE_PATH);
+		File file = new File(Constants.AUDIT_FILE_NAME);
 		BufferedReader br = null;
 		StringBuilder log;
 		if (file.exists()) {

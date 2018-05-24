@@ -41,7 +41,7 @@ public class Constants {
 	public static final Character YES = 'y';
 	
 	/**
-	 * Constant that represents the file name path.
+	 * Constant that represents the file name.
 	 */
-	public static final String FILE_PATH = "audit.txt";
+	public static final String AUDIT_FILE_NAME = "audit.txt";
 }
