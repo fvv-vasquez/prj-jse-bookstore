@@ -57,17 +57,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				ResultSet rs = ps.executeQuery()
 		) {	
 			while(rs.next()) {
-				Customer customer = new Customer();
-				customer.setId(rs.getLong("cus_id"));
-				customer.setName(rs.getString("cus_name"));
-				customer.setEmail(rs.getString("cus_email"));
-				customer.setPhone(rs.getString("cus_phone"));
-				customer.setCpf(rs.getString("cus_cpf"));
-				customer.setProdPref(StringUtil.convertStringToList(
-						rs.getString("cus_prod_pref"), Constants.PIPE));
-				customer.setModificationDate(new Date(rs.getTimestamp(
-						"cus_modification_date").getTime()));
-				customers.add(customer);
+				customers.add(this.populateCustomerFromDatabase(rs));
 			}
 		} catch(SQLException e) {
 			throw new DaoException("Error to load the list", e);
@@ -117,7 +107,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	 */
 	@Override
 	public Customer findCustomer(final Long id) throws PersonNotFoundException, DaoException {
-		Customer customer = new Customer();
+		Customer customer = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CUSTOMER_SELECT_ID.getQuery())
@@ -128,15 +118,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 					throw new PersonNotFoundException("Customer with ID " + id + " not found");
 				} else {
 					do {
-						customer.setId(rs.getLong("cus_id"));
-						customer.setName(rs.getString("cus_name"));
-						customer.setEmail(rs.getString("cus_email"));
-						customer.setPhone(rs.getString("cus_phone"));
-						customer.setCpf(rs.getString("cus_cpf"));
-						customer.setProdPref(StringUtil.convertStringToList(
-								rs.getString("cus_prod_pref"), Constants.PIPE));
-						customer.setModificationDate(new Date(rs.getTimestamp(
-								"cus_modification_date").getTime()));
+						customer = this.populateCustomerFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -162,17 +144,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 					throw new PersonNotFoundException("Customer " + name + " not found");
 				} else {
 					do {
-						Customer customer = new Customer();
-						customer.setId(rs.getLong("cus_id"));
-						customer.setName(rs.getString("cus_name"));
-						customer.setEmail(rs.getString("cus_email"));
-						customer.setPhone(rs.getString("cus_phone"));
-						customer.setCpf(rs.getString("cus_cpf"));
-						customer.setProdPref(StringUtil.convertStringToList(
-								rs.getString("cus_prod_pref"), Constants.PIPE));
-						customer.setModificationDate(new Date(rs.getTimestamp(
-								"cus_modification_date").getTime()));
-						customers.add(customer);
+						customers.add(this.populateCustomerFromDatabase(rs));
 					} while (rs.next());
 				}
 			}
@@ -180,5 +152,28 @@ public class CustomerDAOImpl implements CustomerDAO {
 			throw new DaoException("Error to find a customer", e);
 		} 
 		return customers;
+	}
+	
+	/**
+	 * Populate a customer from database.
+	 * 
+	 * @param rs of ResultSet type.
+	 * @return a customer.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Customer populateCustomerFromDatabase(final ResultSet rs) throws DaoException {
+		Customer customer = new Customer();
+		try {
+			customer.setId(rs.getLong("cus_id"));
+			customer.setName(rs.getString("cus_name"));
+			customer.setEmail(rs.getString("cus_email"));
+			customer.setPhone(rs.getString("cus_phone"));
+			customer.setCpf(rs.getString("cus_cpf"));
+			customer.setProdPref(StringUtil.convertStringToList(rs.getString("cus_prod_pref"), Constants.PIPE));
+			customer.setModificationDate(new Date(rs.getTimestamp("cus_modification_date").getTime()));
+		} catch(SQLException e) {
+			throw new DaoException("Error to populate a customer from a result set", e);
+		}
+		return customer;		
 	}
 }

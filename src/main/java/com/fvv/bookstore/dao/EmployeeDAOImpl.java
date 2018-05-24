@@ -57,17 +57,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				ResultSet rs = ps.executeQuery()
 		) {	
 			while(rs.next()) {
-				Employee employee = new Employee();
-				employee.setId(rs.getLong("emp_id"));
-				employee.setName(rs.getString("emp_name"));
-				employee.setEmail(rs.getString("emp_email"));
-				employee.setPhone(rs.getString("emp_phone"));
-				employee.setCpf(rs.getString("emp_cpf"));
-				employee.setPosition(rs.getString("emp_position"));
-				employee.setSalary(rs.getDouble("emp_salary"));
-				employee.setModificationDate(new Date(rs.getTimestamp(
-						"emp_modification_date").getTime()));
-				employees.add(employee);
+				employees.add(this.populateEmployeeFromDatabase(rs));
 			}
 		} catch(SQLException e) {
 			throw new DaoException("Error to load the list", e);
@@ -118,11 +108,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	 */
 	@Override
 	public Employee findEmployee(final Long id) throws PersonNotFoundException, DaoException {
-		Employee employee = new Employee();
+		Employee employee = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(
-						SqlQueryEnum.EMPLOYEE_SELECT_ID.getQuery())
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.EMPLOYEE_SELECT_ID.getQuery())
 		) {	
 			ps.setLong(1, id);
 			try (ResultSet rs = ps.executeQuery()) {			
@@ -130,15 +119,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 					throw new PersonNotFoundException("Employee with ID " + id + " not found");
 				} else {
 					do {
-						employee.setId(rs.getLong("emp_id"));
-						employee.setName(rs.getString("emp_name"));
-						employee.setEmail(rs.getString("emp_email"));
-						employee.setPhone(rs.getString("emp_phone"));
-						employee.setCpf(rs.getString("emp_cpf"));
-						employee.setPosition(rs.getString("emp_position"));
-						employee.setSalary(rs.getDouble("emp_salary"));
-						employee.setModificationDate(new Date(rs.getTimestamp(
-								"emp_modification_date").getTime()));
+						employee = this.populateEmployeeFromDatabase(rs);
 					} while (rs.next());
 				}
 			}
@@ -164,17 +145,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 					throw new PersonNotFoundException("Employee " + name + " not found");
 				} else {
 					do {
-						Employee employee = new Employee();
-						employee.setId(rs.getLong("emp_id"));
-						employee.setName(rs.getString("emp_name"));
-						employee.setEmail(rs.getString("emp_email"));
-						employee.setPhone(rs.getString("emp_phone"));
-						employee.setCpf(rs.getString("emp_cpf"));
-						employee.setPosition(rs.getString("emp_position"));
-						employee.setSalary(rs.getDouble("emp_salary"));
-						employee.setModificationDate(new Date(rs.getTimestamp(
-								"emp_modification_date").getTime()));
-						employees.add(employee);
+						employees.add(this.populateEmployeeFromDatabase(rs));
 					} while (rs.next());
 				}
 			}
@@ -207,5 +178,29 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		} catch(SQLException e) {
 			throw new DaoException("Error to find an employee", e);
 		} 
+	}
+	
+	/**
+	 * Populate an employee from database.
+	 * 
+	 * @param rs of ResultSet type.
+	 * @return an employee.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	private Employee populateEmployeeFromDatabase(final ResultSet rs) throws DaoException {
+		Employee employee = new Employee();
+		try {
+			employee.setId(rs.getLong("emp_id"));
+			employee.setName(rs.getString("emp_name"));
+			employee.setEmail(rs.getString("emp_email"));
+			employee.setPhone(rs.getString("emp_phone"));
+			employee.setCpf(rs.getString("emp_cpf"));
+			employee.setPosition(rs.getString("emp_position"));
+			employee.setSalary(rs.getDouble("emp_salary"));
+			employee.setModificationDate(new Date(rs.getTimestamp("emp_modification_date").getTime()));
+		} catch(SQLException e) {
+			throw new DaoException("Error to populate an employee from a result set", e);
+		}
+		return employee;
 	}
 }
