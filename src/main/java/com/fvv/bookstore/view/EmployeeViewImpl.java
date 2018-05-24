@@ -1,6 +1,6 @@
 package com.fvv.bookstore.view;
 
-import java.util.Date;
+import java.time.YearMonth;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -12,7 +12,6 @@ import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.exception.person.PersonValidationException;
 import com.fvv.bookstore.util.Constants;
-import com.fvv.bookstore.util.DateUtil;
 import com.fvv.bookstore.util.MathUtil;
 
 /**
@@ -154,12 +153,14 @@ public class EmployeeViewImpl implements EmployeeView {
 			Long searchId = Long.parseLong(JOptionPane.showInputDialog("Insert the employee ID"));
 			Employee employee = this.employeeController.findEmployee(searchId);
 			employee.setId(searchId);
-			
-			final Date date = DateUtil.stringToDate(JOptionPane.showInputDialog("Insert the date (dd/mm/yyyy)"));
+			final YearMonth date = YearMonth.parse(JOptionPane.showInputDialog("Insert the date (yyyy-mm)"));
 			final Double percentage = Double.parseDouble(JOptionPane.showInputDialog("Input the commission percentage"));
-			final Double newSalary = this.employeeController.getSalaryWithCommission(percentage, employee, date);
-			JOptionPane.showMessageDialog(null, "Employee: " + employee.getId() + " - " + employee.getName() + " - Salary with Commission: " 
-			+ MathUtil.formatNumbers(newSalary));
+			final Double commission = this.employeeController.getCommission(percentage, employee, date);
+			final Double newSalary = this.employeeController.getSalaryWithCommission(commission, employee, date);
+			JOptionPane.showMessageDialog(null, "Month: " + date.getMonth() + Constants.LINE_SEPARATOR + "ID: " + employee.getId() 
+					+ Constants.LINE_SEPARATOR + "Name: " + employee.getName() + Constants.LINE_SEPARATOR + "Current Salary: " 
+					+ MathUtil.formatNumbers(employee.getSalary()) + Constants.LINE_SEPARATOR + "Commission Earned: " + MathUtil.formatNumbers(commission) 
+					+ Constants.LINE_SEPARATOR + "Total Salary: " + MathUtil.formatNumbers(newSalary));
 		} catch (ControllerException | PersonNotFoundException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 

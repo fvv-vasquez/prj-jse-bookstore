@@ -1,6 +1,6 @@
 package com.fvv.bookstore.controller;
 
-import java.util.Date;
+import java.time.YearMonth;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
@@ -112,11 +112,21 @@ public class EmployeeControllerImpl implements EmployeeController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double getSalaryWithCommission(final Double percentage, final Employee employee, final Date date)
+	public Double getSalaryWithCommission(final Double percentage, final Employee employee, final YearMonth date)
 			throws PersonNotFoundException, ControllerException {
-		final Double totalSales = this.getTotalSalesByEmployeeAndMonth(employee.getId(), date);
-		final Double commission = totalSales * percentage;
+		final Double commission = this.getCommission(percentage, employee, date);		
 		return commission + employee.getSalary();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Double getCommission(final Double percentage, final Employee employee, final YearMonth date) 
+			throws PersonNotFoundException, ControllerException {
+		final Double percentageConverted = percentage / 100;
+		final Double totalSales = this.getTotalSalesByEmployeeAndMonth(employee.getId(), date);
+		return totalSales * percentageConverted;
 	}
 
 	/**
@@ -159,7 +169,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 	 * @throws PersonNotFoundException when not found a person in the database.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	private Double getTotalSalesByEmployeeAndMonth(final Long idEmployee, final Date date) 
+	private Double getTotalSalesByEmployeeAndMonth(final Long idEmployee, final YearMonth date) 
 			throws PersonNotFoundException, ControllerException {
 		try {
 			return this.employeeDao.getTotalSalesByEmployeeAndMonth(idEmployee, date);

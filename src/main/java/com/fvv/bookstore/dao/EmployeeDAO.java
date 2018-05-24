@@ -1,6 +1,6 @@
 package com.fvv.bookstore.dao;
 
-import java.util.Date;
+import java.time.YearMonth;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
@@ -78,6 +78,6 @@ public interface EmployeeDAO {
 	 * @throws PersonNotFoundException when not found a person in the database.
 	 * @throws DaoException when a problem in database happens.
 	 */
-	Double getTotalSalesByEmployeeAndMonth(final Long idEmployee, final Date date) 
+	Double getTotalSalesByEmployeeAndMonth(final Long idEmployee, final YearMonth date) 
 			throws PersonNotFoundException, DaoException;
 }

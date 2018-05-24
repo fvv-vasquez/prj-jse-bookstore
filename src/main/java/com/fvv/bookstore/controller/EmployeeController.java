@@ -1,6 +1,6 @@
 package com.fvv.bookstore.controller;
 
-import java.util.Date;
+import java.time.YearMonth;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
@@ -84,6 +84,19 @@ public interface EmployeeController {
 	 * @throws PersonNotFoundException when not found a person in the database.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	Double getSalaryWithCommission(final Double percentage, final Employee employee, final Date date) 
+	Double getSalaryWithCommission(final Double percentage, final Employee employee, final YearMonth date) 
+			throws PersonNotFoundException, ControllerException;
+	
+	/**
+	 * Gets the commission.
+	 * 
+	 * @param percentage for commission.
+	 * @param employee to get the information.
+	 * @param date to take the sales in the period.
+	 * @return the commission.
+	 * @throws PersonNotFoundException when not found a person in the database.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	Double getCommission(final Double percentage, final Employee employee, final YearMonth date) 
 			throws PersonNotFoundException, ControllerException;
 }

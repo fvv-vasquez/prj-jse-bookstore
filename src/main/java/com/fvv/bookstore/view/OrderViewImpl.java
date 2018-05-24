@@ -187,7 +187,7 @@ public class OrderViewImpl implements OrderView {
 				for(OrderItem orderItem : items) {
 					sb.append("Product ID: ").append(orderItem.getProduct().getId()).append(" - Description: ")
 					.append(OrderViewUtil.resolveProperDescription(orderItem.getProduct())).append(" - Quantity: ").append(orderItem.getQuantity())
-					.append(" - Unit Price:").append(MathUtil.formatNumbers(orderItem.getItemAmount())).append(Constants.LINE_SEPARATOR).append(Constants.LINE_SEPARATOR);
+					.append(" - Unit Price: ").append(MathUtil.formatNumbers(orderItem.getItemAmount())).append(Constants.LINE_SEPARATOR).append(Constants.LINE_SEPARATOR);
 				}
 				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Order: " + idSearch, 
 						JOptionPane.PLAIN_MESSAGE);

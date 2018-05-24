@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +13,6 @@ import com.fvv.bookstore.bean.Employee;
 import com.fvv.bookstore.enums.SqlQueryEnum;
 import com.fvv.bookstore.exception.DaoException;
 import com.fvv.bookstore.exception.person.PersonNotFoundException;
-import com.fvv.bookstore.util.DateUtil;
 
 /**
  * DAO Class of an Employee object, with main database operations from CRUD methods.
@@ -188,15 +188,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double getTotalSalesByEmployeeAndMonth(final Long idEmployee, final Date date)
+	public Double getTotalSalesByEmployeeAndMonth(final Long idEmployee, final YearMonth date)
 			throws PersonNotFoundException, DaoException {
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.EMPLOYEE_SUM_ID.getQuery())
 		) {	
 			ps.setLong(1, idEmployee);
-			ps.setInt(2, DateUtil.extractMonthFromDate(date));
-			ps.setInt(3, DateUtil.extractYearFromDate(date));
+			ps.setInt(2, date.getMonthValue());
+			ps.setInt(3, date.getYear());
 			try (ResultSet rs = ps.executeQuery()) {
 				if(!rs.next()) {
 					throw new PersonNotFoundException("Employee " + idEmployee + " not found");
