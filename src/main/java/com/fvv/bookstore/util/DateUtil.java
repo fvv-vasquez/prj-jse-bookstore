@@ -54,6 +54,6 @@ public final class DateUtil {
 	 * @return the formated date.
 	 */
 	public static String getCurrentDateTime() {
-		return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+		return LocalDateTime.now().format(DateTimeFormatter.ofPattern(Constants.DATE_TIME_MASK));
 	}
 }

@@ -44,4 +44,9 @@ public class Constants {
 	 * Constant that represents the file name.
 	 */
 	public static final String AUDIT_FILE_NAME = "audit.txt";
+	
+	/**
+	 * Constant that represents a date with time mask.
+	 */
+	public static final String DATE_TIME_MASK = "dd-MM-yyyy HH:mm:ss";
 }
