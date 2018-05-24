@@ -2,6 +2,8 @@ package com.fvv.bookstore.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -46,5 +48,27 @@ public final class DateUtil {
 		} else {
 			return null;
 		}		
+	}
+	
+	/**
+	 * Gets the month as an Integer from a Date object.
+	 * 
+	 * @param date to get the value.
+	 * @return the month.
+	 */
+	public static Integer extractMonthFromDate(final Date date) {
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		return localDate.getMonthValue();
+	}
+	
+	/**
+	 * Gets the year as an Integer from a Date object.
+	 * 
+	 * @param date to get the value.
+	 * @return the year.
+	 */
+	public static Integer extractYearFromDate(final Date date) {
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		return localDate.getYear();
 	}
 }

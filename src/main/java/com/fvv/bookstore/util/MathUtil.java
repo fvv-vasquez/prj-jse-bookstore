@@ -2,6 +2,8 @@ package com.fvv.bookstore.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Utility class for Maths.
@@ -28,4 +30,15 @@ public final class MathUtil {
 		return bd.doubleValue();
 	}
 
+	/**
+	 * To format a double number.
+	 * 
+	 * @param value to format.
+	 * @return a format number.
+	 */
+	public static String formatNumbers(final Double value) {
+		Locale locale = new Locale("pt", "BR");
+		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+		return numberFormat.format(value);
+	}
 }

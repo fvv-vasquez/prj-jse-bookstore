@@ -28,7 +28,7 @@ public interface LaptopController {
 		HardwareValidationException, ControllerException;
 	
 	/**
-	 * Lists all the laptops using DAO.
+	 * Lists all laptops using DAO.
 	 * 
 	 * @return a list of laptops.
 	 * @throws ControllerException when a problem in controller happens.

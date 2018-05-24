@@ -3,6 +3,8 @@ package com.fvv.bookstore.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fvv.bookstore.util.MathUtil;
+
 /**
  * Bean class for a Cellphone object 
  * 
@@ -103,6 +105,6 @@ public class Cellphone extends Hardware implements Serializable {
 	public String toString() {
 		return "Cellphone ID: " + getId() + " - Brand: " + getBrand() + ", Warranty: " + 
 				getWarranty() + " months, Storage Memory: " + getStorageMemory() +
-				" GB, Unit Price: " + getUnitPrice() + ", Stock Quantity: " + getStockQty();
+				" GB, Unit Price: " + MathUtil.formatNumbers(getUnitPrice()) + ", Stock Quantity: " + getStockQty();
 	}
 }

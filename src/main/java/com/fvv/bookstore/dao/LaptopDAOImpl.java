@@ -57,18 +57,7 @@ public class LaptopDAOImpl implements LaptopDAO {
 				ResultSet rs = ps.executeQuery()
 		) {	
 			while(rs.next()) {
-				Laptop laptop = new Laptop();
-				laptop.setId(rs.getLong("pc_id"));
-				laptop.setBrand(rs.getString("pc_brand"));
-				laptop.setUnitPrice(rs.getDouble("pc_unit_price"));
-				laptop.setWarranty(rs.getInt("pc_warranty"));
-				laptop.setRamSize(rs.getInt("pc_ram_size"));
-				laptop.setHdSize(rs.getDouble("pc_hd_size"));
-				laptop.setProcessor(rs.getString("pc_processor"));
-				laptop.setStockQty(rs.getInt("pc_stock_qty"));
-				laptop.setModificationDate(new Date(rs.getTimestamp(
-						"pc_modification_date").getTime()));
-				laptops.add(laptop);
+				laptops.add(this.populateLaptopFromDatabase(rs));
 			}
 		} catch(SQLException e) {
 			throw new DaoException("Error to load the list", e);
@@ -170,6 +159,43 @@ public class LaptopDAOImpl implements LaptopDAO {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(final Laptop laptop, final Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, laptop.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a laptop", e);
+		} 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Laptop> listStockToReplace() throws DaoException {
+		List<Laptop> laptops = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_REPLACE_STOCK.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {	
+			while(rs.next()) {
+				laptops.add(this.populateLaptopFromDatabase(rs));
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return laptops;
+	}
+
+	/**
 	 * Populate a laptop from database.
 	 * 
 	 * @param rs of ResultSet type.
@@ -190,25 +216,8 @@ public class LaptopDAOImpl implements LaptopDAO {
 			laptop.setModificationDate(new Date(rs.getTimestamp(
 					"pc_modification_date").getTime()));
 		} catch(SQLException e) {
-			throw new DaoException("Error to find a laptop", e);
+			throw new DaoException("Error to populate a laptop from a result set", e);
 		} 
 		return laptop;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void reduceStockItem(final Laptop laptop, final Integer quantityToReduce) throws DaoException {
-		try (
-				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.LAPTOP_REDUCE_STOCK.getQuery())
-		) {	
-			ps.setInt(1, quantityToReduce);	
-			ps.setLong(2, laptop.getId());		
-			ps.execute();
-		} catch(SQLException e) {
-			throw new DaoException("Error to update stock quantity of a laptop", e);
-		} 
 	}
 }

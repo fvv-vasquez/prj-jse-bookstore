@@ -141,7 +141,7 @@ public class MagazineViewImpl implements MagazineView {
 				Integer.parseInt(JOptionPane.showInputDialog("Insert the edition number")));
 		magazine.setGenre(JOptionPane.showInputDialog("Insert the genre"));
 		magazine.setPublicationDate(DateUtil.stringToDate(
-				JOptionPane.showInputDialog("Insert the date (mm/dd/yyyy)")));
+				JOptionPane.showInputDialog("Insert the date (dd/mm/yyyy)")));
 		magazine.setPublisher(JOptionPane.showInputDialog("Insert the publisher"));
 		magazine.setUnitPrice(
 				Double.parseDouble(JOptionPane.showInputDialog("Insert the price")));

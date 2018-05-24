@@ -56,17 +56,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 				ResultSet rs = ps.executeQuery()
 		) {	
 			while(rs.next()) {
-				Cellphone cellphone = new Cellphone();
-				cellphone.setId(rs.getLong("cel_id"));
-				cellphone.setBrand(rs.getString("cel_brand"));
-				cellphone.setUnitPrice(rs.getDouble("cel_unit_price"));
-				cellphone.setWarranty(rs.getInt("cel_warranty"));
-				cellphone.setStorageMemory(rs.getInt("cel_storage_memory"));
-				cellphone.setCamPixels(rs.getInt("cel_camera_pixels"));
-				cellphone.setStockQty(rs.getInt("cel_stock_qty"));
-				cellphone.setModificationDate(new Date(rs.getTimestamp(
-						"cel_modification_date").getTime()));
-				cellphones.add(cellphone);
+				cellphones.add(this.populateCellphoneFromDatabase(rs));
 			}
 		} catch(SQLException e) {
 			throw new DaoException("Error to load the list", e);
@@ -120,8 +110,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 		Cellphone cellphone = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(
-						SqlQueryEnum.CELLPHONE_SELECT_ID.getQuery())
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_SELECT_ID.getQuery())
 		) {	
 			ps.setLong(1, id);
 			try (ResultSet rs = ps.executeQuery()) {			
@@ -147,8 +136,7 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 		Cellphone cellphone = null;
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(
-						SqlQueryEnum.CELLPHONE_SELECT_BRAND.getQuery())
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_SELECT_BRAND.getQuery())
 		) {	
 			ps.setString(1, brand);
 			try (ResultSet rs = ps.executeQuery()) {			
@@ -167,7 +155,44 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 	}
 	
 	/**
-	 * Populate a cellphone fron database.
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(final Cellphone cellphone, final Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, cellphone.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a cellphone", e);
+		} 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Cellphone> listStockToReplace() throws DaoException {
+		List<Cellphone> cellphones = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_REPLACE_STOCK.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {	
+			while(rs.next()) {
+				cellphones.add(this.populateCellphoneFromDatabase(rs));
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return cellphones;
+	}
+
+	/**
+	 * Populate a cellphone from database.
 	 * 
 	 * @param rs of ResultSet type.
 	 * @return a cellphone
@@ -186,25 +211,8 @@ public class CellphoneDAOImpl implements CellphoneDAO {
 			cellphone.setModificationDate(new Date(rs.getTimestamp(
 					"cel_modification_date").getTime()));
 		} catch(SQLException e) {
-			throw new DaoException("Error to find a cellphone", e);
+			throw new DaoException("Error to populate a cellphone from a result set", e);
 		} 
 		return cellphone;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void reduceStockItem(final Cellphone cellphone, final Integer quantityToReduce) throws DaoException {
-		try (
-				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.CELLPHONE_REDUCE_STOCK.getQuery())
-		) {	
-			ps.setInt(1, quantityToReduce);	
-			ps.setLong(2, cellphone.getId());		
-			ps.execute();
-		} catch(SQLException e) {
-			throw new DaoException("Error to update stock quantity of a cellphone", e);
-		} 
 	}
 }

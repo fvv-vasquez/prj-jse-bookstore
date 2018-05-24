@@ -1,7 +1,7 @@
 package com.fvv.bookstore.exception.dvd;
 
 /**
- * Exception class for a dvd not found in a search
+ * Exception class for a dvd not found
  * 
  * @author Fatima Vasquez
  * <p>Created on 1 de abr de 2018</p>	

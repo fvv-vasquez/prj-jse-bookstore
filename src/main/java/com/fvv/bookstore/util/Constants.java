@@ -18,7 +18,7 @@ public class Constants {
 	/**
 	 * Constant that represents a date mask.
 	 */
-	public static final String DATE_MASK = "MM/dd/yyyy";
+	public static final String DATE_MASK = "dd/MM/yyyy";
 	
 	/**
 	 * Constant that represents a comma.

@@ -16,7 +16,7 @@ public interface MagazineView {
 	void addMagazine();
 	
 	/**
-	 * Lists all the magazines using Controller.
+	 * Lists all magazines using Controller.
 	 */
 	void listMagazines();
 

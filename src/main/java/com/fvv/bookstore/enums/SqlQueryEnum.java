@@ -29,6 +29,8 @@ public enum SqlQueryEnum {
 	
 	BOOK_REDUCE_STOCK("UPDATE tb_book SET book_stock_qty = ? WHERE book_id = ?"),
 	
+	BOOK_REPLACE_STOCK("SELECT * FROM tb_book WHERE book_stock_qty = 0"),
+	
 	MAGAZINE_INSERT("INSERT INTO tb_magazine (mag_name, mag_edition_number, mag_genre, "
 					+ "mag_publication_date, mag_publisher, mag_unit_price, mag_stock_qty, "
 					+ "mag_modification_date) VALUES (?, ?, ?, ?, ?, ?, ?, now())"),
@@ -47,6 +49,8 @@ public enum SqlQueryEnum {
 	MAGAZINE_SELECT_NAME("SELECT * FROM tb_magazine WHERE mag_name = ?"),
 	
 	MAGAZINE_REDUCE_STOCK("UPDATE tb_magazine SET mag_stock_qty = ? WHERE mag_id = ?"),
+	
+	MAGAZINE_REPLACE_STOCK("SELECT * FROM tb_magazine WHERE mag_stock_qty = 0"),
 	
 	DVD_SHOW_INSERT("INSERT INTO tb_dvd (dvd_title, dvd_total_duration, dvd_unit_price, "
 			+ "dvd_genre, dvd_release_year, dvd_code, dvd_show_artist, dvd_stock_qty, "
@@ -77,6 +81,8 @@ public enum SqlQueryEnum {
 	
 	DVD_REDUCE_STOCK("UPDATE tb_dvd SET dvd_stock_qty = ? WHERE dvd_id = ?"),
 	
+	DVD_REPLACE_STOCK("SELECT * FROM tb_dvd WHERE dvd_stock_qty = 0"),
+	
 	CELLPHONE_INSERT("INSERT INTO tb_cellphone (cel_brand, cel_unit_price, cel_warranty, "
 			+ "cel_storage_memory, cel_camera_pixels, cel_stock_qty, cel_modification_date) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, now())"),
@@ -94,6 +100,8 @@ public enum SqlQueryEnum {
 	CELLPHONE_SELECT_BRAND("SELECT * FROM tb_cellphone WHERE cel_brand = ?"),
 	
 	CELLPHONE_REDUCE_STOCK("UPDATE tb_cellphone SET cel_stock_qty = ? WHERE cel_id = ?"),
+	
+	CELLPHONE_REPLACE_STOCK("SELECT * FROM tb_cellphone WHERE cel_stock_qty = 0"),
 	
 	LAPTOP_INSERT("INSERT INTO tb_laptop (pc_brand, pc_unit_price, pc_warranty, pc_ram_size, "
 			+ "pc_hd_size, pc_processor, pc_stock_qty, pc_modification_date) "
@@ -113,6 +121,8 @@ public enum SqlQueryEnum {
 	
 	LAPTOP_REDUCE_STOCK("UPDATE tb_laptop SET pc_stock_qty = ? WHERE pc_id = ?"),
 	
+	LAPTOP_REPLACE_STOCK("SELECT * FROM tb_laptop WHERE pc_stock_qty = 0"),
+	
 	CUSTOMER_INSERT("INSERT INTO tb_customer (cus_name, cus_email, cus_phone, cus_cpf, "
 			+ "cus_prod_pref, cus_modification_date) VALUES (?, ?, ?, ?, ?, now())"),
 	
@@ -124,6 +134,8 @@ public enum SqlQueryEnum {
 	CUSTOMER_DELETE("DELETE FROM tb_customer WHERE cus_id = ?"),
 	
 	CUSTOMER_SELECT_ID("SELECT * FROM tb_customer WHERE cus_id = ?"),
+	
+	CUSTOMER_SELECT_NAME("SELECT * FROM tb_customer WHERE cus_name LIKE ?"),
 	
 	EMPLOYEE_INSERT("INSERT INTO tb_employee (emp_name, emp_email, emp_phone, emp_cpf, "
 			+ "emp_position, emp_salary, emp_modification_date) VALUES (?, ?, ?, ?, ?, ?, now())"),
@@ -138,27 +150,66 @@ public enum SqlQueryEnum {
 	
 	EMPLOYEE_SELECT_ID("SELECT * FROM tb_employee WHERE emp_id = ?"),
 	
+	EMPLOYEE_SELECT_NAME("SELECT * FROM tb_employee WHERE emp_name LIKE ? ORDER BY emp_salary DESC"),
+	
+	EMPLOYEE_SUM_ID("SELECT SUM(ord_amount) FROM tb_order WHERE ord_emp_id = ? "
+			+ "AND MONTH(ord_date) = ? AND YEAR(ord_date) = ?"),
+	
 	ORDER_INSERT("INSERT INTO tb_order (ord_emp_id, ord_cus_id, ord_amount, ord_date) VALUES "
 			+ "(?, ?, ?, now())"),
+	
+	ORDER_SELECT_MONTH("SELECT ord_id, ord_date, ord_emp_id, ord_cus_id, ord_amount, emp_name, cus_name "
+			+ "FROM tb_order, tb_employee, tb_customer "
+			+ "WHERE ord_emp_id = emp_id AND ord_cus_id = cus_id "
+			+ "AND MONTH(ord_date) = ? AND YEAR(ord_date) = ?"),
+	
+	ORDER_SELECT_SELLER("SELECT ord_id, ord_date, ord_emp_id, ord_cus_id, ord_amount, emp_name, "
+			+ "cus_name FROM tb_order, tb_employee, tb_customer WHERE ord_emp_id = ? "
+			+ "AND ord_emp_id = emp_id AND ord_cus_id = cus_id"),
+	
+	ORDER_SELECT_ID("SELECT ord_id, ord_date, ord_emp_id, ord_cus_id, ord_amount, emp_name, " 
+			+ "cus_name FROM tb_order, tb_employee, tb_customer WHERE ord_emp_id = emp_id AND "
+			+ "ord_cus_id = cus_id AND ord_id = ?"),
 	
 	ORDER_ITEM_BOOK_INSERT("INSERT INTO tb_order_item_book (ord_ite_book_ord_id, "
 			+ "ord_ite_book_book_id, ord_ite_book_quantity, ord_ite_book_amount) "
 			+ "VALUES (?, ?, ?, ?)"),
 	
+	ORDER_ITEM_BOOK_SELECT_ORDER_ID("SELECT ord_ite_book_ord_id, ord_ite_book_book_id, book_title, "
+			+ "ord_ite_book_quantity, book_unit_price, ord_ite_book_amount FROM tb_order_item_book, tb_book "
+			+ "WHERE ord_ite_book_book_id = book_id AND ord_ite_book_ord_id = ?"),
+	
 	ORDER_ITEM_CELLPHONE_INSERT("INSERT INTO tb_order_item_cellphone (ord_ite_cel_ord_id, "
 			+ "ord_ite_cel_cel_id, ord_ite_cel_quantity, ord_ite_cel_amount) "
 			+ "VALUES (?, ?, ?, ?)"),
 	
+	ORDER_ITEM_CELLPHONE_SELECT_ORDER_ID("SELECT ord_ite_cel_ord_id, ord_ite_cel_cel_id, cel_brand, "
+			+ "ord_ite_cel_quantity, cel_unit_price, ord_ite_cel_amount FROM tb_order_item_cellphone, tb_cellphone "
+			+ "WHERE ord_ite_cel_cel_id = cel_id AND ord_ite_cel_ord_id = ?"),
+	
 	ORDER_ITEM_DVD_INSERT("INSERT INTO tb_order_item_dvd (ord_ite_dvd_ord_id, ord_ite_dvd_dvd_id, "
 			+ "ord_ite_dvd_quantity, ord_ite_dvd_amount) VALUES (?, ?, ?, ?)"),
+	
+	ORDER_ITEM_DVD_SELECT_ORDER_ID("SELECT ord_ite_dvd_ord_id, ord_ite_dvd_dvd_id, dvd_title, "
+			+ "dvd_movie_director, dvd_show_artist, "
+			+ "ord_ite_dvd_quantity, dvd_unit_price, ord_ite_dvd_amount FROM tb_order_item_dvd, tb_dvd "
+			+ "WHERE ord_ite_dvd_dvd_id = dvd_id AND ord_ite_dvd_ord_id = ?"),
 	
 	ORDER_ITEM_LAPTOP_INSERT("INSERT INTO tb_order_item_laptop (ord_ite_pc_ord_id, "
 			+ "ord_ite_pc_pc_id, ord_ite_pc_quantity, ord_ite_pc_amount) "
 			+ "VALUES (?, ?, ?, ?)"),
 	
+	ORDER_ITEM_LAPTOP_SELECT_ORDER_ID("SELECT ord_ite_pc_ord_id, ord_ite_pc_pc_id, pc_brand, "
+			+ "ord_ite_pc_quantity, pc_unit_price, ord_ite_pc_amount FROM tb_order_item_laptop, tb_laptop "
+			+ "WHERE ord_ite_pc_pc_id = pc_id AND ord_ite_pc_ord_id = ?"),
+	
 	ORDER_ITEM_MAGAZINE_INSERT("INSERT INTO tb_order_item_magazine (ord_ite_mag_ord_id, "
 			+ "ord_ite_mag_mag_id, ord_ite_mag_quantity, ord_ite_mag_amount) "
-			+ "VALUES (?, ?, ?, ?)");
+			+ "VALUES (?, ?, ?, ?)"),
+	
+	ORDER_ITEM_MAGAZINE_SELECT_ORDER_ID("SELECT ord_ite_mag_ord_id, ord_ite_mag_mag_id, mag_name, "
+			+ "ord_ite_mag_quantity, mag_unit_price, ord_ite_mag_amount FROM tb_order_item_magazine, tb_magazine "
+			+ "WHERE ord_ite_mag_mag_id = mag_id AND ord_ite_mag_ord_id = ?");
 	
 	private final String query;
 	
