@@ -155,7 +155,7 @@ public class EmployeeViewImpl implements EmployeeView {
 			employee.setId(searchId);
 			final YearMonth date = YearMonth.parse(JOptionPane.showInputDialog("Insert the date (yyyy-mm)"));
 			final Double percentage = Double.parseDouble(JOptionPane.showInputDialog("Input the commission percentage"));
-			final Double commission = this.employeeController.getCommission(percentage, employee, date);
+			final Double commission = this.employeeController.calculateCommission(percentage, employee, date);
 			final Double newSalary = this.employeeController.getSalaryWithCommission(commission, employee, date);
 			JOptionPane.showMessageDialog(null, "Month: " + date.getMonth() + Constants.LINE_SEPARATOR + "ID: " + employee.getId() 
 					+ Constants.LINE_SEPARATOR + "Name: " + employee.getName() + Constants.LINE_SEPARATOR + "Current Salary: " 

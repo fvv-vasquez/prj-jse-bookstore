@@ -77,15 +77,11 @@ public interface EmployeeController {
 	/**
 	 * Gets the salary adding the percentage.
 	 * 
-	 * @param percentage for commission.
+	 * @param commission to calculate with the salary.
 	 * @param employee to get the information.
-	 * @param date to take the sales in the period.
 	 * @return the salary with commission.
-	 * @throws PersonNotFoundException when not found a person in the database.
-	 * @throws ControllerException when a problem in controller happens.
 	 */
-	Double getSalaryWithCommission(final Double percentage, final Employee employee, final YearMonth date) 
-			throws PersonNotFoundException, ControllerException;
+	Double getSalaryWithCommission(final Double commission, final Employee employee);
 	
 	/**
 	 * Gets the commission.
@@ -97,6 +93,6 @@ public interface EmployeeController {
 	 * @throws PersonNotFoundException when not found a person in the database.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	Double getCommission(final Double percentage, final Employee employee, final YearMonth date) 
+	Double calculateCommission(final Double percentage, final Employee employee, final YearMonth date) 
 			throws PersonNotFoundException, ControllerException;
 }

@@ -112,8 +112,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double getSalaryWithCommission(final Double commission, final Employee employee, final YearMonth date)
-			throws PersonNotFoundException, ControllerException {
+	public Double getSalaryWithCommission(final Double commission, final Employee employee) {
 		return commission + employee.getSalary();
 	}
 	
@@ -121,7 +120,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double getCommission(final Double percentage, final Employee employee, final YearMonth date) 
+	public Double calculateCommission(final Double percentage, final Employee employee, final YearMonth date) 
 			throws PersonNotFoundException, ControllerException {
 		final Double percentageConverted = percentage / 100;
 		final Double totalSales = this.getTotalSalesByEmployeeAndMonth(employee.getId(), date);
