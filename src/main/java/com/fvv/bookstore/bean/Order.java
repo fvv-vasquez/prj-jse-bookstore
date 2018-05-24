@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fvv.bookstore.util.DateUtil;
+import com.fvv.bookstore.util.MathUtil;
+
 /**
  * Bean class for an Order object
  * 
@@ -159,7 +162,7 @@ public class Order implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Order ID: " + getId() + " - Customer: " + getCustomer() + ", Employee: " +
-				getEmployee() + ", Order Amount: " + getOrderAmount() + ", Date: " + getCreationDate();
+		return "Order ID: " + getId() + " - Customer: " + getCustomer() + ", Employee: " + getEmployee() 
+			+ ", Order Amount: " + MathUtil.formatNumbers(getOrderAmount()) + ", Date: " + DateUtil.dateToString(getCreationDate());
 	}
 }

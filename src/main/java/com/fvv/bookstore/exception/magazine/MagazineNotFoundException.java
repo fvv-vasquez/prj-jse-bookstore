@@ -1,7 +1,7 @@
 package com.fvv.bookstore.exception.magazine;
 
 /**
- * Exception class for a magazine not found in a search
+ * Exception class for a magazine not found
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>	

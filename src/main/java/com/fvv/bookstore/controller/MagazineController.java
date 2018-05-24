@@ -28,7 +28,7 @@ public interface MagazineController {
 		MagazineValidationException, ControllerException;
 	
 	/**
-	 * Lists all the magazines using DAO.
+	 * Lists all magazines using DAO.
 	 * 
 	 * @return a list of magazines.
 	 * @throws ControllerException when a problem in controller happens.

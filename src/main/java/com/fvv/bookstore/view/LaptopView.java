@@ -16,7 +16,7 @@ public interface LaptopView {
 	void addLaptop();
 	
 	/**
-	 * Lists all the Laptops using Controller.
+	 * Lists all Laptops using Controller.
 	 */
 	void listLaptops();
 

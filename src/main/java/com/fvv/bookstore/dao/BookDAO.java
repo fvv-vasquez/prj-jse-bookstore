@@ -25,7 +25,7 @@ public interface BookDAO {
 	void addBook(final Book book) throws DaoException;
 
 	/**
-	 * Lists all the books in the database.
+	 * Lists all books in the database.
 	 * 
 	 * @return a list of books.
 	 * @throws DaoException when a problem in database happens.
@@ -76,4 +76,12 @@ public interface BookDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	void reduceStockItem(final Book book, final Integer quantityToReduce) throws DaoException;
+	
+	/**
+	 * Lists all books that needs to be replaced in the stock.
+	 * 
+	 * @return a list of books that needs to be replaced.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<Book> listStockToReplace() throws DaoException;
 }

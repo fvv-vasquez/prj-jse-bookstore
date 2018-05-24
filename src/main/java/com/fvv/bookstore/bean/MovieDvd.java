@@ -3,6 +3,8 @@ package com.fvv.bookstore.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fvv.bookstore.util.MathUtil;
+
 /**
  * Bean class for a MovieDvd object
  * 
@@ -84,8 +86,7 @@ public class MovieDvd extends Dvd implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Movie DVD ID: " + getId() + " - Title: " + getTitle() + ", Genre: " + getGenre() + 
-				", Director: " + getDirector() + ", Unit Price: " + getUnitPrice() + 
-				", Stock Quantity: " + getStockQty();
+		return "Movie DVD ID: " + getId() + " - Title: " + getTitle() + ", Genre: " + getGenre() + ", Director: " + getDirector() 
+				+ ", Unit Price: " + MathUtil.formatNumbers(getUnitPrice()) + ", Stock Quantity: " + getStockQty();
 	}
 }

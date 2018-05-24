@@ -20,6 +20,8 @@ import com.fvv.bookstore.view.MagazineView;
 import com.fvv.bookstore.view.MagazineViewImpl;
 import com.fvv.bookstore.view.OrderView;
 import com.fvv.bookstore.view.OrderViewImpl;
+import com.fvv.bookstore.view.ProductsReportView;
+import com.fvv.bookstore.view.ProductsReportViewImpl;
 
 /**
  * Menu class to create a menu for the application.
@@ -39,6 +41,7 @@ public class Menu {
 	private final CustomerView customerView;
 	private final EmployeeView employeeView;
 	private final OrderView orderView;
+	private final ProductsReportView productsReportView;
 	
 	/**
 	 * Class constructor instantiating a new View objects.
@@ -52,6 +55,7 @@ public class Menu {
 		this.customerView = new CustomerViewImpl();
 		this.employeeView = new EmployeeViewImpl();
 		this.orderView = new OrderViewImpl();
+		this.productsReportView = new ProductsReportViewImpl();
 	}
 	
 	/**
@@ -62,7 +66,7 @@ public class Menu {
 	}
 
 	/**
-	 * Method to create and appear the general menu
+	 * Method to create and show the general menu
 	 */
 	private void createMenu() {
 		while(true) {
@@ -71,6 +75,7 @@ public class Menu {
 					"1 - Products" + Constants.LINE_SEPARATOR +
 					"2 - Individuals" + Constants.LINE_SEPARATOR +
 					"3 - Order" + Constants.LINE_SEPARATOR +
+					"4 - Reports" + Constants.LINE_SEPARATOR +
 					"0 - Exit",
 					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
@@ -81,6 +86,8 @@ public class Menu {
 					break;
 				case '3' : this.addOrder();
 					break;
+				case '4' : this.createSubMenuReports();
+					break;
 				case '0' : this.exit();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
@@ -90,7 +97,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the products sub menu.
+	 * Method to create and show the products sub menu.
 	 */
 	private void createSubMenuProducts() {
 		while(true) {
@@ -122,7 +129,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the book sub menu.
+	 * Method to create and show the book sub menu.
 	 */
 	private void createSubMenuBook() {
 		while(true) {
@@ -154,7 +161,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the magazine sub menu.
+	 * Method to create and show the magazine sub menu.
 	 */
 	private void createSubMenuMagazine() {
 		while(true) {
@@ -186,7 +193,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the dvd sub menu.
+	 * Method to create and show the dvd sub menu.
 	 */
 	private void createSubMenuDvd() {
 		while(true) {
@@ -218,7 +225,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the list of dvds sub menu.
+	 * Method to create and show the list of dvds sub menu.
 	 */
 	private void createSubMenuDvdsList() {
 		while(true) {
@@ -244,7 +251,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the hardware sub menu.
+	 * Method to create and show the hardware sub menu.
 	 */
 	private void createSubMenuHardware() {
 		while(true) {
@@ -270,7 +277,7 @@ public class Menu {
 	}
 
 	/**
-	 * Method to create and appear the cellphone sub menu.
+	 * Method to create and show the cellphone sub menu.
 	 */
 	private void createSubMenuCellphone() {
 		while(true) {
@@ -302,7 +309,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the laptop sub menu.
+	 * Method to create and show the laptop sub menu.
 	 */
 	private void createSubMenuLaptop() {
 		while(true) {
@@ -334,7 +341,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the individuals sub menu.
+	 * Method to create and show the individuals sub menu.
 	 */
 	private void createSubMenuIndividuals() {
 		while(true) {
@@ -360,7 +367,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the customer sub menu.
+	 * Method to create and show the customer sub menu.
 	 */
 	private void createSubMenuCustomer() {
 		while(true) {
@@ -392,7 +399,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Method to create and appear the customer sub menu.
+	 * Method to create and show the customer sub menu.
 	 */
 	private void createSubMenuEmployee() {
 		while(true) {
@@ -416,6 +423,93 @@ public class Menu {
 				case '4' : this.listEmployees();
 					break;
 				case '0' : this.createSubMenuIndividuals();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and show the reports sub menu.
+	 */
+	private void createSubMenuReports() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Individuals" + Constants.LINE_SEPARATOR +
+					"2 - Stock - Products to Replace" + Constants.LINE_SEPARATOR +
+					"3 - Sales" + Constants.LINE_SEPARATOR +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.createSubMenuIndividualsReports();
+					break;
+				case '2' : this.listStockToReplace();
+					break;
+				case '3' : this.createSubMenuSalesReports();
+					break;
+				case '0' : this.createMenu();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and show the individuals reports sub menu.
+	 */
+	private void createSubMenuIndividualsReports() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Individuals Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Customers Filtered and Ordered by Name" + Constants.LINE_SEPARATOR +
+					"2 - Employees Filtered by Name and Ordered by Highest Salary" + Constants.LINE_SEPARATOR +
+					"3 - Employee Salary with Commission by Month" + Constants.LINE_SEPARATOR +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.listCustomersByName();
+					break;
+				case '2' : this.listEmployeesByName();
+					break;
+				case '3' : this.getSalaryWithCommission();
+					break;
+				case '0' : this.createSubMenuReports();
+					break;
+				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
+	/**
+	 * Method to create and show the reports sub menu for sales.
+	 */
+	private void createSubMenuSalesReports() {
+		while(true) {
+			String input = JOptionPane.showInputDialog(
+					null, "Sales Reports Section" + Constants.LINE_SEPARATOR + Constants.LINE_SEPARATOR +
+					"Select an option below:" + Constants.LINE_SEPARATOR +
+					"1 - Total Orders in a Month" + Constants.LINE_SEPARATOR +
+					"2 - Total Sales per Seller" + Constants.LINE_SEPARATOR +
+					"3 - List an Order by ID" + Constants.LINE_SEPARATOR +
+					"0 - Return",
+					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+			);
+			switch(input.charAt(0)) {
+				case '1' : this.listTotalOrdersMonth();
+					break;
+				case '2' : this.listTotalSalesPerSeller();
+					break;
+				case '3' : this.listOrderByOrderId();
+					break;
+				case '0' : this.createSubMenuReports();
 					break;
 				default : JOptionPane.showMessageDialog(null, "Choose a valid option!", 
 						"Error", JOptionPane.ERROR_MESSAGE);
@@ -631,6 +725,55 @@ public class Menu {
 	 */
 	private void addOrder() {
 		this.orderView.addOrder();
+	}
+	
+	/**
+	 * List the customers by name.
+	 */
+	private void listCustomersByName() {
+		this.customerView.listCustomersByName();
+	}
+	
+	/**
+	 * List the employees by name.
+	 */
+	private void listEmployeesByName() {
+		this.employeeView.listEmployeesByName();
+	}
+	
+	/**
+	 * Gets the salary with commission.
+	 */
+	private void getSalaryWithCommission() {
+		this.employeeView.getSalaryWithCommission();
+	}
+	
+	/**
+	 * Lists all products that needs to be replaced in the stock by the menu.
+	 */
+	private void listStockToReplace() {
+		this.productsReportView.listStockToReplace();
+	}
+	
+	/**
+	 * Lists all orders by month.
+	 */
+	private void listTotalOrdersMonth() {
+		this.orderView.listTotalOrdersMonth();
+	}
+	
+	/**
+	 * Lists all sales per seller.
+	 */
+	private void listTotalSalesPerSeller() {
+		this.orderView.listTotalSalesPerSeller();
+	}
+	
+	/**
+	 * Lists an order by order id.
+	 */
+	private void listOrderByOrderId() {
+		this.orderView.listOrderByOrderId();
 	}
 	
 	/**

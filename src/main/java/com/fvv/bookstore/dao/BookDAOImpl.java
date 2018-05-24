@@ -59,20 +59,7 @@ public class BookDAOImpl implements BookDAO {
 				ResultSet rs = ps.executeQuery()
 		) {				
 			while(rs.next()) {
-				Book book = new Book();
-				book.setId(rs.getLong("book_id"));
-				book.setTitle(rs.getString("book_title"));
-				book.setPublicationYear(rs.getInt("book_publication_year"));
-				book.setEditionNumber(rs.getInt("book_edition_number"));
-				book.setAuthor(rs.getString("book_author"));
-				book.setUnitPrice(rs.getDouble("book_unit_price"));
-				book.setIsbn(rs.getInt("book_isbn"));
-				book.setPublisher(rs.getString("book_publisher"));
-				book.setGenre(rs.getString("book_genre"));
-				book.setStockQty(rs.getInt("book_stock_qty"));
-				book.setModificationDate(new Date(rs.getTimestamp(
-						"book_modification_date").getTime()));
-				books.add(book);
+				books.add(this.populateBookFromDatabase(rs));
 			}
 		} catch(SQLException e) {
 			throw new DaoException("Error to load the list", e);
@@ -174,6 +161,43 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(final Book book, final Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, book.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a book", e);
+		} 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Book> listStockToReplace() throws DaoException {
+		List<Book> books = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_REPLACE_STOCK.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {				
+			while(rs.next()) {
+				books.add(this.populateBookFromDatabase(rs));
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return books;
+	}
+	
+	/**
 	 * Populate a book from database.
 	 * 
 	 * @param rs of ResultSet type.
@@ -196,25 +220,8 @@ public class BookDAOImpl implements BookDAO {
 			book.setModificationDate(new Date(rs.getTimestamp(
 					"book_modification_date").getTime()));	
 		} catch(SQLException e) {
-			throw new DaoException("Error to find a book", e);
+			throw new DaoException("Error to populate a book from a result set", e);
 		}
 		return book;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void reduceStockItem(final Book book, final Integer quantityToReduce) throws DaoException {
-		try (
-				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.BOOK_REDUCE_STOCK.getQuery())
-		) {	
-			ps.setInt(1, quantityToReduce);	
-			ps.setLong(2, book.getId());		
-			ps.execute();
-		} catch(SQLException e) {
-			throw new DaoException("Error to update stock quantity of a book", e);
-		} 
 	}
 }

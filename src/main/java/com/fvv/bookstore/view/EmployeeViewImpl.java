@@ -1,5 +1,6 @@
 package com.fvv.bookstore.view;
 
+import java.time.YearMonth;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -12,6 +13,7 @@ import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.exception.person.PersonValidationException;
 import com.fvv.bookstore.util.Constants;
 import com.fvv.bookstore.util.PropertiesUtil;
+import com.fvv.bookstore.util.MathUtil;
 
 /**
  * EmployeeView class to view the Employee object.
@@ -109,6 +111,55 @@ public class EmployeeViewImpl implements EmployeeView {
 		} catch (PersonNotFoundException | ControllerException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void listEmployeesByName() {
+		try {
+			StringBuilder sb = new StringBuilder();
+			String searchName = JOptionPane.showInputDialog("Insert a name to find");
+			List<Employee> employees = this.employeeController.listEmployeesByName(searchName);
+			if(employees != null && !employees.isEmpty()) {
+				for(Employee emp : employees) {
+					sb.append(emp).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Employees", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException | PersonNotFoundException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void getSalaryWithCommission() {
+		try {
+			Long searchId = Long.parseLong(JOptionPane.showInputDialog("Insert the employee ID"));
+			Employee employee = this.employeeController.findEmployee(searchId);
+			employee.setId(searchId);
+			final YearMonth date = YearMonth.parse(JOptionPane.showInputDialog("Insert the date (yyyy-mm)"));
+			final Double percentage = Double.parseDouble(JOptionPane.showInputDialog("Input the commission percentage"));
+			final Double commission = this.employeeController.calculateCommission(percentage, employee, date);
+			final Double newSalary = this.employeeController.getSalaryWithCommission(commission, employee);
+			JOptionPane.showMessageDialog(null, "Month: " + date.getMonth() + Constants.LINE_SEPARATOR + "ID: " + employee.getId() 
+					+ Constants.LINE_SEPARATOR + "Name: " + employee.getName() + Constants.LINE_SEPARATOR + "Current Salary: " 
+					+ MathUtil.formatNumbers(employee.getSalary()) + Constants.LINE_SEPARATOR + "Commission Earned: " + MathUtil.formatNumbers(commission) 
+					+ Constants.LINE_SEPARATOR + "Total Salary: " + MathUtil.formatNumbers(newSalary));
+		} catch (ControllerException | PersonNotFoundException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

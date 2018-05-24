@@ -1,5 +1,6 @@
 package com.fvv.bookstore.controller;
 
+import java.time.YearMonth;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
@@ -28,7 +29,7 @@ public interface EmployeeController {
 		PersonValidationException, ControllerException;
 	
 	/**
-	 * Lists all the employees using DAO.
+	 * Lists all employees using DAO.
 	 * 
 	 * @return a list of employees.
 	 * @throws ControllerException when a problem in controller happens.
@@ -62,4 +63,36 @@ public interface EmployeeController {
 	 * @throws PersonNotFoundException when an employee is not found.
 	 */
 	Employee findEmployee(final Long id) throws PersonNotFoundException, ControllerException;
+	
+	/**
+	 * Lists all employees by name using DAO.
+	 * 
+	 * @param name to search.
+	 * @return a list of employees ordered by name.
+	 * @throws PersonNotFoundException when an employee is not found.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	List<Employee> listEmployeesByName(final String name) throws PersonNotFoundException, ControllerException;
+	
+	/**
+	 * Gets the salary adding the percentage.
+	 * 
+	 * @param commission to calculate with the salary.
+	 * @param employee to get the information.
+	 * @return the salary with commission.
+	 */
+	Double getSalaryWithCommission(final Double commission, final Employee employee);
+	
+	/**
+	 * Gets the commission.
+	 * 
+	 * @param percentage for commission.
+	 * @param employee to get the information.
+	 * @param date to take the sales in the period.
+	 * @return the commission.
+	 * @throws PersonNotFoundException when not found a person in the database.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	Double calculateCommission(final Double percentage, final Employee employee, final YearMonth date) 
+			throws PersonNotFoundException, ControllerException;
 }

@@ -1,10 +1,13 @@
 package com.fvv.bookstore.controller;
 
+import java.time.YearMonth;
 import java.util.List;
 
+import com.fvv.bookstore.audit.OrderAudit;
 import com.fvv.bookstore.bean.Book;
 import com.fvv.bookstore.bean.Cellphone;
 import com.fvv.bookstore.bean.Dvd;
+import com.fvv.bookstore.bean.Employee;
 import com.fvv.bookstore.bean.Laptop;
 import com.fvv.bookstore.bean.Magazine;
 import com.fvv.bookstore.bean.Order;
@@ -13,7 +16,9 @@ import com.fvv.bookstore.dao.OrderDAO;
 import com.fvv.bookstore.dao.OrderDAOImpl;
 import com.fvv.bookstore.exception.ControllerException;
 import com.fvv.bookstore.exception.DaoException;
+import com.fvv.bookstore.exception.order.OrderNotFoundException;
 import com.fvv.bookstore.exception.order.OrderValidationException;
+import com.fvv.bookstore.exception.person.PersonNotFoundException;
 import com.fvv.bookstore.util.CollectionsUtil;
 import com.fvv.bookstore.util.Constants;
 import com.fvv.bookstore.util.MathUtil;
@@ -34,6 +39,7 @@ public class OrderControllerImpl implements OrderController {
 	private final DvdController dvdController;
 	private final LaptopController laptopController;
 	private final MagazineController magazineController;
+	private final OrderAudit orderAudit;
 	
 	/**
 	 * Class constructor instantiating a new OrderDAOImpl object.
@@ -45,6 +51,7 @@ public class OrderControllerImpl implements OrderController {
 		this.dvdController = new DvdControllerImpl();
 		this.laptopController = new LaptopControllerImpl();
 		this.magazineController = new MagazineControllerImpl();
+		this.orderAudit = new OrderAudit();
 	}
 
 	/**
@@ -66,11 +73,71 @@ public class OrderControllerImpl implements OrderController {
 			
 			this.calculateNewStockAmount(order);
 			
+			this.orderAudit.addLogMessage(order);
+			
 		} catch (DaoException e) {
 			throw new ControllerException("Error to add an order", e);
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Order> listTotalOrdersByMonth(final YearMonth date)
+			throws OrderNotFoundException, ControllerException {
+		try {
+			return this.orderDao.listTotalOrdersByMonth(date);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Double calculateTotalOrders(final List<Order> orders) {
+		Double amount = 0.0;
+		for (Order ord : orders) {
+			amount += ord.getOrderAmount();
+		}
+		return MathUtil.round(amount, Constants.PRECISION);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Integer calculateQtyOrders(final List<Order> orders) {
+		return orders.size();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Order> listTotalSalesPerSeller(final Employee employee) 
+			throws PersonNotFoundException, ControllerException {
+		try {
+			return this.orderDao.listTotalSalesPerSeller(employee);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Order listOrderByOrderId(Long id) throws OrderNotFoundException, ControllerException {
+		try {
+			return this.orderDao.listOrderByOrderId(id);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to load the list", e);
+		}
+	}
+
 	/**
 	 * Validate if a field in the order is empty.
 	 * 

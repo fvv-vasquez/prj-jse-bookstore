@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fvv.bookstore.util.DateUtil;
+import com.fvv.bookstore.util.MathUtil;
 
 /**
  * Bean class for a Magazine object
@@ -164,8 +165,7 @@ public class Magazine extends Product implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Magazine ID: " + getId() + " - Name: " + getName() + ", Publication Date: " + 
-				DateUtil.dateToString(getPublicationDate()) + ", Unit Price: " + getUnitPrice() +
-				", Stock Quantity: " + getStockQty();
+		return "Magazine ID: " + getId() + " - Name: " + getName() + ", Publication Date: " + DateUtil.dateToString(getPublicationDate()) 
+				+ ", Unit Price: " + MathUtil.formatNumbers(getUnitPrice()) + ", Stock Quantity: " + getStockQty();
 	}
 }

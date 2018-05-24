@@ -22,4 +22,49 @@ public interface OrderItemDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	void addOrderItemInBatch(final List<OrderItem> orderItems) throws DaoException;
+	
+	/**
+	 * Search a book item in the database by the order.
+	 * 
+	 * @param idOrder to search.
+	 * @return a list of order item book.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<OrderItem> findBookItemsByOrder(final Long idOrder) throws DaoException;
+	
+	/**
+	 * Search a cellphone item in the database by the order.
+	 * 
+	 * @param idOrder to search.
+	 * @return a list of order item cellphone.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<OrderItem> findCellphoneItemsByOrder(final Long idOrder) throws DaoException;
+	
+	/**
+	 * Search a dvd item in the database by the order.
+	 * 
+	 * @param idOrder to search.
+	 * @return a list of order item dvd.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<OrderItem> findDvdItemsByOrder(final Long idOrder) throws DaoException;
+	
+	/**
+	 * Search a laptop item in the database by the order.
+	 * 
+	 * @param idOrder to search.
+	 * @return a list of order item laptop.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<OrderItem> findLaptopItemsByOrder(final Long idOrder) throws DaoException;
+	
+	/**
+	 * Search a magazine item in the database by the order.
+	 * 
+	 * @param idOrder to search.
+	 * @return a list of order item magazine.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<OrderItem> findMagazineItemsByOrder(final Long idOrder) throws DaoException;
 }

@@ -1,7 +1,7 @@
 package com.fvv.bookstore.exception.hardware;
 
 /**
- * Exception class for a hardware not found in a search
+ * Exception class for a hardware not found
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>

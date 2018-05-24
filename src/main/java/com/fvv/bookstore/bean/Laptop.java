@@ -3,6 +3,8 @@ package com.fvv.bookstore.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fvv.bookstore.util.MathUtil;
+
 /**
  * Bean class for a Laptop object
  * 
@@ -122,8 +124,7 @@ public class Laptop extends Hardware implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Laptop ID: " + getId() + " - Brand: " + getBrand() + ", Warranty: " + 
-				getWarranty() + " months, HD Size: " + getHdSize() + " GB, Unit Price: " +
-				getUnitPrice() + ", Stock Quantity: " + getStockQty();
+		return "Laptop ID: " + getId() + " - Brand: " + getBrand() + ", Warranty: " + getWarranty() + " months, HD Size: " 
+				+ getHdSize() + " GB, Unit Price: " + MathUtil.formatNumbers(getUnitPrice()) + ", Stock Quantity: " + getStockQty();
 	}
 }

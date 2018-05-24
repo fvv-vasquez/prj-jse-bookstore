@@ -27,7 +27,7 @@ public interface BookController {
 	void addBook(final Book book) throws BookValidationException, ControllerException;
 	
 	/**
-	 * Lists all the books using DAO.
+	 * Lists all books using DAO.
 	 * 
 	 * @return a list of books.
 	 * @throws ControllerException when a problem in controller happens.
