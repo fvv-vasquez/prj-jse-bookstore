@@ -213,7 +213,6 @@ public class OrderDAOImpl implements OrderDAO {
 	 * @param orderId to search
 	 * @return a list of order items
 	 * @throws DaoException when a problem in database happens.
-	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
 	private List<OrderItem> getOrderItemsByOrder(final Long orderId) throws DaoException {
 		List<OrderItem> items = new ArrayList<>();
