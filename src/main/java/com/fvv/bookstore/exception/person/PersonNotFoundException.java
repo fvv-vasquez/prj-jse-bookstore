@@ -1,7 +1,7 @@
 package com.fvv.bookstore.exception.person;
 
 /**
- * Exception class for a person not found in a search
+ * Exception class for a person not found
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>

@@ -65,8 +65,7 @@ public class DvdDAOImpl implements DvdDAO {
 		List<ShowDvd> dvds = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(
-						SqlQueryEnum.DVD_SELECT_ALL_SHOW.getQuery());
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_SELECT_ALL_SHOW.getQuery());
 				ResultSet rs = ps.executeQuery()
 		) {	
 			while(rs.next()) {
@@ -98,8 +97,7 @@ public class DvdDAOImpl implements DvdDAO {
 		List<MovieDvd> dvds = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(
-						SqlQueryEnum.DVD_SELECT_ALL_MOVIE.getQuery());
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_SELECT_ALL_MOVIE.getQuery());
 				ResultSet rs = ps.executeQuery()
 		) {	
 			while(rs.next()) {
@@ -225,9 +223,45 @@ public class DvdDAOImpl implements DvdDAO {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void reduceStockItem(final Dvd dvd, final Integer quantityToReduce) throws DaoException {
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_REDUCE_STOCK.getQuery())
+		) {	
+			ps.setInt(1, quantityToReduce);	
+			ps.setLong(2, dvd.getId());		
+			ps.execute();
+		} catch(SQLException e) {
+			throw new DaoException("Error to update stock quantity of a DVD", e);
+		} 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Dvd> listStockToReplace() throws DaoException {
+		List<Dvd> dvds = new ArrayList<>();
+		try (
+				Connection conn = ConnectionFactory.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_REPLACE_STOCK.getQuery());
+				ResultSet rs = ps.executeQuery()
+		) {	
+			while(rs.next()) {				
+				dvds.add(this.populateDvdFromDatabase(rs));
+			}
+		} catch(SQLException e) {
+			throw new DaoException("Error to load the list", e);
+		} 
+		return dvds;
+	}
+
+	/**
 	 * Populate a dvd from database.
 	 * 
-	 * @param dvd of Dvd type.
 	 * @param rs of ResultSet type.
 	 * @return a dvd.
 	 * @throws DaoException when a problem in database happens.
@@ -255,25 +289,8 @@ public class DvdDAOImpl implements DvdDAO {
 			dvd.setModificationDate(new Date(rs.getTimestamp(
 					"dvd_modification_date").getTime()));
 		} catch(SQLException e) {
-			throw new DaoException("Error to find a dvd", e);
+			throw new DaoException("Error to populate a dvd from a result set", e);
 		} 
 		return dvd;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void reduceStockItem(final Dvd dvd, final Integer quantityToReduce) throws DaoException {
-		try (
-				Connection conn = ConnectionFactory.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.DVD_REDUCE_STOCK.getQuery())
-		) {	
-			ps.setInt(1, quantityToReduce);	
-			ps.setLong(2, dvd.getId());		
-			ps.execute();
-		} catch(SQLException e) {
-			throw new DaoException("Error to update stock quantity of a DVD", e);
-		} 
 	}	
 }

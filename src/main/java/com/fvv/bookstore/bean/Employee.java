@@ -2,6 +2,8 @@ package com.fvv.bookstore.bean;
 
 import java.io.Serializable;
 
+import com.fvv.bookstore.util.MathUtil;
+
 /**
  * Bean class for an Employee object
  * 
@@ -82,6 +84,6 @@ public class Employee extends Person implements Serializable {
 	@Override
 	public String toString() {
 		return "ID: " + getId() + " - Name: " + getName() + ", Phone: " + getPhone() +
-				", Position: " + getPosition() + ", Salary: R$" + getSalary();
+				", Position: " + getPosition() + ", Salary: " + MathUtil.formatNumbers(getSalary());
 	}
 }

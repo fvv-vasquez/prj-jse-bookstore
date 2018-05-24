@@ -1,5 +1,6 @@
 package com.fvv.bookstore.controller;
 
+import java.time.YearMonth;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
@@ -96,6 +97,37 @@ public class EmployeeControllerImpl implements EmployeeController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Employee> listEmployeesByName(final String name) throws PersonNotFoundException, ControllerException {
+		try {
+			return this.employeeDao.listEmployeesByName(name);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find an employee", e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Double getSalaryWithCommission(final Double commission, final Employee employee) {
+		return commission + employee.getSalary();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Double calculateCommission(final Double percentage, final Employee employee, final YearMonth date) 
+			throws PersonNotFoundException, ControllerException {
+		final Double percentageConverted = percentage / 100;
+		final Double totalSales = this.getTotalSalesByEmployeeAndMonth(employee.getId(), date);
+		return totalSales * percentageConverted;
+	}
+
+	/**
 	 * Validate if a field is empty.
 	 * 
 	 * @param employee of type Employee
@@ -123,6 +155,24 @@ public class EmployeeControllerImpl implements EmployeeController {
 		}
 		if(sb.length() > 0) {
 			throw new PersonValidationException(sb.toString());
+		}
+	}
+	
+	/**
+	 * Gets the sales in a specific period by Employee ID.
+	 * 
+	 * @param idEmployee to search.
+	 * @param date to search.
+	 * @return the total in the period.
+	 * @throws PersonNotFoundException when not found a person in the database.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	private Double getTotalSalesByEmployeeAndMonth(final Long idEmployee, final YearMonth date) 
+			throws PersonNotFoundException, ControllerException {
+		try {
+			return this.employeeDao.getTotalSalesByEmployeeAndMonth(idEmployee, date);
+		} catch (DaoException e) {
+			throw new ControllerException("Error to find an employee", e);
 		}
 	}
 }

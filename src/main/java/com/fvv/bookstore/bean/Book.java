@@ -3,6 +3,8 @@ package com.fvv.bookstore.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fvv.bookstore.util.MathUtil;
+
 /**
  * Bean class for a Book object
  * 
@@ -207,6 +209,6 @@ public class Book extends Product implements Serializable {
 	@Override
 	public String toString() {
 		return "Book ID: " + getId() + " - Title: " + getTitle() + ", Author: " + getAuthor() + 
-				", Unit Price: " + getUnitPrice() + ", Stock Quantity: " + getStockQty();
+				", Unit Price: " + MathUtil.formatNumbers(getUnitPrice()) + ", Stock Quantity: " + getStockQty();
 	}	
 }

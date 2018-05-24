@@ -25,7 +25,7 @@ public interface CellphoneDAO {
 	void addCellphone(final Cellphone cellphone) throws DaoException;
 
 	/**
-	 * Lists all the Cellphones in the database.
+	 * Lists all Cellphones in the database.
 	 * 
 	 * @return a list of cellphones.
 	 * @throws DaoException when a problem in database happens.
@@ -76,4 +76,12 @@ public interface CellphoneDAO {
 	 * @throws DaoException when a problem in database happens.
 	 */
 	void reduceStockItem(final Cellphone cellphone, final Integer quantityToReduce) throws DaoException;
+	
+	/**
+	 * Lists all cellphones that needs to be replaced in the stock.
+	 * 
+	 * @return a list of cellphones that needs to be replaced.
+	 * @throws DaoException when a problem in database happens.
+	 */
+	List<Cellphone> listStockToReplace() throws DaoException;
 }

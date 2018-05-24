@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -55,5 +57,27 @@ public final class DateUtil {
 	 */
 	public static String getCurrentDateTime() {
 		return LocalDateTime.now().format(DateTimeFormatter.ofPattern(Constants.DATE_TIME_MASK));
+	}
+
+	/**
+	 * Gets the month as an Integer from a Date object.
+	 * 
+	 * @param date to get the value.
+	 * @return the month.
+	 */
+	public static Integer extractMonthFromDate(final Date date) {
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		return localDate.getMonthValue();
+	}
+	
+	/**
+	 * Gets the year as an Integer from a Date object.
+	 * 
+	 * @param date to get the value.
+	 * @return the year.
+	 */
+	public static Integer extractYearFromDate(final Date date) {
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		return localDate.getYear();
 	}
 }

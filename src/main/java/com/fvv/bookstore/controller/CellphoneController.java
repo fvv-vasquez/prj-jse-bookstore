@@ -28,7 +28,7 @@ public interface CellphoneController {
 		HardwareValidationException, ControllerException;
 	
 	/**
-	 * Lists all the cellphones using DAO.
+	 * Lists all cellphones using DAO.
 	 * 
 	 * @return a list of cellphones.
 	 * @throws ControllerException when a problem in controller happens.

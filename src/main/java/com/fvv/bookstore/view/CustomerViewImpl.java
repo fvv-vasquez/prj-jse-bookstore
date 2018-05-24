@@ -136,4 +136,29 @@ public class CustomerViewImpl implements CustomerView {
 				"Insert the products of preference. Use ',' to separate"), Constants.COMMA));
 		return customer;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void listCustomersByName() {
+		try {
+			StringBuilder sb = new StringBuilder();
+			String searchName = JOptionPane.showInputDialog("Insert a name to find");
+			List<Customer> customers = this.customerController.listCustomersByName(searchName);
+			if(customers != null && !customers.isEmpty()) {
+				for(Customer cus : customers) {
+					sb.append(cus).append(Constants.LINE_SEPARATOR);
+				}
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Customers", 
+						JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "There are no items to show!");
+			}			
+		} catch (ControllerException | PersonNotFoundException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
 }

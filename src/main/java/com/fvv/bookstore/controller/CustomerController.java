@@ -28,7 +28,7 @@ public interface CustomerController {
 		PersonValidationException, ControllerException;
 	
 	/**
-	 * Lists all the customers using DAO.
+	 * Lists all customers using DAO.
 	 * 
 	 * @return a list of customers.
 	 * @throws ControllerException when a problem in controller happens.
@@ -62,4 +62,14 @@ public interface CustomerController {
 	 * @throws PersonNotFoundException when a customer is not found.
 	 */
 	Customer findCustomer(final Long id) throws PersonNotFoundException, ControllerException;
+	
+	/**
+	 * List the customers by name using DAO.
+	 * 
+	 * @param name to search.
+	 * @return a list of customers by name.
+	 * @throws PersonNotFoundException when a customer is not found.
+	 * @throws ControllerException when a problem in controller happens.
+	 */
+	List<Customer> listCustomersByName(final String name) throws PersonNotFoundException, ControllerException;
 }

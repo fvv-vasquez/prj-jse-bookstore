@@ -16,7 +16,7 @@ public interface EmployeeView {
 	void addEmployee();
 	
 	/**
-	 * Lists all the Employees using Controller.
+	 * Lists all Employees using Controller.
 	 */
 	void listEmployees();
 
@@ -29,4 +29,14 @@ public interface EmployeeView {
 	 * Delete an Employee using Controller.
 	 */
 	void removeEmployee();
+	
+	/**
+	 * List the employees by name using Controller.
+	 */
+	void listEmployeesByName();
+	
+	/**
+	 * Gets the salary based on the percentage using Controller.
+	 */
+	void getSalaryWithCommission();
 }
