@@ -112,9 +112,8 @@ public class EmployeeControllerImpl implements EmployeeController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Double getSalaryWithCommission(final Double percentage, final Employee employee, final YearMonth date)
+	public Double getSalaryWithCommission(final Double commission, final Employee employee, final YearMonth date)
 			throws PersonNotFoundException, ControllerException {
-		final Double commission = this.getCommission(percentage, employee, date);		
 		return commission + employee.getSalary();
 	}
 	
