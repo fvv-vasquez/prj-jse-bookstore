@@ -39,6 +39,11 @@ public class Constants {
 	 * Constant that represents an abbreviation to yes.
 	 */
 	public static final Character YES = 'y';
+
+	/**
+	 * Constant that represents the file properties name.
+	 */
+	public static final String CONFIG_PROPERTIES_NAME = "config.properties";
 	
 	/**
 	 * Constant that represents the file name.
