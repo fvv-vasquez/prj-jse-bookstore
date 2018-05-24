@@ -7,6 +7,8 @@ import java.util.Properties;
 
 /**
  * Load a properties file.
+ * This is an experimental application.
+ * Not all messages in the view classes were replaced by properties but that it could've been changed!
  * 
  * @author Fatima Vasquez
  * <p>Created on 2018</p>
@@ -20,15 +22,15 @@ public class PropertiesUtil {
 	static {
 		prop = new Properties();
 		
-		try (InputStream input = new FileInputStream("config.properties")) {
+		try (InputStream input = new FileInputStream(Constants.CONFIG_PROPERTIES_NAME)) {
 			prop.load(input);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("Error: " + e);
 		}
 	}
 	
 	/**
-	 * To take a value from a key.
+	 * It reads a property value from a key stored in a file with a key-value format.
 	 * 
 	 * @param key to insert the constant.
 	 * @return a message.

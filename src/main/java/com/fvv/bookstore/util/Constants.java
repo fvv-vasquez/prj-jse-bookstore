@@ -37,4 +37,8 @@ public class Constants {
 	
 	public static final Character YES = 'y';
 
+	/**
+	 * Constant that represents the file properties name.
+	 */
+	public static final String CONFIG_PROPERTIES_NAME = "config.properties";
 }

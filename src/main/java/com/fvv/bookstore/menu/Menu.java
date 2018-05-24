@@ -3,6 +3,7 @@ package com.fvv.bookstore.menu;
 import javax.swing.JOptionPane;
 
 import com.fvv.bookstore.util.Constants;
+import com.fvv.bookstore.util.PropertiesUtil;
 import com.fvv.bookstore.view.BookView;
 import com.fvv.bookstore.view.BookViewImpl;
 import com.fvv.bookstore.view.CellphoneView;
@@ -71,7 +72,7 @@ public class Menu {
 					"2 - Individuals" + Constants.LINE_SEPARATOR +
 					"3 - Order" + Constants.LINE_SEPARATOR +
 					"0 - Exit",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuProducts();
@@ -101,7 +102,7 @@ public class Menu {
 					"3 - Hardware" + Constants.LINE_SEPARATOR +
 					"4 - Magazine" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuBook();
@@ -133,7 +134,7 @@ public class Menu {
 					"3 - Delete a book" + Constants.LINE_SEPARATOR +
 					"4 - List the books" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.addBook();
@@ -165,7 +166,7 @@ public class Menu {
 					"3 - Delete a magazine" + Constants.LINE_SEPARATOR +
 					"4 - List the magazines" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.addMagazine();
@@ -197,7 +198,7 @@ public class Menu {
 					"3 - Delete a DVD" + Constants.LINE_SEPARATOR +
 					"4 - List the DVDs" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.addDvd();
@@ -227,7 +228,7 @@ public class Menu {
 					"1 - List all the shows" + Constants.LINE_SEPARATOR +
 					"2 - List all the movies" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.listDvdsShow();
@@ -253,7 +254,7 @@ public class Menu {
 					"1 - Cellphone" + Constants.LINE_SEPARATOR +
 					"2 - Laptop" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuCellphone();
@@ -281,7 +282,7 @@ public class Menu {
 					"3 - Delete a cellphone" + Constants.LINE_SEPARATOR +
 					"4 - List the cellphones" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.addCellphone();
@@ -313,7 +314,7 @@ public class Menu {
 					"3 - Delete a laptop" + Constants.LINE_SEPARATOR +
 					"4 - List the laptops" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.addLaptop();
@@ -343,7 +344,7 @@ public class Menu {
 					"1 - Customer" + Constants.LINE_SEPARATOR +
 					"2 - Employee" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.createSubMenuCustomer();
@@ -371,7 +372,7 @@ public class Menu {
 					"3 - Delete a customer" + Constants.LINE_SEPARATOR +
 					"4 - List the customers" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.addCustomer();
@@ -403,7 +404,7 @@ public class Menu {
 					"3 - Delete an employee" + Constants.LINE_SEPARATOR +
 					"4 - List the employees" + Constants.LINE_SEPARATOR +
 					"0 - Return",
-					"RAINBOW BOOKSTORE", JOptionPane.PLAIN_MESSAGE
+					PropertiesUtil.get("title") + " - " + PropertiesUtil.get("version"), JOptionPane.PLAIN_MESSAGE
 			);
 			switch(input.charAt(0)) {
 				case '1' : this.addEmployee();
