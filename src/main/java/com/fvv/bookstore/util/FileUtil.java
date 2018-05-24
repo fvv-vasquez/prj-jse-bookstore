@@ -24,15 +24,13 @@ public class FileUtil {
 	 */
 	public static void addAuditMessage(final String message) {
 		File file = new File(Constants.AUDIT_FILE_NAME);
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter(new FileWriter(file, true));
+		try (
+				PrintWriter pw = new PrintWriter(new FileWriter(file, true));
+		) {
 			pw.println(message);
 		} catch (IOException e) {
 			System.out.println("Error to save: " + e.getMessage());
-		} finally {
-			pw.close();
-		}
+		} 
 	}
 
 	/**
