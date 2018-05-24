@@ -1,5 +1,6 @@
 package com.fvv.bookstore.controller;
 
+import java.time.YearMonth;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
@@ -31,13 +32,12 @@ public interface OrderController {
 	/**
 	 * Lists all orders by month.
 	 * 
-	 * @param month to search.
-	 * @param year to search.
+	 * @param date to search.
 	 * @return a list of orders.
 	 * @throws OrderNotFoundException when not found an order in the database.
 	 * @throws ControllerException when a problem in controller happens.
 	 */
-	List<Order> listTotalOrdersByMonth(final Integer month, final Integer year) 
+	List<Order> listTotalOrdersByMonth(final YearMonth date) 
 			throws OrderNotFoundException, ControllerException;
 	
 	/**

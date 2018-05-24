@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,18 +71,18 @@ public class OrderDAOImpl implements OrderDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<Order> listTotalOrdersByMonth(final Integer month, final Integer year) 
+	public List<Order> listTotalOrdersByMonth(final YearMonth date) 
 			throws DaoException, OrderNotFoundException {
 		List<Order> orders = new ArrayList<>();
 		try (
 				Connection conn = ConnectionFactory.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(SqlQueryEnum.ORDER_SELECT_MONTH.getQuery())
 		) {
-			ps.setInt(1, month);
-			ps.setInt(2, year);
+			ps.setInt(1, date.getMonthValue());
+			ps.setInt(2, date.getYear());
 			try (ResultSet rs = ps.executeQuery()) {
 				if(!rs.next()) {
-					throw new OrderNotFoundException("Not found orders on the date " + month + "-" + year);
+					throw new OrderNotFoundException("Not found orders on the date " + date);
 				} else {
 					do {
 						Order order = new Order();

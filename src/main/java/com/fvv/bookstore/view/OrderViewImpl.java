@@ -1,5 +1,6 @@
 package com.fvv.bookstore.view;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,9 +105,8 @@ public class OrderViewImpl implements OrderView {
 	public void listTotalOrdersMonth() {
 		try {
 			StringBuilder sb = new StringBuilder();
-			Integer monthSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the number month to search"));
-			Integer yearSearch = Integer.parseInt(JOptionPane.showInputDialog("Insert the year to search"));
-			List<Order> orders = this.orderController.listTotalOrdersByMonth(monthSearch, yearSearch);
+			final YearMonth date = YearMonth.parse(JOptionPane.showInputDialog("Insert the date (yyyy-mm)"));
+			List<Order> orders = this.orderController.listTotalOrdersByMonth(date);
 			if(orders != null && !orders.isEmpty()) {
 				Integer quantity = this.orderController.calculateQtyOrders(orders);
 				Double amount = this.orderController.calculateTotalOrders(orders);
@@ -119,7 +119,7 @@ public class OrderViewImpl implements OrderView {
 					append(ord.getCustomer().getId()).append(" - Name: ").append(ord.getCustomer().getName()).append(Constants.LINE_SEPARATOR).
 					append(Constants.LINE_SEPARATOR);
 				}
-				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Orders of the Searched Date: " + monthSearch + "-" + yearSearch, 
+				JOptionPane.showMessageDialog(null, sb.toString(), "Listing the Orders of the Date: " + date, 
 						JOptionPane.PLAIN_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "There are no items to show!");

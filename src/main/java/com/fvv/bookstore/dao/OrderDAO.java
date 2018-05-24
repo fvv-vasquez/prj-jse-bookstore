@@ -1,5 +1,6 @@
 package com.fvv.bookstore.dao;
 
+import java.time.YearMonth;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Employee;
@@ -29,13 +30,12 @@ public interface OrderDAO {
 	/**
 	 * Lists all order by month.
 	 * 
-	 * @param month to search.
-	 * @param year to search.
+	 * @param date to search.
 	 * @return a list of orders.
 	 * @throws DaoException when a problem in database happens.
 	 * @throws OrderNotFoundException when not found an order in the database.
 	 */
-	List<Order> listTotalOrdersByMonth(final Integer month, final Integer year) 
+	List<Order> listTotalOrdersByMonth(final YearMonth date) 
 			throws DaoException, OrderNotFoundException;
 	
 	/**

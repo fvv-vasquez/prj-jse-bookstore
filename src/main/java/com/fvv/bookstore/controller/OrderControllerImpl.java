@@ -1,5 +1,6 @@
 package com.fvv.bookstore.controller;
 
+import java.time.YearMonth;
 import java.util.List;
 
 import com.fvv.bookstore.bean.Book;
@@ -78,10 +79,10 @@ public class OrderControllerImpl implements OrderController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<Order> listTotalOrdersByMonth(final Integer month, final Integer year)
+	public List<Order> listTotalOrdersByMonth(final YearMonth date)
 			throws OrderNotFoundException, ControllerException {
 		try {
-			return this.orderDao.listTotalOrdersByMonth(month, year);
+			return this.orderDao.listTotalOrdersByMonth(date);
 		} catch (DaoException e) {
 			throw new ControllerException("Error to load the list", e);
 		}
