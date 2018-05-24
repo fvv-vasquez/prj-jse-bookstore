@@ -1,2 +1,0 @@
-17-05-2018 14:20:37 - Order ID: 109 - Employee: Chris Evans - Total Amount: R$20000.0
-17-05-2018 14:20:52 - Order ID: 110 - Employee: Matt Murdock - Total Amount: R$85.35
