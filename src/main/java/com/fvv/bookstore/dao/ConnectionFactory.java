@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.fvv.bookstore.util.DbPropertiesUtil;
+
 /**
  * Class Connection Factory to implement a connection with the database.
  * 
@@ -14,11 +16,6 @@ import java.sql.SQLException;
  */
 public class ConnectionFactory {
 
-	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/bookstore_db";
-	private static final String DB_USER = "root";
-	private static final String DB_PASS = "test1234";
-
 	/**
 	 * It opens a connection with the database.
 	 * @return a connection object.
@@ -26,8 +23,8 @@ public class ConnectionFactory {
 	 */
     public static Connection getConnection() throws SQLException {
     	try {
-    		Class.forName(DB_DRIVER);
-    		return DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+    		Class.forName(DbPropertiesUtil.getDriver());
+    		return DriverManager.getConnection(DbPropertiesUtil.getUrl(), DbPropertiesUtil.getUser(), DbPropertiesUtil.getPass());
     	} catch (ClassNotFoundException e) {
     		throw new SQLException(e.getMessage());
     	}
