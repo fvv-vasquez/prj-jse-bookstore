@@ -50,6 +50,6 @@ To connect in this application, use the MySQL database.
 **Fatima Vasquez Varanda**
 - :email: fvv.vasquez@gmail.com
 - :phone: (11) 95273-2773
-- :information_source: linkedin.com/in/fatimavasquez/
+- :information_source: [LinkedIn] (https://www.linkedin.com/in/fatimavasquez/)
 
 ## Thanks :thumbsup:
