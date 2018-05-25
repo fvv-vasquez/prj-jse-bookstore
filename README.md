@@ -5,7 +5,7 @@ Desktop application to automate a book store.
 It's very simple to use, these are some instructions:
 
 **_Menu:_** 
-At the menu you can access the options for:
+   - At the menu you can access the options for:
 
 **1. Products:**
    - _Book:_ you can add, update and delete a book or list all the books.
@@ -20,7 +20,7 @@ At the menu you can access the options for:
    - _Return:_ always use to return to the previous menu.
 
 **3. Order:**
-Use to add an order at the book store.
+   - Use to add an order at the book store.
 
 **4. Reports:**
    - _Individuals:_ here you can generate some reports related to customers and employees.
@@ -35,4 +35,8 @@ Use to add an order at the book store.
    - _Return:_ always use to return to the previous menu.
 
 **0. Exit:**
-Use to get out from the application.
+   - Use to get out from the application.
+
+## Which DataBase?
+
+## How to contact me:
