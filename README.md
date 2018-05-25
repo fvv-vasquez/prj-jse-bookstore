@@ -19,6 +19,17 @@ At the menu you can access the options for:
    - _Employee:_ you can add, update and delete an employee or list all the employees.
    - _Return:_ always use to return to the previous menu.
 
-**3. Order**
-**4. Reports**
+**3. Order:**
+
+Use to add an order at the book store.
+
+**4. Reports:**
+   - _Individuals:_ here you can generate some reports related to customers and employees.
+      - _Customers Filtered and Ordered by Name:_ insert a name or letter to search a customer, and generate a report filtered and ordered by customer name.
+      - _Employees Filtered by Name and Ordered by Highest Salary:_ insert a name or letter to search an employee, and generate a report filtered and ordered by the highest salary.
+      - _Employee Salary with Commission by Month:_ search an employee by its ID and the date that you want to generate your salary with commission report. 
+   - _Stock - Products to Replace:_ 
+   - _Sales:_
+   - _Return:_ always use to return to the previous menu.
+
 **0. Exit**
