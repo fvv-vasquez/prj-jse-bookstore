@@ -43,7 +43,7 @@ To connect in this application, use the MySQL database.
 1. Take the script and insert it into MySQL;
 2. Create a database with th name: `bookstore_db`;
 3. Take the dump at the sql folder and import to MySQL;
-4. Access the application folder, than target folder and execute the comand: `java -jar prj-jse-bookstore-1.0-SNAPSHOT.jar;
+4. Access the application folder, than target folder and execute the comand: `java -jar prj-jse-bookstore-1.0-SNAPSHOT.jar`;
 5. The application will start.
 
 ## How to contact me:
@@ -52,4 +52,4 @@ To connect in this application, use the MySQL database.
 - :phone: (11) 95273-2773
 - :information_source: linkedin.com/in/fatimavasquez/
 
-##Thanks :thumbsup:
+## Thanks :thumbsup:

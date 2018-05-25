@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `tb_book` (
   `book_stock_qty` int(11) NOT NULL,
   `book_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_cellphone
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `tb_cellphone` (
   `cel_stock_qty` int(11) NOT NULL,
   `cel_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_customer
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `tb_customer` (
   `cus_prod_pref` varchar(255) DEFAULT NULL,
   `cus_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`cus_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_dvd
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `tb_dvd` (
   `dvd_stock_qty` int(11) NOT NULL,
   `dvd_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`dvd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_employee
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `tb_employee` (
   `emp_salary` double NOT NULL,
   `emp_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_laptop
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `tb_laptop` (
   `pc_stock_qty` int(11) NOT NULL,
   `pc_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`pc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_magazine
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `tb_magazine` (
   `mag_stock_qty` int(11) NOT NULL,
   `mag_modification_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`mag_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_order
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `tb_order` (
   KEY `FK_tb_order_emp` (`ord_emp_id`),
   CONSTRAINT `FK_tb_order_cus` FOREIGN KEY (`ord_cus_id`) REFERENCES `tb_customer` (`cus_id`),
   CONSTRAINT `FK_tb_order_emp` FOREIGN KEY (`ord_emp_id`) REFERENCES `tb_employee` (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bookstore_db.tb_order_item_book
