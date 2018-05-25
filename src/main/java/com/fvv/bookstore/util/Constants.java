@@ -54,4 +54,9 @@ public class Constants {
 	 * Constant that represents a date with time mask.
 	 */
 	public static final String DATE_TIME_MASK = "dd-MM-yyyy HH:mm:ss";
+	
+	/**
+	 * Constant that represents the file connection factory properties name.
+	 */
+	public static final String CONFIG_DB_PROPERTIES_NAME = "connectionfactory.properties";
 }
